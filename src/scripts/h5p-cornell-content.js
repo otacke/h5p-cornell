@@ -60,7 +60,7 @@ export default class CornellContent {
     this.inputField.setAttribute('maxlength', '100');
     this.inputField.setAttribute('value', this.params.title);
     if (this.params.titleDisabled) {
-      this.inputField.setAttribute('disabled');
+      this.inputField.setAttribute('disabled', 'disabled');
     }
     titleDOM.appendChild(this.inputField);
     headlineDOM.appendChild(titleDOM);
@@ -94,7 +94,7 @@ export default class CornellContent {
       params: {
         taskDescription: this.params.recallTitle,
         placeholderText: this.params.recallPlaceholder,
-        inputFieldSize: this.params.inputFieldSize,
+        inputFieldSize: this.params.fieldSizeNotes,
       }
     }, this.contentId, H5P.jQuery(recall), undefined, {});
     mainNotes.appendChild(recall);
@@ -106,7 +106,7 @@ export default class CornellContent {
       params: {
         taskDescription: this.params.notesTitle,
         placeholderText: this.params.notesPlaceholder,
-        inputFieldSize: this.params.inputFieldSize,
+        inputFieldSize: this.params.fieldSizeNotes,
       }
     }, this.contentId, H5P.jQuery(notes), undefined, {});
     mainNotes.appendChild(notes);
@@ -123,7 +123,7 @@ export default class CornellContent {
       params: {
         taskDescription: this.params.summaryTitle,
         placeholderText: this.params.summarPlaceholder,
-        inputFieldSize: this.params.inputFieldSize,
+        inputFieldSize: this.params.fieldSizeSummary,
       }
     }, this.contentId, H5P.jQuery(summary), undefined, {});
 

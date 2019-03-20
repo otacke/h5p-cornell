@@ -39,20 +39,19 @@ export default class Cornell extends H5P.Question {
       title: 'ChangeMe',
       titleDisabled: false,
       recallTitle: 'Recall',
-      recallPlaceholder: 'rP',
+      recallPlaceholder: 'Enter your keywords, questions, the main idea, etc.',
       notesTitle: 'Notes',
-      notesPlaceholder: 'nP',
+      notesPlaceholder: 'Enter dates, details, definitions, formulas, examples, etc.',
       summaryTitle: 'Summary',
-      summarPlaceholder: 'sP',
-      inputFieldSize: 10,
+      summarPlaceholder: 'Enter your summary',
+      fieldSizeNotes: 10,
+      fieldSizeSummary: 5,
       behaviour: {
-        enableSolutionsButton: true,
-        enableRetry: true
+        enableSolutionsButton: false,
+        enableRetry: false
       },
       l10n: {
-        checkAnswer: 'Check answer', // TODO: remove what's obsolete
-        showSolution: 'Show solution',
-        tryAgain: 'Retry',
+        submitAnswer: 'Submit',
         title: 'Title:',
         date: 'Date:'
       }
@@ -84,34 +83,9 @@ export default class Cornell extends H5P.Question {
      */
     this.addButtons = () => {
       // Check answer button
-      this.addButton('check-answer', this.params.l10n.checkAnswer, () => {
+      this.addButton('check-answer', this.params.l10n.submitAnswer, () => {
         // TODO: Implement something useful to do on click
-        this.hideButton('check-answer');
-
-        if (this.params.behaviour.enableSolutionsButton) {
-          this.showButton('show-solution');
-        }
-
-        if (this.params.behaviour.enableRetry) {
-          this.showButton('try-again');
-        }
       }, true, {}, {});
-
-      // Show solution button
-      this.addButton('show-solution', this.params.l10n.showSolution, () => {
-        // TODO: Implement something useful to do on click
-      }, false, {}, {});
-
-      // Retry button
-      this.addButton('try-again', this.params.l10n.tryAgain, () => {
-        this.showButton('check-answer');
-        this.hideButton('show-solution');
-        this.hideButton('try-again');
-
-        this.resetTask();
-
-        this.trigger('resize');
-      }, false, {}, {});
     };
 
     /**

@@ -1,12 +1,113 @@
 [
   {
-    "label": "Text",
+    "label": "Instructions",
     "importance": "high",
-    "name": "textField",
+    "name": "instructions",
     "type": "text",
-    "placeholder": "Hello world",
-    "default": "Hello %username",
-    "description": "Says hello to someone"
+    "optional": true,
+    "description": "Students will see these instructions on top of the notes.",
+    "widget": "html",
+    "enterMode": "div",
+    "tags": [
+      "strong",
+      "em",
+      "u",
+      "a",
+      "ul",
+      "ol",
+      "h2",
+      "h3",
+      "hr"
+    ]
+  },
+  {
+    "label": "Excercise title",
+    "importance": "medium",
+    "name": "title",
+    "type": "text",
+    "optional": true,
+    "description": "Title thas describes the exercise"
+  },
+  {
+    "label": "Disable title field",
+    "importance": "medium",
+    "name": "titleDisabled",
+    "type": "boolean",
+    "optional": false,
+    "default": false,
+    "description": "Decide whether students can change the exercise title"
+  },
+  {
+    "label": "Title recall",
+    "importance": "medium",
+    "name": "recallTitle",
+    "type": "text",
+    "default": "Recall",
+    "optional": true,
+    "description": "Title for the recall section"
+  },
+  {
+    "label": "Placeholder recall",
+    "importance": "medium",
+    "name": "recallPlaceholder",
+    "type": "text",
+    "default": "Enter your keywords, questions, the main idea, etc.",
+    "optional": true,
+    "description": "Placeholder for the recall section as a reminder for your students"
+  },
+  {
+    "label": "Title notes",
+    "importance": "medium",
+    "name": "notesTitle",
+    "type": "text",
+    "default": "Notes",
+    "optional": true,
+    "description": "Title for the notes section"
+  },
+  {
+    "label": "Placeholder notes",
+    "importance": "medium",
+    "name": "notesPlaceholder",
+    "type": "text",
+    "default": "Enter dates, details, definitions, formulas, examples, etc.",
+    "optional": true,
+    "description": "Placeholder for the notes section as a reminder for your students"
+  },
+  {
+    "label": "Title summary",
+    "importance": "medium",
+    "name": "summaryTitle",
+    "type": "text",
+    "default": "Summary",
+    "optional": true,
+    "description": "Title for the summary section"
+  },
+  {
+    "label": "Placeholder summary",
+    "importance": "medium",
+    "name": "summaryPlaceholder",
+    "type": "text",
+    "default": "Enter your summary",
+    "optional": true,
+    "description": "Placeholder for the summary section as a reminder for your students"
+  },
+  {
+    "label": "Main notes input size",
+    "importance": "low",
+    "name": "fieldSizeNotes",
+    "type": "number",
+    "min": 5,
+    "default": 10,
+    "description": "Number of lines for the recall and notes section"
+  },
+  {
+    "label": "Summary input size",
+    "importance": "low",
+    "name": "fieldSizeSummary",
+    "type": "number",
+    "min": 5,
+    "default": 5,
+    "description": "Number of lines for the summary section"
   },
   {
     "name": "l10n",
@@ -16,25 +117,25 @@
     "importance": "low",
     "fields": [
       {
-        "name": "checkAnswer",
+        "name": "submitAnswer",
         "type": "text",
-        "label": "Text for \"Check\" button",
+        "label": "Text for \"Submit\" button",
         "importance": "low",
-        "default": "Check"
+        "default": "Submit"
       },
       {
-        "name": "tryAgain",
-        "label": "Text for \"Retry\" button",
+        "name": "title",
         "type": "text",
+        "label": "Title",
         "importance": "low",
-        "default": "Retry"
+        "default": "Title:"
       },
       {
-        "name": "showSolution",
+        "name": "date",
         "type": "text",
-        "label": "Text for \"Show solution\" button",
+        "label": "Date",
         "importance": "low",
-        "default": "Show solution"
+        "default": "Date:"
       }
     ]
   }
