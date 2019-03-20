@@ -169,7 +169,8 @@ export default class Cornell extends H5P.Question {
      */
     this.createXAPIEvent = (verb) => {
       const xAPIEvent = this.createXAPIEventTemplate(verb);
-      extend(
+      // TODO: Check this when adding xAPI support
+      Util.extend(
         xAPIEvent.getVerifiedStatementValue(['object', 'definition']),
         this.getxAPIDefinition());
       return xAPIEvent;
@@ -229,28 +230,6 @@ export default class Cornell extends H5P.Question {
      */
     // TODO: Have a field for a task description in the editor if you need one.
     this.getDescription = () => this.params.taskDescription || Cornell.DEFAULT_DESCRIPTION;
-
-    /**
-     * Extend an array just like JQuery's extend.
-     *
-     * @param {object} arguments Objects to be merged.
-     * @return {object} Merged objects.
-     */
-    function extend() {
-      for (let i = 1; i < arguments.length; i++) {
-        for (let key in arguments[i]) {
-          if (arguments[i].hasOwnProperty(key)) {
-            if (typeof arguments[0][key] === 'object' && typeof arguments[i][key] === 'object') {
-              extend(arguments[0][key], arguments[i][key]);
-            }
-            else {
-              arguments[0][key] = arguments[i][key];
-            }
-          }
-        }
-      }
-      return arguments[0];
-    }
 
     /**
      * Answer call to return the current state.
