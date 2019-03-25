@@ -64,10 +64,10 @@ export default class Cornell extends H5P.Question {
      * Register the DOM elements with H5P.Question
      */
     this.registerDomElements = () => {
-      const content = new CornellContent(this.params, this.contentId, this.previousState);
+      this.content = new CornellContent(this.params, this.contentId, this.previousState);
 
       // Register content with H5P.Question
-      this.setContent(content.getDOM());
+      this.setContent(this.content.getDOM());
 
       // Register Buttons
       this.addButtons();
@@ -236,15 +236,7 @@ export default class Cornell extends H5P.Question {
      *
      * @return {object} Current state.
      */
-    this.getCurrentState = () => {
-      /*
-       * TODO: Return any data object that will indicate the state that should
-       * be loaded on start, here it's a random number
-       */
-      return {
-        random: Math.random(100)
-      };
-    };
+    this.getCurrentState = () => this.content.getCurrentState();
   }
 }
 
