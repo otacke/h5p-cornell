@@ -12,6 +12,8 @@ export default class CornellContent {
     this.contentId = contentId;
     this.previousState = previousState;
 
+    this.dateString = (this.previousState.dateString) || new Date().toLocaleDateString();
+
     this.content = document.createElement('div');
     this.content.classList.add('h5p-cornell-container');
 
@@ -75,7 +77,7 @@ export default class CornellContent {
 
     const dateField = document.createElement('div');
     dateField.classList.add('h5p-cornell-headline-date-field');
-    dateField.innerHTML = 'xx.yy.zz'; // TODO: Replace
+    dateField.innerHTML = this.dateString;
     dateDOM.appendChild(dateField);
 
     headlineDOM.appendChild(dateDOM);
