@@ -6,14 +6,15 @@ export default class CornellContent {
   /**
    * @constructor
    *
-   * @param {string} textField Parameter from editor.
-   * @param {string} [username=world] Username.
-   * @param {number} [random=-1] Random number.
+   * @param {object} textField Parameter from editor.
+   * @param {number} contentId Content ID.
+   * @param {object} [previousState] PreviousState.
    */
   constructor(params, contentId, previousState) {
     this.params = params;
     this.contentId = contentId;
 
+    // Create values to fill with
     this.previousState = Util.extend(
       {
         title: this.params.title,
@@ -28,11 +29,11 @@ export default class CornellContent {
     this.content = document.createElement('div');
     this.content.classList.add('h5p-cornell-container');
 
-    // TODO: Rename functions/variables to reflect DOM
-    this.content.appendChild(this.createInstructions());
-    this.content.appendChild(this.createHeadline());
-    this.content.appendChild(this.createMainNotes());
-    this.content.appendChild(this.createSummary());
+    // Create DOM elements
+    this.content.appendChild(this.createInstructionsDOM());
+    this.content.appendChild(this.createHeadlineDOM());
+    this.content.appendChild(this.createMainNotesDOM());
+    this.content.appendChild(this.createSummaryDOM());
   }
 
   /**
@@ -44,7 +45,11 @@ export default class CornellContent {
     return this.content;
   }
 
-  createInstructions() {
+  /**
+   * Create DOM for instructions.
+   * @return {HTMLElement} DOM for instructions.
+   */
+  createInstructionsDOM() {
     const instructionsDOM = document.createElement('div');
 
     if (this.params.instructions !== '') {
@@ -55,7 +60,11 @@ export default class CornellContent {
     return instructionsDOM;
   }
 
-  createHeadline() {
+  /**
+   * Create DOM for headline.
+   * @return {HTMLElement} DOM for headline.
+   */
+  createHeadlineDOM() {
     const headlineDOM = document.createElement('div');
     headlineDOM.classList.add('h5p-cornell-headline-wrapper');
 
@@ -67,17 +76,16 @@ export default class CornellContent {
     titleLabel.innerHTML = this.params.l10n.title;
     titleDOM.appendChild(titleLabel);
 
-    // TODO: Rename inputField
-    this.inputField = document.createElement('input');
-    this.inputField.classList.add('h5p-cornell-headline-title-input-field');
-    this.inputField.setAttribute('type', 'text');
-    this.inputField.setAttribute('name', 'cornell-title');
-    this.inputField.setAttribute('maxlength', '100');
-    this.inputField.setAttribute('value', this.previousState.title);
+    this.titleInputField = document.createElement('input');
+    this.titleInputField.classList.add('h5p-cornell-headline-title-input-field');
+    this.titleInputField.setAttribute('type', 'text');
+    this.titleInputField.setAttribute('name', 'cornell-title');
+    this.titleInputField.setAttribute('maxlength', '100');
+    this.titleInputField.setAttribute('value', this.previousState.title);
     if (this.params.titleDisabled) {
-      this.inputField.setAttribute('disabled', 'disabled');
+      this.titleInputField.setAttribute('disabled', 'disabled');
     }
-    titleDOM.appendChild(this.inputField);
+    titleDOM.appendChild(this.titleInputField);
     headlineDOM.appendChild(titleDOM);
 
     const dateDOM = document.createElement('div');
@@ -98,10 +106,15 @@ export default class CornellContent {
     return headlineDOM;
   }
 
-  createMainNotes() {
-    const mainNotes = document.createElement('div');
-    mainNotes.classList.add('h5p-cornell-main-notes-wrapper');
+  /**
+   * Create DOM for main notes.
+   * @return {HTMLElement} DOM for main notes.
+   */
+  createMainNotesDOM() {
+    const mainNotesDOM = document.createElement('div');
+    mainNotesDOM.classList.add('h5p-cornell-main-notes-wrapper');
 
+    // Recall area
     const recall = document.createElement('div');
     recall.classList.add('h5p-cornell-main-notes-recall-wrapper');
     this.recall = H5P.newRunnable({
@@ -112,8 +125,9 @@ export default class CornellContent {
         inputFieldSize: this.params.fieldSizeNotes,
       }
     }, this.contentId, H5P.jQuery(recall), undefined, {previousState: this.previousState.recall});
-    mainNotes.appendChild(recall);
+    mainNotesDOM.appendChild(recall);
 
+    // Notes area
     const notes = document.createElement('div');
     notes.classList.add('h5p-cornell-main-notes-notes-wrapper');
     this.mainNotes = H5P.newRunnable({
@@ -124,14 +138,18 @@ export default class CornellContent {
         inputFieldSize: this.params.fieldSizeNotes,
       }
     }, this.contentId, H5P.jQuery(notes), undefined, {previousState: this.previousState.mainNotes});
-    mainNotes.appendChild(notes);
+    mainNotesDOM.appendChild(notes);
 
-    return mainNotes;
+    return mainNotesDOM;
   }
 
-  createSummary() {
-    const summary = document.createElement('div');
-    summary.classList.add('h5p-cornell-summary-wrapper');
+  /**
+   * Create DOM for summary.
+   * @return {HTMLElement} DOM for summary.
+   */
+  createSummaryDOM() {
+    const summaryDOM = document.createElement('div');
+    summaryDOM.classList.add('h5p-cornell-summary-wrapper');
 
     this.summary = H5P.newRunnable({
       library: 'H5P.TextInputField 1.2',
@@ -140,19 +158,27 @@ export default class CornellContent {
         placeholderText: this.params.summarPlaceholder,
         inputFieldSize: this.params.fieldSizeSummary,
       }
-    }, this.contentId, H5P.jQuery(summary), undefined, {previousState: this.previousState.summary});
+    }, this.contentId, H5P.jQuery(summaryDOM), undefined, {previousState: this.previousState.summary});
 
-    return summary;
+    return summaryDOM;
   }
 
+  /**
+   * Strip tags from text in H5P TextInputField object. Don't want those here.
+   * @param {object} fieldState Save state object to be cleaned.
+   * @return {object} Save state object with cleaned text.
+   */
   stripTags(fieldState) {
     fieldState.inputField = Util.htmlDecode(fieldState.inputField);
     return fieldState;
   }
 
+  /**
+   * Get current state to be saved.
+   */
   getCurrentState() {
     return {
-      title: Util.htmlDecode(this.inputField.value),
+      title: Util.htmlDecode(this.titleInputField.value),
       dateString: this.previousState.dateString,
       recall: this.stripTags(this.recall.getCurrentState()),
       mainNotes: this.stripTags(this.mainNotes.getCurrentState()),
