@@ -36,8 +36,6 @@ export default class Cornell extends H5P.Question {
     // Make sure all variables are set
     this.params = Util.extend({
       instructions: 'Do this and that ...',
-      title: 'ChangeMe',
-      titleDisabled: false,
       recallTitle: 'Recall',
       recallPlaceholder: 'Enter your keywords, questions, the main idea, etc.',
       notesTitle: 'Notes',
@@ -51,20 +49,23 @@ export default class Cornell extends H5P.Question {
         enableRetry: false
       },
       l10n: {
-        submitAnswer: 'Submit',
-        title: 'Title:',
-        date: 'Date:'
+        submitAnswer: 'Submit'
       }
     }, params);
 
-    // this.previousState now holds the saved content state of the previous session
-    this.previousState = this.extras.previousState || {};
+    // previousState now holds the saved content state of the previous session
+    this.extras = Util.extend({
+      metadata: {
+        title: 'Cornell Notes',
+      },
+      previousState: {}
+    }, extras);
 
     /**
      * Register the DOM elements with H5P.Question
      */
     this.registerDomElements = () => {
-      this.content = new CornellContent(this.params, this.contentId, this.previousState, {
+      this.content = new CornellContent(this.params, this.contentId, this.extras, {
         resize: this.resize
       });
 

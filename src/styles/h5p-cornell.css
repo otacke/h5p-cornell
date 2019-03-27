@@ -111,6 +111,9 @@
   margin: 2em;
 }
 
+.h5p-cornell .h5p-cornell-exercise-content-library {
+}
+
 .h5p-cornell .h5p-cornell-notes-wrapper {
   display: flex;
   flex-direction: column;
@@ -134,8 +137,6 @@
 }
 
 .h5p-cornell .h5p-cornell-instructions-wrapper {
-  margin: 0 2em;
-  padding: 0.5em;
 }
 
 .h5p-cornell .h5p-cornell-main-notes-wrapper {

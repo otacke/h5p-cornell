@@ -1,7 +1,7 @@
 [
   {
     "label": "Instructions",
-    "importance": "high",
+    "importance": "medium",
     "name": "instructions",
     "type": "text",
     "optional": true,
@@ -21,15 +21,8 @@
     ]
   },
   {
-    "label": "Excercise title",
-    "importance": "medium",
-    "name": "title",
-    "type": "text",
-    "optional": true,
-    "description": "Title thas describes the exercise"
-  },
-  {
     "label": "Exercise content",
+    "importance": "medium",
     "name": "exerciseContent",
     "type": "library",
     "options": [

@@ -8,12 +8,13 @@ export default class CornellContent {
    *
    * @param {object} textField Parameter from editor.
    * @param {number} contentId Content ID.
-   * @param {object} [previousState] PreviousState.
+   * @param {object} [extras] Extras incl. previous state.
    * @param {object} [callbacks] Callbacks.
    */
-  constructor(params, contentId, previousState, callbacks) {
+  constructor(params, contentId, extras, callbacks) {
     this.params = params;
     this.contentId = contentId;
+    this.extras = extras;
 
     // Create values to fill with
     this.previousState = Util.extend(
@@ -23,7 +24,7 @@ export default class CornellContent {
         mainNotes: {inputField: ''},
         summary: {inputField: ''}
       },
-      previousState || {}
+      extras.previousState || {}
     );
 
     // Callbacks
@@ -44,6 +45,11 @@ export default class CornellContent {
 
     const exerciseContent = document.createElement('div');
     exerciseContent.classList.add('h5p-cornell-exercise-content');
+    exerciseContent.appendChild(this.createInstructionsDOM());
+
+    const exerciseContentLibrary = document.createElement('div');
+    exerciseContentLibrary.classList.add('h5p-cornell-exercise-content-library');
+    exerciseContent.appendChild(exerciseContentLibrary);
 
     const exerciseContentWrapper = document.createElement('div');
     exerciseContentWrapper.classList.add('h5p-cornell-exercise-content-wrapper');
@@ -54,7 +60,7 @@ export default class CornellContent {
     this.exercise = H5P.newRunnable(
       this.params.exerciseContent,
       this.contentId,
-      H5P.jQuery(exerciseContent)
+      H5P.jQuery(exerciseContentLibrary)
     );
 
     this.content.append(this.exerciseWrapper);
@@ -72,7 +78,6 @@ export default class CornellContent {
 
     this.notesWrapper.appendChild(notesContentWrapper);
 
-    notesContentWrapper.appendChild(this.createInstructionsDOM());
     notesContentWrapper.appendChild(this.createMainNotesDOM());
     notesContentWrapper.appendChild(this.createSummaryDOM());
 
@@ -114,7 +119,7 @@ export default class CornellContent {
 
     const titleDOM = document.createElement('div');
     titleDOM.classList.add('h5p-cornell-title');
-    titleDOM.innerHTML = this.params.title;
+    titleDOM.innerHTML = this.extras.metadata.title;
 
     const dateDOM = document.createElement('div');
     dateDOM.classList.add('h5p-cornell-date');
