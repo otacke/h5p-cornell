@@ -9,15 +9,15 @@ export default class CornellContent {
    * @param {object} textField Parameter from editor.
    * @param {number} contentId Content ID.
    * @param {object} [previousState] PreviousState.
+   * @param {object} [callbacks] Callbacks.
    */
-  constructor(params, contentId, previousState) {
+  constructor(params, contentId, previousState, callbacks) {
     this.params = params;
     this.contentId = contentId;
 
     // Create values to fill with
     this.previousState = Util.extend(
       {
-        title: this.params.title,
         dateString: new Date().toLocaleDateString(),
         recall: {inputField: ''},
         mainNotes: {inputField: ''},
@@ -26,14 +26,42 @@ export default class CornellContent {
       previousState || {}
     );
 
+    // Callbacks
+    this.callbacks = callbacks || {};
+
+    this.isExerciseMode = true;
+
+    // TODO: Put this in separate function
     this.content = document.createElement('div');
     this.content.classList.add('h5p-cornell-container');
 
     // Create DOM elements
-    this.content.appendChild(this.createInstructionsDOM());
-    this.content.appendChild(this.createHeadlineDOM());
-    this.content.appendChild(this.createMainNotesDOM());
-    this.content.appendChild(this.createSummaryDOM());
+    this.content.appendChild(this.createTitleBarDOM());
+
+    // Exercise with H5P Content
+    this.exerciseWrapper = document.createElement('div');
+    this.exerciseWrapper.classList.add('h5p-cornell-exercise-wrapper');
+
+    const exerciseContent = document.createElement('div');
+    exerciseContent.classList.add('h5p-cornell-exercise-content');
+    this.exerciseWrapper.appendChild(exerciseContent);
+
+    this.exercise = H5P.newRunnable(
+      this.params.exerciseContent,
+      this.contentId,
+      H5P.jQuery(exerciseContent)
+    );
+
+    this.content.append(this.exerciseWrapper);
+
+    // Cornell Notes
+    this.notesWrapper = document.createElement('div');
+    this.notesWrapper.classList.add('h5p-cornell-notes-wrapper');
+    this.notesWrapper.appendChild(this.createInstructionsDOM());
+    this.notesWrapper.appendChild(this.createMainNotesDOM());
+    this.notesWrapper.appendChild(this.createSummaryDOM());
+
+    this.content.append(this.notesWrapper);
   }
 
   /**
@@ -43,6 +71,45 @@ export default class CornellContent {
    */
   getDOM() {
     return this.content;
+  }
+
+  /**
+   * Create DOM for title bar.
+   * @return {HTMLElement} DOM for title bar.
+   */
+  createTitleBarDOM() {
+    this.titleBar = document.createElement('div');
+    this.titleBar.classList.add('h5p-cornell-title-bar');
+
+    // TODO: Take care of ARIA for button state
+    this.buttonOverlay = document.createElement('div');
+    this.buttonOverlay.classList.add('h5p-cornell-button-overlay');
+    this.buttonOverlay.setAttribute('role', 'button');
+    this.buttonOverlay.setAttribute('tabindex', '0');
+
+    // TODO: event listener for keys
+    this.buttonOverlay.addEventListener('click', () => {
+      this.isExerciseMode = !this.isExerciseMode;
+      this.buttonOverlay.classList.toggle('h5p-cornell-active');
+      this.exerciseWrapper.classList.toggle('h5p-cornell-notes-mode');
+      this.notesWrapper.classList.toggle('h5p-cornell-notes-mode');
+
+      this.resize();
+    });
+
+    const titleDOM = document.createElement('div');
+    titleDOM.classList.add('h5p-cornell-title');
+    titleDOM.innerHTML = this.params.title;
+
+    const dateDOM = document.createElement('div');
+    dateDOM.classList.add('h5p-cornell-date');
+    dateDOM.innerHTML = this.previousState.dateString;
+
+    this.titleBar.appendChild(this.buttonOverlay);
+    this.titleBar.appendChild(titleDOM);
+    this.titleBar.appendChild(dateDOM);
+
+    return this.titleBar;
   }
 
   /**
@@ -58,52 +125,6 @@ export default class CornellContent {
     }
 
     return instructionsDOM;
-  }
-
-  /**
-   * Create DOM for headline.
-   * @return {HTMLElement} DOM for headline.
-   */
-  createHeadlineDOM() {
-    const headlineDOM = document.createElement('div');
-    headlineDOM.classList.add('h5p-cornell-headline-wrapper');
-
-    const titleDOM = document.createElement('div');
-    titleDOM.classList.add('h5p-cornell-headline-title-wrapper');
-
-    const titleLabel = document.createElement('div');
-    titleLabel.classList.add('h5p-cornell-headline-title-label');
-    titleLabel.innerHTML = this.params.l10n.title;
-    titleDOM.appendChild(titleLabel);
-
-    this.titleInputField = document.createElement('input');
-    this.titleInputField.classList.add('h5p-cornell-headline-title-input-field');
-    this.titleInputField.setAttribute('type', 'text');
-    this.titleInputField.setAttribute('name', 'cornell-title');
-    this.titleInputField.setAttribute('maxlength', '100');
-    this.titleInputField.setAttribute('value', this.previousState.title);
-    if (this.params.titleDisabled) {
-      this.titleInputField.setAttribute('disabled', 'disabled');
-    }
-    titleDOM.appendChild(this.titleInputField);
-    headlineDOM.appendChild(titleDOM);
-
-    const dateDOM = document.createElement('div');
-    dateDOM.classList.add('h5p-cornell-headline-date-wrapper');
-
-    const dateLabel = document.createElement('div');
-    dateLabel.classList.add('h5p-cornell-headline-date-label');
-    dateLabel.innerHTML = this.params.l10n.date;
-    dateDOM.appendChild(dateLabel);
-
-    const dateField = document.createElement('div');
-    dateField.classList.add('h5p-cornell-headline-date-field');
-    dateField.innerHTML = this.previousState.dateString;
-    dateDOM.appendChild(dateField);
-
-    headlineDOM.appendChild(dateDOM);
-
-    return headlineDOM;
   }
 
   /**
@@ -164,6 +185,18 @@ export default class CornellContent {
   }
 
   /**
+   * Resize content.
+   */
+  resize() {
+    const height = this.titleBar.offsetHeight + (this.isExerciseMode ? this.exerciseWrapper.offsetHeight : this.notesWrapper.offsetHeight);
+    this.content.style.height = `${height}px`;
+
+    if (typeof this.callbacks.resize === 'function') {
+      this.callbacks.resize();
+    }
+  }
+
+  /**
    * Strip tags from text in H5P TextInputField object. Don't want those here.
    * @param {object} fieldState Save state object to be cleaned.
    * @return {object} Save state object with cleaned text.
@@ -178,7 +211,6 @@ export default class CornellContent {
    */
   getCurrentState() {
     return {
-      title: Util.htmlDecode(this.titleInputField.value),
       dateString: this.previousState.dateString,
       recall: this.stripTags(this.recall.getCurrentState()),
       mainNotes: this.stripTags(this.mainNotes.getCurrentState()),

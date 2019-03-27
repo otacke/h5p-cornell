@@ -29,13 +29,12 @@
     "description": "Title thas describes the exercise"
   },
   {
-    "label": "Disable title field",
-    "importance": "medium",
-    "name": "titleDisabled",
-    "type": "boolean",
-    "optional": false,
-    "default": false,
-    "description": "Decide whether students can change the exercise title"
+    "label": "Exercise content",
+    "name": "exerciseContent",
+    "type": "library",
+    "options": [
+      "H5P.AdvancedText 1.1"
+    ]
   },
   {
     "label": "Title recall",
@@ -124,18 +123,11 @@
         "default": "Submit"
       },
       {
-        "name": "title",
+        "name": "dummy",
         "type": "text",
-        "label": "Title",
+        "label": "Dummy",
         "importance": "low",
-        "default": "Title:"
-      },
-      {
-        "name": "date",
-        "type": "text",
-        "label": "Date",
-        "importance": "low",
-        "default": "Date:"
+        "default": "Dummy"
       }
     ]
   }

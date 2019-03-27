@@ -60,17 +60,21 @@ export default class Cornell extends H5P.Question {
     // this.previousState now holds the saved content state of the previous session
     this.previousState = this.extras.previousState || {};
 
+    this.isInitalized = false;
+
     /**
      * Register the DOM elements with H5P.Question
      */
     this.registerDomElements = () => {
-      this.content = new CornellContent(this.params, this.contentId, this.previousState);
+      this.content = new CornellContent(this.params, this.contentId, this.previousState, {
+        resize: this.resize
+      });
 
       // Register content with H5P.Question
       this.setContent(this.content.getDOM());
 
       // Register Buttons
-      this.addButtons();
+      // this.addButtons();
 
       /*
        * H5P.Question also offers some more functions that could be used.
@@ -120,7 +124,7 @@ export default class Cornell extends H5P.Question {
     this.showSolutions = () => {
       // TODO: Implement showing the solutions
 
-      this.trigger('resize');
+      this.resize();
     };
 
     /**
@@ -130,6 +134,24 @@ export default class Cornell extends H5P.Question {
      */
     this.resetTask = () => {
       // TODO: Reset what needs to be reset
+    };
+
+    /**
+     * Resize Listener.
+     */
+    this.on('resize', () => {
+      // Initial resizing of content after DOM is ready.
+      if (!this.isInitalized) {
+        this.isInitalized = true;
+        this.content.resize();
+      }
+    });
+
+    /**
+     * Resize.
+     */
+    this.resize = () => {
+      this.trigger('resize');
     };
 
     /**
