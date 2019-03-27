@@ -60,8 +60,6 @@ export default class Cornell extends H5P.Question {
     // this.previousState now holds the saved content state of the previous session
     this.previousState = this.extras.previousState || {};
 
-    this.isInitalized = false;
-
     /**
      * Register the DOM elements with H5P.Question
      */
@@ -139,19 +137,20 @@ export default class Cornell extends H5P.Question {
     /**
      * Resize Listener.
      */
-    this.on('resize', () => {
+    this.on('resize', (event) => {
       // Initial resizing of content after DOM is ready.
-      if (!this.isInitalized) {
-        this.isInitalized = true;
-        this.content.resize();
+      if (event.data && event.data.break === true) {
+        return;
       }
+
+      this.content.resize();
     });
 
     /**
      * Resize.
      */
     this.resize = () => {
-      this.trigger('resize');
+      this.trigger('resize', {break: true});
     };
 
     /**
