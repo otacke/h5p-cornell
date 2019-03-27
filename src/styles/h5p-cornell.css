@@ -101,7 +101,7 @@
 }
 
 .h5p-cornell .h5p-cornell-exercise-content {
-  margin: .5em;
+  margin: 2em;
 }
 
 .h5p-cornell .h5p-cornell-notes-wrapper {
@@ -120,8 +120,8 @@
 }
 
 .h5p-cornell .h5p-cornell-instructions-wrapper {
+  margin: 0 2em;
   padding: 0.5em;
-  margin: 0 0.5em;
 }
 
 .h5p-cornell .h5p-cornell-main-notes-wrapper {
@@ -129,8 +129,8 @@
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-between;
+  margin: 0 2em;
   padding: 0.5em;
-  margin: 0 0.5em;
 }
 
 .h5p-cornell .h5p-cornell-main-notes-recall-wrapper {
@@ -149,5 +149,6 @@
 }
 
 .h5p-cornell .h5p-cornell-summary-wrapper {
+  margin: 0 2em;
   padding: 0.5em;
 }
