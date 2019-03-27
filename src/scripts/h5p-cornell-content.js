@@ -44,7 +44,12 @@ export default class CornellContent {
 
     const exerciseContent = document.createElement('div');
     exerciseContent.classList.add('h5p-cornell-exercise-content');
-    this.exerciseWrapper.appendChild(exerciseContent);
+
+    const exerciseContentWrapper = document.createElement('div');
+    exerciseContentWrapper.classList.add('h5p-cornell-exercise-content-wrapper');
+    exerciseContentWrapper.appendChild(exerciseContent);
+
+    this.exerciseWrapper.appendChild(exerciseContentWrapper);
 
     this.exercise = H5P.newRunnable(
       this.params.exerciseContent,
@@ -57,9 +62,19 @@ export default class CornellContent {
     // Cornell Notes
     this.notesWrapper = document.createElement('div');
     this.notesWrapper.classList.add('h5p-cornell-notes-wrapper');
-    this.notesWrapper.appendChild(this.createInstructionsDOM());
-    this.notesWrapper.appendChild(this.createMainNotesDOM());
-    this.notesWrapper.appendChild(this.createSummaryDOM());
+
+    const notesContent = document.createElement('div');
+    notesContent.classList.add('h5p-cornell-notes-content');
+
+    const notesContentWrapper = document.createElement('div');
+    notesContentWrapper.classList.add('h5p-cornell-notes-content-wrapper');
+    notesContentWrapper.appendChild(notesContent);
+
+    this.notesWrapper.appendChild(notesContentWrapper);
+
+    notesContentWrapper.appendChild(this.createInstructionsDOM());
+    notesContentWrapper.appendChild(this.createMainNotesDOM());
+    notesContentWrapper.appendChild(this.createSummaryDOM());
 
     this.content.append(this.notesWrapper);
   }
