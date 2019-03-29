@@ -49,7 +49,8 @@ export default class Cornell extends H5P.Question {
         enableRetry: false
       },
       l10n: {
-        submitAnswer: 'Submit'
+        submitAnswer: 'Submit',
+        fullscreen: 'Fullscreen'
       }
     }, params);
 
@@ -116,8 +117,8 @@ export default class Cornell extends H5P.Question {
       this.fullScreenButton = document.createElement('button');
       this.fullScreenButton.classList.add('h5p-cornell-fullscreen-button');
       this.fullScreenButton.classList.add('h5p-cornell-enter-fullscreen');
-      this.fullScreenButton.setAttribute('title', this.params.fullscreen);
-      this.fullScreenButton.setAttribute('aria-label', this.params.fullscreen);
+      this.fullScreenButton.setAttribute('title', this.params.l10n.fullscreen);
+      this.fullScreenButton.setAttribute('aria-label', this.params.l10n.fullscreen);
       this.fullScreenButton.addEventListener('click', toggleFullScreen);
       this.fullScreenButton.addEventListener('keyPress', (event) => {
         if (event.which === 13 || event.which === 32) {

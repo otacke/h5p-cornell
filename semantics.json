@@ -84,24 +84,6 @@
     "description": "Placeholder for the summary section as a reminder for your students"
   },
   {
-    "label": "Main notes input size",
-    "importance": "low",
-    "name": "fieldSizeNotes",
-    "type": "number",
-    "min": 5,
-    "default": 10,
-    "description": "Number of lines for the recall and notes section"
-  },
-  {
-    "label": "Summary input size",
-    "importance": "low",
-    "name": "fieldSizeSummary",
-    "type": "number",
-    "min": 5,
-    "default": 5,
-    "description": "Number of lines for the summary section"
-  },
-  {
     "name": "l10n",
     "type": "group",
     "common": true,
@@ -116,11 +98,11 @@
         "default": "Submit"
       },
       {
-        "name": "dummy",
+        "name": "fullscreen",
         "type": "text",
-        "label": "Dummy",
+        "label": "Fullscreen button label",
         "importance": "low",
-        "default": "Dummy"
+        "default": "Fullscreen"
       }
     ]
   }
