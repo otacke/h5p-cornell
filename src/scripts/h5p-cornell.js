@@ -43,7 +43,7 @@ export default class Cornell extends H5P.Question {
       summaryTitle: 'Summary',
       summarPlaceholder: 'Enter your summary',
       fieldSizeNotes: 10,
-      fieldSizeSummary: 5,
+      fieldSizeSummary: 7,
       behaviour: {
         enableSolutionsButton: false,
         enableRetry: false

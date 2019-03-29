@@ -154,6 +154,7 @@
 .h5p-cornell .h5p-cornell-notes-wrapper {
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
   position: absolute;
   transform: translateX(-100%);
   transition: transform .25s ease-in-out;
@@ -179,28 +180,23 @@
 .h5p-cornell .h5p-cornell-main-notes-wrapper {
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   justify-content: space-between;
   margin: 1em 2em 0 2em;
-  padding: .5em;
 }
 
 .h5p-cornell .h5p-cornell-main-notes-recall-wrapper {
-  margin-right: 1em;
-}
-
-.h5p-cornell .h5p-cornell-main-notes-recall-wrapper.h5p-text-input-field {
   flex-grow: 1;
+  margin: .5em;
+  min-width: 200px;
 }
 
 .h5p-cornell .h5p-cornell-main-notes-notes-wrapper {
-}
-
-.h5p-cornell .h5p-cornell-main-notes-notes-wrapper.h5p-text-input-field {
   flex-grow: 4;
+  margin: .5em;
+  min-width: 200px;
 }
 
 .h5p-cornell .h5p-cornell-summary-wrapper {
-  margin: 0 2em 1em 2em;
-  padding: .5em;
+  margin: .5em 2.5em 1em 2.5em;
 }

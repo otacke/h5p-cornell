@@ -69,12 +69,8 @@ export default class CornellContent {
     this.notesWrapper = document.createElement('div');
     this.notesWrapper.classList.add('h5p-cornell-notes-wrapper');
 
-    const notesContent = document.createElement('div');
-    notesContent.classList.add('h5p-cornell-notes-content');
-
     const notesContentWrapper = document.createElement('div');
     notesContentWrapper.classList.add('h5p-cornell-notes-content-wrapper');
-    notesContentWrapper.appendChild(notesContent);
 
     this.notesWrapper.appendChild(notesContentWrapper);
 
@@ -223,9 +219,11 @@ export default class CornellContent {
   setFullScreen(on = false) {
     if (on === true) {
       this.exerciseWrapper.style.maxHeight = `${screen.height - this.titleBar.offsetHeight}px`;
+      this.notesWrapper.style.maxHeight = `${screen.height - this.titleBar.offsetHeight}px`;
     }
     else {
       this.exerciseWrapper.style.maxHeight = '';
+      this.notesWrapper.style.maxHeight = '';
     }
   }
 
