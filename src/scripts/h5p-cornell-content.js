@@ -217,6 +217,19 @@ export default class CornellContent {
   }
 
   /**
+   * Set dimensions to fullscreen.
+   * @param {boolean} on If true, enter fullscreen, else exit.
+   */
+  setFullScreen(on = false) {
+    if (on === true) {
+      this.exerciseWrapper.style.maxHeight = `${screen.height - this.titleBar.offsetHeight}px`;
+    }
+    else {
+      this.exerciseWrapper.style.maxHeight = '';
+    }
+  }
+
+  /**
    * Strip tags from text in H5P TextInputField object. Don't want those here.
    * @param {object} fieldState Save state object to be cleaned.
    * @return {object} Save state object with cleaned text.

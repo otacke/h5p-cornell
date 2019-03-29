@@ -61,6 +61,19 @@ export default class Cornell extends H5P.Question {
       previousState: {}
     }, extras);
 
+    // Add fullscreen button on first call after H5P.Question has created the DOM
+    this.on('domChanged', () => {
+      if (this.isFullScreenButtonInitialized) {
+        return;
+      }
+
+      const container = document.querySelector('.h5p-container');
+      if (container) {
+        this.isFullScreenButtonInitialized = true;
+        this.addFullScreenButton(container);
+      }
+    });
+
     /**
      * Register the DOM elements with H5P.Question
      */
@@ -79,6 +92,53 @@ export default class Cornell extends H5P.Question {
        * H5P.Question also offers some more functions that could be used.
        * Consult https://github.com/h5p/h5p-question for details
        */
+    };
+
+    /**
+     * Add fullscreen button.
+     *
+     * @param {HTMLElement} wrapper HTMLElement to attach button to.
+     */
+    this.addFullScreenButton = wrapper => {
+      if (H5P.canHasFullScreen !== true) {
+        return;
+      }
+
+      const toggleFullScreen = () => {
+        if (H5P.isFullscreen === true) {
+          H5P.exitFullScreen();
+        }
+        else {
+          H5P.fullScreen(H5P.jQuery(wrapper), this);
+        }
+      };
+
+      this.fullScreenButton = document.createElement('button');
+      this.fullScreenButton.classList.add('h5p-cornell-fullscreen-button');
+      this.fullScreenButton.classList.add('h5p-cornell-enter-fullscreen');
+      this.fullScreenButton.setAttribute('title', this.params.fullscreen);
+      this.fullScreenButton.setAttribute('aria-label', this.params.fullscreen);
+      this.fullScreenButton.addEventListener('click', toggleFullScreen);
+      this.fullScreenButton.addEventListener('keyPress', (event) => {
+        if (event.which === 13 || event.which === 32) {
+          toggleFullScreen();
+          event.preventDefault();
+        }
+      });
+
+      this.on('enterFullScreen', () => {
+        this.content.setFullScreen(true);
+      });
+
+      this.on('exitFullScreen', () => {
+        this.content.setFullScreen(false);
+      });
+
+      const fullScreenButtonWrapper = document.createElement('div');
+      fullScreenButtonWrapper.classList.add('h5p-cornell-fullscreen-button-wrapper');
+      fullScreenButtonWrapper.appendChild(this.fullScreenButton);
+
+      wrapper.insertBefore(fullScreenButtonWrapper, wrapper.firstChild);
     };
 
     /**
