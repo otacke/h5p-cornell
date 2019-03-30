@@ -28,16 +28,14 @@
 .h5p-cornell .h5p-cornell-fullscreen-button {
   background: url(../images/button-fullscreen-enter-icon.svg);
   background-color: rgba(0,0,0,0);
-  background-position: center;
+  background-position: .5em .4em;
   background-repeat: no-repeat;
   background-size: 1em 1em;
   border: 0;
   border-radius: 0 0 0 100%;
   font-size: 1em;
   height: 1.8em;
-  left: 0.1em;
   position: absolute;
-  top: -.1em;
   width: 1.8em;
 }
 
