@@ -278,7 +278,7 @@ export default class CornellContent {
    * Resize content.
    */
   resize(fromVideo = false) {
-    if (!fromVideo) {
+    if (this.exercise && !fromVideo) {
       this.exercise.trigger('resize');
     }
 
