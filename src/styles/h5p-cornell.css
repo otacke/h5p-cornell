@@ -2,6 +2,10 @@
   min-width: 250px;
 }
 
+.h5p-cornell .h5p-cornell-display-none {
+  display: none;
+}
+
 .h5p-cornell .h5p-question-content {
   margin: 0;
 }

@@ -118,6 +118,12 @@ export default class CornellContent {
     this.notesWrapper = document.createElement('div');
     this.notesWrapper.classList.add('h5p-cornell-notes-wrapper');
 
+    // Hide wrapper after it has been moved out of sight to prevent receiving tab focus
+    this.notesWrapper.addEventListener('transitionend', () => {
+      const elementToHide = (this.isExerciseMode) ? this.notesWrapper : this.exerciseWrapper;
+      elementToHide.classList.add('h5p-cornell-display-none');
+    });
+
     const notesContentWrapper = document.createElement('div');
     notesContentWrapper.classList.add('h5p-cornell-notes-content-wrapper');
 
@@ -153,41 +159,7 @@ export default class CornellContent {
     this.buttonOverlay.setAttribute('tabindex', '0');
 
     // TODO: event listener for keys
-    this.buttonOverlay.addEventListener('click', () => {
-      this.buttonOverlay.classList.toggle('h5p-cornell-active');
-      this.exerciseWrapper.classList.toggle('h5p-cornell-notes-mode');
-      this.notesWrapper.classList.toggle('h5p-cornell-notes-mode');
-
-      // Pause/replay media when toggling notes
-      switch(this.exerciseMachineName) {
-        case 'H5P.Audio':
-          if (this.isExerciseMode && this.exercise.audio) {
-            this.continueMedia = this.exercise.audio.paused === false;
-            this.exercise.audio.pause();
-          }
-          else {
-            if (this.exercise.audio && this.continueMedia === true) {
-              this.exercise.audio.play();
-            }
-          }
-          break;
-        case 'H5P.Video':
-          if (this.isExerciseMode && this.exercise) {
-            this.continueMedia = this.mediumRunning;
-            this.exercise.pause();
-          }
-          else {
-            if (this.exercise && this.continueMedia === true) {
-              this.exercise.play();
-            }
-          }
-          break;
-      }
-
-      this.isExerciseMode = !this.isExerciseMode;
-
-      this.resize();
-    });
+    this.buttonOverlay.addEventListener('click', () => this.handleButtonOverlay());
 
     const titleDOM = document.createElement('div');
     titleDOM.classList.add('h5p-cornell-title');
@@ -304,6 +276,64 @@ export default class CornellContent {
     else {
       this.exerciseWrapper.style.maxHeight = '';
       this.notesWrapper.style.maxHeight = '';
+    }
+  }
+
+  /**
+   * Handle activation of overlay button.
+   */
+  handleButtonOverlay() {
+    this.buttonOverlay.classList.toggle('h5p-cornell-active');
+    this.toggleView();
+    this.toggleMedium();
+  }
+
+  /**
+   * Toggle between exercise and notes.
+   */
+  toggleView() {
+    // Show hidden wrappers to allow transition
+    this.exerciseWrapper.classList.remove('h5p-cornell-display-none');
+    this.notesWrapper.classList.remove('h5p-cornell-display-none');
+
+    // Give DOM time to set display property
+    setTimeout(() => {
+      this.exerciseWrapper.classList.toggle('h5p-cornell-notes-mode');
+      this.notesWrapper.classList.toggle('h5p-cornell-notes-mode');
+
+      this.isExerciseMode = !this.isExerciseMode;
+
+      this.resize();
+    }, 0);
+  }
+
+  /**
+   * Pause/replay medium when toggling between exercise and notes.
+   */
+  toggleMedium() {
+    switch(this.exerciseMachineName) {
+      case 'H5P.Audio':
+        if (this.isExerciseMode && this.exercise.audio) {
+          this.continueMedia = this.exercise.audio.paused === false;
+          this.exercise.audio.pause();
+        }
+        else {
+          if (this.exercise.audio && this.continueMedia === true) {
+            this.exercise.audio.play();
+          }
+        }
+        break;
+      case 'H5P.Video':
+        if (this.isExerciseMode && this.exercise) {
+          this.continueMedia = this.mediumRunning;
+          this.exercise.pause();
+        }
+        else {
+          if (this.exercise && this.continueMedia === true) {
+            this.exercise.play();
+          }
+        }
+        break;
     }
   }
 
