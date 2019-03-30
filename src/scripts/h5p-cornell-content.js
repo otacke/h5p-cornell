@@ -306,7 +306,6 @@ export default class CornellContent {
       const message = (active) ?
         this.params.a11y.switchedNotes :
         this.params.a11y.switchedExercise;
-      console.log(message);
       this.callbacks.read(message);
     }
 
