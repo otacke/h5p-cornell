@@ -62,6 +62,15 @@ export default class Cornell extends H5P.Question {
       previousState: {}
     }, extras);
 
+    // Content may need one extra resize when DOM is displayed.
+    document.addEventListener('readystatechange', () => {
+      if (document.readyState === 'complete') {
+        setTimeout(() => {
+          this.content.resize();
+        }, 0);
+      }
+    });
+
     // Add fullscreen button on first call after H5P.Question has created the DOM
     this.on('domChanged', () => {
       if (this.isFullScreenButtonInitialized) {
