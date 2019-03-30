@@ -79,7 +79,9 @@ export default class CornellContent {
       this.exercise = H5P.newRunnable(
         this.params.exerciseContent,
         this.contentId,
-        H5P.jQuery(exerciseContentLibrary)
+        H5P.jQuery(exerciseContentLibrary),
+        false,
+        {previousState: this.previousState.exercise}
       );
 
       switch (this.exerciseMachineName) {
@@ -323,7 +325,8 @@ export default class CornellContent {
       dateString: this.previousState.dateString,
       recall: this.stripTags(this.recall.getCurrentState()),
       mainNotes: this.stripTags(this.mainNotes.getCurrentState()),
-      summary: this.stripTags(this.summary.getCurrentState())
+      summary: this.stripTags(this.summary.getCurrentState()),
+      exercise: (this.exercise && this.exercise.getCurrentState) ? this.exercise.getCurrentState() : undefined
     };
   }
 }
