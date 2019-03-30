@@ -26,6 +26,7 @@
     "name": "exerciseContent",
     "type": "library",
     "options": [
+      "H5P.Audio 1.3",
       "H5P.AdvancedText 1.1"
     ]
   },

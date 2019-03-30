@@ -57,11 +57,43 @@ export default class CornellContent {
 
     this.exerciseWrapper.appendChild(exerciseContentWrapper);
 
-    this.exercise = H5P.newRunnable(
-      this.params.exerciseContent,
-      this.contentId,
-      H5P.jQuery(exerciseContentLibrary)
-    );
+    // TODO: Make next stuff separate functions
+    if (this.params.exerciseContent && this.params.exerciseContent.library) {
+      this.exerciseMachineName = this.params.exerciseContent.library.split(' ')[0];
+    }
+
+    if (this.exerciseMachineName !== undefined) {
+      // Override params - unfortunately can't be passed to library from parent editor
+      switch (this.exerciseMachineName) {
+        case 'H5P.Audio':
+          this.params.exerciseContent.params.controls = true;
+          this.params.exerciseContent.params.fitToWrapper = true;
+          this.params.exerciseContent.params.playerMode = "full";
+          break;
+      }
+
+      this.exercise = H5P.newRunnable(
+        this.params.exerciseContent,
+        this.contentId,
+        H5P.jQuery(exerciseContentLibrary)
+      );
+
+      switch (this.exerciseMachineName) {
+        case 'H5P.Audio':
+          // The height value that is set by H5P.Audio is counter-productive here
+          if (this.exercise.audio) {
+            this.exercise.audio.style.height = '';
+          }
+          break;
+      }
+    }
+    else {
+      const message = document.createElement('div');
+      const messageText = 'No content was chosen for this exercise';
+      console.warn(messageText);
+      message.innerHTML = messageText;
+      exerciseContentLibrary.appendChild(message);
+    }
 
     this.content.append(this.exerciseWrapper);
 
@@ -105,10 +137,25 @@ export default class CornellContent {
 
     // TODO: event listener for keys
     this.buttonOverlay.addEventListener('click', () => {
-      this.isExerciseMode = !this.isExerciseMode;
       this.buttonOverlay.classList.toggle('h5p-cornell-active');
       this.exerciseWrapper.classList.toggle('h5p-cornell-notes-mode');
       this.notesWrapper.classList.toggle('h5p-cornell-notes-mode');
+
+      switch(this.exerciseMachineName) {
+        case 'H5P.Audio':
+          if (this.isExerciseMode && this.exercise.audio) {
+            this.continueMedia = this.exercise.audio.paused === false;
+            this.exercise.audio.pause();
+          }
+          else {
+            if (this.exercise.audio && this.continueMedia === true) {
+              this.exercise.audio.play();
+            }
+          }
+          break;
+      }
+
+      this.isExerciseMode = !this.isExerciseMode;
 
       this.resize();
     });
