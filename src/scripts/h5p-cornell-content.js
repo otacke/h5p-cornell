@@ -70,6 +70,10 @@ export default class CornellContent {
           this.params.exerciseContent.params.fitToWrapper = true;
           this.params.exerciseContent.params.playerMode = "full";
           break;
+        case 'H5P.Video':
+          this.params.exerciseContent.params.visuals.controls = true;
+          this.params.exerciseContent.params.visuals.fit = false;
+          break;
       }
 
       this.exercise = H5P.newRunnable(
@@ -84,6 +88,17 @@ export default class CornellContent {
           if (this.exercise.audio) {
             this.exercise.audio.style.height = '';
           }
+          break;
+        case 'H5P.Video':
+          // H5P.Video doesn't keep track of its playing state itself
+          this.exercise.on('stateChange', (event) => {
+            this.mediumRunning = (event.data === 1);
+          });
+
+          this.exercise.on('resize', () => {
+            this.resize(true);
+          });
+
           break;
       }
     }
@@ -141,6 +156,7 @@ export default class CornellContent {
       this.exerciseWrapper.classList.toggle('h5p-cornell-notes-mode');
       this.notesWrapper.classList.toggle('h5p-cornell-notes-mode');
 
+      // Pause/replay media when toggling notes
       switch(this.exerciseMachineName) {
         case 'H5P.Audio':
           if (this.isExerciseMode && this.exercise.audio) {
@@ -150,6 +166,17 @@ export default class CornellContent {
           else {
             if (this.exercise.audio && this.continueMedia === true) {
               this.exercise.audio.play();
+            }
+          }
+          break;
+        case 'H5P.Video':
+          if (this.isExerciseMode && this.exercise) {
+            this.continueMedia = this.mediumRunning;
+            this.exercise.pause();
+          }
+          else {
+            if (this.exercise && this.continueMedia === true) {
+              this.exercise.play();
             }
           }
           break;
@@ -250,7 +277,11 @@ export default class CornellContent {
   /**
    * Resize content.
    */
-  resize() {
+  resize(fromVideo = false) {
+    if (!fromVideo) {
+      this.exercise.trigger('resize');
+    }
+
     const height = this.titleBar.offsetHeight + (this.isExerciseMode ? this.exerciseWrapper.offsetHeight : this.notesWrapper.offsetHeight);
     this.content.style.height = `${height}px`;
 
