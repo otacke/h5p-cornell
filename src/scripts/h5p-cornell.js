@@ -35,15 +35,17 @@ export default class Cornell extends H5P.Question {
 
     // Make sure all variables are set
     this.params = Util.extend({
-      instructions: 'Do this and that ...',
-      recallTitle: 'Recall',
-      recallPlaceholder: 'Enter your keywords, questions, the main idea, etc.',
-      notesTitle: 'Notes',
-      notesPlaceholder: 'Enter dates, details, definitions, formulas, examples, etc.',
-      summaryTitle: 'Summary',
-      summarPlaceholder: 'Enter your summary',
+      instructions: '',
       fieldSizeNotes: 10,
       fieldSizeSummary: 7,
+      notesFields: {
+        recallTitle: 'Recall',
+        recallPlaceholder: 'Enter your keywords, questions, the main idea, etc.',
+        notesTitle: 'Notes',
+        notesPlaceholder: 'Enter dates, details, definitions, formulas, examples, etc.',
+        summaryTitle: 'Summary',
+        summaryPlaceholder: 'Enter your summary',
+      },
       behaviour: {
         enableSolutionsButton: false,
         enableRetry: false

@@ -32,58 +32,67 @@
     ]
   },
   {
-    "label": "Title recall",
-    "importance": "medium",
-    "name": "recallTitle",
-    "type": "text",
-    "default": "Recall",
-    "optional": true,
-    "description": "Title for the recall section"
-  },
-  {
-    "label": "Placeholder recall",
-    "importance": "medium",
-    "name": "recallPlaceholder",
-    "type": "text",
-    "default": "Enter your keywords, questions, the main idea, etc.",
-    "optional": true,
-    "description": "Placeholder for the recall section as a reminder for your students"
-  },
-  {
-    "label": "Title notes",
-    "importance": "medium",
-    "name": "notesTitle",
-    "type": "text",
-    "default": "Notes",
-    "optional": true,
-    "description": "Title for the notes section"
-  },
-  {
-    "label": "Placeholder notes",
-    "importance": "medium",
-    "name": "notesPlaceholder",
-    "type": "text",
-    "default": "Enter dates, details, definitions, formulas, examples, etc.",
-    "optional": true,
-    "description": "Placeholder for the notes section as a reminder for your students"
-  },
-  {
-    "label": "Title summary",
-    "importance": "medium",
-    "name": "summaryTitle",
-    "type": "text",
-    "default": "Summary",
-    "optional": true,
-    "description": "Title for the summary section"
-  },
-  {
-    "label": "Placeholder summary",
-    "importance": "medium",
-    "name": "summaryPlaceholder",
-    "type": "text",
-    "default": "Enter your summary",
-    "optional": true,
-    "description": "Placeholder for the summary section as a reminder for your students"
+    "name": "notesFields",
+    "label": "Notes fields",
+    "description": "Settings for the notes fields",
+    "importance": "low",
+    "type": "group",
+    "fields": [
+      {
+        "label": "Recall field title",
+        "importance": "low",
+        "name": "recallTitle",
+        "type": "text",
+        "default": "Recall",
+        "optional": true,
+        "description": "Title for the recall section"
+      },
+      {
+        "label": "Recall field placeholder",
+        "importance": "low",
+        "name": "recallPlaceholder",
+        "type": "text",
+        "default": "Enter your keywords, questions, the main idea, etc.",
+        "optional": true,
+        "description": "Placeholder for the recall section as a reminder for your students"
+      },
+      {
+        "label": "Notes field title",
+        "importance": "low",
+        "name": "notesTitle",
+        "type": "text",
+        "default": "Notes",
+        "optional": true,
+        "description": "Title for the notes section"
+      },
+      {
+        "label": "Notes field placeholder",
+        "importance": "low",
+        "name": "notesPlaceholder",
+        "type": "text",
+        "default": "Enter dates, details, definitions, formulas, examples, etc.",
+        "optional": true,
+        "description": "Placeholder for the notes section as a reminder for your students"
+      },
+      {
+        "label": "Summary field title",
+        "importance": "low",
+        "name": "summaryTitle",
+        "type": "text",
+        "default": "Summary",
+        "optional": true,
+        "description": "Title for the summary section"
+      },
+      {
+        "label": "Summary field placeholder",
+        "importance": "low",
+        "name": "summaryPlaceholder",
+        "type": "text",
+        "default": "Enter your summary",
+        "optional": true,
+        "description": "Placeholder for the summary section as a reminder for your students"
+      }
+    ]
   },
   {
     "name": "l10n",

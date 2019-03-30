@@ -231,8 +231,8 @@ export default class CornellContent {
     this.recall = H5P.newRunnable({
       library: 'H5P.TextInputField 1.2',
       params: {
-        taskDescription: this.params.recallTitle,
-        placeholderText: this.params.recallPlaceholder,
+        taskDescription: this.params.notesFields.recallTitle,
+        placeholderText: this.params.notesFields.recallPlaceholder,
         inputFieldSize: this.params.fieldSizeNotes,
       }
     }, this.contentId, H5P.jQuery(recall), undefined, {previousState: this.previousState.recall});
@@ -244,8 +244,8 @@ export default class CornellContent {
     this.mainNotes = H5P.newRunnable({
       library: 'H5P.TextInputField 1.2',
       params: {
-        taskDescription: this.params.notesTitle,
-        placeholderText: this.params.notesPlaceholder,
+        taskDescription: this.params.notesFields.notesTitle,
+        placeholderText: this.params.notesFields.notesPlaceholder,
         inputFieldSize: this.params.fieldSizeNotes,
       }
     }, this.contentId, H5P.jQuery(notes), undefined, {previousState: this.previousState.mainNotes});
@@ -265,8 +265,8 @@ export default class CornellContent {
     this.summary = H5P.newRunnable({
       library: 'H5P.TextInputField 1.2',
       params: {
-        taskDescription: this.params.summaryTitle,
-        placeholderText: this.params.summarPlaceholder,
+        taskDescription: this.params.notesFields.summaryTitle,
+        placeholderText: this.params.notesFields.summaryPlaceholder,
         inputFieldSize: this.params.fieldSizeSummary,
       }
     }, this.contentId, H5P.jQuery(summaryDOM), undefined, {previousState: this.previousState.summary});
