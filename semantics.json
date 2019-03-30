@@ -95,25 +95,46 @@
     ]
   },
   {
-    "name": "l10n",
+    "name": "a11y",
     "type": "group",
     "common": true,
-    "label": "User interface",
+    "label": "Readspeaker",
     "importance": "low",
     "fields": [
       {
-        "name": "submitAnswer",
+        "name": "buttonFullscreenEnter",
         "type": "text",
-        "label": "Text for \"Submit\" button",
+        "label": "Fullscreen button title",
         "importance": "low",
-        "default": "Submit"
+        "default": "Enter fullscreen mode"
       },
       {
-        "name": "fullscreen",
+        "name": "buttonOverlaySwitchNotes",
         "type": "text",
-        "label": "Fullscreen button label",
+        "label": "Toggle button title (in exercise mode)",
         "importance": "low",
-        "default": "Fullscreen"
+        "default": "Switch to the notes"
+      },
+      {
+        "name": "buttonOverlaySwitchExercise",
+        "type": "text",
+        "label": "Toggle button title (in notes mode)",
+        "importance": "low",
+        "default": "Switch to the exercise"
+      },
+      {
+        "name": "switchedNotes",
+        "type": "text",
+        "label": "Switched to notes",
+        "importance": "low",
+        "default": "The view has switched to your notes."
+      },
+      {
+        "name": "switchedExercise",
+        "type": "text",
+        "label": "Switched to excersise",
+        "importance": "low",
+        "default": "The view has switched to the exercise."
       }
     ]
   }

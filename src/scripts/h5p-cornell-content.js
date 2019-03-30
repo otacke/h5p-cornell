@@ -152,14 +152,17 @@ export default class CornellContent {
     this.titleBar = document.createElement('div');
     this.titleBar.classList.add('h5p-cornell-title-bar');
 
-    // TODO: Take care of ARIA for button state
     this.buttonOverlay = document.createElement('div');
     this.buttonOverlay.classList.add('h5p-cornell-button-overlay');
+
+    this.buttonOverlay.setAttribute('aria-pressed', false);
+    this.buttonOverlay.setAttribute('aria-label', this.params.a11y.buttonOverlaySwitchNotes);
     this.buttonOverlay.setAttribute('role', 'button');
     this.buttonOverlay.setAttribute('tabindex', '0');
+    this.buttonOverlay.setAttribute('title', this.params.a11y.buttonOverlaySwitchNotes);
 
-    // TODO: event listener for keys
-    this.buttonOverlay.addEventListener('click', () => this.handleButtonOverlay());
+    this.buttonOverlay.addEventListener('click', event => this.handleButtonOverlay(event));
+    this.buttonOverlay.addEventListener('keypress', event => this.handleButtonOverlay(event));
 
     const titleDOM = document.createElement('div');
     titleDOM.classList.add('h5p-cornell-title');
@@ -281,9 +284,32 @@ export default class CornellContent {
 
   /**
    * Handle activation of overlay button.
+   * @param {object} event Event that is calling.
    */
-  handleButtonOverlay() {
+  handleButtonOverlay(event) {
+    if (event.type === 'keypress' && event.keyCode !== 13 && event.keyCode !== 32) {
+      return;
+    }
+
     this.buttonOverlay.classList.toggle('h5p-cornell-active');
+    const active = this.buttonOverlay.classList.contains('h5p-cornell-active');
+
+    this.buttonOverlay.setAttribute('aria-pressed', active);
+
+    const buttonLabel = (active) ?
+      this.params.a11y.buttonOverlaySwitchExercise :
+      this.params.a11y.buttonOverlaySwitchNotes;
+    this.buttonOverlay.setAttribute('aria-label', buttonLabel);
+    this.buttonOverlay.setAttribute('title', buttonLabel);
+
+    if (typeof this.callbacks.read === 'function') {
+      const message = (active) ?
+        this.params.a11y.switchedNotes :
+        this.params.a11y.switchedExercise;
+      console.log(message);
+      this.callbacks.read(message);
+    }
+
     this.toggleView();
     this.toggleMedium();
   }

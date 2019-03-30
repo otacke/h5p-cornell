@@ -51,8 +51,14 @@ export default class Cornell extends H5P.Question {
         enableRetry: false
       },
       l10n: {
-        submitAnswer: 'Submit',
-        fullscreen: 'Fullscreen'
+        submitAnswer: 'Submit'
+      },
+      a11y: {
+        buttonFullscreenEnter: 'Enter fullscreen mode',
+        buttonOverlaySwitchNotes: 'Switch to the notes',
+        buttonOverlaySwitchExercise: 'Switch to the exercise',
+        switchedNotes: 'The view switched to your notes.',
+        switchedExercise: 'The view switched to the exercise.',
       }
     }, params);
 
@@ -91,7 +97,8 @@ export default class Cornell extends H5P.Question {
      */
     this.registerDomElements = () => {
       this.content = new CornellContent(this.params, this.contentId, this.extras, {
-        resize: this.resize
+        resize: this.resize,
+        read: this.read
       });
 
       // Register content with H5P.Question
@@ -128,8 +135,8 @@ export default class Cornell extends H5P.Question {
       this.fullScreenButton = document.createElement('button');
       this.fullScreenButton.classList.add('h5p-cornell-fullscreen-button');
       this.fullScreenButton.classList.add('h5p-cornell-enter-fullscreen');
-      this.fullScreenButton.setAttribute('title', this.params.l10n.fullscreen);
-      this.fullScreenButton.setAttribute('aria-label', this.params.l10n.fullscreen);
+      this.fullScreenButton.setAttribute('title', this.params.a11y.buttonFullscreenEnter);
+      this.fullScreenButton.setAttribute('aria-label', this.params.a11y.buttonFullscreenEnter);
       this.fullScreenButton.addEventListener('click', toggleFullScreen);
       this.fullScreenButton.addEventListener('keyPress', (event) => {
         if (event.which === 13 || event.which === 32) {
@@ -158,7 +165,7 @@ export default class Cornell extends H5P.Question {
      */
     this.addButtons = () => {
       // Check answer button
-      this.addButton('check-answer', this.params.l10n.submitAnswer, () => {
+      this.addButton('check-answer', this.params.a11y.submitAnswer, () => {
         // TODO: Implement something useful to do on click
       }, true, {}, {});
     };
