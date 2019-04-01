@@ -55,8 +55,8 @@ export default class Cornell extends H5P.Question {
       },
       a11y: {
         buttonFullscreenEnter: 'Enter fullscreen mode',
-        buttonOverlaySwitchNotes: 'Switch to the notes',
-        buttonOverlaySwitchExercise: 'Switch to the exercise',
+        buttonToggleSwitchNotes: 'Switch to the notes',
+        buttonToggleSwitchExercise: 'Switch to the exercise',
         switchedNotes: 'The view switched to your notes.',
         switchedExercise: 'The view switched to the exercise.',
       }

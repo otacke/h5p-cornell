@@ -109,14 +109,14 @@
         "default": "Enter fullscreen mode"
       },
       {
-        "name": "buttonOverlaySwitchNotes",
+        "name": "buttonToggleSwitchNotes",
         "type": "text",
         "label": "Toggle button title (in exercise mode)",
         "importance": "low",
         "default": "Switch to the notes"
       },
       {
-        "name": "buttonOverlaySwitchExercise",
+        "name": "buttonToggleSwitchExercise",
         "type": "text",
         "label": "Toggle button title (in notes mode)",
         "importance": "low",

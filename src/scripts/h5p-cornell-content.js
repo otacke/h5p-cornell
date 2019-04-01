@@ -1,4 +1,5 @@
 // Import required classes
+import CornellContentTitlebar from './h5p-cornell-content-titlebar';
 import Util from './h5p-cornell-util';
 
 /** Class representing the content */
@@ -36,8 +37,21 @@ export default class CornellContent {
     this.content = document.createElement('div');
     this.content.classList.add('h5p-cornell-container');
 
-    // Create DOM elements
-    this.content.appendChild(this.createTitleBarDOM());
+    // Create titlebar
+    this.titlebar = new CornellContentTitlebar(
+      {
+        title: this.extras.metadata.title,
+        dateString: this.previousState.dateString,
+        a11y: {
+          buttonToggleActive: this.params.a11y.buttonToggleSwitchExercise,
+          buttonTogglePassive: this.params.a11y.buttonToggleSwitchNotes
+        }
+      },
+      {
+        handlebuttonToggle: (event) => this.handlebuttonToggle(event)
+      }
+    );
+    this.content.appendChild(this.titlebar.getDOM());
 
     // Exercise with H5P Content
     this.exerciseWrapper = document.createElement('div');
@@ -145,41 +159,6 @@ export default class CornellContent {
   }
 
   /**
-   * Create DOM for title bar.
-   * @return {HTMLElement} DOM for title bar.
-   */
-  createTitleBarDOM() {
-    this.titleBar = document.createElement('div');
-    this.titleBar.classList.add('h5p-cornell-title-bar');
-
-    this.buttonOverlay = document.createElement('div');
-    this.buttonOverlay.classList.add('h5p-cornell-button-overlay');
-
-    this.buttonOverlay.setAttribute('aria-pressed', false);
-    this.buttonOverlay.setAttribute('aria-label', this.params.a11y.buttonOverlaySwitchNotes);
-    this.buttonOverlay.setAttribute('role', 'button');
-    this.buttonOverlay.setAttribute('tabindex', '0');
-    this.buttonOverlay.setAttribute('title', this.params.a11y.buttonOverlaySwitchNotes);
-
-    this.buttonOverlay.addEventListener('click', event => this.handleButtonOverlay(event));
-    this.buttonOverlay.addEventListener('keypress', event => this.handleButtonOverlay(event));
-
-    const titleDOM = document.createElement('div');
-    titleDOM.classList.add('h5p-cornell-title');
-    titleDOM.innerHTML = this.extras.metadata.title;
-
-    const dateDOM = document.createElement('div');
-    dateDOM.classList.add('h5p-cornell-date');
-    dateDOM.innerHTML = this.previousState.dateString;
-
-    this.titleBar.appendChild(this.buttonOverlay);
-    this.titleBar.appendChild(titleDOM);
-    this.titleBar.appendChild(dateDOM);
-
-    return this.titleBar;
-  }
-
-  /**
    * Create DOM for instructions.
    * @return {HTMLElement} DOM for instructions.
    */
@@ -259,7 +238,7 @@ export default class CornellContent {
       this.exercise.trigger('resize');
     }
 
-    const height = this.titleBar.offsetHeight + (this.isExerciseMode ? this.exerciseWrapper.offsetHeight : this.notesWrapper.offsetHeight);
+    const height = this.titlebar.getDOM().offsetHeight + (this.isExerciseMode ? this.exerciseWrapper.offsetHeight : this.notesWrapper.offsetHeight);
     this.content.style.height = `${height}px`;
 
     if (typeof this.callbacks.resize === 'function') {
@@ -273,8 +252,8 @@ export default class CornellContent {
    */
   setFullScreen(on = false) {
     if (on === true) {
-      this.exerciseWrapper.style.maxHeight = `${screen.height - this.titleBar.offsetHeight}px`;
-      this.notesWrapper.style.maxHeight = `${screen.height - this.titleBar.offsetHeight}px`;
+      this.exerciseWrapper.style.maxHeight = `${screen.height - this.titlebar.getDOM().offsetHeight}px`;
+      this.notesWrapper.style.maxHeight = `${screen.height - this.titlebar.getDOM().offsetHeight}px`;
     }
     else {
       this.exerciseWrapper.style.maxHeight = '';
@@ -286,22 +265,12 @@ export default class CornellContent {
    * Handle activation of overlay button.
    * @param {object} event Event that is calling.
    */
-  handleButtonOverlay(event) {
+  handlebuttonToggle(event) {
     if (event.type === 'keypress' && event.keyCode !== 13 && event.keyCode !== 32) {
       return;
     }
 
-    this.buttonOverlay.classList.toggle('h5p-cornell-active');
-    const active = this.buttonOverlay.classList.contains('h5p-cornell-active');
-
-    this.buttonOverlay.setAttribute('aria-pressed', active);
-
-    const buttonLabel = (active) ?
-      this.params.a11y.buttonOverlaySwitchExercise :
-      this.params.a11y.buttonOverlaySwitchNotes;
-    this.buttonOverlay.setAttribute('aria-label', buttonLabel);
-    this.buttonOverlay.setAttribute('title', buttonLabel);
-
+    const active = this.titlebar.toggleOverlayButton();
     if (typeof this.callbacks.read === 'function') {
       const message = (active) ?
         this.params.a11y.switchedNotes :
@@ -336,7 +305,7 @@ export default class CornellContent {
    * Pause/replay medium when toggling between exercise and notes.
    */
   toggleMedium() {
-    switch(this.exerciseMachineName) {
+    switch (this.exerciseMachineName) {
       case 'H5P.Audio':
         if (this.isExerciseMode && this.exercise.audio) {
           this.continueMedia = this.exercise.audio.paused === false;
