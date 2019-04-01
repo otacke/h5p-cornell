@@ -103,19 +103,10 @@ export default class Cornell extends H5P.Question {
 
       // Register content with H5P.Question
       this.setContent(this.content.getDOM());
-
-      // Register Buttons
-      // this.addButtons();
-
-      /*
-       * H5P.Question also offers some more functions that could be used.
-       * Consult https://github.com/h5p/h5p-question for details
-       */
     };
 
     /**
      * Add fullscreen button.
-     *
      * @param {HTMLElement} wrapper HTMLElement to attach button to.
      */
     this.addFullScreenButton = wrapper => {
@@ -161,57 +152,40 @@ export default class Cornell extends H5P.Question {
     };
 
     /**
-     * Add all the buttons that shall be passed to H5P.Question.
-     */
-    this.addButtons = () => {
-      // Check answer button
-      this.addButton('check-answer', this.params.a11y.submitAnswer, () => {
-        // TODO: Implement something useful to do on click
-      }, true, {}, {});
-    };
-
-    /**
      * Check if result has been submitted or input has been given.
      *
      * @return {boolean} True, if answer was given.
      * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-1}
      */
-    this.getAnswerGiven = () => false; // TODO: Return your value here
+    this.getAnswerGiven = () => this.content.getAnswerGiven();
 
     /**
      * Get latest score.
-     *
      * @return {number} latest score.
      * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-2}
      */
-    this.getScore = () => 0; // TODO: Return real score here
+    this.getScore = () => 0;
 
     /**
-     * Get maximum possible score.
-     *
+     * Get maximum possible score
      * @return {number} Score necessary for mastering.
      * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-3}
      */
-    this.getMaxScore = () => 0; // TODO: Return real maximum score here
+    this.getMaxScore = () => 0;
 
     /**
      * Show solutions.
-     *
      * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-4}
      */
     this.showSolutions = () => {
-      // TODO: Implement showing the solutions
-
-      this.resize();
     };
 
     /**
      * Reset task.
-     *
      * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-5}
      */
     this.resetTask = () => {
-      // TODO: Reset what needs to be reset
+      this.content.resetNotes();
     };
 
     /**
@@ -235,7 +209,6 @@ export default class Cornell extends H5P.Question {
 
     /**
      * Get xAPI data.
-     *
      * @return {object} XAPI statement.
      * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-6}
      */
@@ -245,19 +218,12 @@ export default class Cornell extends H5P.Question {
 
     /**
      * Build xAPI answer event.
-     *
      * @return {H5P.XAPIEvent} XAPI answer event.
      */
     this.getXAPIAnswerEvent = () => {
       const xAPIEvent = this.createXAPIEvent('answered');
 
-      xAPIEvent.setScoredResult(this.getScore(), this.getMaxScore(), this,
-        true, this.isPassed());
-
-      /*
-       * TODO: Add other properties here as required, e.g. xAPIEvent.data.statement.result.response
-       * https://github.com/adlnet/xAPI-Spec/blob/master/xAPI-Data.md#245-result
-       */
+      xAPIEvent.setScoredResult(this.getScore(), this.getMaxScore(), this, true, this.isPassed());
 
       return xAPIEvent;
     };
@@ -270,7 +236,6 @@ export default class Cornell extends H5P.Question {
      */
     this.createXAPIEvent = (verb) => {
       const xAPIEvent = this.createXAPIEventTemplate(verb);
-      // TODO: Check this when adding xAPI support
       Util.extend(
         xAPIEvent.getVerifiedStatementValue(['object', 'definition']),
         this.getxAPIDefinition());
@@ -279,38 +244,26 @@ export default class Cornell extends H5P.Question {
 
     /**
      * Get the xAPI definition for the xAPI object.
-     *
      * @return {object} XAPI definition.
      */
     this.getxAPIDefinition = () => {
       const definition = {};
       definition.name = {'en-US': this.getTitle()};
       definition.description = {'en-US': this.getDescription()};
-
-      // TODO: Set IRI as required for your verb, cmp. http://xapi.vocab.pub/verbs/#
       definition.type = 'http://adlnet.gov/expapi/activities/cmi.interaction';
-
-      // TODO: Set as required, cmp. https://github.com/adlnet/xAPI-Spec/blob/master/xAPI-Data.md#interaction-types
-      definition.interactionType = 'other';
-
-      /*
-       * TODO: Add other object properties as required, e.g. definition.correctResponsesPattern
-       * cmp. https://github.com/adlnet/xAPI-Spec/blob/master/xAPI-Data.md#244-object
-       */
+      definition.interactionType = 'long-fill-in';
 
       return definition;
     };
 
     /**
      * Determine whether the task has been passed by the user.
-     *
      * @return {boolean} True if user passed or task is not scored.
      */
     this.isPassed = () => true;
 
     /**
      * Get tasks title.
-     *
      * @return {string} Title.
      */
     this.getTitle = () => {
@@ -326,15 +279,12 @@ export default class Cornell extends H5P.Question {
 
     /**
      * Get tasks description.
-     *
      * @return {string} Description.
      */
-    // TODO: Have a field for a task description in the editor if you need one.
     this.getDescription = () => this.params.taskDescription || Cornell.DEFAULT_DESCRIPTION;
 
     /**
      * Answer call to return the current state.
-     *
      * @return {object} Current state.
      */
     this.getCurrentState = () => this.content.getCurrentState();

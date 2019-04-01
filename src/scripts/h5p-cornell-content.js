@@ -37,6 +37,21 @@ export default class CornellContent {
     this.content = document.createElement('div');
     this.content.classList.add('h5p-cornell-container');
 
+    this.appendTitleBar();
+    this.appendExercise();
+    this.appendNotes();
+  }
+
+  /**
+   * Return the DOM for this class.
+   *
+   * @return {HTMLElement} DOM for this class.
+   */
+  getDOM() {
+    return this.content;
+  }
+
+  appendTitleBar() {
     // Create titlebar
     this.titlebar = new CornellContentTitlebar(
       {
@@ -52,7 +67,12 @@ export default class CornellContent {
       }
     );
     this.content.appendChild(this.titlebar.getDOM());
+  }
 
+  /**
+   * Append exercise.
+   */
+  appendExercise() {
     // Exercise with H5P Content
     this.exerciseWrapper = document.createElement('div');
     this.exerciseWrapper.classList.add('h5p-cornell-exercise-wrapper');
@@ -127,7 +147,12 @@ export default class CornellContent {
     }
 
     this.content.append(this.exerciseWrapper);
+  }
 
+  /**
+   * Append notes.
+   */
+  appendNotes() {
     // Cornell Notes
     this.notesWrapper = document.createElement('div');
     this.notesWrapper.classList.add('h5p-cornell-notes-wrapper');
@@ -147,15 +172,6 @@ export default class CornellContent {
     notesContentWrapper.appendChild(this.createSummaryDOM());
 
     this.content.append(this.notesWrapper);
-  }
-
-  /**
-   * Return the DOM for this class.
-   *
-   * @return {HTMLElement} DOM for this class.
-   */
-  getDOM() {
-    return this.content;
   }
 
   /**
@@ -184,27 +200,35 @@ export default class CornellContent {
     // Recall area
     const recall = document.createElement('div');
     recall.classList.add('h5p-cornell-main-notes-recall-wrapper');
-    this.recall = H5P.newRunnable({
-      library: 'H5P.TextInputField 1.2',
-      params: {
+
+    this.recall = new H5P.TextInputField(
+      {
         taskDescription: this.params.notesFields.recallTitle,
         placeholderText: this.params.notesFields.recallPlaceholder,
         inputFieldSize: this.params.fieldSizeNotes,
-      }
-    }, this.contentId, H5P.jQuery(recall), undefined, {previousState: this.previousState.recall});
+      },
+      this.contentId,
+      {previousState: this.previousState.recall}
+    );
+    this.recall.attach(H5P.jQuery(recall));
+
     mainNotesDOM.appendChild(recall);
 
     // Notes area
     const notes = document.createElement('div');
     notes.classList.add('h5p-cornell-main-notes-notes-wrapper');
-    this.mainNotes = H5P.newRunnable({
-      library: 'H5P.TextInputField 1.2',
-      params: {
+
+    this.mainNotes = new H5P.TextInputField(
+      {
         taskDescription: this.params.notesFields.notesTitle,
         placeholderText: this.params.notesFields.notesPlaceholder,
         inputFieldSize: this.params.fieldSizeNotes,
-      }
-    }, this.contentId, H5P.jQuery(notes), undefined, {previousState: this.previousState.mainNotes});
+      },
+      this.contentId,
+      {previousState: this.previousState.mainNotes}
+    );
+    this.mainNotes.attach(H5P.jQuery(notes));
+
     mainNotesDOM.appendChild(notes);
 
     return mainNotesDOM;
@@ -218,14 +242,16 @@ export default class CornellContent {
     const summaryDOM = document.createElement('div');
     summaryDOM.classList.add('h5p-cornell-summary-wrapper');
 
-    this.summary = H5P.newRunnable({
-      library: 'H5P.TextInputField 1.2',
-      params: {
+    this.summary = new H5P.TextInputField(
+      {
         taskDescription: this.params.notesFields.summaryTitle,
         placeholderText: this.params.notesFields.summaryPlaceholder,
         inputFieldSize: this.params.fieldSizeSummary,
-      }
-    }, this.contentId, H5P.jQuery(summaryDOM), undefined, {previousState: this.previousState.summary});
+      },
+      this.contentId,
+      {previousState: this.previousState.summary}
+    );
+    this.summary.attach(H5P.jQuery(summaryDOM));
 
     return summaryDOM;
   }
@@ -339,6 +365,23 @@ export default class CornellContent {
   stripTags(fieldState) {
     fieldState.inputField = Util.htmlDecode(fieldState.inputField);
     return fieldState;
+  }
+
+  /**
+   * Detect if some answer was given.
+   * @return {boolean} True if some notes was typed.
+   */
+  getAnswerGiven() {
+    return (this.recall.getInput().value.length + this.mainNotes.getInput().value.length + this.summary.getInput().value.length) > 0;
+  }
+
+  /**
+   * Reset notes.
+   */
+  resetNotes() {
+    this.recall.setState({});
+    this.mainNotes.setState({});
+    this.summary.setState({});
   }
 
   /**
