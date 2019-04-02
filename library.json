@@ -1,8 +1,8 @@
 {
   "title": "Cornell Notes",
   "description": "Let your students take structured notes.",
-  "majorVersion": 1,
-  "minorVersion": 0,
+  "majorVersion": 0,
+  "minorVersion": 1,
   "patchVersion": 0,
   "runnable": 1,
   "author": "Oliver Tacke",
