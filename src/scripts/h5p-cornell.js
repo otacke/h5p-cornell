@@ -2,23 +2,14 @@
 import CornellContent from './h5p-cornell-content';
 import Util from './h5p-cornell-util';
 
-/**
- * Class representing Cornell Notes.
- *
- * - Extends H5P.Question which offers functions for setting the DOM
- * - Implements the question type contract necessary for reporting and for
- *   making the content type usable in compound content types like Question Set
- *   Cpm. https://h5p.org/documentation/developers/contracts
- * - Implements getCurrentState to allow continuing a user's previous session
- * - Uses a separate content class to organitze files
- */
+/** Class representing Cornell Notes */
 export default class Cornell extends H5P.Question {
   /**
    * @constructor
    *
    * @param {object} params Parameters passed by the editor.
    * @param {number} contentId Content's id.
-   * @param {object} [extras] Saved state, metadata, etc.
+   * @param {object} [extras={}] Saved state, metadata, etc.
    */
   constructor(params, contentId, extras = {}) {
     super('cornell'); // CSS class selector for content's iframe: h5p-cornell
@@ -70,25 +61,18 @@ export default class Cornell extends H5P.Question {
       previousState: {}
     }, extras);
 
-    // Content may need one extra resize when DOM is displayed.
     document.addEventListener('readystatechange', () => {
       if (document.readyState === 'complete') {
         setTimeout(() => {
+          // Add fullscreen button on first call after H5P.Question has created the DOM
+          const container = document.querySelector('.h5p-container');
+          if (container) {
+            this.addFullScreenButton(container);
+          }
+
+          // Content may need one extra resize when DOM is displayed.
           this.content.resize();
         }, 0);
-      }
-    });
-
-    // Add fullscreen button on first call after H5P.Question has created the DOM
-    this.on('domChanged', () => {
-      if (this.isFullScreenButtonInitialized) {
-        return;
-      }
-
-      const container = document.querySelector('.h5p-container');
-      if (container) {
-        this.isFullScreenButtonInitialized = true;
-        this.addFullScreenButton(container);
       }
     });
 
@@ -114,7 +98,14 @@ export default class Cornell extends H5P.Question {
         return;
       }
 
-      const toggleFullScreen = () => {
+      const toggleFullScreen = (event) => {
+        if (event && event.type === 'keypress' && event.keyCode !== 13 && event.keyCode !== 32) {
+          return;
+        }
+        else {
+          event.preventDefault();
+        }
+
         if (H5P.isFullscreen === true) {
           H5P.exitFullScreen();
         }
@@ -129,12 +120,7 @@ export default class Cornell extends H5P.Question {
       this.fullScreenButton.setAttribute('title', this.params.a11y.buttonFullscreenEnter);
       this.fullScreenButton.setAttribute('aria-label', this.params.a11y.buttonFullscreenEnter);
       this.fullScreenButton.addEventListener('click', toggleFullScreen);
-      this.fullScreenButton.addEventListener('keyPress', (event) => {
-        if (event.which === 13 || event.which === 32) {
-          toggleFullScreen();
-          event.preventDefault();
-        }
-      });
+      this.fullScreenButton.addEventListener('keyPress', toggleFullScreen);
 
       this.on('enterFullScreen', () => {
         this.content.setFullScreen(true);
@@ -153,7 +139,6 @@ export default class Cornell extends H5P.Question {
 
     /**
      * Check if result has been submitted or input has been given.
-     *
      * @return {boolean} True, if answer was given.
      * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-1}
      */
@@ -229,8 +214,7 @@ export default class Cornell extends H5P.Question {
     };
 
     /**
-     * Create an xAPI event for Dictation.
-     *
+     * Create an xAPI event.
      * @param {string} verb Short id of the verb we want to trigger.
      * @return {H5P.XAPIEvent} Event template.
      */
@@ -273,7 +257,6 @@ export default class Cornell extends H5P.Question {
       }
       raw = raw || Cornell.DEFAULT_DESCRIPTION;
 
-      // H5P Core function: createTitle
       return H5P.createTitle(raw);
     };
 

@@ -2,7 +2,11 @@
 import CornellContentTitlebar from './h5p-cornell-content-titlebar';
 import Util from './h5p-cornell-util';
 
-/** Class representing the content */
+/** Class representing the content
+ *
+ * This class could be split into one "page" that the actual content
+ * could extend, but for now it's both pages in one.
+ */
 export default class CornellContent {
   /**
    * @constructor
@@ -33,11 +37,12 @@ export default class CornellContent {
 
     this.isExerciseMode = true;
 
-    // TODO: Put this in separate function
     this.content = document.createElement('div');
     this.content.classList.add('h5p-cornell-container');
 
-    this.appendTitleBar();
+    this.titlebar = this.createTitleBar();
+    this.content.appendChild(this.titlebar.getDOM());
+
     this.appendExercise();
     this.appendNotes();
   }
@@ -51,22 +56,24 @@ export default class CornellContent {
     return this.content;
   }
 
-  appendTitleBar() {
-    // Create titlebar
-    this.titlebar = new CornellContentTitlebar(
+  /**
+   * Create titlebar.
+   * @return {CornellContentTitlebar} Titlebar.
+   */
+  createTitleBar() {
+    return new CornellContentTitlebar(
       {
         title: this.extras.metadata.title,
         dateString: this.previousState.dateString,
         a11y: {
           buttonToggleActive: this.params.a11y.buttonToggleSwitchExercise,
-          buttonTogglePassive: this.params.a11y.buttonToggleSwitchNotes
+          buttonToggleInactive: this.params.a11y.buttonToggleSwitchNotes
         }
       },
       {
         handlebuttonToggle: (event) => this.handlebuttonToggle(event)
       }
     );
-    this.content.appendChild(this.titlebar.getDOM());
   }
 
   /**
@@ -258,6 +265,7 @@ export default class CornellContent {
 
   /**
    * Resize content.
+   * @param {boolean} [fromVideo=false] If false, will trigger resize for exercise.
    */
   resize(fromVideo = false) {
     if (this.exercise && !fromVideo) {
@@ -274,10 +282,10 @@ export default class CornellContent {
 
   /**
    * Set dimensions to fullscreen.
-   * @param {boolean} on If true, enter fullscreen, else exit.
+   * @param {boolean} enterFullScreen If true, enter fullscreen, else exit.
    */
-  setFullScreen(on = false) {
-    if (on === true) {
+  setFullScreen(enterFullScreen = false) {
+    if (enterFullScreen === true) {
       this.exerciseWrapper.style.maxHeight = `${screen.height - this.titlebar.getDOM().offsetHeight}px`;
       this.notesWrapper.style.maxHeight = `${screen.height - this.titlebar.getDOM().offsetHeight}px`;
     }
@@ -292,7 +300,7 @@ export default class CornellContent {
    * @param {object} event Event that is calling.
    */
   handlebuttonToggle(event) {
-    if (event.type === 'keypress' && event.keyCode !== 13 && event.keyCode !== 32) {
+    if (event && event.type === 'keypress' && event.keyCode !== 13 && event.keyCode !== 32) {
       return;
     }
 

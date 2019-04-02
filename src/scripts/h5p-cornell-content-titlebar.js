@@ -10,8 +10,8 @@ export default class CornellContentTitlebar {
    * @param {string} params.title Title.
    * @param {string} params.dateString Date.
    * @param {object} params.a11y Accessibility strings.
-   * @param {string} params.a11y.buttonToggleActive Text for passive button.
-   * @param {string} params.a11y.buttonTogglePassive Text for passive button.
+   * @param {string} params.a11y.buttonToggleActive Text for inactive button.
+   * @param {string} params.a11y.buttonToggleInactive Text for inactive button.
    * @param {object} callbacks Callbacks.
    * @param {function} callbacks.handlebuttonToggle Handles click.
    */
@@ -22,14 +22,14 @@ export default class CornellContentTitlebar {
       dateString: new Date().toLocaleDateString(),
       a11y: {
         buttonToggleActive: 'toggle',
-        buttonTogglePassive: 'toggle'
+        buttonToggleInactive: 'toggle'
       }
     }, params || {});
 
     // Set missing callbacks
     this.callbacks = Util.extend({
       handlebuttonToggle: () => {
-        console.warn('A function for handling the button is missing.');
+        console.warn('A function for handling the titlebar button is missing.');
       }
     }, callbacks || {});
 
@@ -40,10 +40,10 @@ export default class CornellContentTitlebar {
     this.buttonToggle = document.createElement('div');
     this.buttonToggle.classList.add('h5p-cornell-button-overlay');
     this.buttonToggle.setAttribute('aria-pressed', false);
-    this.buttonToggle.setAttribute('aria-label', this.params.a11y.buttonTogglePassive);
+    this.buttonToggle.setAttribute('aria-label', this.params.a11y.buttonToggleInactive);
     this.buttonToggle.setAttribute('role', 'button');
     this.buttonToggle.setAttribute('tabindex', '0');
-    this.buttonToggle.setAttribute('title', this.params.a11y.buttonTogglePassive);
+    this.buttonToggle.setAttribute('title', this.params.a11y.buttonToggleInactive);
 
     this.buttonToggle.addEventListener('click', this.callbacks.handlebuttonToggle);
     this.buttonToggle.addEventListener('keypress', this.callbacks.handlebuttonToggle);
@@ -80,7 +80,7 @@ export default class CornellContentTitlebar {
 
     const buttonLabel = (active) ?
       this.params.a11y.buttonToggleActive :
-      this.params.a11y.buttonTogglePassive;
+      this.params.a11y.buttonToggleInactive;
 
     this.buttonToggle.setAttribute('aria-label', buttonLabel);
     this.buttonToggle.setAttribute('aria-pressed', active);
