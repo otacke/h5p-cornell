@@ -1,37 +1,70 @@
 {
   "semantics": [
     {
-      "label": "Text",
-      "placeholder": "Hello world",
-      "default": "Hello %username",
-      "description": "Says hello to someone"
+      "label": "Instructions",
+      "description": "Students will see these instructions on top of the notes."
     },
     {
-      "label": "Behavioural settings",
-      "description": "These options will let you control how the task behaves.",
+      "label": "Exercise content"
+    },
+    {
+      "label": "Notes fields",
+      "description": "Settings for the notes fields",
       "fields": [
         {
-          "label": "Enable \"Retry\""
+          "label": "Recall field title",
+          "default": "Recall",
+          "description": "Title for the recall section"
         },
         {
-          "label": "Enable \"Solution\""
+          "label": "Recall field placeholder",
+          "default": "Enter your keywords, questions, the main idea, etc.",
+          "description": "Placeholder for the recall section as a reminder for your students"
+        },
+        {
+          "label": "Notes field title",
+          "default": "Notes",
+          "description": "Title for the notes section"
+        },
+        {
+          "label": "Notes field placeholder",
+          "default": "Enter dates, details, definitions, formulas, examples, etc.",
+          "description": "Placeholder for the notes section as a reminder for your students"
+        },
+        {
+          "label": "Summary field title",
+          "default": "Summary",
+          "description": "Title for the summary section"
+        },
+        {
+          "label": "Summary field placeholder",
+          "default": "Enter your summary",
+          "description": "Placeholder for the summary section as a reminder for your students"
         }
       ]
     },
     {
-      "label": "User interface",
+      "label": "Readspeaker",
       "fields": [
         {
-          "label": "Text for \"Check\" button",
-          "default": "Check"
+          "label": "Fullscreen button title",
+          "default": "Enter fullscreen mode"
         },
         {
-          "label": "Text for \"Retry\" button",
-          "default": "Retry"
+          "label": "Toggle button title (in exercise mode)",
+          "default": "Switch to the notes"
         },
         {
-          "label": "Text for \"Show solution\" button",
-          "default": "Show solution"
+          "label": "Toggle button title (in notes mode)",
+          "default": "Switch to the exercise"
+        },
+        {
+          "label": "Switched to notes",
+          "default": "The view has switched to your notes."
+        },
+        {
+          "label": "Switched to excersise",
+          "default": "The view has switched to the exercise."
         }
       ]
     }
