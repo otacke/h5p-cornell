@@ -55,7 +55,7 @@
 
 .h5p-cornell .h5p-cornell-button-overlay {
   align-items: center;
-  background: url(../images/button-overlay-icon-blue.svg);
+  background: url(../images/button-toggle-notes-icon-blue.svg);
   background-color: #fff;
   background-position: center;
   background-repeat: no-repeat;
@@ -79,7 +79,7 @@
 }
 
 .h5p-cornell .h5p-cornell-button-overlay.h5p-cornell-active {
-  background: url(../images/button-overlay-icon.svg);
+  background: url(../images/button-toggle-notes-icon-white.svg);
   background-color: #1a73d9;
   background-position: center;
   background-repeat: no-repeat;
