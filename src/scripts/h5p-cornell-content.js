@@ -86,10 +86,12 @@ export default class CornellContent {
 
     const exerciseContent = document.createElement('div');
     exerciseContent.classList.add('h5p-cornell-exercise-content');
-    exerciseContent.appendChild(this.createInstructionsDOM());
 
     const exerciseContentLibrary = document.createElement('div');
     exerciseContentLibrary.classList.add('h5p-cornell-exercise-content-library');
+
+    exerciseContent.appendChild(this.createInstructionsDOM());
+    exerciseContent.appendChild(this.createSeparatorDOM());
     exerciseContent.appendChild(exerciseContentLibrary);
 
     const exerciseContentWrapper = document.createElement('div');
@@ -194,6 +196,17 @@ export default class CornellContent {
     }
 
     return instructionsDOM;
+  }
+
+  /**
+   * Create DOM for separator.
+   * @return {HTMLElement} DOM for separator.
+   */
+  createSeparatorDOM() {
+    const separatorDOM = document.createElement('div');
+    separatorDOM.classList.add('h5p-cornell-content-separator');
+
+    return separatorDOM;
   }
 
   /**

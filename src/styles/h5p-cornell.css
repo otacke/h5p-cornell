@@ -183,6 +183,11 @@
 .h5p-cornell .h5p-cornell-instructions-wrapper {
 }
 
+.h5p-cornell .h5p-cornell-content-separator {
+  border-bottom: 2px solid #eee;
+  width: 100%;
+}
+
 .h5p-cornell .h5p-cornell-main-notes-wrapper {
   display: flex;
   flex-direction: row;
