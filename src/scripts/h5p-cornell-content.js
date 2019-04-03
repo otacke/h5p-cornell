@@ -165,6 +165,7 @@ export default class CornellContent {
     // Cornell Notes
     this.notesWrapper = document.createElement('div');
     this.notesWrapper.classList.add('h5p-cornell-notes-wrapper');
+    this.notesWrapper.classList.add('h5p-cornell-display-none');
 
     // Hide wrapper after it has been moved out of sight to prevent receiving tab focus
     this.notesWrapper.addEventListener('transitionend', () => {
