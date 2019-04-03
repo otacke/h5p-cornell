@@ -305,6 +305,10 @@ export default class CornellContent {
     else {
       this.exerciseWrapper.style.maxHeight = '';
       this.notesWrapper.style.maxHeight = '';
+
+      setTimeout(() => {
+        this.resize();
+      }, 0);
     }
   }
 
