@@ -300,8 +300,12 @@ export default class CornellContent {
    */
   setFullScreen(enterFullScreen = false) {
     if (enterFullScreen === true) {
-      this.exerciseWrapper.style.maxHeight = `${screen.height - this.titlebar.getDOM().offsetHeight}px`;
-      this.notesWrapper.style.maxHeight = `${screen.height - this.titlebar.getDOM().offsetHeight}px`;
+      // Give browser some time to go to fullscreen mode and return proper viewport height
+      setTimeout(() => {
+        const maxHeight = `${window.innerHeight - this.titlebar.getDOM().offsetHeight}px`;
+        this.exerciseWrapper.style.maxHeight = maxHeight;
+        this.notesWrapper.style.maxHeight = maxHeight;
+      }, 100);
     }
     else {
       this.exerciseWrapper.style.maxHeight = '';
