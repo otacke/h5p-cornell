@@ -15,7 +15,6 @@ export default class Cornell extends H5P.Question {
     super('cornell'); // CSS class selector for content's iframe: h5p-cornell
 
     this.contentId = contentId;
-    this.extras = extras;
 
     /*
      * this.params.behaviour.enableSolutionsButton and this.params.behaviour.enableRetry
@@ -53,12 +52,17 @@ export default class Cornell extends H5P.Question {
       }
     }, params);
 
-    // previousState now holds the saved content state of the previous session
+    /*
+     * The previousState stored inside the database will be set to undefined if
+     * the author changes the exercise (eve if just correcting a typo). This
+     * would erase all notes, so the localStorage value is used if the
+     * previous state id undefined.
+     */
     this.extras = Util.extend({
       metadata: {
         title: 'Cornell Notes',
       },
-      previousState: {}
+      previousState: Cornell.getPreviousStateLocal(this.contentId) || {}
     }, extras);
 
     document.addEventListener('readystatechange', () => {
@@ -270,7 +274,41 @@ export default class Cornell extends H5P.Question {
      * Answer call to return the current state.
      * @return {object} Current state.
      */
-    this.getCurrentState = () => this.content.getCurrentState();
+    this.getCurrentState = () => {
+      const currentState = this.content.getCurrentState();
+
+      // Use localStorage to avoid data loss on minor content changes
+      if (window.localStorage) {
+        window.localStorage.setItem(`${Cornell.DEFAULT_DESCRIPTION}-${this.contentId}`, JSON.stringify(currentState));
+      }
+
+      return currentState;
+    };
+  }
+
+  /**
+   * Get previous state from localStorage.
+   * @param {number} id Content id to retrieve content for.
+   * @return {object|null} Previous state, null if not possible.
+   */
+  static getPreviousStateLocal(id) {
+    if (!window.localStorage || typeof id !== 'number') {
+      return null;
+    }
+
+    let previousState = window.localStorage.getItem(`${Cornell.DEFAULT_DESCRIPTION}-${id}`);
+
+    if (previousState) {
+      try {
+        previousState = JSON.parse(previousState);
+      }
+      catch (error) {
+        console.warn('Could not parse localStorage content for previous state.');
+        previousState = null;
+      }
+    }
+
+    return previousState;
   }
 }
 
