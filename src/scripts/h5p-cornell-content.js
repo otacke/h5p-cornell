@@ -18,7 +18,7 @@ export default class CornellContent {
    */
   constructor(params, contentId, extras, callbacks) {
     this.params = Util.extend({
-      behaviour: true // H5P editor is weird for groups with just one object
+      behaviour: false // H5P editor is weird for groups with just one object
     }, params);
 
     this.contentId = contentId;
@@ -38,7 +38,7 @@ export default class CornellContent {
     // Callbacks
     this.callbacks = callbacks || {};
 
-    this.isExerciseMode = !this.params.behaviour;
+    this.isExerciseMode = this.params.behaviour;
 
     this.content = document.createElement('div');
     this.content.classList.add('h5p-cornell-container');

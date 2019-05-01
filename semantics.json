@@ -101,11 +101,11 @@
     "label": "Behavioural settings",
     "fields": [
       {
-        "name": "showNotesOnStartup",
+        "name": "hideNotesOnStartup",
         "type": "boolean",
-        "label": "Show notes on startup",
-        "description": "When enabled, the notes are shown on startup",
-        "default": true
+        "label": "Hide notes on startup",
+        "description": "When enabled, the notes are hidden on startup",
+        "default": false
       }
     ]
   },
