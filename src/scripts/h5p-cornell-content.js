@@ -82,8 +82,8 @@ export default class CornellContent {
         title: this.extras.metadata.title,
         dateString: this.previousState.dateString,
         a11y: {
-          buttonToggleActive: this.params.a11y.buttonToggleSwitchExercise,
-          buttonToggleInactive: this.params.a11y.buttonToggleSwitchNotes
+          buttonToggleActive: this.params.a11y.buttonToggleCloseNotes,
+          buttonToggleInactive: this.params.a11y.buttonToggleOpenNotes
         }
       },
       {
@@ -377,8 +377,8 @@ export default class CornellContent {
     const active = this.titlebar.toggleOverlayButton();
     if (typeof this.callbacks.read === 'function') {
       const message = (active) ?
-        this.params.a11y.switchedNotes :
-        this.params.a11y.switchedExercise;
+        this.params.a11y.notesOpened :
+        this.params.a11y.notesClosed;
       this.callbacks.read(message);
     }
 

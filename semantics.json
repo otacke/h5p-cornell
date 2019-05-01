@@ -124,30 +124,30 @@
         "default": "Enter fullscreen mode"
       },
       {
-        "name": "buttonToggleSwitchNotes",
+        "name": "buttonToggleOpenNotes",
         "type": "text",
-        "label": "Toggle button title (in exercise mode)",
+        "label": "Toggle button title (when notes closed)",
         "importance": "low",
-        "default": "Switch to the notes"
+        "default": "Open notes"
       },
       {
-        "name": "buttonToggleSwitchExercise",
+        "name": "buttonToggleCloseNotes",
         "type": "text",
-        "label": "Toggle button title (in notes mode)",
+        "label": "Toggle button title (when notes opened)",
         "importance": "low",
-        "default": "Switch to the exercise"
+        "default": "Close notes"
       },
       {
-        "name": "switchedNotes",
+        "name": "notesOpened",
         "type": "text",
-        "label": "Switched to notes",
+        "label": "Notes opened",
         "importance": "low",
         "default": "The view has switched to your notes."
       },
       {
-        "name": "switchedExercise",
+        "name": "notesClosed",
         "type": "text",
-        "label": "Switched to excersise",
+        "label": "Notes closed",
         "importance": "low",
         "default": "The view has switched to the exercise."
       }
