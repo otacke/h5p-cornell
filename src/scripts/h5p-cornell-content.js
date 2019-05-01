@@ -329,12 +329,30 @@ export default class CornellContent {
     if (this.content.offsetWidth < 768) {
       // Triggers a transition, display set to none afterwards by listener
       this.exerciseWrapper.classList.add('h5p-cornell-narrow-screen');
+
+      // Only want to trigger toggleMedium once when mode actually changes
+      if (!this.isNarrowScreen) {
+        this.isNarrowScreen = true;
+
+        if (!this.isExerciseMode) {
+          this.toggleMedium();
+        }
+      }
     }
     else {
       this.exerciseWrapper.classList.remove('h5p-cornell-display-none');
       setTimeout(() => {
         this.exerciseWrapper.classList.remove('h5p-cornell-narrow-screen');
       }, 0);
+
+      // Only want to trigger toggleMedium once when mode actually changes
+      if (this.isNarrowScreen) {
+        this.isNarrowScreen = false;
+
+        if (!this.isExerciseMode) {
+          this.toggleMedium();
+        }
+      }
     }
 
     if (typeof this.callbacks.resize === 'function') {
@@ -383,7 +401,9 @@ export default class CornellContent {
     }
 
     this.toggleView();
-    this.toggleMedium();
+    if (this.isNarrowScreen) {
+      this.toggleMedium();
+    }
   }
 
   /**
@@ -406,32 +426,40 @@ export default class CornellContent {
   }
 
   /**
-   * Pause/replay medium when toggling between exercise and notes.
+   * Pause/replay medium depending on previous state.
    */
   toggleMedium() {
+    let currentExercise;
+    let currentMediumRunning;
+
     switch (this.exerciseMachineName) {
-      case 'H5P.Audio':
-        if (this.isExerciseMode && this.exercise.audio) {
-          this.continueMedia = this.exercise.audio.paused === false;
-          this.exercise.audio.pause();
-        }
-        else {
-          if (this.exercise.audio && this.continueMedia === true) {
-            this.exercise.audio.play();
-          }
-        }
-        break;
+      // Not sure if it makes sense to stop audio as well
+      // case 'H5P.Audio':
+      //   currentExercise = this.exercise.audio;
+      //   currentMediumRunning = this.exercise.audio.paused === false;
+      //   break;
+
       case 'H5P.Video':
-        if (this.isExerciseMode && this.exercise) {
-          this.continueMedia = this.mediumRunning;
-          this.exercise.pause();
-        }
-        else {
-          if (this.exercise && this.continueMedia === true) {
-            this.exercise.play();
-          }
-        }
+        currentExercise = this.exercise;
+        currentMediumRunning = this.mediumRunning;
         break;
+    }
+
+    if (!currentExercise) {
+      return;
+    }
+
+    if (currentMediumRunning) {
+      this.continueMedia = currentMediumRunning;
+      if (currentExercise.pause) {
+        currentExercise.pause();
+      }
+    }
+    else if (this.continueMedia === true) {
+      this.continueMedia = undefined;
+      if (currentExercise.play) {
+        currentExercise.play();
+      }
     }
   }
 
