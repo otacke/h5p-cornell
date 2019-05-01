@@ -111,6 +111,7 @@ export default class CornellContent {
       if (!this.isExerciseMode) {
         if (this.exerciseWrapper.offsetWidth === 0) {
           this.exerciseWrapper.classList.add('h5p-cornell-display-none');
+          this.resize();
         }
       }
     });
@@ -186,6 +187,7 @@ export default class CornellContent {
     this.notesWrapper.addEventListener('transitionend', () => {
       if (this.isExerciseMode) {
         this.notesWrapper.classList.add('h5p-cornell-display-none');
+        this.resize();
       }
     });
 
