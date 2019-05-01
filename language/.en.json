@@ -44,6 +44,15 @@
       ]
     },
     {
+      "label": "Behavioural settings",
+      "fields": [
+        {
+          "label": "Show notes on startup",
+          "description": "When enabled, the notes are shown on startup"
+        }
+      ]
+    },
+    {
       "label": "Readspeaker",
       "fields": [
         {
@@ -51,19 +60,19 @@
           "default": "Enter fullscreen mode"
         },
         {
-          "label": "Toggle button title (in exercise mode)",
-          "default": "Switch to the notes"
+          "label": "Toggle button title (when notes closed)",
+          "default": "Open notes"
         },
         {
-          "label": "Toggle button title (in notes mode)",
-          "default": "Switch to the exercise"
+          "label": "Toggle button title (when notes opened)",
+          "default": "Close notes"
         },
         {
-          "label": "Switched to notes",
+          "label": "Notes opened",
           "default": "The view has switched to your notes."
         },
         {
-          "label": "Switched to excersise",
+          "label": "Notes closed",
           "default": "The view has switched to the exercise."
         }
       ]
