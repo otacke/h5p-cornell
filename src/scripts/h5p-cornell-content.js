@@ -43,8 +43,13 @@ export default class CornellContent {
     this.titlebar = this.createTitleBar();
     this.content.appendChild(this.titlebar.getDOM());
 
-    this.appendExercise();
-    this.appendNotes();
+    const panel = document.createElement('div');
+    panel.classList.add('h5p-cornell-panel');
+
+    this.appendExercise(panel);
+    this.appendNotes(panel);
+
+    this.content.append(panel);
   }
 
   /**
@@ -78,8 +83,9 @@ export default class CornellContent {
 
   /**
    * Append exercise.
+   * @param {HTMLElement} panel Display panel to append to.
    */
-  appendExercise() {
+  appendExercise(panel) {
     // Exercise with H5P Content
     this.exerciseWrapper = document.createElement('div');
     this.exerciseWrapper.classList.add('h5p-cornell-exercise-wrapper');
@@ -100,7 +106,15 @@ export default class CornellContent {
 
     this.exerciseWrapper.appendChild(exerciseContentWrapper);
 
-    // TODO: Make next stuff separate functions
+    // If notes are opened and display is too narrow, undisplay excercise
+    this.exerciseWrapper.addEventListener('transitionend', () => {
+      if (!this.isExerciseMode) {
+        if (this.exerciseWrapper.offsetWidth === 0) {
+          this.exerciseWrapper.classList.add('h5p-cornell-display-none');
+        }
+      }
+    });
+
     if (this.params.exerciseContent && this.params.exerciseContent.library) {
       this.exerciseMachineName = this.params.exerciseContent.library.split(' ')[0];
     }
@@ -155,13 +169,14 @@ export default class CornellContent {
       exerciseContentLibrary.appendChild(message);
     }
 
-    this.content.append(this.exerciseWrapper);
+    panel.append(this.exerciseWrapper);
   }
 
   /**
    * Append notes.
+   * @param {HTMLElement} panel Display panel to append to.
    */
-  appendNotes() {
+  appendNotes(panel) {
     // Cornell Notes
     this.notesWrapper = document.createElement('div');
     this.notesWrapper.classList.add('h5p-cornell-notes-wrapper');
@@ -169,8 +184,9 @@ export default class CornellContent {
 
     // Hide wrapper after it has been moved out of sight to prevent receiving tab focus
     this.notesWrapper.addEventListener('transitionend', () => {
-      const elementToHide = (this.isExerciseMode) ? this.notesWrapper : this.exerciseWrapper;
-      elementToHide.classList.add('h5p-cornell-display-none');
+      if (this.isExerciseMode) {
+        this.notesWrapper.classList.add('h5p-cornell-display-none');
+      }
     });
 
     const notesContentWrapper = document.createElement('div');
@@ -181,7 +197,7 @@ export default class CornellContent {
     notesContentWrapper.appendChild(this.createMainNotesDOM());
     notesContentWrapper.appendChild(this.createSummaryDOM());
 
-    this.content.append(this.notesWrapper);
+    panel.append(this.notesWrapper);
   }
 
   /**
@@ -286,8 +302,17 @@ export default class CornellContent {
       this.exercise.trigger('resize');
     }
 
-    const height = this.titlebar.getDOM().offsetHeight + (this.isExerciseMode ? this.exerciseWrapper.offsetHeight : this.notesWrapper.offsetHeight);
-    this.content.style.height = `${height}px`;
+    // Not done using media query because display needs to be not-none first
+    if (this.content.offsetWidth < 768) {
+      // Triggers a transition, display set to none afterwards by listener
+      this.exerciseWrapper.classList.add('h5p-cornell-narrow-screen');
+    }
+    else {
+      this.exerciseWrapper.classList.remove('h5p-cornell-display-none');
+      setTimeout(() => {
+        this.exerciseWrapper.classList.remove('h5p-cornell-narrow-screen');
+      }, 0);
+    }
 
     if (typeof this.callbacks.resize === 'function') {
       this.callbacks.resize();
