@@ -95,6 +95,21 @@
     ]
   },
   {
+    "name": "behaviour",
+    "type": "group",
+    "importance": "low",
+    "label": "Behavioural settings",
+    "fields": [
+      {
+        "name": "showNotesOnStartup",
+        "type": "boolean",
+        "label": "Show notes on startup",
+        "description": "When enabled, the notes are shown on startup",
+        "default": true
+      }
+    ]
+  },
+  {
     "name": "a11y",
     "type": "group",
     "common": true,

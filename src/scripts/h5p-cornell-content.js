@@ -17,7 +17,10 @@ export default class CornellContent {
    * @param {object} [callbacks] Callbacks.
    */
   constructor(params, contentId, extras, callbacks) {
-    this.params = params;
+    this.params = Util.extend({
+      behaviour: true // H5P editor is weird for groups with just one object
+    }, params);
+
     this.contentId = contentId;
     this.extras = extras;
 
@@ -35,7 +38,7 @@ export default class CornellContent {
     // Callbacks
     this.callbacks = callbacks || {};
 
-    this.isExerciseMode = true;
+    this.isExerciseMode = !this.params.behaviour;
 
     this.content = document.createElement('div');
     this.content.classList.add('h5p-cornell-container');
@@ -43,11 +46,19 @@ export default class CornellContent {
     this.titlebar = this.createTitleBar();
     this.content.appendChild(this.titlebar.getDOM());
 
+    // Notes might be wanted to be open on startup
+    if (!this.isExerciseMode) {
+      this.titlebar.toggleOverlayButton();
+    }
+
     const panel = document.createElement('div');
     panel.classList.add('h5p-cornell-panel');
 
-    this.appendExercise(panel);
-    this.appendNotes(panel);
+    this.exerciseWrapper = this.createExerciseDOM();
+    panel.appendChild(this.exerciseWrapper);
+
+    this.notesWrapper = this.createNotesDOM();
+    panel.appendChild(this.notesWrapper);
 
     this.content.append(panel);
   }
@@ -83,12 +94,16 @@ export default class CornellContent {
 
   /**
    * Append exercise.
-   * @param {HTMLElement} panel Display panel to append to.
+   * @return {HTMLElement} Exercise.
    */
-  appendExercise(panel) {
+  createExerciseDOM() {
     // Exercise with H5P Content
-    this.exerciseWrapper = document.createElement('div');
-    this.exerciseWrapper.classList.add('h5p-cornell-exercise-wrapper');
+    const exerciseWrapper = document.createElement('div');
+    exerciseWrapper.classList.add('h5p-cornell-exercise-wrapper');
+
+    if (!this.isExerciseMode) {
+      exerciseWrapper.classList.add('h5p-cornell-notes-mode');
+    }
 
     const exerciseContent = document.createElement('div');
     exerciseContent.classList.add('h5p-cornell-exercise-content');
@@ -104,13 +119,13 @@ export default class CornellContent {
     exerciseContentWrapper.classList.add('h5p-cornell-exercise-content-wrapper');
     exerciseContentWrapper.appendChild(exerciseContent);
 
-    this.exerciseWrapper.appendChild(exerciseContentWrapper);
+    exerciseWrapper.appendChild(exerciseContentWrapper);
 
     // If notes are opened and display is too narrow, undisplay excercise
-    this.exerciseWrapper.addEventListener('transitionend', () => {
+    exerciseWrapper.addEventListener('transitionend', () => {
       if (!this.isExerciseMode) {
-        if (this.exerciseWrapper.offsetWidth === 0) {
-          this.exerciseWrapper.classList.add('h5p-cornell-display-none');
+        if (exerciseWrapper.offsetWidth === 0) {
+          exerciseWrapper.classList.add('h5p-cornell-display-none');
           this.resize();
         }
       }
@@ -170,23 +185,29 @@ export default class CornellContent {
       exerciseContentLibrary.appendChild(message);
     }
 
-    panel.append(this.exerciseWrapper);
+    return exerciseWrapper;
   }
 
   /**
-   * Append notes.
-   * @param {HTMLElement} panel Display panel to append to.
+   * Create notes.
+   * @return {HTMLElement} Notes.
    */
-  appendNotes(panel) {
+  createNotesDOM() {
     // Cornell Notes
-    this.notesWrapper = document.createElement('div');
-    this.notesWrapper.classList.add('h5p-cornell-notes-wrapper');
-    this.notesWrapper.classList.add('h5p-cornell-display-none');
+    const notesWrapper = document.createElement('div');
+    notesWrapper.classList.add('h5p-cornell-notes-wrapper');
+
+    if (!this.isExerciseMode) {
+      notesWrapper.classList.add('h5p-cornell-notes-mode');
+    }
+    else {
+      notesWrapper.classList.add('h5p-cornell-display-none');
+    }
 
     // Hide wrapper after it has been moved out of sight to prevent receiving tab focus
-    this.notesWrapper.addEventListener('transitionend', () => {
+    notesWrapper.addEventListener('transitionend', () => {
       if (this.isExerciseMode) {
-        this.notesWrapper.classList.add('h5p-cornell-display-none');
+        notesWrapper.classList.add('h5p-cornell-display-none');
         this.resize();
       }
     });
@@ -194,12 +215,12 @@ export default class CornellContent {
     const notesContentWrapper = document.createElement('div');
     notesContentWrapper.classList.add('h5p-cornell-notes-content-wrapper');
 
-    this.notesWrapper.appendChild(notesContentWrapper);
+    notesWrapper.appendChild(notesContentWrapper);
 
     notesContentWrapper.appendChild(this.createMainNotesDOM());
     notesContentWrapper.appendChild(this.createSummaryDOM());
 
-    panel.append(this.notesWrapper);
+    return notesWrapper;
   }
 
   /**
