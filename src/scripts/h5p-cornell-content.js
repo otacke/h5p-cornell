@@ -118,10 +118,10 @@ export default class CornellContent {
       if (!this.isExerciseMode) {
         if (exerciseWrapper.offsetWidth === 0) {
           exerciseWrapper.classList.add('h5p-cornell-display-none');
-          setTimeout(() => {
-            this.resize();
-          }, 0);
         }
+        setTimeout(() => {
+          this.resize();
+        }, 0);
       }
     });
 
