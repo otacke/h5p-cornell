@@ -99,13 +99,14 @@
     "type": "group",
     "importance": "low",
     "label": "Behavioural settings",
+    "default": true,
     "fields": [
       {
-        "name": "hideNotesOnStartup",
+        "name": "showNotesOnStartup",
         "type": "boolean",
-        "label": "Hide notes on startup",
-        "description": "When enabled, the notes are hidden on startup",
-        "default": false
+        "label": "Show notes on startup",
+        "description": "When this option is disabled, the notes are hidden on startup. Notes are hidden automatically on small displays.",
+        "default": true
       }
     ]
   },

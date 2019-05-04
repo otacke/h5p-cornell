@@ -39,11 +39,12 @@ export default class CornellContentTitlebar {
     // Toggle button
     this.buttonToggle = document.createElement('div');
     this.buttonToggle.classList.add('h5p-cornell-button-overlay');
-    this.buttonToggle.setAttribute('aria-pressed', false);
-    this.buttonToggle.setAttribute('aria-label', this.params.a11y.buttonToggleInactive);
+    this.buttonToggle.classList.add('h5p-cornell-active');
+    this.buttonToggle.setAttribute('aria-pressed', true);
+    this.buttonToggle.setAttribute('aria-label', this.params.a11y.buttonToggleActive);
     this.buttonToggle.setAttribute('role', 'button');
     this.buttonToggle.setAttribute('tabindex', '0');
-    this.buttonToggle.setAttribute('title', this.params.a11y.buttonToggleInactive);
+    this.buttonToggle.setAttribute('title', this.params.a11y.buttonToggleActive);
 
     this.buttonToggle.addEventListener('click', this.callbacks.handlebuttonToggle);
     this.buttonToggle.addEventListener('keypress', this.callbacks.handlebuttonToggle);

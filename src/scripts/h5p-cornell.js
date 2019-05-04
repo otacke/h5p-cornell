@@ -23,6 +23,11 @@ export default class Cornell extends H5P.Question {
      * @see {@link https://h5p.org/documentation/developers/contracts#guides-header-9}
      */
 
+    // Work around H5P's 1 item group behavior in editor.
+    params.behaviour = {
+      showNotesOnStartup: params.behaviour || true
+    };
+
     // Make sure all variables are set
     this.params = Util.extend({
       instructions: '',
@@ -72,6 +77,11 @@ export default class Cornell extends H5P.Question {
           const container = document.querySelector('.h5p-container');
           if (container) {
             this.addFullScreenButton(container);
+          }
+
+          // On desktop, notes might be wanted to be open on startup
+          if (this.params.behaviour.showNotesOnStartup === false || this.content.getDOM().offsetWidth < 768) {
+            this.content.handlebuttonToggle();
           }
 
           // Content may need one extra resize when DOM is displayed.

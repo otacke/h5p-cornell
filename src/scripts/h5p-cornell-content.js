@@ -17,10 +17,7 @@ export default class CornellContent {
    * @param {object} [callbacks] Callbacks.
    */
   constructor(params, contentId, extras, callbacks) {
-    this.params = Util.extend({
-      behaviour: false // H5P editor is weird for groups with just one object
-    }, params);
-
+    this.params = params;
     this.contentId = contentId;
     this.extras = extras;
 
@@ -38,18 +35,13 @@ export default class CornellContent {
     // Callbacks
     this.callbacks = callbacks || {};
 
-    this.isExerciseMode = this.params.behaviour;
+    this.isExerciseMode = false;
 
     this.content = document.createElement('div');
     this.content.classList.add('h5p-cornell-container');
 
     this.titlebar = this.createTitleBar();
     this.content.appendChild(this.titlebar.getDOM());
-
-    // Notes might be wanted to be open on startup
-    if (!this.isExerciseMode) {
-      this.titlebar.toggleOverlayButton();
-    }
 
     const panel = document.createElement('div');
     panel.classList.add('h5p-cornell-panel');
@@ -503,3 +495,9 @@ export default class CornellContent {
     };
   }
 }
+
+/** @constant {number} */
+CornellContent.MODE_EXERCISE = 0;
+
+/** @constant {number} */
+CornellContent.MODE_NOTES = 1;
