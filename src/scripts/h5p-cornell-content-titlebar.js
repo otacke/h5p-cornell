@@ -20,6 +20,7 @@ export default class CornellContentTitlebar {
     this.params = Util.extend({
       title: '',
       dateString: new Date().toLocaleDateString(),
+      toggleButtonActiveOnStartup: true,
       a11y: {
         buttonToggleActive: 'toggle',
         buttonToggleInactive: 'toggle'
@@ -39,12 +40,18 @@ export default class CornellContentTitlebar {
     // Toggle button
     this.buttonToggle = document.createElement('div');
     this.buttonToggle.classList.add('h5p-cornell-button-overlay');
-    this.buttonToggle.classList.add('h5p-cornell-active');
-    this.buttonToggle.setAttribute('aria-pressed', true);
-    this.buttonToggle.setAttribute('aria-label', this.params.a11y.buttonToggleActive);
+    this.buttonToggle.setAttribute('aria-pressed', this.params.toggleButtonActiveOnStartup);
     this.buttonToggle.setAttribute('role', 'button');
     this.buttonToggle.setAttribute('tabindex', '0');
-    this.buttonToggle.setAttribute('title', this.params.a11y.buttonToggleActive);
+    if (this.params.toggleButtonActiveOnStartup === true) {
+      this.buttonToggle.classList.add('h5p-cornell-active');
+      this.buttonToggle.setAttribute('aria-label', this.params.a11y.buttonToggleActive);
+      this.buttonToggle.setAttribute('title', this.params.a11y.buttonToggleActive);
+    }
+    else {
+      this.buttonToggle.setAttribute('aria-label', this.params.a11y.buttonToggleInActive);
+      this.buttonToggle.setAttribute('title', this.params.a11y.buttonToggleInActive);
+    }
 
     this.buttonToggle.addEventListener('click', this.callbacks.handlebuttonToggle);
     this.buttonToggle.addEventListener('keypress', this.callbacks.handlebuttonToggle);

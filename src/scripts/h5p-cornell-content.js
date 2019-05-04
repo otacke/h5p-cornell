@@ -35,7 +35,7 @@ export default class CornellContent {
     // Callbacks
     this.callbacks = callbacks || {};
 
-    this.isExerciseMode = false;
+    this.isExerciseMode = !this.params.behaviour.showNotesOnStartup;
 
     this.content = document.createElement('div');
     this.content.classList.add('h5p-cornell-container');
@@ -73,6 +73,7 @@ export default class CornellContent {
       {
         title: this.extras.metadata.title,
         dateString: this.previousState.dateString,
+        toggleButtonActiveOnStartup: this.params.behaviour.showNotesOnStartup,
         a11y: {
           buttonToggleActive: this.params.a11y.buttonToggleCloseNotes,
           buttonToggleInactive: this.params.a11y.buttonToggleOpenNotes

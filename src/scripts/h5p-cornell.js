@@ -79,11 +79,6 @@ export default class Cornell extends H5P.Question {
             this.addFullScreenButton(container);
           }
 
-          // On desktop, notes might be wanted to be open on startup
-          if (this.params.behaviour.showNotesOnStartup === false || this.content.getDOM().offsetWidth < 768) {
-            this.content.handlebuttonToggle();
-          }
-
           // Content may need one extra resize when DOM is displayed.
           this.content.resize();
         }, 0);
@@ -94,6 +89,10 @@ export default class Cornell extends H5P.Question {
      * Register the DOM elements with H5P.Question
      */
     this.registerDomElements = () => {
+      // On desktop, notes might be wanted to be open on startup
+      this.params.behaviour.showNotesOnStartup = this.params.behaviour.showNotesOnStartup &&
+        document.querySelector('.h5p-container').offsetWidth >= 768;
+
       this.content = new CornellContent(this.params, this.contentId, this.extras, {
         resize: this.resize,
         read: this.read
