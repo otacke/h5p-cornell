@@ -118,7 +118,9 @@ export default class CornellContent {
       if (!this.isExerciseMode) {
         if (exerciseWrapper.offsetWidth === 0) {
           exerciseWrapper.classList.add('h5p-cornell-display-none');
-          this.resize();
+          setTimeout(() => {
+            this.resize();
+          }, 0);
         }
       }
     });
@@ -163,6 +165,11 @@ export default class CornellContent {
           });
 
           this.exercise.on('resize', () => {
+            if (this.youtubeWrapper === undefined) {
+              const youtubeVideo = document.querySelector('.h5p-cornell-exercise-content-library.h5p-video.h5p-youtube');
+              this.youtubeWrapper = (youtubeVideo) ? youtubeVideo.firstChild : null;
+            }
+
             this.resize(true);
           });
 
@@ -200,8 +207,10 @@ export default class CornellContent {
     notesWrapper.addEventListener('transitionend', () => {
       if (this.isExerciseMode) {
         notesWrapper.classList.add('h5p-cornell-display-none');
-        this.resize();
       }
+      setTimeout(() => {
+        this.resize();
+      }, 0);
     });
 
     const notesContentWrapper = document.createElement('div');
@@ -314,41 +323,51 @@ export default class CornellContent {
    */
   resize(fromVideo = false) {
     if (this.exercise && !fromVideo) {
-      this.exercise.trigger('resize');
-    }
-
-    // Not done using media query because display needs to be not-none first
-    if (this.content.offsetWidth < 768) {
-      // Triggers a transition, display set to none afterwards by listener
-      this.exerciseWrapper.classList.add('h5p-cornell-narrow-screen');
-
-      // Only want to trigger toggleMedium once when mode actually changes
-      if (!this.isNarrowScreen) {
-        this.isNarrowScreen = true;
-
-        if (!this.isExerciseMode) {
-          this.toggleMedium();
-        }
+      /*
+       * In H5P.Video for YouTube, once wrapper width gets 0 it's locked. We
+       * need to set excercise wrapper width = 0 however for shrinking. Fixed here.
+       */
+      if (this.youtubeWrapper) {
+        this.youtubeWrapper.style.width = '100%';
       }
+
+      setTimeout(() => {
+        this.exercise.trigger('resize');
+      }, 0);
     }
     else {
-      this.exerciseWrapper.classList.remove('h5p-cornell-display-none');
-      setTimeout(() => {
-        this.exerciseWrapper.classList.remove('h5p-cornell-narrow-screen');
-      }, 0);
+      // Not done using media query because display needs to be not-none first
+      if (this.content.offsetWidth < 768) {
+        // Only want to trigger toggleMedium once when mode actually changes
+        if (!this.isNarrowScreen) {
+          this.isNarrowScreen = true;
 
-      // Only want to trigger toggleMedium once when mode actually changes
-      if (this.isNarrowScreen) {
-        this.isNarrowScreen = false;
-
-        if (!this.isExerciseMode) {
-          this.toggleMedium();
+          // Triggers a transition, display set to none afterwards by listener
+          this.exerciseWrapper.classList.add('h5p-cornell-narrow-screen');
+          if (!this.isExerciseMode) {
+            this.toggleMedium();
+          }
         }
       }
-    }
+      else {
+        this.exerciseWrapper.classList.remove('h5p-cornell-display-none');
+        setTimeout(() => {
+          this.exerciseWrapper.classList.remove('h5p-cornell-narrow-screen');
+        }, 0);
 
-    if (typeof this.callbacks.resize === 'function') {
-      this.callbacks.resize();
+        // Only want to trigger toggleMedium once when mode actually changes
+        if (this.isNarrowScreen) {
+          this.isNarrowScreen = false;
+
+          if (!this.isExerciseMode) {
+            this.toggleMedium();
+          }
+        }
+      }
+
+      if (typeof this.callbacks.resize === 'function') {
+        this.callbacks.resize();
+      }
     }
   }
 
