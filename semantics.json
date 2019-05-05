@@ -106,7 +106,8 @@
         "type": "boolean",
         "label": "Show notes on startup",
         "description": "When this option is disabled, the notes are hidden on startup. Notes are hidden automatically on small displays.",
-        "default": true
+        "default": true,
+        "optional": true
       }
     ]
   },
