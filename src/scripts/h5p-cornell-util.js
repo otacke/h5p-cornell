@@ -28,7 +28,7 @@ class Util {
    */
   static htmlDecode(input) {
     var dparser = new DOMParser().parseFromString(input, 'text/html');
-    return dparser.documentElement.textContent;
+    return dparser.documentElement ? dparser.documentElement.textContent : '';
   }
 }
 

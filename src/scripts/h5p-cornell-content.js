@@ -52,7 +52,7 @@ export default class CornellContent {
     this.notesWrapper = this.createNotesDOM();
     panel.appendChild(this.notesWrapper);
 
-    this.content.append(panel);
+    this.content.appendChild(panel);
   }
 
   /**
