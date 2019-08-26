@@ -347,7 +347,7 @@ export default class CornellContent {
     }
 
     // Not done using media query because display needs to be not-none first
-    if (this.content.offsetWidth < 768) {
+    if (this.content.offsetWidth < this.params.minWidthForDualView) {
       // Only want to trigger toggleMedium once when mode actually changes
       if (!this.isNarrowScreen) {
         this.isNarrowScreen = true;

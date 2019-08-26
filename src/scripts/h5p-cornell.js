@@ -54,7 +54,8 @@ export default class Cornell extends H5P.Question {
         buttonToggleCloseNotes: 'Switch to the exercise',
         notesOpened: 'The view switched to your notes.',
         notesClosed: 'The view switched to the exercise.',
-      }
+      },
+      minWidthForDualView: Cornell.MIN_WIDTH_FOR_DUALVIEW
     }, params);
 
     /*
@@ -91,7 +92,7 @@ export default class Cornell extends H5P.Question {
     this.registerDomElements = () => {
       // On desktop, notes might be wanted to be open on startup
       this.params.behaviour.showNotesOnStartup = this.params.behaviour.showNotesOnStartup &&
-        document.querySelector('.h5p-container').offsetWidth >= 768;
+        document.querySelector('.h5p-container').offsetWidth >= Cornell.MIN_WIDTH_FOR_DUALVIEW;
 
       this.content = new CornellContent(this.params, this.contentId, this.extras, {
         resize: this.resize,
@@ -323,3 +324,6 @@ export default class Cornell extends H5P.Question {
 
 /** @constant {string} */
 Cornell.DEFAULT_DESCRIPTION = 'Cornell Notes';
+
+/** @constant {number} */
+Cornell.MIN_WIDTH_FOR_DUALVIEW = 1024;
