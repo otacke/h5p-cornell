@@ -104,10 +104,6 @@ export default class CornellContent {
     const exerciseContentLibrary = document.createElement('div');
     exerciseContentLibrary.classList.add('h5p-cornell-exercise-content-library');
 
-    exerciseContent.appendChild(this.createInstructionsDOM());
-    exerciseContent.appendChild(this.createSeparatorDOM());
-    exerciseContent.appendChild(exerciseContentLibrary);
-
     const exerciseContentWrapper = document.createElement('div');
     exerciseContentWrapper.classList.add('h5p-cornell-exercise-content-wrapper');
     exerciseContentWrapper.appendChild(exerciseContent);
@@ -129,6 +125,8 @@ export default class CornellContent {
     if (this.params.exerciseContent && this.params.exerciseContent.library) {
       this.exerciseMachineName = this.params.exerciseContent.library.split(' ')[0];
     }
+
+    let useSeparator = true;
 
     if (this.exerciseMachineName !== undefined) {
       // Override params - unfortunately can't be passed to library from parent editor
@@ -158,12 +156,17 @@ export default class CornellContent {
           if (this.exercise.audio) {
             this.exercise.audio.style.height = '';
           }
+
+          useSeparator = false;
+
           break;
         case 'H5P.Video':
           // H5P.Video doesn't keep track of its playing state itself
           this.exercise.on('stateChange', (event) => {
             this.mediumRunning = (event.data === 1);
           });
+
+          useSeparator = false;
 
           this.exercise.on('resize', () => {
             if (this.youtubeWrapper === undefined) {
@@ -176,6 +179,12 @@ export default class CornellContent {
 
           break;
       }
+
+      exerciseContent.appendChild(this.createInstructionsDOM());
+      if (useSeparator) {
+        exerciseContent.appendChild(this.createSeparatorDOM());
+      }
+      exerciseContent.appendChild(exerciseContentLibrary);
     }
     else {
       const message = document.createElement('div');
