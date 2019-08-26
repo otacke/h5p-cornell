@@ -192,21 +192,18 @@
 .h5p-cornell .h5p-cornell-main-notes-wrapper {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
   justify-content: space-between;
   margin: 1em 2em 0 2em;
 }
 
 .h5p-cornell .h5p-cornell-main-notes-recall-wrapper {
-  flex-grow: 1;
   margin: .5em;
-  min-width: 200px;
+  width: 30%;
 }
 
 .h5p-cornell .h5p-cornell-main-notes-notes-wrapper {
-  flex-grow: 4;
   margin: .5em;
-  min-width: 200px;
+  width: 70%;
 }
 
 .h5p-cornell .h5p-cornell-summary-wrapper {

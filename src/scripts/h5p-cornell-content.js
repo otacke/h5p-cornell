@@ -345,39 +345,38 @@ export default class CornellContent {
         this.exercise.trigger('resize');
       }, 0);
     }
+
+    // Not done using media query because display needs to be not-none first
+    if (this.content.offsetWidth < 768) {
+      // Only want to trigger toggleMedium once when mode actually changes
+      if (!this.isNarrowScreen) {
+        this.isNarrowScreen = true;
+
+        // Triggers a transition, display set to none afterwards by listener
+        this.exerciseWrapper.classList.add('h5p-cornell-narrow-screen');
+        if (!this.isExerciseMode) {
+          this.toggleMedium();
+        }
+      }
+    }
     else {
-      // Not done using media query because display needs to be not-none first
-      if (this.content.offsetWidth < 768) {
-        // Only want to trigger toggleMedium once when mode actually changes
-        if (!this.isNarrowScreen) {
-          this.isNarrowScreen = true;
+      this.exerciseWrapper.classList.remove('h5p-cornell-display-none');
+      setTimeout(() => {
+        this.exerciseWrapper.classList.remove('h5p-cornell-narrow-screen');
+      }, 0);
 
-          // Triggers a transition, display set to none afterwards by listener
-          this.exerciseWrapper.classList.add('h5p-cornell-narrow-screen');
-          if (!this.isExerciseMode) {
-            this.toggleMedium();
-          }
+      // Only want to trigger toggleMedium once when mode actually changes
+      if (this.isNarrowScreen) {
+        this.isNarrowScreen = false;
+
+        if (!this.isExerciseMode) {
+          this.toggleMedium();
         }
       }
-      else {
-        this.exerciseWrapper.classList.remove('h5p-cornell-display-none');
-        setTimeout(() => {
-          this.exerciseWrapper.classList.remove('h5p-cornell-narrow-screen');
-        }, 0);
+    }
 
-        // Only want to trigger toggleMedium once when mode actually changes
-        if (this.isNarrowScreen) {
-          this.isNarrowScreen = false;
-
-          if (!this.isExerciseMode) {
-            this.toggleMedium();
-          }
-        }
-      }
-
-      if (typeof this.callbacks.resize === 'function') {
-        this.callbacks.resize();
-      }
+    if (typeof this.callbacks.resize === 'function') {
+      this.callbacks.resize();
     }
   }
 
