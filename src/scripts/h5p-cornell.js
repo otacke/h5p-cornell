@@ -25,7 +25,7 @@ export default class Cornell extends H5P.Question {
 
     // Work around H5P's 1 item group behavior in editor.
     params.behaviour = {
-      showNotesOnStartup: params.behaviour || true
+      showNotesOnStartup: (params.behaviour === true) ? true : false
     };
 
     // Make sure all variables are set
