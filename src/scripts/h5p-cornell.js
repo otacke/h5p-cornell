@@ -59,7 +59,7 @@ export default class Cornell extends H5P.Question {
 
     /*
      * The previousState stored inside the database will be set to undefined if
-     * the author changes the exercise (eve if just correcting a typo). This
+     * the author changes the exercise (even if just correcting a typo). This
      * would erase all notes, so the localStorage value is used if the
      * previous state id undefined.
      */
