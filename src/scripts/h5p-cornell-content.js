@@ -275,7 +275,7 @@ export default class CornellContent {
     this.recall = new H5P.TextInputField(
       {
         taskDescription: this.params.notesFields.recallTitle,
-        placeholderText: this.params.notesFields.recallPlaceholder,
+        placeholderText: Util.htmlDecode(this.params.notesFields.recallPlaceholder),
         inputFieldSize: this.params.fieldSizeNotes,
       },
       this.contentId,
@@ -292,7 +292,7 @@ export default class CornellContent {
     this.mainNotes = new H5P.TextInputField(
       {
         taskDescription: this.params.notesFields.notesTitle,
-        placeholderText: this.params.notesFields.notesPlaceholder,
+        placeholderText: Util.htmlDecode(this.params.notesFields.notesPlaceholder),
         inputFieldSize: this.params.fieldSizeNotes,
       },
       this.contentId,
@@ -316,7 +316,7 @@ export default class CornellContent {
     this.summary = new H5P.TextInputField(
       {
         taskDescription: this.params.notesFields.summaryTitle,
-        placeholderText: this.params.notesFields.summaryPlaceholder,
+        placeholderText: Util.htmlDecode(this.params.notesFields.summaryPlaceholder),
         inputFieldSize: this.params.fieldSizeSummary,
       },
       this.contentId,
