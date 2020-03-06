@@ -432,7 +432,7 @@ export default class CornellContent {
       const message = (active) ?
         this.params.a11y.notesOpened :
         this.params.a11y.notesClosed;
-      this.callbacks.read(message);
+      this.callbacks.read(Util.stripHTML(message));
     }
 
     this.toggleView();

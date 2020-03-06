@@ -58,6 +58,11 @@ export default class Cornell extends H5P.Question {
       minWidthForDualView: Cornell.MIN_WIDTH_FOR_DUALVIEW
     }, params);
 
+    // decode HTML for titles/aria-labels
+    for (const prop in this.params.a11y) {
+      this.params.a11y[prop] = Util.htmlDecode(this.params.a11y[prop]);
+    }
+
     /*
      * The previousState stored inside the database will be set to undefined if
      * the author changes the exercise (even if just correcting a typo). This

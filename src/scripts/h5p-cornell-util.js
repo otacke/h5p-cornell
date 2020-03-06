@@ -30,6 +30,17 @@ class Util {
     var dparser = new DOMParser().parseFromString(input, 'text/html');
     return dparser.documentElement ? dparser.documentElement.textContent : '';
   }
+
+  /**
+   * Retrieve string without HTML tags.
+   * @param {string} input Input string.
+   * @return {string} Output string.
+   */
+  static stripHTML(html) {
+    const div = document.createElement('div');
+    div.innerHTML = html;
+    return div.textContent || div.innerText || '';
+  }
 }
 
 export default Util;
