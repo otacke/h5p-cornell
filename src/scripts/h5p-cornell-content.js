@@ -272,16 +272,21 @@ export default class CornellContent {
     const recall = document.createElement('div');
     recall.classList.add('h5p-cornell-main-notes-recall-wrapper');
 
-    this.recall = new H5P.TextInputField(
+    this.recall = H5P.newRunnable(
       {
-        taskDescription: this.params.notesFields.recallTitle,
-        placeholderText: Util.htmlDecode(this.params.notesFields.recallPlaceholder),
-        inputFieldSize: this.params.fieldSizeNotes,
+        params: {
+          taskDescription: this.params.notesFields.recallTitle,
+          placeholderText: Util.htmlDecode(this.params.notesFields.recallPlaceholder),
+          inputFieldSize: this.params.fieldSizeNotes,
+        },
+        library: 'H5P.TextInputField 1.2',
+        subContentId: H5P.createUUID()
       },
       this.contentId,
+      H5P.jQuery(recall),
+      false,
       {previousState: this.previousState.recall}
     );
-    this.recall.attach(H5P.jQuery(recall));
 
     mainNotesDOM.appendChild(recall);
 
@@ -289,16 +294,21 @@ export default class CornellContent {
     const notes = document.createElement('div');
     notes.classList.add('h5p-cornell-main-notes-notes-wrapper');
 
-    this.mainNotes = new H5P.TextInputField(
+    this.mainNotes = H5P.newRunnable(
       {
-        taskDescription: this.params.notesFields.notesTitle,
-        placeholderText: Util.htmlDecode(this.params.notesFields.notesPlaceholder),
-        inputFieldSize: this.params.fieldSizeNotes,
+        params: {
+          taskDescription: this.params.notesFields.notesTitle,
+          placeholderText: Util.htmlDecode(this.params.notesFields.notesPlaceholder),
+          inputFieldSize: this.params.fieldSizeNotes,
+        },
+        library: 'H5P.TextInputField 1.2',
+        subContentId: H5P.createUUID()
       },
       this.contentId,
+      H5P.jQuery(notes),
+      false,
       {previousState: this.previousState.mainNotes}
     );
-    this.mainNotes.attach(H5P.jQuery(notes));
 
     mainNotesDOM.appendChild(notes);
 
@@ -313,16 +323,21 @@ export default class CornellContent {
     const summaryDOM = document.createElement('div');
     summaryDOM.classList.add('h5p-cornell-summary-wrapper');
 
-    this.summary = new H5P.TextInputField(
+    this.summary = H5P.newRunnable(
       {
-        taskDescription: this.params.notesFields.summaryTitle,
-        placeholderText: Util.htmlDecode(this.params.notesFields.summaryPlaceholder),
-        inputFieldSize: this.params.fieldSizeSummary,
+        params: {
+          taskDescription: this.params.notesFields.summaryTitle,
+          placeholderText: Util.htmlDecode(this.params.notesFields.summaryPlaceholder),
+          inputFieldSize: this.params.fieldSizeNotes,
+        },
+        library: 'H5P.TextInputField 1.2',
+        subContentId: H5P.createUUID()
       },
       this.contentId,
+      H5P.jQuery(summaryDOM),
+      false,
       {previousState: this.previousState.summary}
     );
-    this.summary.attach(H5P.jQuery(summaryDOM));
 
     return summaryDOM;
   }
