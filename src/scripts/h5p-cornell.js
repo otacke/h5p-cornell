@@ -108,7 +108,7 @@ export default class Cornell extends H5P.Question {
      * @param {HTMLElement} wrapper HTMLElement to attach button to.
      */
     this.addFullScreenButton = wrapper => {
-      if (H5P.canHasFullScreen !== true) {
+      if (H5P.fullscreenSupported !== true) {
         return;
       }
 
