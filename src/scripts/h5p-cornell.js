@@ -293,8 +293,13 @@ export default class Cornell extends H5P.Question {
       const currentState = this.content.getCurrentState();
 
       // Use localStorage to avoid data loss on minor content changes
-      if (window.localStorage) {
-        window.localStorage.setItem(`${Cornell.DEFAULT_DESCRIPTION}-${this.contentId}`, JSON.stringify(currentState));
+      try {
+        if (window.localStorage) {
+          window.localStorage.setItem(`${Cornell.DEFAULT_DESCRIPTION}-${this.contentId}`, JSON.stringify(currentState));
+        }
+      }
+      catch (error) {
+        console.warn('Could not store localStorage content for previous state.');
       }
 
       return currentState;
@@ -307,7 +312,13 @@ export default class Cornell extends H5P.Question {
    * @return {object|null} Previous state, null if not possible.
    */
   static getPreviousStateLocal(id) {
-    if (!window.localStorage || typeof id !== 'number') {
+    try {
+      if (!window.localStorage || typeof id !== 'number') {
+        return null;
+      }
+    }
+    catch (error) {
+      console.warn('Could not access localStorage content for previous state.');
       return null;
     }
 
