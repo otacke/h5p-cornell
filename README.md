@@ -4,9 +4,6 @@ Let your students take structured notes easily.
 You can add this content type to amend resources such as texts, podcasts or
 videos and encourage students to take 'Cornell notes'.
 
-## Support me at patreon!
-If you like what I do, please consider to become my supporter at patreon: https://www.patreon.com/otacke
-
 ## Example
 !["Cornell Notes for H5P"](https://ibin.co/4sqisyJFYsjK.png "Cornell Notes for H5P")
 
