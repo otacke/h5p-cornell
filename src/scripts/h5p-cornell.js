@@ -76,6 +76,9 @@ export default class Cornell extends H5P.Question {
       previousState: Cornell.getPreviousStateLocal(this.contentId) || {}
     }, extras);
 
+    const defaultLanguage = this.extras.metadata.defaultLanguage || 'en';
+    this.languageTag = Util.formatLanguageCode(defaultLanguage);
+
     document.addEventListener('readystatechange', () => {
       if (document.readyState === 'complete') {
         setTimeout(() => {
@@ -251,8 +254,10 @@ export default class Cornell extends H5P.Question {
      */
     this.getxAPIDefinition = () => {
       const definition = {};
-      definition.name = {'en-US': this.getTitle()};
-      definition.description = {'en-US': this.getDescription()};
+      definition.name = {};
+      definition.name[this.languageTag] = this.getTitle();
+      definition.description = {};
+      definition.description[this.languageTag] = this.getDescription();
       definition.type = 'http://adlnet.gov/expapi/activities/cmi.interaction';
       definition.interactionType = 'long-fill-in';
 
