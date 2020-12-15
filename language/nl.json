@@ -1,0 +1,81 @@
+{
+  "semantics": [
+    {
+      "label": "Instructies",
+      "description": "De gebruikers zien deze instructies boven de aantekeningen staan."
+    },
+    {
+      "label": "Inhoud van de oefening"
+    },
+    {
+      "label": "Notitievelden",
+      "description": "Instellingen voor de notitievelden",
+      "fields": [
+        {
+          "label": "Titel kernwoordenvak",
+          "default": "Kernwoorden",
+          "description": "Titel van het kernwoordenvak"
+        },
+        {
+          "label": "Standaardtekst van het kernwoordenveld",
+          "default": "Voer kernwoorden, vragen, hoofdidee, enz. in.",
+          "description": "Standaardtekst voor je kernwoordenveld als geheugensteun voor de gebruikers"
+        },
+        {
+          "label": "Titel notitievak",
+          "default": "Notities",
+          "description": "Titel van het notitievak"
+        },
+        {
+          "label": "Standaardtekst van het notitieveld",
+          "default": "Vul data, details, definities, formules, voorbeelden, enz. in.",
+          "description": "Standaardtekst voor je notitiesveld als geheugensteun voor je gebruikers"
+        },
+        {
+          "label": "Titel samenvattingsvak",
+          "default": "Samenvatting",
+          "description": "Titel van het samenvattingsvak"
+        },
+        {
+          "label": "Standaardtekst van het samenvattingsveld",
+          "default": "Schrijf je samenvatting",
+          "description": "Standaardtekst voor je samenvattingsveld als geheugensteun voor de gebruikers"
+        }
+      ]
+    },
+    {
+      "label": "Gedragsinstellingen",
+      "fields": [
+        {
+          "label": "Toon aantekeningen bij het opstarten",
+          "description": "Indien ingeschakeld, worden de aantekeningen bij het opstarten getoond."
+        }
+      ]
+    },
+    {
+      "label": "Readspeaker",
+      "fields": [
+        {
+          "label": "Titel van de knop bij volledig scherm",
+          "default": "Ga naar de modus volledig scherm"
+        },
+        {
+          "label": "Titel van de schakelknop (wanneer de aantekeningen gesloten zijn)",
+          "default": "Open de aantekeningen"
+        },
+        {
+          "label": "Titel van de schakelknop (wanneer de aantekeningen geopend zijn)",
+          "default": "Sluit de aantekeningen"
+        },
+        {
+          "label": "Aantekeningen zijn geopend",
+          "default": "De weergave is overgeschakeld naar je aantekeningen."
+        },
+        {
+          "label": "Aantekeningen zijn gesloten",
+          "default": "De weergave is overgeschakeld naar de oefening."
+        }
+      ]
+    }
+  ]
+}
