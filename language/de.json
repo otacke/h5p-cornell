@@ -1,0 +1,81 @@
+{
+  "semantics": [
+    {
+      "label": "Aufgabenbeschreibung",
+      "description": "Lernende sehen diese Aufgabenbeschreibung oberhalb der Notizen."
+    },
+    {
+      "label": "Aufgabeninhalt"
+    },
+    {
+      "label": "Notizfelder",
+      "description": "Einstellungen für Notizfelder",
+      "fields": [
+        {
+          "label": "Titel Erinnerungsfeld",
+          "default": "Erinnerung",
+          "description": "Titel für den Erinnerungsbereich"
+        },
+        {
+          "label": "Platzhalter für Erinnerungsfeld",
+          "default": "Gib deine Schlüsselwörter, Fragen, die Grundidee etc. ein!",
+          "description": "Platzhalter für den Erinnerungsabschnitt als Erinnerungshilfe für die Lernenden"
+        },
+        {
+          "label": "Titelfeld für Notizen",
+          "default": "Notizen",
+          "description": "Titel für den Notizbereich"
+        },
+        {
+          "label": "Platzhalter für das Notizenfeld",
+          "default": "Gib Daten, Details, Definitionen, Formeln, Beispiele etc. ein!",
+          "description": "Platzhalter für den Notizbereich als Erinnerungshilfe für die Lernenden"
+        },
+        {
+          "label": "Titelfeld des Zusammenfassungsbereichs",
+          "default": "Zusammenfassung",
+          "description": "Titel des Zusammenfassungsbereichs"
+        },
+        {
+          "label": "Platzhalter für den Zusammenfassungsbereich",
+          "default": "Gib deine Zusammenfassung ein",
+          "description": "Platzhalter für den Zusammenfassungsbereich als Erinnerungshilfe für die Lernenden"
+        }
+      ]
+    },
+    {
+      "label": "Verhaltenseinstellungen",
+      "fields": [
+        {
+          "label": "Notizen am Beginn anzeigen",
+          "description": "Wenn aktiviert, werden die Notizen am Beginn angezeigt"
+        }
+      ]
+    },
+    {
+      "label": "Vorlesewerkzeug (Barrierefreiheit)",
+      "fields": [
+        {
+          "label": "Titel des Vollbild-Buttons",
+          "default": "Gehe in den Vollbildmodus"
+        },
+        {
+          "label": "Titel des Umschalt-Buttons (wenn die Notizen geschlossen sind)",
+          "default": "Notizen öffnen"
+        },
+        {
+          "label": "Titel des Umschalt-Buttons (wenn die Notizen geöffnet sind)",
+          "default": "Notizen schließen"
+        },
+        {
+          "label": "Notizen geöffnet",
+          "default": "Die Ansicht hat zu deinen Notizen gewechselt."
+        },
+        {
+          "label": "Notizen geschlossen",
+          "default": "Die Ansicht hat zur Aufgabe gewechselt."
+        }
+      ]
+    }
+  ]
+}
