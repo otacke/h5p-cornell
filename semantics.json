@@ -130,7 +130,6 @@
         "type": "text",
         "label": "Fullscreen button title (exit)",
         "importance": "low",
-        "state": "new",
         "default": "Exit fullscreen mode"
       },
       {

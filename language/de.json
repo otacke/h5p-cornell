@@ -56,8 +56,12 @@
       "label": "Vorlesewerkzeug (Barrierefreiheit)",
       "fields": [
         {
-          "label": "Titel des Vollbild-Buttons",
+          "label": "Titel des Vollbild-Buttons (aktivieren)",
           "default": "Gehe in den Vollbildmodus"
+        },
+        {
+          "label": "Titel des Vollbild-Buttons (deaktivieren)",
+          "default": "Verlasse den Vollbildmodus"
         },
         {
           "label": "Titel des Umschalt-Buttons (wenn die Notizen geschlossen sind)",

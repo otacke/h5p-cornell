@@ -56,8 +56,12 @@
       "label": "Readspeaker",
       "fields": [
         {
-          "label": "Titel van de knop bij volledig scherm",
+          "label": "Titel van de knop bij volledig scherm (ga naar)",
           "default": "Ga naar de modus volledig scherm"
+        },
+        {
+          "label": "Fullscreen button title (exit)",
+          "default": "Exit fullscreen mode"
         },
         {
           "label": "Titel van de schakelknop (wanneer de aantekeningen gesloten zijn)",

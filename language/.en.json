@@ -60,6 +60,10 @@
           "default": "Enter fullscreen mode"
         },
         {
+          "label": "Fullscreen button title (exit)",
+          "default": "Exit fullscreen mode"
+        },
+        {
           "label": "Toggle button title (when notes closed)",
           "default": "Open notes"
         },
