@@ -1,0 +1,9 @@
+$color-base: #1a73d9;
+$color-base-05: rgba($color-base, .05);
+$color-base-10: rgba($color-base, .10);
+$color-base-20: rgba($color-base, .20);
+$color-base-90: rgba($color-base, .90);
+$color-base-95: rgba($color-base, .95);
+
+@import "h5p-cornell";
+@import "h5p-cornell-buttons";

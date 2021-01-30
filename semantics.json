@@ -121,9 +121,17 @@
       {
         "name": "buttonFullscreenEnter",
         "type": "text",
-        "label": "Fullscreen button title",
+        "label": "Fullscreen button title (enter)",
         "importance": "low",
         "default": "Enter fullscreen mode"
+      },
+      {
+        "name": "buttonFullscreenExit",
+        "type": "text",
+        "label": "Fullscreen button title (exit)",
+        "importance": "low",
+        "state": "new",
+        "default": "Exit fullscreen mode"
       },
       {
         "name": "buttonToggleOpenNotes",

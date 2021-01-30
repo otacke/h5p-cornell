@@ -34,6 +34,7 @@ export default class CornellContent {
 
     // Callbacks
     this.callbacks = callbacks || {};
+    this.callbacks.handleButtonFullscreen = callbacks.handleButtonFullscreen || (() => {});
 
     this.isExerciseMode = !this.params.behaviour.showNotesOnStartup;
 
@@ -76,11 +77,14 @@ export default class CornellContent {
         toggleButtonActiveOnStartup: this.params.behaviour.showNotesOnStartup,
         a11y: {
           buttonToggleActive: this.params.a11y.buttonToggleCloseNotes,
-          buttonToggleInactive: this.params.a11y.buttonToggleOpenNotes
+          buttonToggleInactive: this.params.a11y.buttonToggleOpenNotes,
+          buttonFullscreenEnter: this.params.a11y.buttonFullscreenEnter,
+          buttonFullscreenExit: this.params.a11y.buttonFullscreenExit
         }
       },
       {
-        handlebuttonToggle: (event) => this.handlebuttonToggle(event)
+        handleButtonToggle: (event) => this.handleButtonToggle(event),
+        handleButtonFullscreen: this.callbacks.handleButtonFullscreen
       }
     );
   }
@@ -396,10 +400,19 @@ export default class CornellContent {
   }
 
   /**
+   * Enable fullscreen button in titlebar.
+   */
+  enableFullscreenButton() {
+    this.titlebar.enableFullscreenButton();
+  }
+
+  /**
    * Set dimensions to fullscreen.
    * @param {boolean} enterFullScreen If true, enter fullscreen, else exit.
    */
-  setFullScreen(enterFullScreen = false) {
+  toggleFullscreen(enterFullScreen = false) {
+    this.titlebar.toggleFullscreenButton(enterFullScreen);
+
     if (enterFullScreen === true) {
       // Give browser some time to go to fullscreen mode and return proper viewport height
       setTimeout(() => {
@@ -422,12 +435,12 @@ export default class CornellContent {
    * Handle activation of overlay button.
    * @param {object} event Event that is calling.
    */
-  handlebuttonToggle(event) {
+  handleButtonToggle(event) {
     if (event && event.type === 'keypress' && event.keyCode !== 13 && event.keyCode !== 32) {
       return;
     }
 
-    const active = this.titlebar.toggleOverlayButton();
+    const active = this.titlebar.getToggleButtonState();
     if (typeof this.callbacks.read === 'function') {
       const message = (active) ?
         this.params.a11y.notesOpened :

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="36"
+   height="36"
+   viewBox="0 0 9.5250003 9.5250003"
+   version="1.1"
+   id="svg887"
+   inkscape:export-filename="/home/john/Desktop/button-exit-fullscreen-icon-blue.svg.png"
+   inkscape:export-xdpi="101"
+   inkscape:export-ydpi="101"
+   inkscape:version="1.0.1 (0767f8302a, 2020-10-17)"
+   sodipodi:docname="button-exit-fullscreen-icon-blue.svg">
+  <defs
+     id="defs881" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2.9302938"
+     inkscape:cx="-122.18136"
+     inkscape:cy="8.2750123"
+     inkscape:document-units="px"
+     inkscape:current-layer="g1500-3"
+     inkscape:document-rotation="0"
+     showgrid="false"
+     units="px"
+     inkscape:window-width="1860"
+     inkscape:window-height="1016"
+     inkscape:window-x="60"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata884">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       transform="matrix(0.00929268,0,0,-0.00929268,1.65e-6,8.9302671)"
+       id="g1500-3">
+      <path
+         fill="currentColor"
+         d="m 547.83024,146.393 q 0,-25.009 10.004,-35.513 10.003,-10.503 33.012,-10.503 v 0 q 22.007,0 32.511,11.003 10.504,11.004 10.504,35.013 v 44.015 45.016 32.012 l 237.084,-237.084003 35.013,-35.0130002 42.014,-42.0149998 q 17.006,-17.006 31.011,-17.006 14.005,0 29.01096,16.006 9.003,8.003 13.004,15.005 4.002,7.003 4.002,14.005 0,8.003 -4.502,16.0059998 -4.501,8.003 -14.505,18.0060002 L 917.46224,103.878 q 0,0 -83.53,82.529 -30.011,30.011 -61.022,61.522 -31.011,31.511 -65.023,65.523 l -6.002,6.002 q 0,0 -6.002,7.003 h -1 16.005 15.006 46.516 44.516 q 23.008,0 34.012,10.504 11.004,10.503 11.004,32.511 0,11.004 -2.501,19.007 -2.501,8.003 -7.503,13.004 -6.002,6.003 -14.005,8.503 -8.002,2.501 -20.007,2.501 h -54.019 -57.02 -55.02 -58.02 q -25.009,0 -35.013,-10.503 -10.003,-10.504 -10.003,-34.513 -1.001,-48.017 -1.001,-102.036 z m -350.124,556.197 118.042,-117.041 q 3.001,-3.001 6.002,-6.503 3.001,-3.501 7.003,-7.502 0,-1.001 0.5,-1.001 0.5,0 0.5,-1 h -16.006 -16.005 -47.517 -46.517 q -21.007,0 -31.011,-11.004 -10.003,-11.004 -10.003,-32.011 1,-26.009 14.005,-34.012 13.004,-8.003 26.009,-8.003 61.021,-1 121.543,-1 60.521,0 113.54,1 18.007,0 28.51,10.003 10.504,10.004 10.504,28.01 V 646.57 760.611 q 0,8.003 -2.501,15.005 -2.501,7.003 -7.502,12.005 -6.003,5.001 -14.506,8.002 -8.503,3.001 -19.507,3.001 -21.007,-1 -31.011,-11.003 -10.003,-10.004 -11.003,-29.011 v -37.013 -36.013 -22.007 -22.008 q 0,-2.001 -0.501,-4.502 -0.5,-2.501 -0.5,-5.502 -3.001,3.001 -5.502,5.002 -2.501,2.001 -4.501,5.002 l -110.039,109.038 q -46.017,47.017 -92.033,92.533 -46.016,45.516 -98.034996,97.535 -10.003,11.004 -18.506,15.505 -8.503,4.502 -16.506,4.502 h -1.001 q -7.002,0 -14.505,-4.502 -7.502,-4.501 -15.505,-13.504 Q -1.3647562,926.67 0.13624381,913.165 1.6362438,899.66 18.642244,881.654 l 92.532996,-92.533 z"
+         id="path2155"
+         style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:#1a73d9;fill-opacity:1;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;stop-color:#000000;stop-opacity:1" />
+    </g>
+  </g>
+</svg>

@@ -50,6 +50,7 @@ export default class Cornell extends H5P.Question {
       },
       a11y: {
         buttonFullscreenEnter: 'Enter fullscreen mode',
+        buttonFullscreenExit: 'Exit fullscreen mode',
         buttonToggleOpenNotes: 'Switch to the notes',
         buttonToggleCloseNotes: 'Switch to the exercise',
         notesOpened: 'The view switched to your notes.',
@@ -83,9 +84,17 @@ export default class Cornell extends H5P.Question {
       if (document.readyState === 'complete') {
         setTimeout(() => {
           // Add fullscreen button on first call after H5P.Question has created the DOM
-          const container = document.querySelector('.h5p-container');
-          if (container) {
-            this.addFullScreenButton(container);
+          this.container = document.querySelector('.h5p-container');
+          if (this.container) {
+            this.content.enableFullscreenButton();
+
+            this.on('enterFullScreen', () => {
+              this.content.toggleFullscreen(true);
+            });
+
+            this.on('exitFullScreen', () => {
+              this.content.toggleFullscreen(false);
+            });
           }
 
           // Content may need one extra resize when DOM is displayed.
@@ -104,7 +113,8 @@ export default class Cornell extends H5P.Question {
 
       this.content = new CornellContent(this.params, this.contentId, this.extras, {
         resize: this.resize,
-        read: this.read
+        read: this.read,
+        handleButtonFullscreen: this.toggleFullscreen
       });
 
       // Register content with H5P.Question
@@ -112,51 +122,33 @@ export default class Cornell extends H5P.Question {
     };
 
     /**
-     * Add fullscreen button.
-     * @param {HTMLElement} wrapper HTMLElement to attach button to.
+     * Toggle fullscreen button.
+     * @param {string|boolean} state enter|false for enter, exit|true for exit.
      */
-    this.addFullScreenButton = wrapper => {
-      if (H5P.fullscreenSupported !== true) {
+    this.toggleFullscreen = (state) => {
+      if (!this.container) {
         return;
       }
 
-      const toggleFullScreen = (event) => {
-        if (event && event.type === 'keypress' && event.keyCode !== 13 && event.keyCode !== 32) {
-          return;
+      if (typeof state === 'string') {
+        if (state === 'enter') {
+          state = false;
         }
-        else {
-          event.preventDefault();
+        else if (state === 'exit') {
+          state = true;
         }
+      }
 
-        if (H5P.isFullscreen === true) {
-          H5P.exitFullScreen();
-        }
-        else {
-          H5P.fullScreen(H5P.jQuery(wrapper), this);
-        }
-      };
+      if (typeof state !== 'boolean') {
+        state = !H5P.isFullscreen;
+      }
 
-      this.fullScreenButton = document.createElement('button');
-      this.fullScreenButton.classList.add('h5p-cornell-fullscreen-button');
-      this.fullScreenButton.classList.add('h5p-cornell-enter-fullscreen');
-      this.fullScreenButton.setAttribute('title', this.params.a11y.buttonFullscreenEnter);
-      this.fullScreenButton.setAttribute('aria-label', this.params.a11y.buttonFullscreenEnter);
-      this.fullScreenButton.addEventListener('click', toggleFullScreen);
-      this.fullScreenButton.addEventListener('keyPress', toggleFullScreen);
-
-      this.on('enterFullScreen', () => {
-        this.content.setFullScreen(true);
-      });
-
-      this.on('exitFullScreen', () => {
-        this.content.setFullScreen(false);
-      });
-
-      const fullScreenButtonWrapper = document.createElement('div');
-      fullScreenButtonWrapper.classList.add('h5p-cornell-fullscreen-button-wrapper');
-      fullScreenButtonWrapper.appendChild(this.fullScreenButton);
-
-      wrapper.insertBefore(fullScreenButtonWrapper, wrapper.firstChild);
+      if (state === true) {
+        H5P.fullScreen(H5P.jQuery(this.container), this);
+      }
+      else {
+        H5P.exitFullScreen();
+      }
     };
 
     /**
@@ -261,7 +253,7 @@ export default class Cornell extends H5P.Question {
       definition.description = {};
       definition.description[this.languageTag] = this.getDescription();
       // Fallback for h5p-php-reporting, expects en-US
-      definition.description['en-US'] = definition.description[this.languageTag];      
+      definition.description['en-US'] = definition.description[this.languageTag];
       definition.type = 'http://adlnet.gov/expapi/activities/cmi.interaction';
       definition.interactionType = 'long-fill-in';
 

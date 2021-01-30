@@ -1,4 +1,5 @@
 // Import required classes
+import CornellButton from './h5p-cornell-button';
 import Util from './h5p-cornell-util';
 
 /** Class representing the content */
@@ -29,32 +30,44 @@ export default class CornellContentTitlebar {
 
     // Set missing callbacks
     this.callbacks = Util.extend({
-      handlebuttonToggle: () => {
-        console.warn('A function for handling the titlebar button is missing.');
+      handleButtonToggle: () => {
+        console.warn('A function for handling the toggle notes button is missing.');
+      },
+      handleButtonFullscreen: () => {
+        console.warn('A function for handling the fullscreen button is missing.');
       }
     }, callbacks || {});
 
     this.titleBar = document.createElement('div');
     this.titleBar.classList.add('h5p-cornell-title-bar');
 
-    // Toggle button
-    this.buttonToggle = document.createElement('div');
-    this.buttonToggle.classList.add('h5p-cornell-button-overlay');
-    this.buttonToggle.setAttribute('aria-pressed', this.params.toggleButtonActiveOnStartup);
-    this.buttonToggle.setAttribute('role', 'button');
-    this.buttonToggle.setAttribute('tabindex', '0');
+    const buttonToggleClasses = [
+      'h5p-cornell-button',
+      'h5p-cornell-button-toggle'
+    ];
     if (this.params.toggleButtonActiveOnStartup === true) {
-      this.buttonToggle.classList.add('h5p-cornell-active');
-      this.buttonToggle.setAttribute('aria-label', this.params.a11y.buttonToggleActive);
-      this.buttonToggle.setAttribute('title', this.params.a11y.buttonToggleActive);
-    }
-    else {
-      this.buttonToggle.setAttribute('aria-label', this.params.a11y.buttonToggleInActive);
-      this.buttonToggle.setAttribute('title', this.params.a11y.buttonToggleInActive);
+      buttonToggleClasses.push('h5p-cornell-active');
     }
 
-    this.buttonToggle.addEventListener('click', this.callbacks.handlebuttonToggle);
-    this.buttonToggle.addEventListener('keypress', this.callbacks.handlebuttonToggle);
+    // Toggle button
+    this.buttonToggle = new CornellButton(
+      {
+        type: 'toggle',
+        classes: [
+          'h5p-cornell-button',
+          'h5p-cornell-button-toggle'
+        ],
+        a11y: {
+          active: this.params.a11y.buttonToggleActive,
+          inactive: this.params.a11y.buttonToggleInactive
+        }
+      },
+      {
+        onClick: (() => {
+          this.callbacks.handleButtonToggle();
+        })
+      }
+    );
 
     // Title
     const titleDOM = document.createElement('div');
@@ -66,9 +79,30 @@ export default class CornellContentTitlebar {
     dateDOM.classList.add('h5p-cornell-date');
     dateDOM.innerHTML = this.params.dateString;
 
-    this.titleBar.appendChild(this.buttonToggle);
+    this.buttonFullscreen = new CornellButton(
+      {
+        type: 'toggle',
+        classes: [
+          'h5p-cornell-button',
+          'h5p-cornell-button-fullscreen'
+        ],
+        disabled: true,
+        a11y: {
+          active: this.params.a11y.buttonFullscreenExit,
+          inactive: this.params.a11y.buttonFullscreenEnter
+        }
+      },
+      {
+        onClick: (() => {
+          this.callbacks.handleButtonFullscreen();
+        })
+      }
+    );
+
+    this.titleBar.appendChild(this.buttonToggle.getDOM());
     this.titleBar.appendChild(titleDOM);
     this.titleBar.appendChild(dateDOM);
+    this.titleBar.appendChild(this.buttonFullscreen.getDOM());
   }
 
   /**
@@ -80,20 +114,36 @@ export default class CornellContentTitlebar {
   }
 
   /**
-   * Toggle the button state.
+   * Get toggle button state.
    * @return {boolean} True, if button is active, else false.
    */
-  toggleOverlayButton() {
-    const active = this.buttonToggle.classList.toggle('h5p-cornell-active');
+  getToggleButtonState() {
+    return this.buttonToggle.isActive();
+  }
 
-    const buttonLabel = (active) ?
-      this.params.a11y.buttonToggleActive :
-      this.params.a11y.buttonToggleInactive;
+  /**
+   * Enable fullscreen button.
+   */
+  enableFullscreenButton() {
+    this.buttonFullscreen.enable();
+  }
 
-    this.buttonToggle.setAttribute('aria-label', buttonLabel);
-    this.buttonToggle.setAttribute('aria-pressed', active);
-    this.buttonToggle.setAttribute('title', buttonLabel);
+  /**
+   * Set fullscreen button state.
+   * @param {string|boolean} state enter|false for enter, exit|true for exit.
+   */
+  toggleFullscreenButton(state) {
+    if (typeof state === 'string') {
+      if (state === 'enter') {
+        state = false;
+      }
+      else if (state === 'exit') {
+        state = true;
+      }
+    }
 
-    return active;
+    if (typeof state === 'boolean') {
+      this.buttonFullscreen.toggle(state);
+    }
   }
 }

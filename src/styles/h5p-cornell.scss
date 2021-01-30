@@ -76,33 +76,6 @@
   width: 2.75em;
 }
 
-.h5p-cornell .h5p-cornell-button-overlay:hover {
-  background-color: rgba(26,115,217,0.05);
-  cursor: pointer;
-}
-
-.h5p-cornell .h5p-cornell-button-overlay:active {
-  background-color: rgba(26,115,217,0.1);
-}
-
-.h5p-cornell .h5p-cornell-button-overlay.h5p-cornell-active {
-  background: url(../images/button-toggle-notes-icon-white.svg);
-  background-color: #1a73d9;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 1.15em 1.15em;
-  opacity: 20;
-}
-
-.h5p-cornell .h5p-cornell-button-overlay.h5p-cornell-active:hover {
-  background-color: rgba(26,115,217,0.9);
-  cursor: pointer;
-}
-
-.h5p-cornell .h5p-cornell-button-overlay.h5p-cornell-active:active {
-  background-color: rgba(26,115,217,0.95);
-}
-
 .h5p-cornell .h5p-cornell-title {
   color: #4c4452;
   flex-grow: 1;
