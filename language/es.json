@@ -1,0 +1,85 @@
+{
+  "semantics": [
+    {
+      "label": "Instrucciones",
+      "description": "Los estudiantes verán estas instrucciones en la parte superior de sus anotaciones."
+    },
+    {
+      "label": "Contenido del ejercicio"
+    },
+    {
+      "label": "Campos de anotaciones",
+      "description": "Configuraciones para los campos de anotaciones",
+      "fields": [
+        {
+          "label": "Título de campo Recordar",
+          "default": "Recordar",
+          "description": "Título para la sección Recordar"
+        },
+        {
+          "label": "Remplazable de campo Recordar",
+          "default": "Escriba sus palabras clave, preguntas, la idea principal, etc.",
+          "description": "Remplazable para la sección recordar como un recordatorio para sus estudiantes"
+        },
+        {
+          "label": "Título de campo Anotaciones",
+          "default": "Anotaciones",
+          "description": "Título para la sección de Anotaciones"
+        },
+        {
+          "label": "Remplazable de campo Anotaciones",
+          "default": "Escribir fechas, detalles, definiciones, fórmulas, ejemplos, etc.",
+          "description": "Remplazable para la sección de anotaciones como un recordatorio para sus estudiantes"
+        },
+        {
+          "label": "Título del campo del Resumen",
+          "default": "Resumen",
+          "description": "Título para la sección del Resumen"
+        },
+        {
+          "label": "Remplazable para el campo del Resumen",
+          "default": "Escriba su resumen",
+          "description": "Remplazable para la sección del resumen como un recordatorio para sus estudiantes"
+        }
+      ]
+    },
+    {
+      "label": "Configuraciones del comportamiento",
+      "fields": [
+        {
+          "label": "Mostrar anotaciones al iniciar",
+          "description": "Cuando se habilita, las anotaciones son mostradas al iniciar"
+        }
+      ]
+    },
+    {
+      "label": "Lector de texto en voz alta",
+      "fields": [
+        {
+          "label": "Título de botón PantallaCompleta",
+          "default": "Título de botón PantallaCompleta"
+        },
+        {
+          "label": "Título de botón PantallaCompleta (salida)",
+          "default": "Salir del modo de PantallaCompleta"
+        },
+        {
+          "label": "Alternar Título del botón (cuando anotaciones cerrado)",
+          "default": "Abrir anotaciones"
+        },
+        {
+          "label": "Alternar Título de botón (cuando anotaciones abierto)",
+          "default": "Cerrar anotaciones"
+        },
+        {
+          "label": "Anotaciones abiertas",
+          "default": "La vista ha cambiado a sus anotaciones."
+        },
+        {
+          "label": "Anotaciones cerradas",
+          "default": "La vista ha cambiado al ejercicio."
+        }
+      ]
+    }
+  ]
+}
