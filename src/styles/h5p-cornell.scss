@@ -32,24 +32,6 @@
   z-index: 3;
 }
 
-.h5p-cornell .h5p-cornell-fullscreen-button {
-  background: url(../images/button-fullscreen-enter-icon.svg);
-  background-color: rgba(0,0,0,0);
-  background-position: .5em .4em;
-  background-repeat: no-repeat;
-  background-size: 1em 1em;
-  border: 0;
-  border-radius: 0 0 0 100%;
-  font-size: 1em;
-  height: 1.8em;
-  position: absolute;
-  width: 1.8em;
-}
-
-.h5p-cornell .h5p-cornell-fullscreen-button:hover {
-  cursor: pointer;
-}
-
 .h5p-cornell .h5p-cornell-title-bar {
   align-items: center;
   background-color: #fff;
@@ -58,22 +40,6 @@
   display: flex;
   overflow: hidden;
   padding: .5em;
-}
-
-.h5p-cornell .h5p-cornell-button-overlay {
-  align-items: center;
-  background: url(../images/button-toggle-notes-icon-blue.svg);
-  background-color: #fff;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 1.15em 1.15em;
-  border: 2px solid #fff;
-  border-radius: 3px;
-  display: flex;
-  flex-shrink: 0;
-  height: 2.75em;
-  padding: 0;
-  width: 2.75em;
 }
 
 .h5p-cornell .h5p-cornell-title {

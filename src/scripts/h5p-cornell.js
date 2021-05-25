@@ -80,28 +80,40 @@ export default class Cornell extends H5P.Question {
     const defaultLanguage = this.extras.metadata.defaultLanguage || 'en';
     this.languageTag = Util.formatLanguageCode(defaultLanguage);
 
-    document.addEventListener('readystatechange', () => {
-      if (document.readyState === 'complete') {
-        setTimeout(() => {
-          // Add fullscreen button on first call after H5P.Question has created the DOM
-          this.container = document.querySelector('.h5p-container');
-          if (this.container) {
-            this.content.enableFullscreenButton();
+    /**
+     * Handle document complete.
+     */
+    this.handleDocumentComplete = () => {
+      setTimeout(() => {
+        // Add fullscreen button on first call after H5P.Question has created the DOM
+        this.container = document.querySelector('.h5p-container');
+        if (this.container) {
+          this.content.enableFullscreenButton();
 
-            this.on('enterFullScreen', () => {
-              this.content.toggleFullscreen(true);
-            });
+          this.on('enterFullScreen', () => {
+            this.content.toggleFullscreen(true);
+          });
 
-            this.on('exitFullScreen', () => {
-              this.content.toggleFullscreen(false);
-            });
-          }
+          this.on('exitFullScreen', () => {
+            this.content.toggleFullscreen(false);
+          });
+        }
 
-          // Content may need one extra resize when DOM is displayed.
-          this.content.resize();
-        }, 0);
-      }
-    });
+        // Content may need one extra resize when DOM is displayed.
+        this.content.resize();
+      }, 0);
+    };
+
+    if (document.readyState === 'complete') {
+      this.handleDocumentComplete();
+    }
+    else {
+      document.addEventListener('readystatechange', () => {
+        if (document.readyState === 'complete') {
+          this.handleDocumentComplete();
+        }
+      });
+    }
 
     /**
      * Register the DOM elements with H5P.Question
