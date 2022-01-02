@@ -1,0 +1,85 @@
+{
+  "semantics": [
+    {
+      "label": "Instrukcijas",
+      "description": "Izglītojamie šos norādījumus redzēs virs piezīmēm."
+    },
+    {
+      "label": "Uzdevuma saturs"
+    },
+    {
+      "label": "Piezīmju lauki",
+      "description": "Piezīmju lauku iestatījumi",
+      "fields": [
+        {
+          "label": "Atsaukšanas lauka nosaukums",
+          "default": "Atsaukšana atmiņā",
+          "description": "Atsaukšanas sadaļas nosaukums"
+        },
+        {
+          "label": "Atsaukšanas lauka vietturis",
+          "default": "Ievadiet savus atslēgvārdus, jautājumus, galveno ideju utt.",
+          "description": "Vietturis atsaukšanas sadaļai kā atgādinājums jūsu izglītojamajiem"
+        },
+        {
+          "label": "Piezīmju lauka nosaukums",
+          "default": "Piezīmes",
+          "description": "Piezīmju sadaļas nosaukums"
+        },
+        {
+          "label": "Piezīmju lauka vietturis",
+          "description": "Vietturis piezīmju sadaļai kā atgādinājums jūsu izglītojamajiem",
+          "default": "Ievadiet datumus, informāciju, definīcijas, formulas, piemērus utt."
+        },
+        {
+          "label": "Kopsavilkuma lauka nosaukums",
+          "default": "Kopsavilkums",
+          "description": "Kopsavilkuma sadaļas nosaukums"
+        },
+        {
+          "label": "Kopsavilkuma lauka vietturis",
+          "default": "Ievadiet savu kopsavilkumu",
+          "description": "Vietturis kopsavilkuma sadaļai kā atgādinājums jūsu izglītojamajiem"
+        }
+      ]
+    },
+    {
+      "fields": [
+        {
+          "label": "Uzsākot rādīt piezīmes",
+          "description": "Kad iespējots, piezīmes tiek parādītas uzsākot uzdevumu"
+        }
+      ],
+      "label": "Uzvedības iestatījumi"
+    },
+    {
+      "label": "Ekrāna lasītājs",
+      "fields": [
+        {
+          "label": "Pilnekrāna pogas nosaukums",
+          "default": "Ieiet pilnekrāna režīmā"
+        },
+        {
+          "default": "Iziet no pilnekrāna režīma",
+          "label": "Pilnekrāna pogas nosaukums (iziešana)"
+        },
+        {
+          "label": "Pārslēgšanas pogas nosaukums (kad piezīmes ir aizvērtas)",
+          "default": "Atvērt piezīmes"
+        },
+        {
+          "default": "Aizvērt piezīmes",
+          "label": "Pārslēgšanas pogas nosaukums (kad piezīmes ir atvērtas)"
+        },
+        {
+          "label": "Piezīmes atvērtas",
+          "default": "Skats ir pārslēgts uz jūsu piezīmēm."
+        },
+        {
+          "label": "Piezīmes aizvērtas",
+          "default": "Skats pārslēgts uz uzdevumu."
+        }
+      ]
+    }
+  ]
+}
