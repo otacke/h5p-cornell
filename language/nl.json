@@ -12,34 +12,34 @@
       "description": "Instellingen voor de notitievelden",
       "fields": [
         {
-          "label": "Titel kernwoordenvak",
+          "label": "Titel kernwoordenveld",
           "default": "Kernwoorden",
-          "description": "Titel van het kernwoordenvak"
+          "description": "Titel van het kernwoordenveld"
         },
         {
-          "label": "Standaardtekst van het kernwoordenveld",
+          "label": "Tijdelijke tekst van het kernwoordenveld",
           "default": "Voer kernwoorden, vragen, hoofdidee, enz. in.",
-          "description": "Standaardtekst voor je kernwoordenveld als geheugensteun voor de gebruikers"
+          "description": "Tijdelijke tekst voor je kernwoordenveld als geheugensteun voor de gebruikers"
         },
         {
-          "label": "Titel notitievak",
+          "label": "Titel notitieveld",
           "default": "Notities",
-          "description": "Titel van het notitievak"
+          "description": "Titel van het notitieveld"
         },
         {
-          "label": "Standaardtekst van het notitieveld",
+          "label": "Tijdelijke tekst van het notitieveld",
           "default": "Vul data, details, definities, formules, voorbeelden, enz. in.",
-          "description": "Standaardtekst voor je notitiesveld als geheugensteun voor je gebruikers"
+          "description": "Tijdelijke tekst voor het notitieveld als geheugensteun voor je gebruikers"
         },
         {
-          "label": "Titel samenvattingsvak",
+          "label": "Titel samenvattingsveld",
           "default": "Samenvatting",
-          "description": "Titel van het samenvattingsvak"
+          "description": "Titel van het samenvattingsveld"
         },
         {
-          "label": "Standaardtekst van het samenvattingsveld",
+          "label": "Tijdelijke tekst van het samenvattingsveld",
           "default": "Schrijf je samenvatting",
-          "description": "Standaardtekst voor je samenvattingsveld als geheugensteun voor de gebruikers"
+          "description": "Tijdelijke tekst voor het samenvattingsveld als geheugensteun voor de gebruikers"
         }
       ]
     },
@@ -47,29 +47,29 @@
       "label": "Gedragsinstellingen",
       "fields": [
         {
-          "label": "Toon aantekeningen bij het opstarten",
+          "label": "Toon aantekeningen bij opstarten",
           "description": "Indien ingeschakeld, worden de aantekeningen bij het opstarten getoond."
         }
       ]
     },
     {
-      "label": "Readspeaker",
+      "label": "Schermlezer",
       "fields": [
         {
-          "label": "Titel van de knop bij volledig scherm (ga naar)",
-          "default": "Ga naar de modus volledig scherm"
+          "label": "Titel van \"Volledig scherm\"-knop (ga naar)",
+          "default": "Ga naar volledig scherm"
         },
         {
-          "label": "Fullscreen button title (exit)",
-          "default": "Exit fullscreen mode"
+          "label": "Titel van \"Volledig scherm\"-knop (afsluiten)",
+          "default": "Volledig scherm afsluiten"
         },
         {
-          "label": "Titel van de schakelknop (wanneer de aantekeningen gesloten zijn)",
-          "default": "Open de aantekeningen"
+          "label": "Titel van de schakelknop (wanneer aantekeningen gesloten zijn)",
+          "default": "Open aantekeningen"
         },
         {
-          "label": "Titel van de schakelknop (wanneer de aantekeningen geopend zijn)",
-          "default": "Sluit de aantekeningen"
+          "label": "Titel van de schakelknop (wanneer aantekeningen geopend zijn)",
+          "default": "Sluit aantekeningen"
         },
         {
           "label": "Aantekeningen zijn geopend",
