@@ -1,0 +1,85 @@
+{
+  "semantics": [
+    {
+      "label": "Jarraibideak",
+      "description": "Ikasleek jarraibide hauek oharren gainean ikusiko dituzte."
+    },
+    {
+      "label": "Ariketaren edukia"
+    },
+    {
+      "label": "Oharren eremuak",
+      "description": "Oharren eremuen ezarpenak",
+      "fields": [
+        {
+          "label": "Gogoratu eremuaren izenburua",
+          "default": "Gogoratu",
+          "description": "Gogoratu atalarentzako izenburua"
+        },
+        {
+          "label": "Gogoratu eremu-gakoa",
+          "default": "Idatzi itzazu zure hitz-gakoak, galderak, ideia nagusia, etab.",
+          "description": "Zure ikasleentzako oroigarri gisako gogoratu atalaren gakoa"
+        },
+        {
+          "label": "Oharrak eremuaren izenburua",
+          "default": "Oharrak",
+          "description": "Oharren atalarentzako izenburua"
+        },
+        {
+          "label": "Oharren eremuaren gakoa",
+          "default": "Idatzi itzazu datak, xehetasunak, formulak, adibideak, etab.",
+          "description": "Zure ikasleentzako oroigarri gisako oharren eremurako gakoa"
+        },
+        {
+          "label": "Laburpena eremuaren izenburua",
+          "default": "Laburpena",
+          "description": "Laburpena atalarentzako izenburua"
+        },
+        {
+          "label": "Laburpena eremuaren gakoa",
+          "default": "Idatzi ezazu zure laburpena",
+          "description": "Zure ikasleentzako oroigarri gisako laburpen atalarentzako gakoa"
+        }
+      ]
+    },
+    {
+      "label": "Portaeraren ezarpenak",
+      "fields": [
+        {
+          "label": "Erakutsi oharrak hasterakoan",
+          "description": "Gaituz gero, oharrak hasterakoan erakutsiko dira"
+        }
+      ]
+    },
+    {
+      "label": "Irakurtzen duen bozgorailua",
+      "fields": [
+        {
+          "label": "Pantaila osoko botoiaren izenburua",
+          "default": "Ireki pantaila osoko moduan"
+        },
+        {
+          "label": "Pantaila osoko botoiaren izenburua (itxi)",
+          "default": "Irten pantaila osoko modutik"
+        },
+        {
+          "label": "Aldatu botoiaren izenburua (oharrak itxita daudenean)",
+          "default": "Ireki oharrak"
+        },
+        {
+          "label": "Aldatu botoiaren izenburua (oharrak irekita daudenean)",
+          "default": "Itxi oharrak"
+        },
+        {
+          "label": "Oharrak irekita",
+          "default": "Ikuspegiak zure oharrak aldatu ditu."
+        },
+        {
+          "label": "Oharrak itxita",
+          "default": "Ikuspegia ariketara aldatu da."
+        }
+      ]
+    }
+  ]
+}
