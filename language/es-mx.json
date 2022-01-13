@@ -17,9 +17,9 @@
           "description": "Título para la sección recordar"
         },
         {
-          "label": "Remplazable de campo recordar",
+          "label": "Reemplazable de campo recordar",
           "default": "Escriba sus palabras clave, preguntas, la idea principal, etc.",
-          "description": "Remplazable para la sección recordar como un recordatorio para sus estudiantes"
+          "description": "Reemplazable para la sección recordar como un recordatorio para sus estudiantes"
         },
         {
           "label": "Título de campo anotaciones",
@@ -27,9 +27,9 @@
           "description": "Título para la sección de anotaciones"
         },
         {
-          "label": "Remplazable de campo Anotaciones",
+          "label": "Reemplazable de campo Anotaciones",
           "default": "Escribir fechas, detalles, definiciones, fórmulas, ejemplos, etc.",
-          "description": "Remplazable para la sección de anotaciones como un recordatorio para sus estudiantes"
+          "description": "Reemplazable para la sección de anotaciones como un recordatorio para sus estudiantes"
         },
         {
           "label": "Título del campo del Resumen",
@@ -37,9 +37,9 @@
           "description": "Título para la sección del resumen"
         },
         {
-          "label": "Remplazable para el campo del Resumen",
+          "label": "Reemplazable para el campo del Resumen",
           "default": "Escriba su resumen",
-          "description": "Remplazable para la sección del resumen como un recordatorio para sus estudiantes"
+          "description": "Reemplazable para la sección del resumen como un recordatorio para sus estudiantes"
         }
       ]
     },
