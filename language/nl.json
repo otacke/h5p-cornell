@@ -48,7 +48,7 @@
       "fields": [
         {
           "label": "Toon aantekeningen bij opstarten",
-          "description": "Indien ingeschakeld, worden de aantekeningen bij het opstarten getoond."
+          "description": "Indien ingeschakeld, worden de aantekeningen bij het opstarten getoond"
         }
       ]
     },
