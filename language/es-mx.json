@@ -12,14 +12,14 @@
       "description": "Configuraciones para los campos de anotaciones",
       "fields": [
         {
-          "label": "Título de campo recordar",
-          "default": "Recordar",
+          "label": "Enfilar título de campo",
+          "default": "Enfilar",
           "description": "Título para la sección recordar"
         },
         {
-          "label": "Reemplazable de campo recordar",
-          "default": "Escriba sus palabras clave, preguntas, la idea principal, etc.",
-          "description": "Reemplazable para la sección recordar como un recordatorio para sus estudiantes"
+          "label": "Enfilar reemplazable de campo",
+          "default": "Escriba sus comentarios, preguntas, la idea principal, etc. que usted deriva de sus anotaciones",
+          "description": "Reemplazable para la sección enfilar como un recordatorio para sus estudiantes"
         },
         {
           "label": "Título de campo anotaciones",
@@ -28,7 +28,7 @@
         },
         {
           "label": "Reemplazable de campo Anotaciones",
-          "default": "Escribir fechas, detalles, definiciones, fórmulas, ejemplos, etc.",
+          "default": "Escribir fechas, detalles, definiciones, fórmulas, ejemplos, etc. del material origen",
           "description": "Reemplazable para la sección de anotaciones como un recordatorio para sus estudiantes"
         },
         {
@@ -38,7 +38,7 @@
         },
         {
           "label": "Reemplazable para el campo del Resumen",
-          "default": "Escriba su resumen",
+          "default": "Resuma lo que ha aprendido",
           "description": "Reemplazable para la sección del resumen como un recordatorio para sus estudiantes"
         }
       ]
@@ -48,7 +48,7 @@
       "fields": [
         {
           "label": "Mostrar anotaciones al iniciar",
-          "description": "Cuando se habilita, las anotaciones son mostradas al iniciar"
+          "description": "Cuando esta opción es deshabilitada, las anotaciones son ocultas al iniciar. LAs anotaciones son ocultadas automáticamente en monitores pequeños."
         }
       ]
     },
@@ -56,7 +56,7 @@
       "label": "Lector de texto en voz alta",
       "fields": [
         {
-          "label": "Título de botón PantallaCompleta",
+          "label": "Título de botón PantallaCompleta (Entrar)",
           "default": "Entrar a modo de PantallaCompleta"
         },
         {

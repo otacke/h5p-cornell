@@ -12,13 +12,13 @@
       "description": "Configuraciones para los campos de anotaciones",
       "fields": [
         {
-          "label": "Título de campo Recordar",
-          "default": "Recordar",
+          "label": "Enfilar título de campo",
+          "default": "Enfilar",
           "description": "Título para la sección Recordar"
         },
         {
-          "label": "Remplazable de campo Recordar",
-          "default": "Escriba sus palabras clave, preguntas, la idea principal, etc.",
+          "label": "Enfilar reemplazable de campo",
+          "default": "Escriba sus comentarios, preguntas, la idea principal, etc. que usted deriva de sus anotaciones",
           "description": "Remplazable para la sección recordar como un recordatorio para sus estudiantes"
         },
         {
@@ -28,7 +28,7 @@
         },
         {
           "label": "Remplazable de campo Anotaciones",
-          "default": "Escribir fechas, detalles, definiciones, fórmulas, ejemplos, etc.",
+          "default": "Escribir fechas, detalles, definiciones, fórmulas, ejemplos, etc. del material origen",
           "description": "Remplazable para la sección de anotaciones como un recordatorio para sus estudiantes"
         },
         {
@@ -38,7 +38,7 @@
         },
         {
           "label": "Remplazable para el campo del Resumen",
-          "default": "Escriba su resumen",
+          "default": "Resuma lo que ha aprendido",
           "description": "Remplazable para la sección del resumen como un recordatorio para sus estudiantes"
         }
       ]
@@ -48,7 +48,7 @@
       "fields": [
         {
           "label": "Mostrar anotaciones al iniciar",
-          "description": "Cuando se habilita, las anotaciones son mostradas al iniciar"
+          "description": "Cuando esta opción es deshabilitada, las anotaciones son ocultas al iniciar. LAs anotaciones son ocultadas automáticamente en monitores pequeños."
         }
       ]
     },
@@ -56,7 +56,7 @@
       "label": "Lector de texto en voz alta",
       "fields": [
         {
-          "label": "Título de botón PantallaCompleta",
+          "label": "Título de botón PantallaCompleta (Entrar)",
           "default": "Título de botón PantallaCompleta"
         },
         {
