@@ -12,14 +12,14 @@
       "description": "Einstellungen für Notizfelder",
       "fields": [
         {
-          "label": "Titel Erinnerungsfeld",
+          "label": "Titel Kommentarfeld",
           "default": "Erinnerung",
-          "description": "Titel für den Erinnerungsbereich"
+          "description": "Titel für den Kommentarbereich"
         },
         {
-          "label": "Platzhalter für Erinnerungsfeld",
-          "default": "Gib deine Schlüsselwörter, Fragen, die Grundidee etc. ein.",
-          "description": "Platzhalter für den Erinnerungsabschnitt als Erinnerungshilfe für die Lernenden"
+          "label": "Platzhalter für Kommentarfeld",
+          "default": "Gib deine Kommentare, Fragen, die Grundidee etc. ein, die du aus deinen Notizen ableitest.",
+          "description": "Platzhalter für den Kommentarabschnitt als Erinnerungshilfe für die Lernenden"
         },
         {
           "label": "Titelfeld für Notizen",
@@ -28,12 +28,12 @@
         },
         {
           "label": "Platzhalter für das Notizenfeld",
-          "default": "Gib Daten, Details, Definitionen, Formeln, Beispiele etc. ein!",
+          "default": "Gib Daten, Details, Definitionen, Formeln, Beispiele etc. aus dem Material ein!",
           "description": "Platzhalter für den Notizbereich als Erinnerungshilfe für die Lernenden"
         },
         {
           "label": "Titelfeld des Zusammenfassungsbereichs",
-          "default": "Zusammenfassung",
+          "default": "Fasse zusammen, was du gelernt hast",
           "description": "Titel des Zusammenfassungsbereichs"
         },
         {
