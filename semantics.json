@@ -39,22 +39,22 @@
     "type": "group",
     "fields": [
       {
-        "label": "Recall field title",
+        "label": "Cue field title",
         "importance": "low",
         "name": "recallTitle",
         "type": "text",
-        "default": "Recall",
+        "default": "Cue",
         "optional": true,
         "description": "Title for the recall section"
       },
       {
-        "label": "Recall field placeholder",
+        "label": "Cue field placeholder",
         "importance": "low",
         "name": "recallPlaceholder",
         "type": "text",
-        "default": "Enter your keywords, questions, the main idea, etc.",
+        "default": "Enter your comments, questions, the main idea, etc. that you derive from your notes",
         "optional": true,
-        "description": "Placeholder for the recall section as a reminder for your students"
+        "description": "Placeholder for the cue section as a reminder for your students"
       },
       {
         "label": "Notes field title",
@@ -70,7 +70,7 @@
         "importance": "low",
         "name": "notesPlaceholder",
         "type": "text",
-        "default": "Enter dates, details, definitions, formulas, examples, etc.",
+        "default": "Enter dates, details, definitions, formulas, examples, etc. from the source material",
         "optional": true,
         "description": "Placeholder for the notes section as a reminder for your students"
       },
@@ -88,7 +88,7 @@
         "importance": "low",
         "name": "summaryPlaceholder",
         "type": "text",
-        "default": "Enter your summary",
+        "default": "Summarize what you have learned",
         "optional": true,
         "description": "Placeholder for the summary section as a reminder for your students"
       }

@@ -12,14 +12,14 @@
       "description": "Settings for the notes fields",
       "fields": [
         {
-          "label": "Recall field title",
-          "default": "Recall",
+          "label": "Cue field title",
+          "default": "Cue",
           "description": "Title for the recall section"
         },
         {
-          "label": "Recall field placeholder",
-          "default": "Enter your keywords, questions, the main idea, etc.",
-          "description": "Placeholder for the recall section as a reminder for your students"
+          "label": "Cue field placeholder",
+          "default": "Enter your comments, questions, the main idea, etc. that you derive from your notes",
+          "description": "Placeholder for the cue section as a reminder for your students"
         },
         {
           "label": "Notes field title",
@@ -28,7 +28,7 @@
         },
         {
           "label": "Notes field placeholder",
-          "default": "Enter dates, details, definitions, formulas, examples, etc.",
+          "default": "Enter dates, details, definitions, formulas, examples, etc. from the source material",
           "description": "Placeholder for the notes section as a reminder for your students"
         },
         {
@@ -38,7 +38,7 @@
         },
         {
           "label": "Summary field placeholder",
-          "default": "Enter your summary",
+          "default": "Summarize what you have learned",
           "description": "Placeholder for the summary section as a reminder for your students"
         }
       ]
@@ -48,7 +48,7 @@
       "fields": [
         {
           "label": "Show notes on startup",
-          "description": "When enabled, the notes are shown on startup"
+          "description": "When this option is disabled, the notes are hidden on startup. Notes are hidden automatically on small displays."
         }
       ]
     },
@@ -56,7 +56,7 @@
       "label": "Readspeaker",
       "fields": [
         {
-          "label": "Fullscreen button title",
+          "label": "Fullscreen button title (enter)",
           "default": "Enter fullscreen mode"
         },
         {
