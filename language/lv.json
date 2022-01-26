@@ -12,14 +12,14 @@
       "description": "Piezīmju lauku iestatījumi",
       "fields": [
         {
-          "label": "Atsaukšanas lauka nosaukums",
-          "default": "Atsaukšana atmiņā",
+          "label": "Mājiena lauka nosaukums",
+          "default": "Mājiens",
           "description": "Atsaukšanas sadaļas nosaukums"
         },
         {
-          "label": "Atsaukšanas lauka vietturis",
-          "default": "Ievadiet savus atslēgvārdus, jautājumus, galveno ideju utt.",
-          "description": "Vietturis atsaukšanas sadaļai kā atgādinājums jūsu izglītojamajiem"
+          "label": "Mājiena lauka vietturis",
+          "default": "Ievadiet savus komentārus, jautājumus, galveno ideju utt., kurus ieguvāt no savām piezīmēm",
+          "description": "Vietturis mājiena sadaļai kā atgādinājums jūsu izglītojamajiem"
         },
         {
           "label": "Piezīmju lauka nosaukums",
@@ -29,7 +29,7 @@
         {
           "label": "Piezīmju lauka vietturis",
           "description": "Vietturis piezīmju sadaļai kā atgādinājums jūsu izglītojamajiem",
-          "default": "Ievadiet datumus, informāciju, definīcijas, formulas, piemērus utt."
+          "default": "Ievadiet datumus, informāciju, definīcijas, formulas, piemērus utt. no avota materiāla"
         },
         {
           "label": "Kopsavilkuma lauka nosaukums",
@@ -38,7 +38,7 @@
         },
         {
           "label": "Kopsavilkuma lauka vietturis",
-          "default": "Ievadiet savu kopsavilkumu",
+          "default": "Rezumē ko esi iemācījies",
           "description": "Vietturis kopsavilkuma sadaļai kā atgādinājums jūsu izglītojamajiem"
         }
       ]
@@ -47,7 +47,7 @@
       "fields": [
         {
           "label": "Uzsākot rādīt piezīmes",
-          "description": "Kad iespējots, piezīmes tiek parādītas uzsākot uzdevumu"
+          "description": "Kad atspējots, uzsākot uzdevumu, piezīmes tiek paslēptas. Uz maziem ekrāniem piezīmes tiek paslēptas automātiski."
         }
       ],
       "label": "Uzvedības iestatījumi"
@@ -56,7 +56,7 @@
       "label": "Ekrāna lasītājs",
       "fields": [
         {
-          "label": "Pilnekrāna pogas nosaukums",
+          "label": "Pilnekrāna pogas nosaukums (ieiešana)",
           "default": "Ieiet pilnekrāna režīmā"
         },
         {
