@@ -12,14 +12,14 @@
       "description": "Oharren eremuen ezarpenak",
       "fields": [
         {
-          "label": "Gogoratu eremuaren izenburua",
-          "default": "Gogoratu",
+          "label": "Oineko eremuaren izenburua",
+          "default": "Oina",
           "description": "Gogoratu atalarentzako izenburua"
         },
         {
-          "label": "Gogoratu eremu-gakoa",
-          "default": "Idatzi itzazu zure hitz-gakoak, galderak, ideia nagusia, etab.",
-          "description": "Zure ikasleentzako oroigarri gisako gogoratu atalaren gakoa"
+          "label": "Oina eremu-gakoa",
+          "default": "Idatzi itzazu zure oharretatik ondorioztatutako zure iruzkinak, galderak, ideia nagusia, etab.",
+          "description": "Zure ikasleentzako oroigarri gisako oina atalaren gakoa"
         },
         {
           "label": "Oharrak eremuaren izenburua",
@@ -28,7 +28,7 @@
         },
         {
           "label": "Oharren eremuaren gakoa",
-          "default": "Idatzi itzazu datak, xehetasunak, formulak, adibideak, etab.",
+          "default": "Idatzi itzazu jatorrizko materialeko datak, xehetasunak, formulak, adibideak, etab.",
           "description": "Zure ikasleentzako oroigarri gisako oharren eremurako gakoa"
         },
         {
@@ -38,7 +38,7 @@
         },
         {
           "label": "Laburpena eremuaren gakoa",
-          "default": "Idatzi ezazu zure laburpena",
+          "default": "Laburtu ezazu ikasi duzuna",
           "description": "Zure ikasleentzako oroigarri gisako laburpen atalarentzako gakoa"
         }
       ]
@@ -48,7 +48,7 @@
       "fields": [
         {
           "label": "Erakutsi oharrak hasterakoan",
-          "description": "Gaituz gero, oharrak hasterakoan erakutsiko dira"
+          "description": "Gaituz gero, oharrak hasterakoan erakutsiko dira."
         }
       ]
     },
@@ -56,7 +56,7 @@
       "label": "Irakurtzen duen bozgorailua",
       "fields": [
         {
-          "label": "Pantaila osoko botoiaren izenburua",
+          "label": "Pantaila osoko botoiaren izenburua (enter)",
           "default": "Ireki pantaila osoko moduan"
         },
         {
