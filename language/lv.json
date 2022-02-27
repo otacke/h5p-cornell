@@ -50,7 +50,7 @@
           "description": "Kad atspējots, uzsākot uzdevumu, piezīmes tiek paslēptas. Uz maziem ekrāniem piezīmes tiek paslēptas automātiski."
         }
       ],
-      "label": "Uzvedības iestatījumi"
+      "label": "Behavioural settings"
     },
     {
       "label": "Ekrāna lasītājs",
