@@ -13,12 +13,12 @@
       "fields": [
         {
           "label": "Titel Kommentarfeld",
-          "default": "Erinnerung",
+          "default": "Stichworte",
           "description": "Titel für den Kommentarbereich"
         },
         {
           "label": "Platzhalter für Kommentarfeld",
-          "default": "Gib deine Kommentare, Fragen, die Grundidee etc. ein, die du aus deinen Notizen ableitest.",
+          "default": "Gib deine Kommentare, Fragen, die Grundidee etc. ein, die du aus deinen Notizen ableitest",
           "description": "Platzhalter für den Kommentarabschnitt als Erinnerungshilfe für die Lernenden"
         },
         {
@@ -38,7 +38,7 @@
         },
         {
           "label": "Platzhalter für den Zusammenfassungsbereich",
-          "default": "Gib deine Zusammenfassung ein",
+          "default": "Gib ein, was du gelernt hast",
           "description": "Platzhalter für den Zusammenfassungsbereich als Erinnerungshilfe für die Lernenden"
         }
       ]
@@ -48,7 +48,7 @@
       "fields": [
         {
           "label": "Notizen am Beginn anzeigen",
-          "description": "Wenn aktiviert, werden die Notizen am Beginn angezeigt"
+          "description": "Wenn deaktiviert, werden die Notizen beim Start versteckt. Notizen werden auf kleinen Bildschirmen automatisch ausgeblendet."
         }
       ]
     },
