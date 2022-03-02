@@ -18,7 +18,7 @@
         },
         {
           "label": "Tijdelijke tekst van het kernwoordenveld",
-          "default": "Voer kernwoorden, vragen, hoofdidee, enz. in.",
+          "default": "Voer kernwoorden, vragen, hoofdidee, enz. in",
           "description": "Tijdelijke tekst voor je kernwoordenveld als geheugensteun voor de gebruikers"
         },
         {
@@ -28,7 +28,7 @@
         },
         {
           "label": "Tijdelijke tekst van het notitieveld",
-          "default": "Vul data, details, definities, formules, voorbeelden, enz. in.",
+          "default": "Vul data, details, definities, formules, voorbeelden, enz. in",
           "description": "Tijdelijke tekst voor het notitieveld als geheugensteun voor je gebruikers"
         },
         {
@@ -48,7 +48,7 @@
       "fields": [
         {
           "label": "Toon aantekeningen bij opstarten",
-          "description": "Indien ingeschakeld, worden de aantekeningen bij het opstarten getoond"
+          "description": "Indien ingeschakeld, worden de aantekeningen bij het opstarten getoond. Aantekeningen worden automatisch verborgen bij kleine schermen."
         }
       ]
     },
