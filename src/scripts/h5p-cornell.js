@@ -133,8 +133,8 @@ export default class Cornell extends H5P.Question {
       read: (text) => {
         this.read(text);
       },
-      handleButtonFullscreen: () => {
-        this.toggleFullscreen();
+      handleButtonFullscreen: (state) => {
+        this.toggleFullscreen(state);
       }
     });
 
