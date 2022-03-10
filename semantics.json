@@ -138,6 +138,27 @@
         "label": "Submit answer",
         "importance": "low",
         "default": "Submit"
+      },
+      {
+        "name": "copy",
+        "type": "text",
+        "label": "Text for \"Copy\" button",
+        "importance": "low",
+        "default": "Copy"
+      },
+      {
+        "name": "copyToClipboardSuccess",
+        "type": "text",
+        "label": "Notes copied to clipboard",
+        "importance": "low",
+        "default": "Notes copied to clipboard"
+      },
+      {
+        "name": "copyToClipboardError",
+        "type": "text",
+        "label": "Notes could not be copied to clipboard",
+        "importance": "low",
+        "default": "Notes could not be copied to clipboard"
       }
     ]
   },

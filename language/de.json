@@ -66,6 +66,18 @@
         {
           "label": "Submit answer",
           "default": "Submit"
+        },
+        {
+          "label": "Text for \"Copy\" button",
+          "default": "Copy"
+        },
+        {
+          "label": "Notes copied to clipboard",
+          "default": "Notes copied to clipboard"
+        },
+        {
+          "label": "Notes could not be copied to clipboard",
+          "default": "Notes could not be copied to clipboard"
         }
       ]
     },

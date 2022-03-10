@@ -53,10 +53,10 @@ export default class CornellContent {
     this.notesWrapper = this.createNotesDOM();
     panel.appendChild(this.notesWrapper);
 
-    if (H5PIntegration.saveFreq !== undefined && H5PIntegration.saveFreq !== false) {
-      const buttonsWrapper = document.createElement('div');
-      buttonsWrapper.classList.add('h5p-cornell-buttons-wrapper');
+    const buttonsWrapper = document.createElement('div');
+    buttonsWrapper.classList.add('h5p-cornell-buttons-wrapper');
 
+    if (H5PIntegration.saveFreq !== undefined && H5PIntegration.saveFreq !== false) {
       this.buttonSave = H5P.JoubelUI.createButton({
         type: 'button',
         html: this.params.l10n.save,
@@ -68,10 +68,23 @@ export default class CornellContent {
           }
         }
       }).get(0);
-
       buttonsWrapper.appendChild(this.buttonSave);
-      this.notesWrapper.appendChild(buttonsWrapper);
     }
+
+    this.buttonCopy = H5P.JoubelUI.createButton({
+      type: 'button',
+      html: this.params.l10n.copy,
+      ariaLabel: this.params.l10n.copy,
+      class: 'h5p-cornell-button-copy',
+      on: {
+        click: () => {
+          this.handleCopy();
+        }
+      }
+    }).get(0);
+    buttonsWrapper.appendChild(this.buttonCopy);
+
+    this.notesWrapper.appendChild(buttonsWrapper);
 
     this.content.appendChild(panel);
   }
@@ -585,15 +598,37 @@ export default class CornellContent {
 
     if (this.buttonSave) {
       H5P.attachToastTo(this.buttonSave, this.params.l10n.notesSaved, {position: {
-        horizontal: 'after',
+        horizontal: 'centered',
         noOverflowRight: true,
-        offsetHorizontal: 10,
-        offsetVertical: -5,
-        vertical: 'centered'
+        offsetVertical: 5,
+        vertical: 'above'
       }});
     }
 
-    this.read(this.params.a11y.notesSaved);
+    this.callbacks.read(this.params.a11y.notesSaved);
+  }
+
+  /**
+   * Handle copy button
+   */
+  handleCopy() {
+    const notes = (this.stripTags(this.mainNotes.getCurrentState())).inputField;
+    const cue = (this.stripTags(this.recall.getCurrentState())).inputField;
+    const summary = (this.stripTags(this.summary.getCurrentState()).inputField);
+
+    const text = `## ${this.params.notesFields.notesTitle}\n${notes}\n\n## ${this.params.notesFields.recallTitle}\n${cue}\n\n## ${this.params.notesFields.summaryTitle}\n${summary}`;
+    Util.copyTextToClipboard(text, (result) => {
+      const message = (result === true) ? this.params.l10n.copyToClipboardSuccess : this.params.a11y.copyToClipboardError;
+
+      this.callbacks.read(message);
+
+      H5P.attachToastTo(this.buttonCopy, message, {position: {
+        horizontal: 'centered',
+        noOverflowRight: true,
+        offsetVertical: 5,
+        vertical: 'above'
+      }});
+    });
   }
 }
 

@@ -124,6 +124,12 @@
   padding-right: 0.5em;
 }
 
+.h5p-cornell .h5p-cornell-notes-wrapper .h5p-cornell-buttons-wrapper .h5p-cornell-button-copy::before {
+  content: "\f0c5";
+  font-family: "H5PFontAwesome4";
+  padding-right: 0.5em;
+}
+
 .h5p-cornell .h5p-cornell-notes-content-wrapper {
   margin-left: auto;
   margin-right: auto;

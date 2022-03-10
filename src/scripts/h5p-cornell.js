@@ -48,7 +48,10 @@ export default class Cornell extends H5P.Question {
       l10n: {
         notesSaved: 'Notes saved',
         save: 'Save',
-        submitAnswer: 'Submit'
+        submitAnswer: 'Submit',
+        copy: 'Copy',
+        copyToClipboardSuccess: 'Notes copied to clipboard',
+        copyToClipboardError: 'Notes could not be copied to clipboard'
       },
       a11y: {
         buttonFullscreenEnter: 'Enter fullscreen mode',
