@@ -593,7 +593,7 @@ export default class CornellContent {
       }});
     }
 
-    // this.read(this.params.a11y.notesSaved);
+    this.read(this.params.a11y.notesSaved);
   }
 }
 
