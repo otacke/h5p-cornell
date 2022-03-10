@@ -46,6 +46,8 @@ export default class Cornell extends H5P.Question {
         enableRetry: false
       },
       l10n: {
+        notesSaved: 'Notes saved',
+        save: 'Save',
         submitAnswer: 'Submit'
       },
       a11y: {

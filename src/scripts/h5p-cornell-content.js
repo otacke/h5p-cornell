@@ -53,6 +53,26 @@ export default class CornellContent {
     this.notesWrapper = this.createNotesDOM();
     panel.appendChild(this.notesWrapper);
 
+    if (H5PIntegration.saveFreq !== undefined && H5PIntegration.saveFreq !== false) {
+      const buttonsWrapper = document.createElement('div');
+      buttonsWrapper.classList.add('h5p-cornell-buttons-wrapper');
+
+      this.buttonSave = H5P.JoubelUI.createButton({
+        type: 'button',
+        html: this.params.l10n.save,
+        ariaLabel: this.params.l10n.save,
+        class: 'h5p-cornell-button-save',
+        on: {
+          click: () => {
+            this.handleSave();
+          }
+        }
+      }).get(0);
+
+      buttonsWrapper.appendChild(this.buttonSave);
+      this.notesWrapper.appendChild(buttonsWrapper);
+    }
+
     this.content.appendChild(panel);
   }
 
@@ -549,6 +569,31 @@ export default class CornellContent {
       summary: this.stripTags(this.summary.getCurrentState()),
       exercise: (this.exercise && this.exercise.getCurrentState) ? this.exercise.getCurrentState() : undefined
     };
+  }
+
+  /**
+   * Save current state. Could be triggered indirectly by emitting an xAPI
+   * 'progressed' statement, but this would include a 3 second delay.
+   */
+  handleSave() {
+    H5P.setUserData(
+      this.contentId,
+      'state',
+      this.getCurrentState(),
+      { deleteOnChange: false }
+    );
+
+    if (this.buttonSave) {
+      H5P.attachToastTo(this.buttonSave, this.params.l10n.notesSaved, {position: {
+        horizontal: 'after',
+        noOverflowRight: true,
+        offsetHorizontal: 10,
+        offsetVertical: -5,
+        vertical: 'centered'
+      }});
+    }
+
+    // this.read(this.params.a11y.notesSaved);
   }
 }
 

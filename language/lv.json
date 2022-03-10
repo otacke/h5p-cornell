@@ -28,8 +28,8 @@
         },
         {
           "label": "Piezīmju lauka vietturis",
-          "description": "Vietturis piezīmju sadaļai kā atgādinājums jūsu izglītojamajiem",
-          "default": "Ievadiet datumus, informāciju, definīcijas, formulas, piemērus utt. no avota materiāla"
+          "default": "Ievadiet datumus, informāciju, definīcijas, formulas, piemērus utt. no avota materiāla",
+          "description": "Vietturis piezīmju sadaļai kā atgādinājums jūsu izglītojamajiem"
         },
         {
           "label": "Kopsavilkuma lauka nosaukums",
@@ -44,13 +44,30 @@
       ]
     },
     {
+      "label": "Behavioural settings",
       "fields": [
         {
           "label": "Uzsākot rādīt piezīmes",
           "description": "Kad atspējots, uzsākot uzdevumu, piezīmes tiek paslēptas. Uz maziem ekrāniem piezīmes tiek paslēptas automātiski."
         }
-      ],
-      "label": "Behavioural settings"
+      ]
+    },
+    {
+      "label": "Localization",
+      "fields": [
+        {
+          "label": "Notes saved",
+          "default": "Notes saved"
+        },
+        {
+          "label": "Save",
+          "default": "Save"
+        },
+        {
+          "label": "Submit answer",
+          "default": "Submit"
+        }
+      ]
     },
     {
       "label": "Ekrāna lasītājs",
@@ -60,16 +77,16 @@
           "default": "Ieiet pilnekrāna režīmā"
         },
         {
-          "default": "Iziet no pilnekrāna režīma",
-          "label": "Pilnekrāna pogas nosaukums (iziešana)"
+          "label": "Pilnekrāna pogas nosaukums (iziešana)",
+          "default": "Iziet no pilnekrāna režīma"
         },
         {
           "label": "Pārslēgšanas pogas nosaukums (kad piezīmes ir aizvērtas)",
           "default": "Atvērt piezīmes"
         },
         {
-          "default": "Aizvērt piezīmes",
-          "label": "Pārslēgšanas pogas nosaukums (kad piezīmes ir atvērtas)"
+          "label": "Pārslēgšanas pogas nosaukums (kad piezīmes ir atvērtas)",
+          "default": "Aizvērt piezīmes"
         },
         {
           "label": "Piezīmes atvērtas",
@@ -78,6 +95,10 @@
         {
           "label": "Piezīmes aizvērtas",
           "default": "Skats pārslēgts uz uzdevumu."
+        },
+        {
+          "label": "Notes saved",
+          "default": "The notes were saved to the platform."
         }
       ]
     }

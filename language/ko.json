@@ -53,6 +53,23 @@
       ]
     },
     {
+      "label": "Localization",
+      "fields": [
+        {
+          "label": "Notes saved",
+          "default": "Notes saved"
+        },
+        {
+          "label": "Save",
+          "default": "Save"
+        },
+        {
+          "label": "Submit answer",
+          "default": "Submit"
+        }
+      ]
+    },
+    {
       "label": "읽어주기 기능 텍스트",
       "fields": [
         {
@@ -78,8 +95,12 @@
         {
           "label": "노트가 닫혔을 때",
           "default": "보기가 연습 문제로 전환되었습니다."
+        },
+        {
+          "label": "Notes saved",
+          "default": "The notes were saved to the platform."
         }
-         ]
-      }
-   ]
+      ]
+    }
+  ]
 }

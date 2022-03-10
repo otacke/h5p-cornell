@@ -112,6 +112,36 @@
     ]
   },
   {
+    "name": "l10n",
+    "type": "group",
+    "common": true,
+    "label": "Localization",
+    "importance": "low",
+    "fields": [
+      {
+        "name": "notesSaved",
+        "type": "text",
+        "label": "Notes saved",
+        "importance": "low",
+        "default": "Notes saved"
+      },
+      {
+        "name": "save",
+        "type": "text",
+        "label": "Save",
+        "importance": "low",
+        "default": "Save"
+      },
+      {
+        "name": "submitAnswer",
+        "type": "text",
+        "label": "Submit answer",
+        "importance": "low",
+        "default": "Submit"
+      }
+    ]
+  },
+  {
     "name": "a11y",
     "type": "group",
     "common": true,
@@ -159,6 +189,13 @@
         "label": "Notes closed",
         "importance": "low",
         "default": "The view has switched to the exercise."
+      },
+      {
+        "name": "notesSaved",
+        "type": "text",
+        "label": "Notes saved",
+        "importance": "low",
+        "default": "The notes were saved to the platform."
       }
     ]
   }

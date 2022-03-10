@@ -53,6 +53,23 @@
       ]
     },
     {
+      "label": "Localization",
+      "fields": [
+        {
+          "label": "Notes saved",
+          "default": "Notes saved"
+        },
+        {
+          "label": "Save",
+          "default": "Save"
+        },
+        {
+          "label": "Submit answer",
+          "default": "Submit"
+        }
+      ]
+    },
+    {
       "label": "Vorlesewerkzeug (Barrierefreiheit)",
       "fields": [
         {
@@ -78,6 +95,10 @@
         {
           "label": "Notizen geschlossen",
           "default": "Die Ansicht hat zur Aufgabe gewechselt."
+        },
+        {
+          "label": "Notes saved",
+          "default": "The notes were saved to the platform."
         }
       ]
     }
