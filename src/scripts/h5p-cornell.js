@@ -80,30 +80,6 @@ export default class Cornell extends H5P.Question {
     const defaultLanguage = this.extras.metadata.defaultLanguage || 'en';
     this.languageTag = Util.formatLanguageCode(defaultLanguage);
 
-    /**
-     * Handle document complete.
-     */
-    this.handleDocumentComplete = () => {
-      setTimeout(() => {
-        // Add fullscreen button on first call after H5P.Question has created the DOM
-        this.container = document.querySelector('.h5p-container');
-        if (this.container) {
-          this.content.enableFullscreenButton();
-
-          this.on('enterFullScreen', () => {
-            this.content.toggleFullscreen(true);
-          });
-
-          this.on('exitFullScreen', () => {
-            this.content.toggleFullscreen(false);
-          });
-        }
-
-        // Content may need one extra resize when DOM is displayed.
-        this.content.resize();
-      }, 0);
-    };
-
     if (document.readyState === 'complete') {
       this.handleDocumentComplete();
     }
@@ -114,90 +90,54 @@ export default class Cornell extends H5P.Question {
         }
       });
     }
+  }
 
-    /**
-     * Register the DOM elements with H5P.Question
-     */
-    this.registerDomElements = () => {
-      // On desktop, notes might be wanted to be open on startup
-      this.params.behaviour.showNotesOnStartup = this.params.behaviour.showNotesOnStartup &&
-        document.querySelector('.h5p-container').offsetWidth >= Cornell.MIN_WIDTH_FOR_DUALVIEW;
+  /**
+   * Handle document complete.
+   */
+  handleDocumentComplete() {
+    setTimeout(() => {
+      // Add fullscreen button on first call after H5P.Question has created the DOM
+      this.container = document.querySelector('.h5p-container');
+      if (this.container) {
+        this.content.enableFullscreenButton();
 
-      this.content = new CornellContent(this.params, this.contentId, this.extras, {
-        resize: this.resize,
-        read: this.read,
-        handleButtonFullscreen: this.toggleFullscreen
-      });
+        this.on('enterFullScreen', () => {
+          this.content.toggleFullscreen(true);
+        });
 
-      // Register content with H5P.Question
-      this.setContent(this.content.getDOM());
-    };
-
-    /**
-     * Toggle fullscreen button.
-     * @param {string|boolean} state enter|false for enter, exit|true for exit.
-     */
-    this.toggleFullscreen = (state) => {
-      if (!this.container) {
-        return;
+        this.on('exitFullScreen', () => {
+          this.content.toggleFullscreen(false);
+        });
       }
 
-      if (typeof state === 'string') {
-        if (state === 'enter') {
-          state = false;
-        }
-        else if (state === 'exit') {
-          state = true;
-        }
+      // Content may need one extra resize when DOM is displayed.
+      this.content.resize();
+    }, 0);
+  }
+
+  /**
+   * Register the DOM elements with H5P.Question
+   */
+  registerDomElements() {
+    // On desktop, notes might be wanted to be open on startup
+    this.params.behaviour.showNotesOnStartup = this.params.behaviour.showNotesOnStartup &&
+      document.querySelector('.h5p-container').offsetWidth >= Cornell.MIN_WIDTH_FOR_DUALVIEW;
+
+    this.content = new CornellContent(this.params, this.contentId, this.extras, {
+      resize: () => {
+        this.resize();
+      },
+      read: () => {
+        this.read();
+      },
+      handleButtonFullscreen: () => {
+        this.toggleFullscreen();
       }
+    });
 
-      if (typeof state !== 'boolean') {
-        state = !H5P.isFullscreen;
-      }
-
-      if (state === true) {
-        H5P.fullScreen(H5P.jQuery(this.container), this);
-      }
-      else {
-        H5P.exitFullScreen();
-      }
-    };
-
-    /**
-     * Check if result has been submitted or input has been given.
-     * @return {boolean} True, if answer was given.
-     * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-1}
-     */
-    this.getAnswerGiven = () => this.content.getAnswerGiven();
-
-    /**
-     * Get latest score.
-     * @return {number} latest score.
-     * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-2}
-     */
-    this.getScore = () => 0;
-
-    /**
-     * Get maximum possible score
-     * @return {number} Score necessary for mastering.
-     * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-3}
-     */
-    this.getMaxScore = () => 0;
-
-    /**
-     * Show solutions.
-     * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-4}
-     */
-    this.showSolutions = () => {
-    };
-
-    /**
-     * Reset task.
-     * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-5}
-     */
-    this.resetTask = () => {
-      this.content.resetNotes();
-    };
+    // Register content with H5P.Question
+    this.setContent(this.content.getDOM());
 
     /**
      * Resize Listener.
@@ -210,113 +150,190 @@ export default class Cornell extends H5P.Question {
 
       this.content.resize();
     });
+  }
 
-    /**
-     * Resize.
-     */
-    this.resize = () => {
-      this.trigger('resize', {break: true});
-    };
+  /**
+   * Toggle fullscreen button.
+   * @param {string|boolean} state enter|false for enter, exit|true for exit.
+   */
+  toggleFullscreen(state) {
+    if (!this.container) {
+      return;
+    }
 
-    /**
-     * Get xAPI data.
-     * @return {object} XAPI statement.
-     * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-6}
-     */
-    this.getXAPIData = () => ({
+    if (typeof state === 'string') {
+      if (state === 'enter') {
+        state = false;
+      }
+      else if (state === 'exit') {
+        state = true;
+      }
+    }
+
+    if (typeof state !== 'boolean') {
+      state = !H5P.isFullscreen;
+    }
+
+    if (state === true) {
+      H5P.fullScreen(H5P.jQuery(this.container), this);
+    }
+    else {
+      H5P.exitFullScreen();
+    }
+  }
+
+  /**
+   * Check if result has been submitted or input has been given.
+   * @return {boolean} True, if answer was given.
+   * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-1}
+   */
+  getAnswerGiven() {
+    this.content.getAnswerGiven();
+  }
+
+  /**
+   * Get latest score.
+   * @return {number} latest score.
+   * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-2}
+   */
+  getScore() {
+    return 0;
+  }
+
+  /**
+   * Get maximum possible score
+   * @return {number} Score necessary for mastering.
+   * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-3}
+   */
+  getMaxScore() {
+    return 0;
+  }
+
+  /**
+   * Show solutions.
+   * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-4}
+   */
+  showSolutions() {}
+
+  /**
+   * Reset task.
+   * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-5}
+   */
+  resetTask() {
+    this.content.resetNotes();
+  }
+
+  /**
+   * Resize.
+   */
+  resize() {
+    this.trigger('resize', {break: true});
+  }
+
+  /**
+   * Get xAPI data.
+   * @return {object} XAPI statement.
+   * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-6}
+   */
+  getXAPIData() {
+    return {
       statement: this.getXAPIAnswerEvent().data.statement
-    });
-
-    /**
-     * Build xAPI answer event.
-     * @return {H5P.XAPIEvent} XAPI answer event.
-     */
-    this.getXAPIAnswerEvent = () => {
-      const xAPIEvent = this.createXAPIEvent('answered');
-
-      xAPIEvent.setScoredResult(this.getScore(), this.getMaxScore(), this, true, this.isPassed());
-
-      return xAPIEvent;
     };
+  }
 
-    /**
-     * Create an xAPI event.
-     * @param {string} verb Short id of the verb we want to trigger.
-     * @return {H5P.XAPIEvent} Event template.
-     */
-    this.createXAPIEvent = (verb) => {
-      const xAPIEvent = this.createXAPIEventTemplate(verb);
-      Util.extend(
-        xAPIEvent.getVerifiedStatementValue(['object', 'definition']),
-        this.getxAPIDefinition());
-      return xAPIEvent;
-    };
+  /**
+   * Build xAPI answer event.
+   * @return {H5P.XAPIEvent} XAPI answer event.
+   */
+  getXAPIAnswerEvent() {
+    const xAPIEvent = this.createXAPIEvent('answered');
 
-    /**
-     * Get the xAPI definition for the xAPI object.
-     * @return {object} XAPI definition.
-     */
-    this.getxAPIDefinition = () => {
-      const definition = {};
-      definition.name = {};
-      definition.name[this.languageTag] = this.getTitle();
-      // Fallback for h5p-php-reporting, expects en-US
-      definition.name['en-US'] = definition.name[this.languageTag];
-      definition.description = {};
-      definition.description[this.languageTag] = this.getDescription();
-      // Fallback for h5p-php-reporting, expects en-US
-      definition.description['en-US'] = definition.description[this.languageTag];
-      definition.type = 'http://adlnet.gov/expapi/activities/cmi.interaction';
-      definition.interactionType = 'long-fill-in';
+    xAPIEvent.setScoredResult(this.getScore(), this.getMaxScore(), this, true, this.isPassed());
 
-      return definition;
-    };
+    return xAPIEvent;
+  }
 
-    /**
-     * Determine whether the task has been passed by the user.
-     * @return {boolean} True if user passed or task is not scored.
-     */
-    this.isPassed = () => true;
+  /**
+   * Create an xAPI event.
+   * @param {string} verb Short id of the verb we want to trigger.
+   * @return {H5P.XAPIEvent} Event template.
+   */
+  createXAPIEvent(verb) {
+    const xAPIEvent = this.createXAPIEventTemplate(verb);
+    Util.extend(
+      xAPIEvent.getVerifiedStatementValue(['object', 'definition']),
+      this.getxAPIDefinition());
+    return xAPIEvent;
+  }
 
-    /**
-     * Get tasks title.
-     * @return {string} Title.
-     */
-    this.getTitle = () => {
-      let raw;
-      if (this.extras.metadata) {
-        raw = this.extras.metadata.title;
+  /**
+   * Get the xAPI definition for the xAPI object.
+   * @return {object} XAPI definition.
+   */
+  getxAPIDefinition() {
+    const definition = {};
+    definition.name = {};
+    definition.name[this.languageTag] = this.getTitle();
+    // Fallback for h5p-php-reporting, expects en-US
+    definition.name['en-US'] = definition.name[this.languageTag];
+    definition.description = {};
+    definition.description[this.languageTag] = this.getDescription();
+    // Fallback for h5p-php-reporting, expects en-US
+    definition.description['en-US'] = definition.description[this.languageTag];
+    definition.type = 'http://adlnet.gov/expapi/activities/cmi.interaction';
+    definition.interactionType = 'long-fill-in';
+
+    return definition;
+  }
+
+  /**
+   * Determine whether the task has been passed by the user.
+   * @return {boolean} True if user passed or task is not scored.
+   */
+  isPassed() {
+    return true;
+  }
+
+  /**
+   * Get tasks title.
+   * @return {string} Title.
+   */
+  getTitle() {
+    let raw;
+    if (this.extras.metadata) {
+      raw = this.extras.metadata.title;
+    }
+    raw = raw || Cornell.DEFAULT_DESCRIPTION;
+
+    return H5P.createTitle(raw);
+  }
+
+  /**
+   * Get tasks description.
+   * @return {string} Description.
+   */
+  getDescription() {
+    return this.params.taskDescription || Cornell.DEFAULT_DESCRIPTION;
+  }
+
+  /**
+   * Answer call to return the current state.
+   * @return {object} Current state.
+   */
+  getCurrentState() {
+    const currentState = this.content.getCurrentState();
+
+    // Use localStorage to avoid data loss on minor content changes
+    try {
+      if (window.localStorage) {
+        window.localStorage.setItem(`${Cornell.DEFAULT_DESCRIPTION}-${this.contentId}`, JSON.stringify(currentState));
       }
-      raw = raw || Cornell.DEFAULT_DESCRIPTION;
+    }
+    catch (error) {
+      console.warn('Could not store localStorage content for previous state.');
+    }
 
-      return H5P.createTitle(raw);
-    };
-
-    /**
-     * Get tasks description.
-     * @return {string} Description.
-     */
-    this.getDescription = () => this.params.taskDescription || Cornell.DEFAULT_DESCRIPTION;
-
-    /**
-     * Answer call to return the current state.
-     * @return {object} Current state.
-     */
-    this.getCurrentState = () => {
-      const currentState = this.content.getCurrentState();
-
-      // Use localStorage to avoid data loss on minor content changes
-      try {
-        if (window.localStorage) {
-          window.localStorage.setItem(`${Cornell.DEFAULT_DESCRIPTION}-${this.contentId}`, JSON.stringify(currentState));
-        }
-      }
-      catch (error) {
-        console.warn('Could not store localStorage content for previous state.');
-      }
-
-      return currentState;
-    };
+    return currentState;
   }
 
   /**
