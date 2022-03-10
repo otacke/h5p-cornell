@@ -56,6 +56,8 @@ export default class CornellContent {
     const buttonsWrapper = document.createElement('div');
     buttonsWrapper.classList.add('h5p-cornell-buttons-wrapper');
 
+    // Save state to platform button
+    // TODO: Request H5P core to set a flag that can be queried instead
     if (H5PIntegration.saveFreq !== undefined && H5PIntegration.saveFreq !== false) {
       this.buttonSave = H5P.JoubelUI.createButton({
         type: 'button',
@@ -71,6 +73,7 @@ export default class CornellContent {
       buttonsWrapper.appendChild(this.buttonSave);
     }
 
+    // Copy to clipboard button
     this.buttonCopy = H5P.JoubelUI.createButton({
       type: 'button',
       html: this.params.l10n.copy,
@@ -618,9 +621,7 @@ export default class CornellContent {
 
     const text = `## ${this.params.notesFields.notesTitle}\n${notes}\n\n## ${this.params.notesFields.recallTitle}\n${cue}\n\n## ${this.params.notesFields.summaryTitle}\n${summary}`;
     Util.copyTextToClipboard(text, (result) => {
-      const message = (result === true) ? this.params.l10n.copyToClipboardSuccess : this.params.a11y.copyToClipboardError;
-
-      this.callbacks.read(message);
+      const message = (result === true) ? this.params.l10n.copyToClipboardSuccess : this.params.l10n.copyToClipboardError;
 
       H5P.attachToastTo(this.buttonCopy, message, {position: {
         horizontal: 'centered',
@@ -628,6 +629,8 @@ export default class CornellContent {
         offsetVertical: 5,
         vertical: 'above'
       }});
+
+      this.callbacks.read(message);      
     });
   }
 }
