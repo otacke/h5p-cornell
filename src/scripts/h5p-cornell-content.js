@@ -592,10 +592,11 @@ export default class CornellContent {
    * 'progressed' statement, but this would include a 3 second delay.
    */
   handleSave() {
+    // Using callback to also store in LocalStorage
     H5P.setUserData(
       this.contentId,
       'state',
-      this.getCurrentState(),
+      this.callbacks.getCurrentState(),
       { deleteOnChange: false }
     );
 
@@ -630,7 +631,7 @@ export default class CornellContent {
         vertical: 'above'
       }});
 
-      this.callbacks.read(message);      
+      this.callbacks.read(message);
     });
   }
 }
