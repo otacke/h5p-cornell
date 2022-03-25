@@ -51,7 +51,8 @@ export default class Cornell extends H5P.Question {
         submitAnswer: 'Submit',
         copy: 'Copy',
         copyToClipboardSuccess: 'Notes copied to clipboard',
-        copyToClipboardError: 'Notes could not be copied to clipboard'
+        copyToClipboardError: 'Notes could not be copied to clipboard',
+        noSaveContentState: 'The platform either does not support the save content state feature or it is not activated in the platform\'s settings. Your notes cannot not be saved!'
       },
       a11y: {
         buttonFullscreenEnter: 'Enter fullscreen mode',

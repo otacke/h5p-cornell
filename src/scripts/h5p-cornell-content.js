@@ -44,6 +44,16 @@ export default class CornellContent {
     this.titlebar = this.createTitleBar();
     this.content.appendChild(this.titlebar.getDOM());
 
+    if (H5PIntegration.saveFreq === undefined || H5PIntegration.saveFreq === false) {
+      this.messageBox = document.createElement('div');
+      this.messageBox.classList.add('h5p-cornell-message-box');
+      const message = document.createElement('p');
+      message.classList.add('h5p-cornell-message');
+      message.innerHTML = this.params.l10n.noSaveContentState;
+      this.messageBox.appendChild(message);
+      this.content.appendChild(this.messageBox);
+    }
+
     const panel = document.createElement('div');
     panel.classList.add('h5p-cornell-panel');
 
@@ -452,7 +462,8 @@ export default class CornellContent {
     if (enterFullScreen === true) {
       // Give browser some time to go to fullscreen mode and return proper viewport height
       setTimeout(() => {
-        const maxHeight = `${window.innerHeight - this.titlebar.getDOM().offsetHeight}px`;
+        const messageHeight = this.messageBox ? this.messageBox.offsetHeight : 0;
+        const maxHeight = `${window.innerHeight - this.titlebar.getDOM().offsetHeight - messageHeight}px`;
         this.exerciseWrapper.style.maxHeight = maxHeight;
         this.notesWrapper.style.maxHeight = maxHeight;
       }, 100);

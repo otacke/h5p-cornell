@@ -56,6 +56,21 @@
   white-space: nowrap;
 }
 
+.h5p-cornell .h5p-cornell-message-box {
+  background-color: #f5e8d5;
+  border: 1px solid #eedd55;
+  box-sizing: border-box;
+  color: #9e5c16;
+  font-size: .8em;
+  padding: .8em;
+  width: 100%;
+
+  .h5p-cornell-message {
+    margin: 0;
+    text-align: center;
+  }
+}
+
 .h5p-cornell .h5p-cornell-date {
   color: #1a73d9;
   flex-shrink: 0;

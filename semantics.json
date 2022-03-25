@@ -133,6 +133,13 @@
         "default": "Save"
       },
       {
+        "name": "noSaveContentState",
+        "type": "text",
+        "label": "Notes cannot be saved",
+        "importance": "low",
+        "default": "The platform either does not support the save content state feature or it is not activated in the platform's settings. Your notes cannot not be saved!"
+      },
+      {
         "name": "submitAnswer",
         "type": "text",
         "label": "Submit answer",
