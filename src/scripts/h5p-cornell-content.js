@@ -73,7 +73,8 @@ export default class CornellContent {
         type: 'button',
         html: this.params.l10n.save,
         ariaLabel: this.params.l10n.save,
-        class: 'h5p-cornell-button-save',
+        class: 'h5p-cornell-button-save h5p-cornell-disabled',
+        disabled: true,
         on: {
           click: () => {
             this.handleSave();
@@ -98,6 +99,22 @@ export default class CornellContent {
     buttonsWrapper.appendChild(this.buttonCopy);
 
     this.notesWrapper.appendChild(buttonsWrapper);
+
+    // Initialize change listeners for enabling save button
+    [this.recall, this.mainNotes, this.summary].forEach((field) => {
+      field.previousInput = field.getCurrentState().inputField;
+
+      ['change', 'keyup', 'paste'].forEach((eventName) => {
+        field.$inputField.get(0).addEventListener(eventName, () => {
+          if (field.getCurrentState().inputField !== field.previousInput) {
+            this.buttonSave.classList.remove('h5p-cornell-disabled');
+            this.buttonSave.removeAttribute('disabled');
+          }
+
+          field.previousInput = field.getCurrentState().inputField;
+        });
+      });
+    });
 
     this.content.appendChild(panel);
   }
@@ -618,6 +635,9 @@ export default class CornellContent {
         offsetVertical: 5,
         vertical: 'above'
       }});
+
+      this.buttonSave.classList.add('h5p-cornell-disabled');
+      this.buttonSave.setAttribute('disabled', 'disabled');
     }
 
     this.callbacks.read(this.params.a11y.notesSaved);

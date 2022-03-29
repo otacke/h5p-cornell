@@ -133,10 +133,19 @@
   width: calc(100% - 4em);
 }
 
-.h5p-cornell .h5p-cornell-notes-wrapper .h5p-cornell-buttons-wrapper .h5p-cornell-button-save::before {
-  content: "\f0ed";
-  font-family: "H5PFontAwesome4";
-  padding-right: 0.5em;
+.h5p-cornell .h5p-cornell-notes-wrapper .h5p-cornell-buttons-wrapper .h5p-cornell-button-save {
+  &::before {
+    content: "\f0ed";
+    font-family: "H5PFontAwesome4";
+    padding-right: 0.5em;
+  }
+
+  &.h5p-cornell-disabled {
+    background-color: $background-color-button-disabled;
+    color: $color-button-disabled;
+    cursor: inherit;
+    pointer-events: none;
+  }
 }
 
 .h5p-cornell .h5p-cornell-notes-wrapper .h5p-cornell-buttons-wrapper .h5p-cornell-button-copy::before {

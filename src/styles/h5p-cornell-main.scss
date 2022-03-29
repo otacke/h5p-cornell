@@ -5,5 +5,8 @@ $color-base-20: rgba($color-base, .20);
 $color-base-90: rgba($color-base, .90);
 $color-base-95: rgba($color-base, .95);
 
+$color-button-disabled: #e9e9e4;
+$background-color-button-disabled: #838383;
+
 @import "h5p-cornell";
 @import "h5p-cornell-buttons";
