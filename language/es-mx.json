@@ -53,35 +53,35 @@
       ]
     },
     {
-      "label": "Localization",
+      "label": "Localización",
       "fields": [
         {
-          "label": "Notes saved",
-          "default": "Notes saved"
+          "label": "Anotaciones guardadas",
+          "default": "Anotaciones guardadas"
         },
         {
-          "label": "Save",
-          "default": "Save"
+          "label": "Guardar",
+          "default": "Guardar"
         },
         {
-          "label": "Notes cannot be saved",
-          "default": "The platform either does not support the save content state feature or it is not activated in the platform's settings or you are not logged in. Your notes cannot not be saved!"
+          "label": "No se pueden guardar las anotaciones",
+          "default": "La plataforma no soporta la característica de guardar el estado del contenido, o no está activada en las configuraciones de la plataforma, o usted no está ingresado en el sitio. ¡Sus anotaciones no pueden ser guardadas!"
         },
         {
-          "label": "Submit answer",
-          "default": "Submit"
+          "label": "Enviar respuesta",
+          "default": "Enviar"
         },
         {
-          "label": "Text for \"Copy\" button",
-          "default": "Copy"
+          "label": "Texto para botón \"Copiar\"",
+          "default": "Copiar"
         },
         {
-          "label": "Notes copied to clipboard",
-          "default": "Notes copied to clipboard"
+          "label": "Anotaciones copiadas al portapapeles",
+          "default": "Anotaciones copiadas al portapapeles"
         },
         {
-          "label": "Notes could not be copied to clipboard",
-          "default": "Notes could not be copied to clipboard"
+          "label": "Las anotaciones no se pudieron copiar al portapapeles",
+          "default": "Las anotaciones no se pudieron copiar al portapapeles"
         }
       ]
     },
@@ -90,18 +90,18 @@
       "fields": [
         {
           "label": "Título de botón PantallaCompleta (Entrar)",
-          "default": "Entrar a modo de PantallaCompleta"
+          "default": "Título de botón PantallaCompleta"
         },
         {
           "label": "Título de botón PantallaCompleta (salida)",
           "default": "Salir del modo de PantallaCompleta"
         },
         {
-          "label": "Alternar Título del botón (cuando anotaciones cerradas)",
+          "label": "Alternar Título del botón (cuando anotaciones cerrado)",
           "default": "Abrir anotaciones"
         },
         {
-          "label": "Alternar Título de botón (cuando anotaciones abiertas)",
+          "label": "Alternar Título de botón (cuando anotaciones abierto)",
           "default": "Cerrar anotaciones"
         },
         {
@@ -113,8 +113,8 @@
           "default": "La vista ha cambiado al ejercicio."
         },
         {
-          "label": "Notes saved",
-          "default": "The notes were saved to the platform."
+          "label": "Anotaciones guardadas",
+          "default": "Las anotaciones fueron guardadas en la plataforma."
         }
       ]
     }
