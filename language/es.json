@@ -12,14 +12,14 @@
       "description": "Configuraciones para los campos de anotaciones",
       "fields": [
         {
-          "label": "Enfilar título de campo",
-          "default": "Enfilar",
+          "label": "Título del campo de pistas",
+          "default": "Pista",
           "description": "Título para la sección Recordar"
         },
         {
-          "label": "Enfilar reemplazable de campo",
+          "label": "Reemplazable del campo de pista",
           "default": "Escriba sus comentarios, preguntas, la idea principal, etc. que usted deriva de sus anotaciones",
-          "description": "Remplazable para la sección recordar como un recordatorio para sus estudiantes"
+          "description": "Reemplazable para la sección de pistas como un recordatorio para sus estudiantes"
         },
         {
           "label": "Título de campo Anotaciones",
@@ -37,9 +37,9 @@
           "description": "Título para la sección del Resumen"
         },
         {
-          "label": "Remplazable para el campo del Resumen",
-          "default": "Resuma lo que ha aprendido",
-          "description": "Remplazable para la sección del resumen como un recordatorio para sus estudiantes"
+          "label": "Reemplazable para el campo del Resumen",
+          "default": "Haga un resumen de lo que ha aprendido",
+          "description": "Reemplazable para la sección del resumen como un recordatorio para sus estudiantes"
         }
       ]
     },
@@ -48,40 +48,40 @@
       "fields": [
         {
           "label": "Mostrar anotaciones al iniciar",
-          "description": "Cuando esta opción es deshabilitada, las anotaciones son ocultas al iniciar. LAs anotaciones son ocultadas automáticamente en monitores pequeños."
+          "description": "Cuando esta opción es deshabilitada, las anotaciones están ocultas al iniciar. Las anotaciones son ocultadas automáticamente en monitores pequeños."
         }
       ]
     },
     {
-      "label": "Localization",
+      "label": "Localización",
       "fields": [
         {
-          "label": "Notes saved",
-          "default": "Notes saved"
+          "label": "Anotaciones guardadas",
+          "default": "Anotaciones guardadas"
         },
         {
-          "label": "Save",
-          "default": "Save"
+          "label": "Guardar",
+          "default": "Guardar"
         },
         {
-          "label": "Notes cannot be saved",
-          "default": "The platform either does not support the save content state feature or it is not activated in the platform's settings or you are not logged in. Your notes cannot not be saved!"
+          "label": "No se pueden guardar las anotaciones",
+          "default": "La plataforma no soporta la característica de guardar el estado del contenido, o no está activada en las configuraciones de la plataforma, o usted no está ingresado en el sitio. ¡Sus anotaciones no pueden ser guardadas!"
         },
         {
-          "label": "Submit answer",
+          "label": "Enviar respuesta",
           "default": "Submit"
         },
         {
-          "label": "Text for \"Copy\" button",
-          "default": "Copy"
+          "label": "Texto para botón \"Copiar\"",
+          "default": "Copiar"
         },
         {
-          "label": "Notes copied to clipboard",
-          "default": "Notes copied to clipboard"
+          "label": "Anotaciones copiadas al portapapeles",
+          "default": "Anotaciones copiadas al portapapeles"
         },
         {
-          "label": "Notes could not be copied to clipboard",
-          "default": "Notes could not be copied to clipboard"
+          "label": "Las anotaciones no se pudieron copiar al portapapeles",
+          "default": "Las anotaciones no se pudieron copiar al portapapeles"
         }
       ]
     },
@@ -113,8 +113,8 @@
           "default": "La vista ha cambiado al ejercicio."
         },
         {
-          "label": "Notes saved",
-          "default": "The notes were saved to the platform."
+          "label": "Anotaciones guardadas",
+          "default": "Las anotaciones fueron guardadas en la plataforma."
         }
       ]
     }
