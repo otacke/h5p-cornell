@@ -69,7 +69,7 @@
         },
         {
           "label": "Enviar respuesta",
-          "default": "Submit"
+          "default": "Enviar"
         },
         {
           "label": "Texto para botón \"Copiar\"",
