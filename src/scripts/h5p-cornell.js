@@ -80,7 +80,9 @@ export default class Cornell extends H5P.Question {
       metadata: {
         title: 'Cornell Notes',
       },
-      previousState: Cornell.getPreviousStateLocal(this.contentId) || {}
+      previousState: Cornell.getPreviousStateLocal(
+        this.isRoot() ? this.contentId : this.subContentId
+      ) || {}
     }, extras);
 
     const defaultLanguage = this.extras.metadata.defaultLanguage || 'en';
@@ -130,7 +132,13 @@ export default class Cornell extends H5P.Question {
     this.params.behaviour.showNotesOnStartup = this.params.behaviour.showNotesOnStartup &&
       document.querySelector('.h5p-container').offsetWidth >= Cornell.MIN_WIDTH_FOR_DUALVIEW;
 
-    this.content = new CornellContent(this.params, this.contentId, this.extras, {
+    this.content = new CornellContent({
+      params: this.params,
+      contentId: this.contentId,
+      extras: this.extras,
+      isRoot: this.isRoot()
+    },
+    {
       resize: () => {
         this.resize();
       },
@@ -143,7 +151,8 @@ export default class Cornell extends H5P.Question {
       getCurrentState: () => {
         this.getCurrentState();
       }
-    });
+    }
+  );
 
     // Register content with H5P.Question
     this.setContent(this.content.getDOM());
@@ -335,7 +344,8 @@ export default class Cornell extends H5P.Question {
     // Use localStorage to avoid data loss on minor content changes
     try {
       if (window.localStorage) {
-        window.localStorage.setItem(`${Cornell.DEFAULT_DESCRIPTION}-${this.contentId}`, JSON.stringify(currentState));
+        const id = this.isRoot() ? this.contentId : this.subContentId;
+          window.localStorage.setItem(`${Cornell.DEFAULT_DESCRIPTION}-${id}`, JSON.stringify(currentState));
       }
     }
     catch (error) {

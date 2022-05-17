@@ -11,15 +11,17 @@ export default class CornellContent {
   /**
    * @constructor
    *
-   * @param {object} textField Parameter from editor.
-   * @param {number} contentId Content ID.
-   * @param {object} [extras] Extras incl. previous state.
+   * @param {object} params Parameters.
+   * @param {object} params.params Parameters from editor.
+   * @param {number} params.contentId Content ID.
+   * @param {object} [params.extras] Extras incl. previous state.
    * @param {object} [callbacks] Callbacks.
    */
-  constructor(params, contentId, extras, callbacks) {
-    this.params = params;
-    this.contentId = contentId;
-    this.extras = extras;
+  constructor(params = {}, callbacks) {
+    this.params = params.params || {};
+    this.contentId = params.contentId;
+    this.extras = params.extras || {};
+    this.isRoot = params.isRoot
 
     // Create values to fill with
     this.previousState = Util.extend(
@@ -29,7 +31,7 @@ export default class CornellContent {
         mainNotes: {inputField: ''},
         summary: {inputField: ''}
       },
-      extras.previousState || {}
+      this.extras.previousState || {}
     );
 
     // Callbacks
@@ -44,6 +46,7 @@ export default class CornellContent {
     this.titlebar = this.createTitleBar();
     this.content.appendChild(this.titlebar.getDOM());
 
+    // TODO: Request H5P core to set a flag that can be queried instead
     if (H5PIntegration.saveFreq === undefined || H5PIntegration.saveFreq === false) {
       this.messageBox = document.createElement('div');
       this.messageBox.classList.add('h5p-cornell-message-box');
@@ -620,13 +623,32 @@ export default class CornellContent {
    * 'progressed' statement, but this would include a 3 second delay.
    */
   handleSave() {
-    // Using callback to also store in LocalStorage
-    H5P.setUserData(
-      this.contentId,
-      'state',
-      this.callbacks.getCurrentState(),
-      { deleteOnChange: false }
-    );
+    /*
+     * If Cornell instance is not running on its own, storing the state
+     * directly requires to get the root content's currentState, because
+     * we're writing the state for the whole content directly.
+     */
+    let getCurrentStateProvider;
+    if (this.isRoot) {
+      getCurrentStateProvider = this.callbacks;
+    }
+    else if (typeof H5P.instances[0].getCurrentState === 'function') {
+      getCurrentStateProvider = H5P.instances[0]; // Always first instance here
+    }
+
+    if (getCurrentStateProvider) {
+      // Using callback to also store in LocalStorage
+      H5P.setUserData(
+        this.contentId,
+        'state',
+        getCurrentStateProvider.getCurrentState(),
+        { deleteOnChange: false }
+      );
+    }
+    else {
+      // Fallback, parent doesn't store state, at least store in local storage
+      this.callbacks.getCurrentState();
+    }
 
     if (this.buttonSave) {
       H5P.attachToastTo(this.buttonSave, this.params.l10n.notesSaved, {position: {
