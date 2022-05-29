@@ -107,7 +107,7 @@ export default class Cornell extends H5P.Question {
     setTimeout(() => {
       // Add fullscreen button on first call after H5P.Question has created the DOM
       this.container = document.querySelector('.h5p-container');
-      if (this.container) {
+      if (this.container && this.isRoot() && H5P.fullscreenSupported) {
         this.content.enableFullscreenButton();
 
         this.on('enterFullScreen', () => {
