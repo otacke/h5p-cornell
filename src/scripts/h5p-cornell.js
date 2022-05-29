@@ -151,8 +151,7 @@ export default class Cornell extends H5P.Question {
       getCurrentState: () => {
         this.getCurrentState();
       }
-    }
-  );
+    });
 
     // Register content with H5P.Question
     this.setContent(this.content.getDOM());
@@ -266,7 +265,8 @@ export default class Cornell extends H5P.Question {
   getXAPIAnswerEvent() {
     const xAPIEvent = this.createXAPIEvent('answered');
 
-    xAPIEvent.setScoredResult(this.getScore(), this.getMaxScore(), this, true, this.isPassed());
+    xAPIEvent.setScoredResult(this.getScore(), this.getMaxScore(),
+      this, true, this.isPassed());
 
     return xAPIEvent;
   }
@@ -345,7 +345,10 @@ export default class Cornell extends H5P.Question {
     try {
       if (window.localStorage) {
         const id = this.isRoot() ? this.contentId : this.subContentId;
-          window.localStorage.setItem(`${Cornell.DEFAULT_DESCRIPTION}-${id}`, JSON.stringify(currentState));
+        window.localStorage.setItem(
+          `${Cornell.DEFAULT_DESCRIPTION}-${id}`,
+          JSON.stringify(currentState)
+        );
       }
     }
     catch (error) {
@@ -371,7 +374,9 @@ export default class Cornell extends H5P.Question {
       return null;
     }
 
-    let previousState = window.localStorage.getItem(`${Cornell.DEFAULT_DESCRIPTION}-${id}`);
+    let previousState = window.localStorage.getItem(
+      `${Cornell.DEFAULT_DESCRIPTION}-${id}`
+    );
 
     if (previousState) {
       try {
