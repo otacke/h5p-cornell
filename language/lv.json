@@ -81,7 +81,7 @@
         },
         {
           "label": "Notes could not be copied to clipboard",
-          "default": "Notes could not be copied to clipboard"
+          "default": "Piezīmes neizdevās iekopēt starplikā"
         }
       ]
     },
@@ -113,8 +113,8 @@
           "default": "Skats pārslēgts uz uzdevumu."
         },
         {
-          "label": "Notes saved",
-          "default": "The notes were saved to the platform."
+          "label": "Piezīmes saglabātas",
+          "default": "Piezīmes tika saglabātas platformā."
         }
       ]
     }
