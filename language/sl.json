@@ -1,0 +1,122 @@
+{
+  "semantics": [
+    {
+      "label": "Navodila",
+      "description": "Navodila se udeležencem prikažejo nad zapiski."
+    },
+    {
+      "label": "Vsebina aktivnosti"
+    },
+    {
+      "label": "Vnosna polja zapiskov",
+      "description": "Nastavitve vnosnih polj za urejanje zapiskov",
+      "fields": [
+        {
+          "label": "Razdelek zaznamkov",
+          "default": "Zaznamki",
+          "description": "Naslov polja z zaznamki"
+        },
+        {
+          "label": "Nadomestno besedilo zaznamkov",
+          "default": "Vnesi svoje komentarje, vprašanja, ključna opažanja, bistvene pojme ipd., ki jih je mogoče oblikovati iz polja z zapiski.",
+          "description": "Besedilo bo udeležencem v pomoč pri urejanju zaznamkov."
+        },
+        {
+          "label": "Razdelek zapiskov",
+          "default": "Zapiski",
+          "description": "Naslov polja z zapiski"
+        },
+        {
+          "label": "Nadomestno besedilo zapiskov",
+          "default": "Vnesi datume, podrobnosti vsebine, definicije, formule, primere ipd., ki so bili predstavljeni v izvornem gradivu učne enote.",
+          "description": "Besedilo bo udeležencem v pomoč pri urejanju zapiskov."
+        },
+        {
+          "label": "Razdelek povzetka",
+          "default": "Povzetek",
+          "description": "Naslov polja s povzetkom"
+        },
+        {
+          "label": "Nadomestno besedilo povzetka",
+          "default": "Povzemi bistveni del zapiskov in tisto kar si je treba zapomniti.",
+          "description": "Besedilo bo udeležencem v pomoč pri urejanju povzetka."
+        }
+      ]
+    },
+    {
+      "label": "Nastavitev interakcije",
+      "fields": [
+        {
+          "label": "Vnosna polja zapiskov prikaži privzeto",
+          "description": "Onemogočena nastavitev ob zagonu polja z zapiski skrije. Polja so samodejno skrita tudi na manjših zaslonih."
+        }
+      ]
+    },
+    {
+      "label": "Določitev",
+      "fields": [
+        {
+          "label": "Zapiski shranjeni",
+          "default": "Zapiski shranjeni"
+        },
+        {
+          "label": "Shrani",
+          "default": "Shrani"
+        },
+        {
+          "label": "Zapiskov ni mogoče shraniti",
+          "default": "Zapiskov ni mogoče shraniti. Razlog je lahko v nepodprtosti shranjevanja v učnem okolju, neprijavljenosti uporabnika ipd."
+        },
+        {
+          "label": "Potrdi odgovor",
+          "default": "Potrdi odgovor"
+        },
+        {
+          "label": "Besedilo za gumb \"Kopiraj\"",
+          "default": "Kopiraj"
+        },
+        {
+          "label": "Zapiski kopirani v odložišče",
+          "default": "Zapiski kopirani v odložišče"
+        },
+        {
+          "label": "Zapiskov ni bilo mogoče kopirati v odložišče",
+          "default": "Zapiskov ni bilo mogoče kopirati v odložišče"
+        }
+      ]
+    },
+    {
+      "label": "Bralnik zaslona",
+      "fields": [
+        {
+          "label": "Besedilo za celozaslonski način",
+          "default": "Celozaslonski način"
+        },
+        {
+          "label": "Besedilo za zaključek celozaslonskega načina",
+          "default": "Zapusti celozaslonski način"
+        },
+        {
+          "label": "Naslov gumba za preklop pogleda (prikaži polja z zapiski)",
+          "default": "Prikaži polja z zapiski"
+        },
+        {
+          "label": "Naslov gumba za preklop pogleda (skrij polja z zapiski)",
+          "default": "Skrij polja z zapiski"
+        },
+        {
+          "label": "Zapiski odprti",
+          "default": "Pogled se je preklopil na polja z zapiski."
+        },
+        {
+          "label": "Zapiski zaprti",
+          "default": "Pogled se je preklopil na vsebino."
+        },
+        {
+          "label": "Zapiski shranjeni",
+          "default": "Zapiski so bili shranjeni v učno okolje."
+        }
+      ]
+    }
+  ]
+}
