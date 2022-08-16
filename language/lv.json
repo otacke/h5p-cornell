@@ -80,7 +80,7 @@
           "default": "Notes copied to clipboard"
         },
         {
-          "label": "Notes could not be copied to clipboard",
+          "label": "Piezīmes neizdevās iekopēt starplikā",
           "default": "Piezīmes neizdevās iekopēt starplikā"
         }
       ]

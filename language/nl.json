@@ -12,14 +12,14 @@
       "description": "Instellingen voor de notitievelden",
       "fields": [
         {
-          "label": "Titel kernwoordenveld",
-          "default": "Kernwoorden",
+          "label": "Titel trefwoordenveld",
+          "default": "Trefwoord",
           "description": "Titel van het kernwoordenveld"
         },
         {
-          "label": "Tijdelijke tekst van het kernwoordenveld",
-          "default": "Voer kernwoorden, vragen, hoofdidee, enz. in",
-          "description": "Tijdelijke tekst voor je kernwoordenveld als geheugensteun voor de gebruikers"
+          "label": "Tijdelijke tekst van het trefwoordenveld",
+          "default": "Voer commentaar, vragen, hoofdidee, enz. in die uit je notities naar voren komen",
+          "description": "Tijdelijke tekst voor je trefwoordenveld als geheugensteun voor gebruikers"
         },
         {
           "label": "Titel notitieveld",
@@ -28,7 +28,7 @@
         },
         {
           "label": "Tijdelijke tekst van het notitieveld",
-          "default": "Vul data, details, definities, formules, voorbeelden, enz. in",
+          "default": "Voer data, details, definities, formules, voorbeelden, enz. in die uit het materiaal komen",
           "description": "Tijdelijke tekst voor het notitieveld als geheugensteun voor je gebruikers"
         },
         {
@@ -53,35 +53,35 @@
       ]
     },
     {
-      "label": "Localization",
+      "label": "Localisatie",
       "fields": [
         {
-          "label": "Notes saved",
-          "default": "Notes saved"
+          "label": "Notities opgeslagen",
+          "default": "Notities opgeslagen"
         },
         {
-          "label": "Save",
-          "default": "Save"
+          "label": "Opslaan",
+          "default": "Opslaan"
         },
         {
-          "label": "Notes cannot be saved",
-          "default": "The platform either does not support the save content state feature or it is not activated in the platform's settings or you are not logged in. Your notes cannot not be saved!"
+          "label": "Notities kunnen niet worden opgeslagen",
+          "default": "Het platform ondersteunt geen opslag of het is niet in de instellingen geactiveerd of je bent niet ingelogd. Je notities kunnen niet worden opgeslagen!"
         },
         {
-          "label": "Submit answer",
-          "default": "Submit"
+          "label": "Antwoord indienen",
+          "default": "Indienen"
         },
         {
-          "label": "Text for \"Copy\" button",
-          "default": "Copy"
+          "label": "Tekst voor \"Kopieer\"-knop",
+          "default": "Kopieer"
         },
         {
-          "label": "Notes copied to clipboard",
-          "default": "Notes copied to clipboard"
+          "label": "Notities gekopieerd naar klembord",
+          "default": "Notities gekopieerd naar klembord"
         },
         {
-          "label": "Notes could not be copied to clipboard",
-          "default": "Notes could not be copied to clipboard"
+          "label": "Notities konden niet naar klembord worden gekopieerd",
+          "default": "Notities konden niet naar klembord worden gekopieerd"
         }
       ]
     },
@@ -97,24 +97,24 @@
           "default": "Volledig scherm afsluiten"
         },
         {
-          "label": "Titel van de schakelknop (wanneer aantekeningen gesloten zijn)",
-          "default": "Open aantekeningen"
+          "label": "Titel van de schakelknop (wanneer notities gesloten zijn)",
+          "default": "Open notities"
         },
         {
-          "label": "Titel van de schakelknop (wanneer aantekeningen geopend zijn)",
-          "default": "Sluit aantekeningen"
+          "label": "Titel van de schakelknop (wanneer notities geopend zijn)",
+          "default": "Sluit notities"
         },
         {
-          "label": "Aantekeningen zijn geopend",
-          "default": "De weergave is overgeschakeld naar je aantekeningen."
+          "label": "Notities zijn geopend",
+          "default": "De weergave is overgeschakeld naar je notities."
         },
         {
-          "label": "Aantekeningen zijn gesloten",
+          "label": "Notities zijn gesloten",
           "default": "De weergave is overgeschakeld naar de oefening."
         },
         {
-          "label": "Notes saved",
-          "default": "The notes were saved to the platform."
+          "label": "Notities opgeslagen",
+          "default": "De notities werden opgeslagen op het platform."
         }
       ]
     }
