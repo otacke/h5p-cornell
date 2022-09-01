@@ -1,5 +1,6 @@
 // Import required classes
 import CornellContentTitlebar from './h5p-cornell-content-titlebar';
+import CornellExercise from './h5p-cornell-exercise';
 import CornellNotes from './h5p-cornell-notes';
 import Util from './h5p-cornell-util';
 
@@ -153,17 +154,13 @@ export default class CornellContent {
       exerciseWrapper.classList.add('h5p-cornell-notes-mode');
     }
 
-    const exerciseContent = document.createElement('div');
-    exerciseContent.classList.add('h5p-cornell-exercise-content');
-
-    const exerciseContentLibrary = document.createElement('div');
-    exerciseContentLibrary.classList.add('h5p-cornell-exercise-content-library');
-
-    const exerciseContentWrapper = document.createElement('div');
-    exerciseContentWrapper.classList.add('h5p-cornell-exercise-content-wrapper');
-    exerciseContentWrapper.appendChild(exerciseContent);
-
-    exerciseWrapper.appendChild(exerciseContentWrapper);
+    this.exercise = new CornellExercise({
+      exerciseContent: this.params.exerciseContent,
+      contentId: this.contentId,
+      previousState: this.previousState.exercise,
+      instructions: this.params.instructions
+    });
+    exerciseWrapper.appendChild(this.exercise.getDOM());
 
     // If notes are opened and display is too narrow, undisplay excercise
     exerciseWrapper.addEventListener('transitionend', () => {
@@ -176,78 +173,6 @@ export default class CornellContent {
         }, 0);
       }
     });
-
-    if (this.params.exerciseContent && this.params.exerciseContent.library) {
-      this.exerciseMachineName = this.params.exerciseContent.library.split(' ')[0];
-    }
-
-    let useSeparator = true;
-
-    if (this.exerciseMachineName !== undefined) {
-      // Override params - unfortunately can't be passed to library from parent editor
-      switch (this.exerciseMachineName) {
-        case 'H5P.Audio':
-          this.params.exerciseContent.params.controls = true;
-          this.params.exerciseContent.params.fitToWrapper = true;
-          this.params.exerciseContent.params.playerMode = "full";
-          break;
-        case 'H5P.Video':
-          this.params.exerciseContent.params.visuals.controls = true;
-          this.params.exerciseContent.params.visuals.fit = false;
-          break;
-      }
-
-      this.exercise = H5P.newRunnable(
-        this.params.exerciseContent,
-        this.contentId,
-        H5P.jQuery(exerciseContentLibrary),
-        false,
-        {previousState: this.previousState.exercise}
-      );
-
-      switch (this.exerciseMachineName) {
-        case 'H5P.Audio':
-          // The height value that is set by H5P.Audio is counter-productive here
-          if (this.exercise.audio) {
-            this.exercise.audio.style.height = '';
-          }
-
-          useSeparator = false;
-
-          break;
-        case 'H5P.Video':
-          // H5P.Video doesn't keep track of its playing state itself
-          this.exercise.on('stateChange', (event) => {
-            this.mediumRunning = (event.data === 1);
-          });
-
-          useSeparator = false;
-
-          this.exercise.on('resize', () => {
-            if (this.youtubeWrapper === undefined) {
-              const youtubeVideo = document.querySelector('.h5p-cornell-exercise-content-library.h5p-video.h5p-youtube');
-              this.youtubeWrapper = (youtubeVideo) ? youtubeVideo.firstChild : null;
-            }
-
-            this.resize(true);
-          });
-
-          break;
-      }
-
-      exerciseContent.appendChild(this.createInstructionsDOM());
-      if (useSeparator) {
-        exerciseContent.appendChild(this.createSeparatorDOM());
-      }
-      exerciseContent.appendChild(exerciseContentLibrary);
-    }
-    else {
-      const message = document.createElement('div');
-      const messageText = 'No content was chosen for this exercise';
-      console.warn(messageText);
-      message.innerHTML = messageText;
-      exerciseContentLibrary.appendChild(message);
-    }
 
     return exerciseWrapper;
   }
@@ -287,32 +212,6 @@ export default class CornellContent {
     notesContentWrapper.appendChild(this.createSummaryDOM());
 
     return notesWrapper;
-  }
-
-  /**
-   * Create DOM for instructions.
-   * @return {HTMLElement} DOM for instructions.
-   */
-  createInstructionsDOM() {
-    const instructionsDOM = document.createElement('div');
-
-    if (this.params.instructions !== '') {
-      instructionsDOM.classList.add('h5p-cornell-instructions-wrapper');
-      instructionsDOM.innerHTML = this.params.instructions;
-    }
-
-    return instructionsDOM;
-  }
-
-  /**
-   * Create DOM for separator.
-   * @return {HTMLElement} DOM for separator.
-   */
-  createSeparatorDOM() {
-    const separatorDOM = document.createElement('div');
-    separatorDOM.classList.add('h5p-cornell-content-separator');
-
-    return separatorDOM;
   }
 
   /**
@@ -403,21 +302,17 @@ export default class CornellContent {
       }
 
       setTimeout(() => {
-        this.exercise.trigger('resize');
+        this.exercise.resize(fromVideo);
       }, 0);
     }
 
     // Not done using media query because display needs to be not-none first
     if (this.content.offsetWidth < this.params.minWidthForDualView) {
-      // Only want to trigger toggleMedium once when mode actually changes
       if (!this.isNarrowScreen) {
         this.isNarrowScreen = true;
 
         // Triggers a transition, display set to none afterwards by listener
         this.exerciseWrapper.classList.add('h5p-cornell-narrow-screen');
-        if (!this.isExerciseMode) {
-          this.toggleMedium();
-        }
       }
     }
     else {
@@ -426,13 +321,8 @@ export default class CornellContent {
         this.exerciseWrapper.classList.remove('h5p-cornell-narrow-screen');
       }, 0);
 
-      // Only want to trigger toggleMedium once when mode actually changes
       if (this.isNarrowScreen) {
         this.isNarrowScreen = false;
-
-        if (!this.isExerciseMode) {
-          this.toggleMedium();
-        }
       }
     }
 
@@ -492,9 +382,6 @@ export default class CornellContent {
     }
 
     this.toggleView();
-    if (this.isNarrowScreen) {
-      this.toggleMedium();
-    }
   }
 
   /**
@@ -514,44 +401,6 @@ export default class CornellContent {
 
       this.resize();
     }, 0);
-  }
-
-  /**
-   * Pause/replay medium depending on previous state.
-   */
-  toggleMedium() {
-    let currentExercise;
-    let currentMediumRunning;
-
-    switch (this.exerciseMachineName) {
-      // Not sure if it makes sense to stop audio as well
-      // case 'H5P.Audio':
-      //   currentExercise = this.exercise.audio;
-      //   currentMediumRunning = this.exercise.audio.paused === false;
-      //   break;
-
-      case 'H5P.Video':
-        currentExercise = this.exercise;
-        currentMediumRunning = this.mediumRunning;
-        break;
-    }
-
-    if (!currentExercise) {
-      return;
-    }
-
-    if (currentMediumRunning) {
-      this.continueMedia = currentMediumRunning;
-      if (currentExercise.pause) {
-        currentExercise.pause();
-      }
-    }
-    else if (this.continueMedia === true) {
-      this.continueMedia = undefined;
-      if (currentExercise.play) {
-        currentExercise.play();
-      }
-    }
   }
 
   /**
@@ -594,7 +443,7 @@ export default class CornellContent {
       recall: this.stripTags(this.recall.getCurrentState()),
       mainNotes: this.stripTags(this.mainNotes.getCurrentState()),
       summary: this.stripTags(this.summary.getCurrentState()),
-      exercise: (this.exercise && this.exercise.getCurrentState) ? this.exercise.getCurrentState() : undefined
+      exercise: this.exercise.getCurrentState()
     };
   }
 
