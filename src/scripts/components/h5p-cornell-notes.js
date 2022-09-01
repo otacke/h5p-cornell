@@ -37,8 +37,7 @@ export default class CornellNotes {
           placeholderText: Util.htmlDecode(this.params.placeholder),
           inputFieldSize: this.params.size,
         },
-        library: 'H5P.TextInputField 1.2', // TODO: Retrieve version dynamically
-        subContentId: H5P.createUUID()
+        library: 'H5P.TextInputField 1.2'
       },
       this.params.contentId,
       H5P.jQuery(wrapper),
@@ -51,12 +50,13 @@ export default class CornellNotes {
     }
 
     ['change', 'keyup', 'paste'].forEach((eventName) => {
+
       this.instance.$inputField.get(0).addEventListener(eventName, () => {
-        if (this.getCurrentState().inputField !== this.previousInput) {
+        if (this.getText() !== this.previousInput) {
           this.callbacks.onChanged();
         }
 
-        this.previousInput = this.getCurrentState().inputField;
+        this.previousInput = this.getText();
       });
     });
   }

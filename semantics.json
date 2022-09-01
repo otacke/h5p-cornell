@@ -37,7 +37,8 @@
       "H5P.Audio 1.5",
       "H5P.AdvancedText 1.1",
       "H5P.Video 1.6"
-    ]
+    ],
+    "optional": false
   },
   {
     "name": "notesFields",

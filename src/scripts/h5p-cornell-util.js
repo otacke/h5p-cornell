@@ -9,7 +9,10 @@ class Util {
     for (let i = 1; i < arguments.length; i++) {
       for (let key in arguments[i]) {
         if (Object.prototype.hasOwnProperty.call(arguments[i], key)) {
-          if (typeof arguments[0][key] === 'object' && typeof arguments[i][key] === 'object') {
+          if (
+            typeof arguments[0][key] === 'object' &&
+            typeof arguments[i][key] === 'object'
+          ) {
             this.extend(arguments[0][key], arguments[i][key]);
           }
           else {

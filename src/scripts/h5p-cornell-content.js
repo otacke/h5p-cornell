@@ -6,10 +6,7 @@ import Dictionary from './services/dictionary';
 import Util from './h5p-cornell-util';
 
 /**
- * Class representing the content
- *
- * This class could be split into one "page" that the actual content
- * could extend, but for now it's both pages in one.
+ * Class representing the content.
  */
 export default class CornellContent {
   /**
@@ -18,13 +15,13 @@ export default class CornellContent {
    * @param {object} params.params Parameters from editor.
    * @param {number} params.contentId Content ID.
    * @param {object} [params.extras] Extras incl. previous state.
-   * @param {object} [callbacks] Callbacks.
+   * @param {boolean} [params.isRoot] If true, running standalone.
+   * @param {object} [callbacks={}] Callbacks.
    */
-  constructor(params = {}, callbacks) {
-    this.params = params.params || {};
-    this.contentId = params.contentId;
-    this.extras = params.extras || {};
-    this.isRoot = params.isRoot;
+  constructor(params = {}, callbacks = {}) {
+    this.params = Util.extend({
+      extras: {}
+    }, params);
 
     // Create values to fill with
     this.previousState = Util.extend(
@@ -34,14 +31,22 @@ export default class CornellContent {
         mainNotes: {inputField: ''},
         summary: {inputField: ''}
       },
-      this.extras.previousState || {}
+      this.params.extras.previousState || {}
     );
 
     // Callbacks
-    this.callbacks = callbacks || {};
-    this.callbacks.handleButtonFullscreen = callbacks.handleButtonFullscreen || (() => {});
+    this.callbacks = Util.extend({
+      getCurrentState: () => {},
+      onButtonFullscreen: () => {},
+      read: () => {},
+      resize: () => {}
+    }, callbacks);
 
     this.isExerciseMode = !this.params.behaviour.showNotesOnStartup;
+
+    // TODO: Request H5P core to set a flag that can be queried instead
+    const canStoreUserState = H5PIntegration.saveFreq !== undefined &&
+      H5PIntegration.saveFreq !== false;
 
     this.content = document.createElement('div');
     this.content.classList.add('h5p-cornell-container');
@@ -49,8 +54,7 @@ export default class CornellContent {
     this.titlebar = this.createTitleBar();
     this.content.appendChild(this.titlebar.getDOM());
 
-    // TODO: Request H5P core to set a flag that can be queried instead
-    if (H5PIntegration.saveFreq === undefined || H5PIntegration.saveFreq === false) {
+    if (!canStoreUserState) {
       this.messageBox = document.createElement('div');
       this.messageBox.classList.add('h5p-cornell-message-box');
       const message = document.createElement('p');
@@ -73,8 +77,7 @@ export default class CornellContent {
     buttonsWrapper.classList.add('h5p-cornell-buttons-wrapper');
 
     // Save state to platform button
-    // TODO: Request H5P core to set a flag that can be queried instead
-    if (H5PIntegration.saveFreq !== undefined && H5PIntegration.saveFreq !== false) {
+    if (canStoreUserState) {
       this.buttonSave = H5P.JoubelUI.createButton({
         type: 'button',
         html: Dictionary.get('l10n.save'),
@@ -126,13 +129,13 @@ export default class CornellContent {
   createTitleBar() {
     return new CornellTitlebar(
       {
-        title: this.params.headline || this.extras.metadata.title,
+        title: this.params.headline || this.params.extras.metadata?.title || '',
         dateString: this.previousState.dateString,
         toggleButtonActiveOnStartup: this.params.behaviour.showNotesOnStartup
       },
       {
-        handleButtonToggle: (event) => this.handleButtonToggle(event),
-        handleButtonFullscreen: this.callbacks.handleButtonFullscreen
+        onButtonToggle: (event) => this.handleButtonToggle(event),
+        onButtonFullscreen: this.callbacks.onButtonFullscreen
       }
     );
   }
@@ -151,12 +154,19 @@ export default class CornellContent {
       exerciseWrapper.classList.add('h5p-cornell-notes-mode');
     }
 
-    this.exercise = new CornellExercise({
-      exerciseContent: this.params.exerciseContent,
-      contentId: this.contentId,
-      previousState: this.previousState.exercise,
-      instructions: this.params.instructions
-    });
+    this.exercise = new CornellExercise(
+      {
+        exerciseContent: this.params.exerciseContent,
+        contentId: this.params.contentId,
+        previousState: this.previousState.exercise,
+        instructions: this.params.instructions
+      },
+      {
+        resize: () => {
+          this.callbacks.resize();
+        }
+      }
+    );
     exerciseWrapper.appendChild(this.exercise.getDOM());
 
     // If notes are opened and display is too narrow, undisplay excercise
@@ -191,7 +201,7 @@ export default class CornellContent {
       notesWrapper.classList.add('h5p-cornell-display-none');
     }
 
-    // Hide wrapper after it has been moved out of sight to prevent receiving tab focus
+    // Hide wrapper after it moved out of sight to prevent receiving tab focus
     notesWrapper.addEventListener('transitionend', () => {
       if (this.isExerciseMode) {
         notesWrapper.classList.add('h5p-cornell-display-none');
@@ -228,7 +238,7 @@ export default class CornellContent {
         placeholder: Util.htmlDecode(this.params.notesFields.recallPlaceholder),
         size: this.params.fieldSizeNotes,
         previousState: this.previousState.recall,
-        contentId: this.contentId
+        contentId: this.params.contentId
       },
       {
         onChanged: () => {
@@ -245,7 +255,7 @@ export default class CornellContent {
         placeholder: Util.htmlDecode(this.params.notesFields.notesPlaceholder),
         size: this.params.fieldSizeNotes,
         previousState: this.previousState.mainNotes,
-        contentId: this.contentId
+        contentId: this.params.contentId
       },
       {
         onChanged: () => {
@@ -274,7 +284,7 @@ export default class CornellContent {
         placeholder: Util.htmlDecode(this.params.notesFields.notesPlaceholder),
         size: this.params.fieldSizeNotes,
         previousState: this.previousState.mainNotes,
-        contentId: this.contentId
+        contentId: this.params.contentId
       },
       {
         onChanged: () => {
@@ -290,13 +300,14 @@ export default class CornellContent {
   /**
    * Resize content.
    *
-   * @param {boolean} [fromVideo=false] If false, will trigger resize for exercise.
+   * @param {boolean} [fromVideo=false] If true, will skip resize on exercise.
    */
   resize(fromVideo = false) {
     if (this.exercise && !fromVideo) {
       /*
        * In H5P.Video for YouTube, once wrapper width gets 0 it's locked. We
-       * need to set excercise wrapper width = 0 however for shrinking. Fixed here.
+       * need to set excercise wrapper width = 0 however for shrinking. Fixed
+       * here.
        */
       if (this.youtubeWrapper) {
         this.youtubeWrapper.style.width = '100%';
@@ -348,10 +359,18 @@ export default class CornellContent {
     this.titlebar.toggleFullscreenButton(enterFullScreen);
 
     if (enterFullScreen === true) {
-      // Give browser some time to go to fullscreen mode and return proper viewport height
+      /*
+       * Give browser some time to go to fullscreen mode and return proper
+       * viewport height
+       */
       setTimeout(() => {
-        const messageHeight = this.messageBox ? this.messageBox.offsetHeight : 0;
-        const maxHeight = `${window.innerHeight - this.titlebar.getDOM().offsetHeight - messageHeight}px`;
+        const messageHeight = this.messageBox ?
+          this.messageBox.offsetHeight :
+          0;
+
+        const maxHeight = `${window.innerHeight -
+          this.titlebar.getDOM().offsetHeight - messageHeight}px`;
+
         this.exerciseWrapper.style.maxHeight = maxHeight;
         this.notesWrapper.style.maxHeight = maxHeight;
       }, 100);
@@ -368,21 +387,13 @@ export default class CornellContent {
 
   /**
    * Handle activation of overlay button.
-   *
-   * @param {object} event Event that is calling.
    */
-  handleButtonToggle(event) {
-    if (event && event.type === 'keypress' && event.keyCode !== 13 && event.keyCode !== 32) {
-      return;
-    }
-
+  handleButtonToggle() {
     const active = this.titlebar.getToggleButtonState();
-    if (typeof this.callbacks.read === 'function') {
-      const message = (active) ?
-        Dictionary.get('a11y.notesOpened') :
-        Dictionary.get('a11y.notesClosed');
-      this.callbacks.read(Util.stripHTML(message));
-    }
+    const message = (active) ?
+      Dictionary.get('a11y.notesOpened') :
+      Dictionary.get('a11y.notesClosed');
+    this.callbacks.read(Util.stripHTML(message));
 
     this.toggleView();
   }
@@ -465,7 +476,7 @@ export default class CornellContent {
      * we're writing the state for the whole content directly.
      */
     let getCurrentStateProvider;
-    if (this.isRoot) {
+    if (this.params.isRoot) {
       getCurrentStateProvider = this.callbacks;
     }
     else if (typeof H5P.instances[0].getCurrentState === 'function') {
@@ -475,7 +486,7 @@ export default class CornellContent {
     if (getCurrentStateProvider) {
       // Using callback to also store in LocalStorage
       H5P.setUserData(
-        this.contentId,
+        this.params.contentId,
         'state',
         getCurrentStateProvider.getCurrentState(),
         { deleteOnChange: false }
@@ -512,7 +523,12 @@ export default class CornellContent {
     const cue = (this.stripTags(this.recall.getCurrentState())).inputField;
     const summary = (this.stripTags(this.summary.getCurrentState()).inputField);
 
-    const text = `## ${this.params.notesFields.notesTitle}\n${notes}\n\n## ${this.params.notesFields.recallTitle}\n${cue}\n\n## ${this.params.notesFields.summaryTitle}\n${summary}`;
+    const text = [
+      `## ${this.params.notesFields.notesTitle}\n${notes}`,
+      `## ${this.params.notesFields.recallTitle}\n${cue}`,
+      `## ${this.params.notesFields.summaryTitle}\n${summary}`
+    ].join('\n\n');
+
     Util.copyTextToClipboard(text, (result) => {
       const message = (result === true) ?
         Dictionary.get('l10n.copyToClipboardSuccess') :

@@ -9,7 +9,7 @@ export default class CornellButton {
    * @param {object} params Parameter from editor.
    * @param {object} [callbacks] Callbacks.
    */
-  constructor(params, callbacks) {
+  constructor(params = {}, callbacks = {}) {
     // Set missing params
     this.params = Util.extend({
       a11y: {
@@ -21,12 +21,18 @@ export default class CornellButton {
       classes: [],
       disabled: false,
       type: 'pulse'
-    }, params || {});
+    }, params);
+
+    // Sanitize callbacks
+    this.callbacks = Util.extend({
+      onClick: () => {}
+    }, callbacks);
 
     if (!Array.isArray(this.params.classes)) {
       this.params.classes = [this.params.classes];
     }
 
+    // Try to use at least one a11y string
     if (this.params.type === 'pulse') {
       if (!this.params.a11y.inactive) {
         this.params.a11y.inactive = this.params.a11y.active || '';
@@ -38,10 +44,6 @@ export default class CornellButton {
 
     this.active = this.params.active;
     this.disabled = this.params.disabled;
-
-    // Sanitize callbacks
-    this.callbacks = callbacks || {};
-    this.callbacks.onClick = this.callbacks.onClick || (() => {});
 
     // Button
     this.button = document.createElement('button');
@@ -76,6 +78,7 @@ export default class CornellButton {
       if (this.params.type === 'toggle') {
         this.toggle();
       }
+
       this.callbacks.onClick(event);
     });
   }

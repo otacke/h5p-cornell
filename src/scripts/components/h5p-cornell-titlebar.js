@@ -12,7 +12,8 @@ export default class CornellTitlebar {
    * @param {string} params.title Title.
    * @param {string} params.dateString Date.
    * @param {object} callbacks Callbacks.
-   * @param {function} callbacks.handlebuttonToggle Handles click.
+   * @param {function} callbacks.onButtonToggle Handles notes toggling .
+   * @param {function} callbacks.onButtonFullscreen Handles fullscreen.
    */
   constructor(params = {}, callbacks = {}) {
     // Set missing params
@@ -24,10 +25,10 @@ export default class CornellTitlebar {
 
     // Set missing callbacks
     this.callbacks = Util.extend({
-      handleButtonToggle: () => {
+      onButtonToggle: () => {
         console.warn('A function for handling the toggle notes button is missing.');
       },
-      handleButtonFullscreen: () => {
+      onButtonFullscreen: () => {
         console.warn('A function for handling the fullscreen button is missing.');
       }
     }, callbacks);
@@ -35,33 +36,26 @@ export default class CornellTitlebar {
     this.titleBar = document.createElement('div');
     this.titleBar.classList.add('h5p-cornell-title-bar');
 
-    const buttonToggleClasses = [
-      'h5p-cornell-button',
-      'h5p-cornell-button-toggle'
-    ];
-    if (this.params.toggleButtonActiveOnStartup === true) {
-      buttonToggleClasses.push('h5p-cornell-active');
-    }
-
     // Toggle button
     this.buttonToggle = new CornellButton(
       {
         type: 'toggle',
-        classes: [
-          'h5p-cornell-button',
-          'h5p-cornell-button-toggle'
-        ],
+        classes: [ 'h5p-cornell-button', 'h5p-cornell-button-toggle' ],
         a11y: {
-          active: Dictionary.get('a11y.buttonToggleOpenNotes'),
-          inactive: Dictionary.get('a11y.buttonToggleCloseNotes')
+          active: Dictionary.get('a11y.buttonToggleCloseNotes'),
+          inactive: Dictionary.get('a11y.buttonToggleOpenNotes')
         }
       },
       {
         onClick: (() => {
-          this.callbacks.handleButtonToggle();
+          this.callbacks.onButtonToggle();
         })
       }
     );
+
+    if (this.params.toggleButtonActiveOnStartup === true) {
+      this.buttonToggle.activate();
+    }
 
     // Title
     const titleDOM = document.createElement('div');
@@ -76,10 +70,7 @@ export default class CornellTitlebar {
     this.buttonFullscreen = new CornellButton(
       {
         type: 'toggle',
-        classes: [
-          'h5p-cornell-button',
-          'h5p-cornell-button-fullscreen'
-        ],
+        classes: [ 'h5p-cornell-button', 'h5p-cornell-button-fullscreen' ],
         disabled: true,
         a11y: {
           active: Dictionary.get('a11y.buttonFullscreenExit'),
@@ -88,7 +79,7 @@ export default class CornellTitlebar {
       },
       {
         onClick: (() => {
-          this.callbacks.handleButtonFullscreen();
+          this.callbacks.onButtonFullscreen();
         })
       }
     );

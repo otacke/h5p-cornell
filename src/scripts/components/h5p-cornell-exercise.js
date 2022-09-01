@@ -13,16 +13,18 @@ export default class CornellExercise {
     // Set missing params
     this.params = Util.extend({
       instructions: ''
-    }, params || {});
+    }, params);
 
     this.callbacks = Util.extend({
-    }, callbacks || {});
+      resize: () => {}
+    }, callbacks);
 
     const exerciseContent = document.createElement('div');
     exerciseContent.classList.add('h5p-cornell-exercise-content');
 
     const exerciseContentLibrary = document.createElement('div');
-    exerciseContentLibrary.classList.add('h5p-cornell-exercise-content-library');
+    exerciseContentLibrary.classList
+      .add('h5p-cornell-exercise-content-library');
 
     this.dom = document.createElement('div');
     this.dom.classList.add('h5p-cornell-exercise-content-wrapper');
@@ -32,7 +34,10 @@ export default class CornellExercise {
     const machineName = this.params.exerciseContent?.library?.split(' ')[0];
 
     if (machineName) {
-      // Override params - unfortunately can't be passed to library from parent editor
+      /*
+       * Override parameters - unfortunately can't be passed to library from
+       * parent editor
+       */
       switch (machineName) {
         case 'H5P.Audio':
           this.params.exerciseContent.params.controls = true;
@@ -50,12 +55,12 @@ export default class CornellExercise {
         this.params.contentId,
         H5P.jQuery(exerciseContentLibrary),
         false,
-        {previousState: this.params.previousState}
+        { previousState: this.params.previousState }
       );
 
       switch (machineName) {
         case 'H5P.Audio':
-          // The height value that is set by H5P.Audio is counter-productive here
+          // The height value that's set by H5P.Audio is counter-productive here
           if (this.instance.audio) {
             this.instance.audio.style.height = '';
           }
@@ -74,19 +79,34 @@ export default class CornellExercise {
 
           this.instance.on('resize', () => {
             if (this.youtubeWrapper === undefined) {
-              const youtubeVideo = document.querySelector('.h5p-cornell-exercise-content-library.h5p-video.h5p-youtube');
-              this.youtubeWrapper = (youtubeVideo) ? youtubeVideo.firstChild : null;
+              const youtubeVideo = this.dom
+                .querySelector(
+                  '.h5p-cornell-exercise-content-library.h5p-video.h5p-youtube'
+                );
+
+              this.youtubeWrapper = (youtubeVideo) ?
+                youtubeVideo.firstChild :
+                null;
             }
 
             this.resize(true);
           });
 
+          // Resize when video is ready
+          this.instance.on('ready', () => {
+            this.callbacks.resize();
+          });
+
           break;
       }
 
-      exerciseContent.appendChild(this.createInstructionsDOM(this.params.instructions));
+      exerciseContent.appendChild(
+        this.createInstructionsDOM(this.params.instructions)
+      );
       if (useSeparator) {
-        exerciseContent.appendChild(this.createSeparatorDOM(this.params.instructions));
+        exerciseContent.appendChild(
+          this.createSeparatorDOM(this.params.instructions)
+        );
       }
       exerciseContent.appendChild(exerciseContentLibrary);
     }
@@ -111,10 +131,10 @@ export default class CornellExercise {
   /**
    * Create DOM for instructions.
    *
-   * @param {string} text Text of instructions.
+   * @param {string} [text=''] Text of instructions.
    * @returns {HTMLElement} DOM for instructions.
    */
-  createInstructionsDOM(text) {
+  createInstructionsDOM(text = '') {
     const instructionsDOM = document.createElement('div');
 
     if (text !== '') {

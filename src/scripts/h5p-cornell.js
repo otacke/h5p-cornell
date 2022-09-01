@@ -25,7 +25,7 @@ export default class Cornell extends H5P.Question {
 
     // Work around H5P's 1 item group behavior in editor.
     params.behaviour = {
-      showNotesOnStartup: (params.behaviour === true) ? true : false
+      showNotesOnStartup: params.behaviour === true
     };
 
     // Make sure all variables are set
@@ -87,25 +87,14 @@ export default class Cornell extends H5P.Question {
 
     const defaultLanguage = this.extras.metadata.defaultLanguage || 'en';
     this.languageTag = Util.formatLanguageCode(defaultLanguage);
-
-    if (document.readyState === 'complete') {
-      this.handleDocumentComplete();
-    }
-    else {
-      document.addEventListener('readystatechange', () => {
-        if (document.readyState === 'complete') {
-          this.handleDocumentComplete();
-        }
-      });
-    }
   }
 
   /**
-   * Handle document complete.
+   * Handle content visible.
    */
-  handleDocumentComplete() {
+  handleContentVisible() {
     setTimeout(() => {
-      // Add fullscreen button on first call after H5P.Question has created the DOM
+      // Add fullscreen button on first call after H5P.Question has created DOM
       this.container = document.querySelector('.h5p-container');
       if (this.container && this.isRoot() && H5P.fullscreenSupported) {
         this.content.enableFullscreenButton();
@@ -133,10 +122,16 @@ export default class Cornell extends H5P.Question {
       document.querySelector('.h5p-container').offsetWidth >= Cornell.MIN_WIDTH_FOR_DUALVIEW;
 
     this.content = new CornellContent({
-      params: this.params,
+      behaviour: this.params.behaviour,
       contentId: this.contentId,
+      exerciseContent: this.params.exerciseContent,
       extras: this.extras,
-      isRoot: this.isRoot()
+      fieldSizeNotes: this.params.fieldSizeNotes,
+      headline: this.params.headline,
+      instructions: this.params.instructions,
+      isRoot: this.isRoot(),
+      minWidthForDualView: this.params.minWidthForDualView,
+      notesFields: this.params.notesFields
     },
     {
       resize: () => {
@@ -145,16 +140,28 @@ export default class Cornell extends H5P.Question {
       read: (text) => {
         this.read(text);
       },
-      handleButtonFullscreen: (state) => {
+      onButtonFullscreen: (state) => {
         this.toggleFullscreen(state);
       },
       getCurrentState: () => {
-        this.getCurrentState();
+        return this.getCurrentState();
       }
     });
 
     // Register content with H5P.Question
     this.setContent(this.content.getDOM());
+
+    // Wait for content to be attached to DOM
+    this.observer = new IntersectionObserver(entries => {
+      if (entries[0].intersectionRatio === 1) {
+        this.observer.unobserve(this.content.getDOM()); // Only needed once
+        this.handleContentVisible();
+      }
+    }, {
+      root: document.documentElement,
+      threshold: [1]
+    });
+    this.observer.observe(this.content.getDOM());
 
     /**
      * Resize Listener.
@@ -250,7 +257,7 @@ export default class Cornell extends H5P.Question {
    * Resize.
    */
   resize() {
-    this.trigger('resize', {break: true});
+    this.trigger('resize', { break: true });
   }
 
   /**
