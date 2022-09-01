@@ -1,4 +1,4 @@
-import "../styles/h5p-cornell-main.scss";
+import "../styles/h5p-cornell.scss";
 import Cornell from "../scripts/h5p-cornell";
 
 // Load library

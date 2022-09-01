@@ -1,3 +1,5 @@
+@import "./h5p-cornell-main";
+
 .h5p-cornell {
   min-width: 250px;
 }
@@ -13,49 +15,6 @@
   margin: 0;
 }
 
-.h5p-cornell .h5p-cornell-container {
-}
-
-.h5p-cornell.h5p-fullscreen .h5p-cornell-fullscreen-button-wrapper {
-  display: none;
-}
-
-.h5p-cornell .h5p-cornell-fullscreen-button-wrapper {
-  background-color: rgba(76,68,82,0.8);
-  border: 0;
-  border-radius: 0 0 0 100%;
-  height: 1.8em;
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 1.8em;
-  z-index: 3;
-}
-
-.h5p-cornell .h5p-cornell-title-bar {
-  align-items: center;
-  background-color: #fff;
-  background-size: cover;
-  box-shadow: 10px 10px 30px rgba(166,166,166,0.2);
-  display: flex;
-  overflow: hidden;
-  padding: .5em;
-}
-
-.h5p-cornell .h5p-cornell-title {
-  color: #4c4452;
-  flex-grow: 1;
-  font-family: Arial;
-  font-size: 1.15em;
-  font-weight: 700;
-  margin: 0;
-  overflow: hidden;
-  padding: 0 1rem;
-  text-decoration: none solid #4c4452;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
 .h5p-cornell .h5p-cornell-message-box {
   background-color: #f5e8d5;
   border: 1px solid #eedd55;
@@ -69,18 +28,6 @@
     margin: 0;
     text-align: center;
   }
-}
-
-.h5p-cornell .h5p-cornell-date {
-  color: #1a73d9;
-  flex-shrink: 0;
-  font-family: Arial;
-  font-size: 1.15em;
-  font-weight: 700;
-  margin: 0;
-  overflow: hidden;
-  padding: 0 1rem 0 0;
-  text-decoration: none solid #1a73d9;
 }
 
 .h5p-cornell .h5p-cornell-exercise-wrapper {

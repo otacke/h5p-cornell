@@ -1,43 +1,41 @@
-.h5p-cornell {
+@import "./../styles/h5p-cornell-main";
+
+.h5p-cornell-title-bar {
+  align-items: center;
+  background-color: #fff;
+  background-size: cover;
+  box-shadow: 10px 10px 30px rgba(166,166,166,0.2);
+  display: flex;
+  overflow: hidden;
+  padding: .5em;
+
+  .h5p-cornell-title {
+    color: #4c4452;
+    flex-grow: 1;
+    font-family: Arial;
+    font-size: 1.15em;
+    font-weight: 700;
+    margin: 0;
+    overflow: hidden;
+    padding: 0 1rem;
+    text-decoration: none solid #4c4452;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .h5p-cornell-date {
+    color: #1a73d9;
+    flex-shrink: 0;
+    font-family: Arial;
+    font-size: 1.15em;
+    font-weight: 700;
+    margin: 0;
+    overflow: hidden;
+    padding: 0 1rem 0 0;
+    text-decoration: none solid #1a73d9;
+  }
 
   .h5p-cornell-button {
-    align-items: center;
-    background-color: transparent;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 1.2em 1.2em;
-    border: 2px solid #fff;
-    border-radius: 3px;
-    display: flex;
-    flex-shrink: 0;
-    height: 3.6em;
-    padding: 0;
-    width: 3.6em;
-
-    &:not(.h5p-cornell-button-disabled) {
-      &:hover {
-        background-color: $color-base-05;
-        cursor: pointer;
-      }
-
-      &:active {
-        background-color: $color-base-10;
-      }
-
-      &.h5p-cornell-button-active {
-        background-color: $color-base;
-        opacity: 20;
-
-        &:hover {
-          background-color: $color-base-90;
-        }
-
-        &:active {
-          background-color: $color-base-95;
-        }
-      }
-    }
-
     &.h5p-cornell-button-toggle {
       background-image: url(../images/button-toggle-notes-icon-blue.svg);
 

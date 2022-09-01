@@ -1,5 +1,6 @@
 // Import required classes
 import Util from './h5p-cornell-util';
+import './h5p-cornell-button.scss';
 
 /** Class representing the content */
 export default class CornellButton {

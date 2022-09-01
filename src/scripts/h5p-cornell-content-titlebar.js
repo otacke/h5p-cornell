@@ -1,6 +1,7 @@
 // Import required classes
 import CornellButton from './h5p-cornell-button';
 import Util from './h5p-cornell-util';
+import './h5p-cornell-content-titlebar.scss';
 
 /** Class representing the content */
 export default class CornellContentTitlebar {
