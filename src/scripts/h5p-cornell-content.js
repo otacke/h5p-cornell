@@ -21,7 +21,7 @@ export default class CornellContent {
     this.params = params.params || {};
     this.contentId = params.contentId;
     this.extras = params.extras || {};
-    this.isRoot = params.isRoot
+    this.isRoot = params.isRoot;
 
     // Create values to fill with
     this.previousState = Util.extend(
