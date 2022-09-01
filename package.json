@@ -1,6 +1,6 @@
 {
   "name": "h5p-cornell",
-  "version": "0.1.0",
+  "version": "0.2.1",
   "description": "Let your students take structured notes",
   "private": true,
   "scripts": {
