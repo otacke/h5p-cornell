@@ -19,7 +19,7 @@ export default class CornellNotes {
       onChanged: () => {}
     }, callbacks || {});
 
-    this.previousInput = '';
+    this.previousInput = this.params?.previousState?.inputField || '';
 
     this.dom = document.createElement('div');
     this.dom.classList.add('h5p-cornell-notes-field');
