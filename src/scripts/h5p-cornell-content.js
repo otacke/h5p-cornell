@@ -1,7 +1,7 @@
 // Import required classes
-import CornellContentTitlebar from './h5p-cornell-content-titlebar';
-import CornellExercise from './h5p-cornell-exercise';
-import CornellNotes from './h5p-cornell-notes';
+import CornellTitlebar from './components/h5p-cornell-titlebar';
+import CornellExercise from './components/h5p-cornell-exercise';
+import CornellNotes from './components/h5p-cornell-notes';
 import Util from './h5p-cornell-util';
 
 /**
@@ -120,10 +120,10 @@ export default class CornellContent {
   /**
    * Create titlebar.
    *
-   * @returns {CornellContentTitlebar} Titlebar.
+   * @returns {CornellTitlebar} Titlebar.
    */
   createTitleBar() {
-    return new CornellContentTitlebar(
+    return new CornellTitlebar(
       {
         title: this.params.headline || this.extras.metadata.title,
         dateString: this.previousState.dateString,
@@ -308,7 +308,7 @@ export default class CornellContent {
       }
 
       setTimeout(() => {
-        this.exercise.resize(fromVideo);
+        this.exercise.resize();
       }, 0);
     }
 

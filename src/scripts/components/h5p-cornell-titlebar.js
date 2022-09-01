@@ -1,10 +1,10 @@
 // Import required classes
 import CornellButton from './h5p-cornell-button';
-import Util from './h5p-cornell-util';
-import './h5p-cornell-content-titlebar.scss';
+import Util from './../h5p-cornell-util';
+import './h5p-cornell-titlebar.scss';
 
-/** Class representing the content */
-export default class CornellContentTitlebar {
+/** Class representing the titlebar */
+export default class CornellTitlebar {
   /**
    * @class
    * @param {object} params Parameter from editor.
@@ -16,7 +16,7 @@ export default class CornellContentTitlebar {
    * @param {object} callbacks Callbacks.
    * @param {function} callbacks.handlebuttonToggle Handles click.
    */
-  constructor(params, callbacks) {
+  constructor(params = {}, callbacks = {}) {
     // Set missing params
     this.params = Util.extend({
       title: '',
@@ -26,7 +26,7 @@ export default class CornellContentTitlebar {
         buttonToggleActive: 'toggle',
         buttonToggleInactive: 'toggle'
       }
-    }, params || {});
+    }, params);
 
     // Set missing callbacks
     this.callbacks = Util.extend({
@@ -36,7 +36,7 @@ export default class CornellContentTitlebar {
       handleButtonFullscreen: () => {
         console.warn('A function for handling the fullscreen button is missing.');
       }
-    }, callbacks || {});
+    }, callbacks);
 
     this.titleBar = document.createElement('div');
     this.titleBar.classList.add('h5p-cornell-title-bar');

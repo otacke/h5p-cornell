@@ -1,4 +1,4 @@
-@import "./../styles/h5p-cornell-main";
+@import "./../../styles/h5p-cornell-main";
 
 .h5p-cornell-title-bar {
   align-items: center;
@@ -35,16 +35,16 @@
 
   .h5p-cornell-button {
     &.h5p-cornell-button-toggle {
-      background-image: url(../images/button-toggle-notes-icon-blue.svg);
+      background-image: url(../../images/button-toggle-notes-icon-blue.svg);
 
       &.h5p-cornell-button-active {
-        background-image: url(../images/button-toggle-notes-icon-white.svg);
+        background-image: url(../../images/button-toggle-notes-icon-white.svg);
       }
     }
 
     &.h5p-cornell-button-fullscreen {
       background-color: $color-base-05;
-      background-image: url(../images/button-enter-fullscreen-icon-blue.svg);
+      background-image: url(../../images/button-enter-fullscreen-icon-blue.svg);
 
       &.h5p-cornell-button-disabled {
         display: none;
@@ -60,7 +60,7 @@
 
       &.h5p-cornell-button-active {
         background-color: $color-base-05;
-        background-image: url(../images/button-exit-fullscreen-icon-blue.svg);
+        background-image: url(../../images/button-exit-fullscreen-icon-blue.svg);
 
         &:not(.h5p-cornell-button-disabled):hover {
           background-color: $color-base-10;

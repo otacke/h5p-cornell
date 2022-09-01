@@ -1,12 +1,11 @@
 // Import required classes
-import Util from './h5p-cornell-util';
+import Util from './../h5p-cornell-util';
 import './h5p-cornell-exercise.scss';
 
 /** Class representing the content */
 export default class CornellExercise {
   /**
    * @class
-   *
    * @param {object} [params={}] Parameter from editor.
    * @param {object} [callbacks={}] Callbacks.
    */
@@ -140,8 +139,10 @@ export default class CornellExercise {
 
   /**
    * Resize.
+   *
+   * @param {boolean} fromVideo True, if resize call from video instance.
    */
-  resize(fromVideo) {
+  resize(fromVideo = false) {
     if (fromVideo) {
       return;
     }

@@ -1,12 +1,11 @@
 // Import required classes
-import Util from './h5p-cornell-util';
+import Util from './../h5p-cornell-util';
 import './h5p-cornell-notes.scss';
 
 /** Class representing the content */
 export default class CornellNotes {
   /**
    * @class
-   *
    * @param {object} [params={}] Parameter from editor.
    * @param {object} [callbacks={}] Callbacks.
    */
