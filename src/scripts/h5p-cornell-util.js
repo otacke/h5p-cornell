@@ -2,8 +2,8 @@
 class Util {
   /**
    * Extend an array just like JQuery's extend.
-   * @param {object} arguments Objects to be merged.
-   * @return {object} Merged objects.
+   *
+   * @returns {object} Merged objects.
    */
   static extend() {
     for (let i = 1; i < arguments.length; i++) {
@@ -23,8 +23,9 @@ class Util {
 
   /**
    * Retrieve true string from HTML encoded string.
+   *
    * @param {string} input Input string.
-   * @return {string} Output string.
+   * @returns {string} Output string.
    */
   static htmlDecode(input) {
     var dparser = new DOMParser().parseFromString(input, 'text/html');
@@ -33,8 +34,9 @@ class Util {
 
   /**
    * Retrieve string without HTML tags.
-   * @param {string} input Input string.
-   * @return {string} Output string.
+   *
+   * @param {string} html Input string.
+   * @returns {string} Output string.
    */
   static stripHTML(html) {
     const div = document.createElement('div');
@@ -45,8 +47,9 @@ class Util {
   /**
    * Format language tag (RFC 5646). Assuming "language-coutry". No validation.
    * Cmp. https://tools.ietf.org/html/rfc5646
-   * @param {string} languageTag Language tag.
-   * @return {string} Formatted language tag.
+   *
+   * @param {string} languageCode Language tag.
+   * @returns {string} Formatted language tag.
    */
   static formatLanguageCode(languageCode) {
     if (typeof languageCode !== 'string') {
@@ -70,6 +73,7 @@ class Util {
   /**
    * Copy text to clipboard.
    * Cmp. https://stackoverflow.com/a/30810322
+   *
    * @param {string} text Text to copy to clipboard.
    * @param {function} [callback] Callback accepting true/false as param.
    */
@@ -89,6 +93,7 @@ class Util {
 
   /**
    * Copy text to clipboard.
+   *
    * @param {string} text Text to copy.
    * @param {function} [callback] Callback accepting true/false as param.
    */
