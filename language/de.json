@@ -1,6 +1,10 @@
 {
   "semantics": [
     {
+      "label": "Überschrift",
+      "description": "Wenn hier etwas eingetragen wird, wird der Text an Stelle des Titels des Inhalts für die Überschrift benutzt."
+    },
+    {
       "label": "Aufgabenbeschreibung",
       "description": "Lernende sehen diese Aufgabenbeschreibung oberhalb der Notizen."
     },

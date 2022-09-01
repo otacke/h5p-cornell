@@ -138,7 +138,7 @@ export default class CornellContent {
   createTitleBar() {
     return new CornellContentTitlebar(
       {
-        title: this.extras.metadata.title,
+        title: this.params.headline || this.extras.metadata.title,
         dateString: this.previousState.dateString,
         toggleButtonActiveOnStartup: this.params.behaviour.showNotesOnStartup,
         a11y: {

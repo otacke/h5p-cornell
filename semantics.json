@@ -1,5 +1,13 @@
 [
   {
+    "name": "headline",
+    "type": "text",
+    "label": "Headline",
+    "importance": "low",
+    "optional": true,
+    "description": "If set, will be used for the headline of the exercise instead of the content title."
+  },
+  {
     "label": "Instructions",
     "importance": "medium",
     "name": "instructions",

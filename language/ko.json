@@ -1,6 +1,10 @@
 {
   "semantics": [
     {
+      "label": "Headline",
+      "description": "If set, will be used for the headline of the exercise instead of the content title."
+    },
+    {
       "label": "안내",
       "description": "학생들이 이 안내사항을 노트 위에 볼 것입니다."
     },

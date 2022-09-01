@@ -1,6 +1,10 @@
 {
   "semantics": [
     {
+      "label": "Headline",
+      "description": "If set, will be used for the headline of the exercise instead of the content title."
+    },
+    {
       "label": "Argibideak",
       "description": "Ikasleek argibide hauek ikusiko dituzte oharren gainean."
     },

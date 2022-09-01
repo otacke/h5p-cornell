@@ -1,6 +1,10 @@
 {
   "semantics": [
     {
+      "label": "Headline",
+      "description": "If set, will be used for the headline of the exercise instead of the content title."
+    },
+    {
       "label": "Instrucciones",
       "description": "Los estudiantes verán estas instrucciones en la parte superior de sus anotaciones."
     },
