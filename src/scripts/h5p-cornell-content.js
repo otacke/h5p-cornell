@@ -1,5 +1,6 @@
 // Import required classes
 import CornellContentTitlebar from './h5p-cornell-content-titlebar';
+import CornellNotes from './h5p-cornell-notes';
 import Util from './h5p-cornell-util';
 
 /** Class representing the content
@@ -102,22 +103,6 @@ export default class CornellContent {
     buttonsWrapper.appendChild(this.buttonCopy);
 
     this.notesWrapper.appendChild(buttonsWrapper);
-
-    // Initialize change listeners for enabling save button
-    [this.recall, this.mainNotes, this.summary].forEach((field) => {
-      field.previousInput = field.getCurrentState().inputField;
-
-      ['change', 'keyup', 'paste'].forEach((eventName) => {
-        field.$inputField.get(0).addEventListener(eventName, () => {
-          if (field.getCurrentState().inputField !== field.previousInput) {
-            this.buttonSave.classList.remove('h5p-cornell-disabled');
-            this.buttonSave.removeAttribute('disabled');
-          }
-
-          field.previousInput = field.getCurrentState().inputField;
-        });
-      });
-    });
 
     this.content.appendChild(panel);
   }
@@ -338,49 +323,39 @@ export default class CornellContent {
     const mainNotesDOM = document.createElement('div');
     mainNotesDOM.classList.add('h5p-cornell-main-notes-wrapper');
 
-    // Recall area
-    const recall = document.createElement('div');
-    recall.classList.add('h5p-cornell-main-notes-recall-wrapper');
-
-    this.recall = H5P.newRunnable(
+    this.recall = new CornellNotes(
       {
-        params: {
-          taskDescription: this.params.notesFields.recallTitle,
-          placeholderText: Util.htmlDecode(this.params.notesFields.recallPlaceholder),
-          inputFieldSize: this.params.fieldSizeNotes,
-        },
-        library: 'H5P.TextInputField 1.2',
-        subContentId: H5P.createUUID()
+        label: this.params.notesFields.recallTitle,
+        class: 'h5p-cornell-main-notes-recall-wrapper',
+        placeholder: Util.htmlDecode(this.params.notesFields.recallPlaceholder),
+        size: this.params.fieldSizeNotes,
+        previousState: this.previousState.recall,
+        contentId: this.contentId
       },
-      this.contentId,
-      H5P.jQuery(recall),
-      false,
-      {previousState: this.previousState.recall}
-    );
-
-    mainNotesDOM.appendChild(recall);
-
-    // Notes area
-    const notes = document.createElement('div');
-    notes.classList.add('h5p-cornell-main-notes-notes-wrapper');
-
-    this.mainNotes = H5P.newRunnable(
       {
-        params: {
-          taskDescription: this.params.notesFields.notesTitle,
-          placeholderText: Util.htmlDecode(this.params.notesFields.notesPlaceholder),
-          inputFieldSize: this.params.fieldSizeNotes,
-        },
-        library: 'H5P.TextInputField 1.2',
-        subContentId: H5P.createUUID()
-      },
-      this.contentId,
-      H5P.jQuery(notes),
-      false,
-      {previousState: this.previousState.mainNotes}
+        onChanged: () => {
+          this.handleFieldChanged();
+        }
+      }
     );
+    mainNotesDOM.appendChild(this.recall.getDOM());
 
-    mainNotesDOM.appendChild(notes);
+    this.mainNotes = new CornellNotes(
+      {
+        label: this.params.notesFields.notesTitle,
+        class: 'h5p-cornell-main-notes-notes-wrapper',
+        placeholder: Util.htmlDecode(this.params.notesFields.notesPlaceholder),
+        size: this.params.fieldSizeNotes,
+        previousState: this.previousState.mainNotes,
+        contentId: this.contentId
+      },
+      {
+        onChanged: () => {
+          this.handleFieldChanged();
+        }
+      }
+    );
+    mainNotesDOM.appendChild(this.mainNotes.getDOM());
 
     return mainNotesDOM;
   }
@@ -393,21 +368,22 @@ export default class CornellContent {
     const summaryDOM = document.createElement('div');
     summaryDOM.classList.add('h5p-cornell-summary-wrapper');
 
-    this.summary = H5P.newRunnable(
+    this.summary = new CornellNotes(
       {
-        params: {
-          taskDescription: this.params.notesFields.summaryTitle,
-          placeholderText: Util.htmlDecode(this.params.notesFields.summaryPlaceholder),
-          inputFieldSize: this.params.fieldSizeNotes,
-        },
-        library: 'H5P.TextInputField 1.2',
-        subContentId: H5P.createUUID()
+        label: this.params.notesFields.notesTitle,
+        class: 'h5p-cornell-summary-notes-summary-wrapper',
+        placeholder: Util.htmlDecode(this.params.notesFields.notesPlaceholder),
+        size: this.params.fieldSizeNotes,
+        previousState: this.previousState.mainNotes,
+        contentId: this.contentId
       },
-      this.contentId,
-      H5P.jQuery(summaryDOM),
-      false,
-      {previousState: this.previousState.summary}
+      {
+        onChanged: () => {
+          this.handleFieldChanged();
+        }
+      }
     );
+    summaryDOM.appendChild(this.summary.getDOM());
 
     return summaryDOM;
   }
@@ -593,16 +569,20 @@ export default class CornellContent {
    * @return {boolean} True if some notes was typed.
    */
   getAnswerGiven() {
-    return (this.recall.getInput().value.length + this.mainNotes.getInput().value.length + this.summary.getInput().value.length) > 0;
+    return (
+      this.recall.getText().length +
+      this.mainNotes.getText().length +
+      this.summary.getText().length
+    ) > 0;
   }
 
   /**
    * Reset notes.
    */
   resetNotes() {
-    this.recall.setState({});
-    this.mainNotes.setState({});
-    this.summary.setState({});
+    this.recall.reset();
+    this.mainNotes.reset();
+    this.summary.reset();
   }
 
   /**
@@ -686,6 +666,18 @@ export default class CornellContent {
 
       this.callbacks.read(message);
     });
+  }
+
+  /**
+   * Handle field changed.
+   */
+  handleFieldChanged() {
+    if (!this.buttonSave) {
+      return;
+    }
+
+    this.buttonSave.classList.remove('h5p-cornell-disabled');
+    this.buttonSave.removeAttribute('disabled');
   }
 }
 

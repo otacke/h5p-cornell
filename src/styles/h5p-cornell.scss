@@ -176,19 +176,23 @@
   margin: 1em 2em 0 2em;
 }
 
-.h5p-cornell .h5p-cornell-main-notes-recall-wrapper {
-  margin: .5em;
-  width: 30%;
-}
-
-.h5p-cornell .h5p-cornell-main-notes-notes-wrapper {
-  margin: .5em;
-  width: 70%;
-}
-
 .h5p-cornell .h5p-cornell-summary-wrapper {
-  margin: .5em 2.5em 1em 2.5em;
+  margin: .5em 2em .5em 2em;
   min-width: 200px;
+}
+
+.h5p-cornell-notes-field {
+  &.h5p-cornell-main-notes-recall-wrapper {
+    width: 30%;
+  }
+
+  &.h5p-cornell-main-notes-notes-wrapper {
+    width: 70%;
+  }
+
+  &.h5p-cornell-summary-notes-summary-wrapper {
+    width: 100%;
+  }
 }
 
 .h5p-cornell .h5p-video video::-webkit-media-controls-fullscreen-button {
