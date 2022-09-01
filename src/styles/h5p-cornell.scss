@@ -2,120 +2,122 @@
 
 .h5p-cornell {
   min-width: 250px;
-}
 
-.h5p-cornell .h5p-cornell-panel {
-  max-width: 1920px;
-  margin-left: auto;
-  margin-right: auto;
-  display: flex;
-}
-
-.h5p-cornell .h5p-question-content {
-  margin: 0;
-}
-
-.h5p-cornell .h5p-cornell-message-box {
-  background-color: #f5e8d5;
-  border: 1px solid #eedd55;
-  box-sizing: border-box;
-  color: #9e5c16;
-  font-size: .8em;
-  padding: .8em;
-  width: 100%;
-
-  .h5p-cornell-message {
+  .h5p-question-content {
     margin: 0;
-    text-align: center;
-  }
-}
 
-.h5p-cornell .h5p-cornell-exercise-wrapper {
-  transition: width .25s ease-in-out;
-  width: 100%;
-  overflow-y: auto;
-}
+    .h5p-cornell-message-box {
+      background-color: $color-hint-message-background;
+      border: 1px solid $color-hint-message-border;
+      box-sizing: border-box;
+      color: $color-hint-message-text;
+      font-size: .8em;
+      padding: .8em;
+      width: 100%;
 
-.h5p-cornell .h5p-cornell-exercise-wrapper.h5p-cornell-notes-mode.h5p-cornell-narrow-screen {
-  width: 0;
-}
+      .h5p-cornell-message {
+        margin: 0;
+        text-align: center;
+      }
+    }
 
-.h5p-cornell .h5p-cornell-exercise-wrapper.h5p-cornell-notes-mode.h5p-cornell-narrow-screen.h5p-cornell-display-none {
-  display: none;
-}
+    .h5p-cornell-panel {
+      max-width: $size-container-max-width;
+      margin-left: auto;
+      margin-right: auto;
+      display: flex;
 
-.h5p-cornell .h5p-cornell-notes-wrapper {
-  display: flex;
-  flex-direction: column;
-  overflow-y: auto;
-  transition: width .25s ease-in-out;
-  z-index: 1;
-  width: 0;
-}
+      .h5p-cornell-exercise-wrapper {
+        overflow-y: auto;
+        transition: width .25s ease-in-out;
+        width: 100%;
 
-.h5p-cornell .h5p-cornell-notes-wrapper.h5p-cornell-display-none {
-  display: none;
-}
+        &.h5p-cornell-notes-mode.h5p-cornell-narrow-screen {
+          width: 0;
 
-.h5p-cornell .h5p-cornell-notes-wrapper.h5p-cornell-notes-mode {
-  width: 100%;
-}
+          &.h5p-cornell-display-none {
+            display: none;
+          }
+        }
+      }
 
-.h5p-cornell .h5p-cornell-notes-wrapper .h5p-cornell-buttons-wrapper {
-  margin-left: 2em;
-  width: calc(100% - 4em);
-}
+      .h5p-cornell-notes-wrapper {
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+        transition: width .25s ease-in-out;
+        z-index: 1;
+        width: 0;
 
-.h5p-cornell .h5p-cornell-notes-wrapper .h5p-cornell-buttons-wrapper .h5p-cornell-button-save {
-  &::before {
-    content: "\f0ed";
-    font-family: "H5PFontAwesome4";
-    padding-right: 0.5em;
-  }
+        &.h5p-cornell-display-none {
+          display: none;
+        }
 
-  &.h5p-cornell-disabled {
-    background-color: $background-color-button-disabled;
-    color: $color-button-disabled;
-    cursor: inherit;
-    pointer-events: none;
-  }
-}
+        &.h5p-cornell-notes-mode {
+          width: 100%;
+        }
+      }
 
-.h5p-cornell .h5p-cornell-notes-wrapper .h5p-cornell-buttons-wrapper .h5p-cornell-button-copy::before {
-  content: "\f0c5";
-  font-family: "H5PFontAwesome4";
-  padding-right: 0.5em;
-}
+      .h5p-cornell-notes-content-wrapper {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: $size-content-max-width;
+        width: 100%;
 
-.h5p-cornell .h5p-cornell-notes-content-wrapper {
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 1058px;
-  width: 100%;
-}
+        .h5p-cornell-main-notes-wrapper {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          margin: 1em 2em 0 2em;
 
-.h5p-cornell .h5p-cornell-main-notes-wrapper {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin: 1em 2em 0 2em;
-}
+          .h5p-cornell-notes-field {
+            &.h5p-cornell-main-notes-recall-wrapper {
+              width: 30%;
+            }
 
-.h5p-cornell .h5p-cornell-summary-wrapper {
-  margin: .5em 2em .5em 2em;
-  min-width: 200px;
-}
+            &.h5p-cornell-main-notes-notes-wrapper {
+              width: 70%;
+            }
+          }
+        }
 
-.h5p-cornell-notes-field {
-  &.h5p-cornell-main-notes-recall-wrapper {
-    width: 30%;
-  }
+        .h5p-cornell-summary-wrapper {
+          margin: .5em 2em .5em 2em;
+          min-width: 200px;
 
-  &.h5p-cornell-main-notes-notes-wrapper {
-    width: 70%;
-  }
+          .h5p-cornell-notes-field {
+            &.h5p-cornell-summary-notes-summary-wrapper {
+              width: 100%;
+            }
+          }
+        }
+      }
 
-  &.h5p-cornell-summary-notes-summary-wrapper {
-    width: 100%;
+      .h5p-cornell-buttons-wrapper {
+        margin-left: 2em;
+        width: calc(100% - 4em);
+
+        .h5p-cornell-button-save {
+          &::before {
+            content: "\f0ed";
+            font-family: "H5PFontAwesome4";
+            padding-right: 0.5em;
+          }
+
+          &.h5p-cornell-disabled {
+            background-color: $background-color-button-disabled;
+            color: $color-button-disabled;
+            cursor: inherit;
+            pointer-events: none;
+          }
+        }
+
+        .h5p-cornell-button-copy::before {
+          content: "\f0c5";
+          font-family: "H5PFontAwesome4";
+          padding-right: 0.5em;
+        }
+      }
+    }
   }
 }

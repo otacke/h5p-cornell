@@ -143,6 +143,10 @@ export default class CornellExercise {
    * @param {boolean} fromVideo True, if resize call from video instance.
    */
   resize(fromVideo = false) {
+    if (!this.instance) {
+      return;
+    }
+
     if (fromVideo) {
       return;
     }
