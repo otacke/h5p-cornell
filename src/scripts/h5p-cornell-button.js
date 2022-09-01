@@ -5,8 +5,7 @@ import './h5p-cornell-button.scss';
 /** Class representing the content */
 export default class CornellButton {
   /**
-   * @constructor
-   *
+   * @class
    * @param {object} params Parameter from editor.
    * @param {object} [callbacks] Callbacks.
    */
@@ -83,7 +82,8 @@ export default class CornellButton {
 
   /**
    * Return the DOM for this class.
-   * @return {HTMLElement} DOM for this class.
+   *
+   * @returns {HTMLElement} DOM for this class.
    */
   getDOM() {
     return this.button;
@@ -170,6 +170,7 @@ export default class CornellButton {
 
   /**
    * Toggle active state.
+   *
    * @param {boolean} active If true, force active; if false, force inactive.
    */
   toggle(active) {
@@ -189,7 +190,8 @@ export default class CornellButton {
 
   /**
    * Determine whether button is active.
-   * @return {boolean} True, if button is active, else false.
+   *
+   * @returns {boolean} True, if button is active, else false.
    */
   isActive() {
     return this.active;
@@ -197,7 +199,8 @@ export default class CornellButton {
 
   /**
    * Determine whether button is disabled.
-   * @return {boolean} True, if button is disabled, else false.
+   *
+   * @returns {boolean} True, if button is disabled, else false.
    */
   isDisabled() {
     return this.disabled;

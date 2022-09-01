@@ -4,15 +4,15 @@ import CornellExercise from './h5p-cornell-exercise';
 import CornellNotes from './h5p-cornell-notes';
 import Util from './h5p-cornell-util';
 
-/** Class representing the content
+/**
+ * Class representing the content
  *
  * This class could be split into one "page" that the actual content
  * could extend, but for now it's both pages in one.
  */
 export default class CornellContent {
   /**
-   * @constructor
-   *
+   * @class
    * @param {object} params Parameters.
    * @param {object} params.params Parameters from editor.
    * @param {number} params.contentId Content ID.
@@ -111,7 +111,7 @@ export default class CornellContent {
   /**
    * Return the DOM for this class.
    *
-   * @return {HTMLElement} DOM for this class.
+   * @returns {HTMLElement} DOM for this class.
    */
   getDOM() {
     return this.content;
@@ -119,7 +119,8 @@ export default class CornellContent {
 
   /**
    * Create titlebar.
-   * @return {CornellContentTitlebar} Titlebar.
+   *
+   * @returns {CornellContentTitlebar} Titlebar.
    */
   createTitleBar() {
     return new CornellContentTitlebar(
@@ -143,7 +144,8 @@ export default class CornellContent {
 
   /**
    * Append exercise.
-   * @return {HTMLElement} Exercise.
+   *
+   * @returns {HTMLElement} Exercise.
    */
   createExerciseDOM() {
     // Exercise with H5P Content
@@ -179,7 +181,8 @@ export default class CornellContent {
 
   /**
    * Create notes.
-   * @return {HTMLElement} Notes.
+   *
+   * @returns {HTMLElement} Notes.
    */
   createNotesDOM() {
     // Cornell Notes
@@ -216,7 +219,8 @@ export default class CornellContent {
 
   /**
    * Create DOM for main notes.
-   * @return {HTMLElement} DOM for main notes.
+   *
+   * @returns {HTMLElement} DOM for main notes.
    */
   createMainNotesDOM() {
     const mainNotesDOM = document.createElement('div');
@@ -261,7 +265,8 @@ export default class CornellContent {
 
   /**
    * Create DOM for summary.
-   * @return {HTMLElement} DOM for summary.
+   *
+   * @returns {HTMLElement} DOM for summary.
    */
   createSummaryDOM() {
     const summaryDOM = document.createElement('div');
@@ -289,6 +294,7 @@ export default class CornellContent {
 
   /**
    * Resize content.
+   *
    * @param {boolean} [fromVideo=false] If false, will trigger resize for exercise.
    */
   resize(fromVideo = false) {
@@ -340,6 +346,7 @@ export default class CornellContent {
 
   /**
    * Set dimensions to fullscreen.
+   *
    * @param {boolean} enterFullScreen If true, enter fullscreen, else exit.
    */
   toggleFullscreen(enterFullScreen = false) {
@@ -366,6 +373,7 @@ export default class CornellContent {
 
   /**
    * Handle activation of overlay button.
+   *
    * @param {object} event Event that is calling.
    */
   handleButtonToggle(event) {
@@ -405,8 +413,9 @@ export default class CornellContent {
 
   /**
    * Strip tags from text in H5P TextInputField object. Don't want those here.
+   *
    * @param {object} fieldState Save state object to be cleaned.
-   * @return {object} Save state object with cleaned text.
+   * @returns {object} Save state object with cleaned text.
    */
   stripTags(fieldState) {
     fieldState.inputField = Util.htmlDecode(fieldState.inputField);
@@ -415,7 +424,8 @@ export default class CornellContent {
 
   /**
    * Detect if some answer was given.
-   * @return {boolean} True if some notes was typed.
+   *
+   * @returns {boolean} True if some notes was typed.
    */
   getAnswerGiven() {
     return (
@@ -436,6 +446,8 @@ export default class CornellContent {
 
   /**
    * Get current state to be saved.
+   *
+   * @returns {object} Current state.
    */
   getCurrentState() {
     return {

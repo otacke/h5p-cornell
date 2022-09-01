@@ -6,8 +6,7 @@ import './h5p-cornell-content-titlebar.scss';
 /** Class representing the content */
 export default class CornellContentTitlebar {
   /**
-   * @constructor
-   *
+   * @class
    * @param {object} params Parameter from editor.
    * @param {string} params.title Title.
    * @param {string} params.dateString Date.
@@ -108,7 +107,8 @@ export default class CornellContentTitlebar {
 
   /**
    * Return the DOM for this class.
-   * @return {HTMLElement} DOM for this class.
+   *
+   * @returns {HTMLElement} DOM for this class.
    */
   getDOM() {
     return this.titleBar;
@@ -116,7 +116,8 @@ export default class CornellContentTitlebar {
 
   /**
    * Get toggle button state.
-   * @return {boolean} True, if button is active, else false.
+   *
+   * @returns {boolean} True, if button is active, else false.
    */
   getToggleButtonState() {
     return this.buttonToggle.isActive();
@@ -131,6 +132,7 @@ export default class CornellContentTitlebar {
 
   /**
    * Set fullscreen button state.
+   *
    * @param {string|boolean} state enter|false for enter, exit|true for exit.
    */
   toggleFullscreenButton(state) {

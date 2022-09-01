@@ -5,8 +5,7 @@ import Util from './h5p-cornell-util';
 /** Class representing Cornell Notes */
 export default class Cornell extends H5P.Question {
   /**
-   * @constructor
-   *
+   * @class
    * @param {object} params Parameters passed by the editor.
    * @param {number} contentId Content's id.
    * @param {object} [extras={}] Saved state, metadata, etc.
@@ -171,6 +170,7 @@ export default class Cornell extends H5P.Question {
 
   /**
    * Toggle fullscreen button.
+   *
    * @param {string|boolean} state enter|false for enter, exit|true for exit.
    */
   toggleFullscreen(state) {
@@ -201,16 +201,18 @@ export default class Cornell extends H5P.Question {
 
   /**
    * Check if result has been submitted or input has been given.
-   * @return {boolean} True, if answer was given.
+   *
+   * @returns {boolean} True, if answer was given.
    * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-1}
    */
   getAnswerGiven() {
-    this.content.getAnswerGiven();
+    return this.content.getAnswerGiven();
   }
 
   /**
    * Get latest score.
-   * @return {number} latest score.
+   *
+   * @returns {number} latest score.
    * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-2}
    */
   getScore() {
@@ -219,7 +221,8 @@ export default class Cornell extends H5P.Question {
 
   /**
    * Get maximum possible score
-   * @return {number} Score necessary for mastering.
+   *
+   * @returns {number} Score necessary for mastering.
    * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-3}
    */
   getMaxScore() {
@@ -228,12 +231,14 @@ export default class Cornell extends H5P.Question {
 
   /**
    * Show solutions.
+   *
    * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-4}
    */
   showSolutions() {}
 
   /**
    * Reset task.
+   *
    * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-5}
    */
   resetTask() {
@@ -249,7 +254,8 @@ export default class Cornell extends H5P.Question {
 
   /**
    * Get xAPI data.
-   * @return {object} XAPI statement.
+   *
+   * @returns {object} XAPI statement.
    * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-6}
    */
   getXAPIData() {
@@ -260,7 +266,8 @@ export default class Cornell extends H5P.Question {
 
   /**
    * Build xAPI answer event.
-   * @return {H5P.XAPIEvent} XAPI answer event.
+   *
+   * @returns {H5P.XAPIEvent} XAPI answer event.
    */
   getXAPIAnswerEvent() {
     const xAPIEvent = this.createXAPIEvent('answered');
@@ -273,8 +280,9 @@ export default class Cornell extends H5P.Question {
 
   /**
    * Create an xAPI event.
+   *
    * @param {string} verb Short id of the verb we want to trigger.
-   * @return {H5P.XAPIEvent} Event template.
+   * @returns {H5P.XAPIEvent} Event template.
    */
   createXAPIEvent(verb) {
     const xAPIEvent = this.createXAPIEventTemplate(verb);
@@ -286,7 +294,8 @@ export default class Cornell extends H5P.Question {
 
   /**
    * Get the xAPI definition for the xAPI object.
-   * @return {object} XAPI definition.
+   *
+   * @returns {object} XAPI definition.
    */
   getxAPIDefinition() {
     const definition = {};
@@ -306,7 +315,8 @@ export default class Cornell extends H5P.Question {
 
   /**
    * Determine whether the task has been passed by the user.
-   * @return {boolean} True if user passed or task is not scored.
+   *
+   * @returns {boolean} True if user passed or task is not scored.
    */
   isPassed() {
     return true;
@@ -314,7 +324,8 @@ export default class Cornell extends H5P.Question {
 
   /**
    * Get tasks title.
-   * @return {string} Title.
+   *
+   * @returns {string} Title.
    */
   getTitle() {
     let raw;
@@ -328,7 +339,8 @@ export default class Cornell extends H5P.Question {
 
   /**
    * Get tasks description.
-   * @return {string} Description.
+   *
+   * @returns {string} Description.
    */
   getDescription() {
     return this.params.taskDescription || Cornell.DEFAULT_DESCRIPTION;
@@ -336,7 +348,8 @@ export default class Cornell extends H5P.Question {
 
   /**
    * Answer call to return the current state.
-   * @return {object} Current state.
+   *
+   * @returns {object} Current state.
    */
   getCurrentState() {
     const currentState = this.content.getCurrentState();
@@ -360,8 +373,9 @@ export default class Cornell extends H5P.Question {
 
   /**
    * Get previous state from localStorage.
+   *
    * @param {number} id Content id to retrieve content for.
-   * @return {object|null} Previous state, null if not possible.
+   * @returns {object|null} Previous state, null if not possible.
    */
   static getPreviousStateLocal(id) {
     try {
