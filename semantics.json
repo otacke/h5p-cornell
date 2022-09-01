@@ -148,13 +148,6 @@
         "default": "The platform either does not support the save content state feature or it is not activated in the platform's settings or you are not logged in. Your notes cannot not be saved!"
       },
       {
-        "name": "submitAnswer",
-        "type": "text",
-        "label": "Submit answer",
-        "importance": "low",
-        "default": "Submit"
-      },
-      {
         "name": "copy",
         "type": "text",
         "label": "Text for \"Copy\" button",

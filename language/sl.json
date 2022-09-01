@@ -72,10 +72,6 @@
           "default": "Zapiskov ni mogoče shraniti. Razlog je lahko v nepodprtosti shranjevanja v učnem okolju, neprijavljenosti uporabnika ipd."
         },
         {
-          "label": "Potrdi odgovor",
-          "default": "Potrdi odgovor"
-        },
-        {
           "label": "Besedilo za gumb \"Kopiraj\"",
           "default": "Kopiraj"
         },

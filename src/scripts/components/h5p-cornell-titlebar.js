@@ -1,5 +1,6 @@
 // Import required classes
 import CornellButton from './h5p-cornell-button';
+import Dictionary from './../services/dictionary';
 import Util from './../h5p-cornell-util';
 import './h5p-cornell-titlebar.scss';
 
@@ -10,9 +11,6 @@ export default class CornellTitlebar {
    * @param {object} params Parameter from editor.
    * @param {string} params.title Title.
    * @param {string} params.dateString Date.
-   * @param {object} params.a11y Accessibility strings.
-   * @param {string} params.a11y.buttonToggleActive Text for inactive button.
-   * @param {string} params.a11y.buttonToggleInactive Text for inactive button.
    * @param {object} callbacks Callbacks.
    * @param {function} callbacks.handlebuttonToggle Handles click.
    */
@@ -21,11 +19,7 @@ export default class CornellTitlebar {
     this.params = Util.extend({
       title: '',
       dateString: new Date().toLocaleDateString(),
-      toggleButtonActiveOnStartup: true,
-      a11y: {
-        buttonToggleActive: 'toggle',
-        buttonToggleInactive: 'toggle'
-      }
+      toggleButtonActiveOnStartup: true
     }, params);
 
     // Set missing callbacks
@@ -58,8 +52,8 @@ export default class CornellTitlebar {
           'h5p-cornell-button-toggle'
         ],
         a11y: {
-          active: this.params.a11y.buttonToggleActive,
-          inactive: this.params.a11y.buttonToggleInactive
+          active: Dictionary.get('a11y.buttonToggleOpenNotes'),
+          inactive: Dictionary.get('a11y.buttonToggleCloseNotes')
         }
       },
       {
@@ -88,8 +82,8 @@ export default class CornellTitlebar {
         ],
         disabled: true,
         a11y: {
-          active: this.params.a11y.buttonFullscreenExit,
-          inactive: this.params.a11y.buttonFullscreenEnter
+          active: Dictionary.get('a11y.buttonFullscreenExit'),
+          inactive: Dictionary.get('a11y.buttonFullscreenEnter')
         }
       },
       {

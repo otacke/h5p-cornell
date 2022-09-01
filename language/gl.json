@@ -72,10 +72,6 @@
           "default": "A plataforma non soporta a característica de estado do contido ou non se activou na súa configuración ou non entraches co teu usuario e contrasinal. Non podemos gardar as túas notas!"
         },
         {
-          "label": "Enviar resposta",
-          "default": "Enviar"
-        },
-        {
           "label": "Texto para o botón \"Copiar\"",
           "default": "Copiar"
         },

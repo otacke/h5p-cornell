@@ -72,10 +72,6 @@
           "default": "La plataforma no es compatible con la función de estado de guardado de contenido o no está activada en la configuración de la plataforma o no has iniciado sesión. ¡Tus notas no se pueden guardar!"
         },
         {
-          "label": "Enviar respuesta",
-          "default": "Enviar"
-        },
-        {
           "label": "Texto para botón \"Copiar\"",
           "default": "Copiar"
         },

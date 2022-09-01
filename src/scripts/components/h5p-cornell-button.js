@@ -125,7 +125,6 @@ export default class CornellButton {
   disable() {
     this.button.classList.add('h5p-cornell-button-disabled');
     this.button.setAttribute('aria-label', this.params.a11y.disabled);
-    this.button.setAttribute('title', this.params.a11y.disabled);
 
     this.disabled = true;
   }
@@ -144,7 +143,6 @@ export default class CornellButton {
     }
 
     this.button.setAttribute('aria-label', this.params.a11y.active);
-    this.button.setAttribute('title', this.params.a11y.active);
 
     this.active = true;
   }
@@ -165,7 +163,6 @@ export default class CornellButton {
     }
 
     this.button.setAttribute('aria-label', this.params.a11y.inactive);
-    this.button.setAttribute('title', this.params.a11y.inactive);
   }
 
   /**

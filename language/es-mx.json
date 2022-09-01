@@ -72,10 +72,6 @@
           "default": "La plataforma no soporta la característica de guardar el estado del contenido, o no está activada en las configuraciones de la plataforma, o usted no está ingresado en el sitio. ¡Sus anotaciones no pueden ser guardadas!"
         },
         {
-          "label": "Enviar respuesta",
-          "default": "Enviar"
-        },
-        {
           "label": "Texto para botón \"Copiar\"",
           "default": "Copiar"
         },

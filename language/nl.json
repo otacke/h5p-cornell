@@ -72,10 +72,6 @@
           "default": "Het platform ondersteunt geen opslag of het is niet in de instellingen geactiveerd of je bent niet ingelogd. Je notities kunnen niet worden opgeslagen!"
         },
         {
-          "label": "Antwoord indienen",
-          "default": "Indienen"
-        },
-        {
           "label": "Tekst voor \"Kopieer\"-knop",
           "default": "Kopieer"
         },

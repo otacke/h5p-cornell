@@ -1,5 +1,6 @@
 // Import required classes
 import CornellContent from './h5p-cornell-content';
+import Dictionary from './services/dictionary';
 import Util from './h5p-cornell-util';
 
 /** Class representing Cornell Notes */
@@ -47,7 +48,6 @@ export default class Cornell extends H5P.Question {
       l10n: {
         notesSaved: 'Notes saved',
         save: 'Save',
-        submitAnswer: 'Submit',
         copy: 'Copy',
         copyToClipboardSuccess: 'Notes copied to clipboard',
         copyToClipboardError: 'Notes could not be copied to clipboard',
@@ -64,10 +64,11 @@ export default class Cornell extends H5P.Question {
       minWidthForDualView: Cornell.MIN_WIDTH_FOR_DUALVIEW
     }, params);
 
-    // decode HTML for titles/aria-labels
-    for (const prop in this.params.a11y) {
-      this.params.a11y[prop] = Util.htmlDecode(this.params.a11y[prop]);
-    }
+    // Fill dictionary
+    Dictionary.fill({
+      l10n: this.params.l10n,
+      a11y: this.params.a11y
+    });
 
     /*
      * The previousState stored inside the database will be set to undefined if

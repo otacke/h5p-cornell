@@ -72,10 +72,6 @@
           "default": "Plataformak ez du gordetako edukiaren egoera funtzioa onartzen, plataformaren ezarpenetan gaitu gabe dago, ala ez duzu saioa hasi. Zure oharrak ezin izan dira gorde!"
         },
         {
-          "label": "Bidali erantzuna",
-          "default": "Bidali"
-        },
-        {
           "label": "\"Kopiatu\" botoiarentzako testua",
           "default": "Kopiatu"
         },
