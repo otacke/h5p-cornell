@@ -60,6 +60,10 @@ export default class CornellNotes {
     // Relay changes to parent
     ['change', 'keyup', 'paste'].forEach((eventName) => {
       this.textArea.addEventListener(eventName, () => {
+        if (this.areNotesInvisible) {
+          return;
+        }
+
         if (this.getText() !== this.previousInput) {
           this.callbacks.onChanged();
         }
