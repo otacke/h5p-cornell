@@ -1,4 +1,5 @@
 // Import required classes
+import Dictionary from './../services/dictionary';
 import Util from './../h5p-cornell-util';
 import './h5p-cornell-notes.scss';
 
@@ -20,6 +21,8 @@ export default class CornellNotes {
     }, callbacks || {});
 
     this.previousInput = this.params?.previousState?.inputField || '';
+    this.areNotesInvisible = !(this.params?.previousState?.notesInvisible ||
+      false);
 
     this.dom = document.createElement('div');
     this.dom.classList.add('h5p-cornell-notes-field');
@@ -49,14 +52,14 @@ export default class CornellNotes {
       return;
     }
 
-    const textArea = this.instance.$inputField.get(0);
-    if (!textArea) {
+    this.textArea = this.instance.$inputField.get(0);
+    if (!this.textArea) {
       return;
     }
 
     // Relay changes to parent
     ['change', 'keyup', 'paste'].forEach((eventName) => {
-      textArea.addEventListener(eventName, () => {
+      this.textArea.addEventListener(eventName, () => {
         if (this.getText() !== this.previousInput) {
           this.callbacks.onChanged();
         }
@@ -65,7 +68,7 @@ export default class CornellNotes {
       });
     });
 
-    const textInputField = textArea.parentNode;
+    const textInputField = this.textArea.parentNode;
 
     // Label for notes
     const titlebar = document.createElement('div');
@@ -75,6 +78,15 @@ export default class CornellNotes {
     const label = textInputField.firstChild;
     textInputField.insertBefore(titlebar, label);
     titlebar.appendChild(label);
+
+    this.buttonVisibility = document.createElement('button');
+    this.buttonVisibility.classList.add('h5p-cornell-notes-button-visibility');
+    this.handleNotesVisibility();
+    this.buttonVisibility.addEventListener('click', () => {
+      this.handleNotesVisibility();
+      this.callbacks.onChanged();
+    });
+    titlebar.appendChild(this.buttonVisibility);
   }
 
   /**
@@ -105,7 +117,46 @@ export default class CornellNotes {
       return;
     }
 
-    return this.instance.getCurrentState();
+    // Trying to use instance getCurentState as much as possible
+    const state = this.instance.getCurrentState();
+    if (this.areNotesInvisible) {
+      state.inputField = this.previousInput;
+    }
+    state.notesInvisible = this.areNotesInvisible;
+
+    return state;
+  }
+
+  /**
+   * Handle notes visibility.
+   */
+  handleNotesVisibility() {
+    if (this.areNotesInvisible) {
+      this.areNotesInvisible = false;
+      this.textArea.value = this.previousInput;
+      this.textArea.setAttribute(
+        'placeholder', Util.htmlDecode(this.params.placeholder)
+      );
+      this.textArea.removeAttribute('disabled');
+      this.buttonVisibility.classList.remove('hidden');
+      this.buttonVisibility.setAttribute(
+        'aria-label',
+        Dictionary.get('a11y.notesHide').replace(/@label/g, this.params.label)
+      );
+    }
+    else {
+      this.areNotesInvisible = true;
+
+      this.textArea.removeAttribute('placeholder');
+      this.textArea.value = '';
+      this.textArea.setAttribute('disabled', 'disabled');
+
+      this.buttonVisibility.classList.add('hidden');
+      this.buttonVisibility.setAttribute(
+        'aria-label',
+        Dictionary.get('a11y.notesShow').replace(/@label/g, this.params.label)
+      );
+    }
   }
 
   /**

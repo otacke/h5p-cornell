@@ -27,9 +27,9 @@ export default class CornellContent {
     this.previousState = Util.extend(
       {
         dateString: new Date().toLocaleDateString(),
-        recall: {inputField: ''},
-        mainNotes: {inputField: ''},
-        summary: {inputField: ''}
+        recall: { inputField: '' },
+        mainNotes: { inputField: '' },
+        summary: { inputField: '' }
       },
       this.params.extras.previousState || {}
     );
@@ -281,7 +281,6 @@ export default class CornellContent {
       {
         label: this.params.notesFields.summaryTitle,
         class: 'h5p-cornell-summary-notes-summary-wrapper',
-        placeholder: Util.htmlDecode(this.params.notesFields.notesPlaceholder),
         placeholder: Util.htmlDecode(
           this.params.notesFields.summaryPlaceholder
         ),

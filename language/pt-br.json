@@ -115,6 +115,16 @@
         {
           "label": "Notas salvas",
           "default": "As notas foram salvas na plataforma."
+        },
+        {
+          "label": "Hide notes",
+          "default": "Hide @label notes",
+          "description": "@label is a placeholder and will be replaced with the respective label of the notes field."
+        },
+        {
+          "label": "Show notes",
+          "default": "Show @label notes",
+          "description": "@label is a placeholder and will be replaced with the respective label of the notes field."
         }
       ]
     }

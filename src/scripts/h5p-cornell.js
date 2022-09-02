@@ -60,6 +60,8 @@ export default class Cornell extends H5P.Question {
         buttonToggleCloseNotes: 'Switch to the exercise',
         notesOpened: 'The view switched to your notes.',
         notesClosed: 'The view switched to the exercise.',
+        notesHide: 'Hide @label notes',
+        notesShow: 'Show @label notes',
       },
       minWidthForDualView: Cornell.MIN_WIDTH_FOR_DUALVIEW
     }, params);
