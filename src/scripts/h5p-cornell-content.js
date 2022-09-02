@@ -282,8 +282,11 @@ export default class CornellContent {
         label: this.params.notesFields.summaryTitle,
         class: 'h5p-cornell-summary-notes-summary-wrapper',
         placeholder: Util.htmlDecode(this.params.notesFields.notesPlaceholder),
+        placeholder: Util.htmlDecode(
+          this.params.notesFields.summaryPlaceholder
+        ),
         size: this.params.fieldSizeNotes,
-        previousState: this.previousState.mainNotes,
+        previousState: this.previousState.summary,
         contentId: this.params.contentId
       },
       {
