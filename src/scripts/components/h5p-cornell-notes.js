@@ -49,9 +49,14 @@ export default class CornellNotes {
       return;
     }
 
-    ['change', 'keyup', 'paste'].forEach((eventName) => {
+    const textArea = this.instance.$inputField.get(0);
+    if (!textArea) {
+      return;
+    }
 
-      this.instance.$inputField.get(0).addEventListener(eventName, () => {
+    // Relay changes to parent
+    ['change', 'keyup', 'paste'].forEach((eventName) => {
+      textArea.addEventListener(eventName, () => {
         if (this.getText() !== this.previousInput) {
           this.callbacks.onChanged();
         }
@@ -59,6 +64,17 @@ export default class CornellNotes {
         this.previousInput = this.getText();
       });
     });
+
+    const textInputField = textArea.parentNode;
+
+    // Label for notes
+    const titlebar = document.createElement('div');
+    titlebar.classList.add('h5p-cornell-notes-titlebar');
+
+    // Using instance's label because it's used for ARIA
+    const label = textInputField.firstChild;
+    textInputField.insertBefore(titlebar, label);
+    titlebar.appendChild(label);
   }
 
   /**
