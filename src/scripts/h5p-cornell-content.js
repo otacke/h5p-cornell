@@ -279,7 +279,7 @@ export default class CornellContent {
 
     this.summary = new CornellNotes(
       {
-        label: this.params.notesFields.notesTitle,
+        label: this.params.notesFields.summaryTitle,
         class: 'h5p-cornell-summary-notes-summary-wrapper',
         placeholder: Util.htmlDecode(this.params.notesFields.notesPlaceholder),
         size: this.params.fieldSizeNotes,
