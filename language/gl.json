@@ -1,8 +1,8 @@
 {
   "semantics": [
     {
-      "label": "Headline",
-      "description": "If set, will be used for the headline of the exercise instead of the content title."
+      "label": "Cabeceira",
+      "description": "Se se estableceu, utilizarase para o título do exercicio en lugar do título do contido."
     },
     {
       "label": "Instrucións",
@@ -117,14 +117,14 @@
           "default": "Gardáronse as notas na plataforma."
         },
         {
-          "label": "Hide notes",
-          "default": "Hide @label notes",
-          "description": "@label is a placeholder and will be replaced with the respective label of the notes field."
+          "label": "Agachar notas",
+          "default": "Agachar as notas @label",
+          "description": "@label é un marcador que se substituirá pola etiqueta respectiva no campo de notas."
         },
         {
-          "label": "Show notes",
-          "default": "Show @label notes",
-          "description": "@label is a placeholder and will be replaced with the respective label of the notes field."
+          "label": "Amosar notas",
+          "default": "Amosar as notas @label",
+          "description": "@label é un marcador que se substituirá pola etiqueta respectiva do campo de notas."
         }
       ]
     }
