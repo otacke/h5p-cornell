@@ -117,14 +117,14 @@
           "default": "Las notas se han guardado en la plataforma."
         },
         {
-          "label": "Hide notes",
-          "default": "Hide @label notes",
-          "description": "@label is a placeholder and will be replaced with the respective label of the notes field."
+          "label": "Ocultar anotaciones",
+          "default": "Ocultar @label anotaciones",
+          "description": "@label es un reemplazable y será reemplazado con la etiqueta respectiva del campo de anotaciones."
         },
         {
-          "label": "Show notes",
-          "default": "Show @label notes",
-          "description": "@label is a placeholder and will be replaced with the respective label of the notes field."
+          "label": "Mostrar anotaciones",
+          "default": "Mostrar @label anotaciones",
+          "description": "@label es un reemplazable y será reemplazado con la etiqueta respectiva del campo de anotaciones."
         }
       ]
     }
