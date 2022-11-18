@@ -1,8 +1,8 @@
 {
   "semantics": [
     {
-      "label": "Headline",
-      "description": "If set, will be used for the headline of the exercise instead of the content title."
+      "label": "Izenburua",
+      "description": "Ezarrita badago, ariketaren izenbururako erabiliko da edukiaren izenburuaren ordez."
     },
     {
       "label": "Argibideak",
@@ -108,14 +108,14 @@
           "default": "Oharrak plataforman gorde dira."
         },
         {
-          "label": "Hide notes",
-          "default": "Hide @label notes",
-          "description": "@label is a placeholder and will be replaced with the respective label of the notes field."
+          "label": "Ezkutatu oharrak",
+          "default": "Ezkutatu @label oharrak",
+          "description": "@label leku-marka bat da eta oharren eremuko dagokion etiketarekin ordezkatuko da."
         },
         {
-          "label": "Show notes",
-          "default": "Show @label notes",
-          "description": "@label is a placeholder and will be replaced with the respective label of the notes field."
+          "label": "Erakutsi oharrak",
+          "default": "Erakutsi @label oharrak",
+          "description": "@label leku-marka bat da eta oharren eremuko dagokion etiketarekin ordezkatuko da."
         }
       ]
     }
