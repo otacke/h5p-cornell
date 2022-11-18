@@ -108,14 +108,14 @@
           "default": "De notities werden opgeslagen op het platform."
         },
         {
-          "label": "Hide notes",
-          "default": "Hide @label notes",
-          "description": "@label is a placeholder and will be replaced with the respective label of the notes field."
+          "label": "Notities verbergen",
+          "default": "Notities met @label verbergen",
+          "description": "@label is een plaatshouder en wordt vervangen door het label van het betreffende notitieveld."
         },
         {
-          "label": "Show notes",
-          "default": "Show @label notes",
-          "description": "@label is a placeholder and will be replaced with the respective label of the notes field."
+          "label": "Notities tonen",
+          "default": "Notities met @label tonen",
+          "description": "@label is een plaatshouder en wordt vervangen door het betreffende label van het notitieveld."
         }
       ]
     }
