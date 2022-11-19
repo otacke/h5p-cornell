@@ -104,23 +104,6 @@
     ]
   },
   {
-    "name": "behaviour",
-    "type": "group",
-    "importance": "low",
-    "label": "Behavioural settings",
-    "default": true,
-    "fields": [
-      {
-        "name": "showNotesOnStartup",
-        "type": "boolean",
-        "label": "Show notes on startup",
-        "description": "When this option is disabled, the notes are hidden on startup. Notes are hidden automatically on small displays.",
-        "default": true,
-        "optional": true
-      }
-    ]
-  },
-  {
     "name": "l10n",
     "type": "group",
     "common": true,
@@ -146,7 +129,7 @@
         "type": "text",
         "label": "Notes cannot be saved",
         "importance": "low",
-        "default": "The platform either does not support the save content state feature or it is not activated in the platform's settings or you are not logged in. Your notes cannot not be saved!"
+        "default": "The platform either does not support the save content state feature or it is not activated in the platform's settings or you are not logged in. Your notes cannot be saved!"
       },
       {
         "name": "copy",

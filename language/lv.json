@@ -48,15 +48,6 @@
       ]
     },
     {
-      "label": "Uzvedības iestatītjumi",
-      "fields": [
-        {
-          "label": "Uzsākot rādīt piezīmes",
-          "description": "Kad atspējots, uzsākot uzdevumu, piezīmes tiek paslēptas. Uz maziem ekrāniem piezīmes tiek paslēptas automātiski."
-        }
-      ]
-    },
-    {
       "label": "Localization",
       "fields": [
         {
@@ -69,7 +60,7 @@
         },
         {
           "label": "Notes cannot be saved",
-          "default": "The platform either does not support the save content state feature or it is not activated in the platform's settings or you are not logged in. Your notes cannot not be saved!"
+          "default": "The platform either does not support the save content state feature or it is not activated in the platform's settings or you are not logged in. Your notes cannot be saved!"
         },
         {
           "label": "Text for \"Copy\" button",

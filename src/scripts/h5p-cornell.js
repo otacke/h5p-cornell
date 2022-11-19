@@ -51,7 +51,7 @@ export default class Cornell extends H5P.Question {
         copy: 'Copy',
         copyToClipboardSuccess: 'Notes copied to clipboard',
         copyToClipboardError: 'Notes could not be copied to clipboard',
-        noSaveContentState: 'The platform either does not support the save content state feature or it is not activated in the platform\'s settings or you are not logged in. Your notes cannot not be saved!'
+        noSaveContentState: 'The platform either does not support the save content state feature or it is not activated in the platform\'s settings or you are not logged in. Your notes cannot be saved!'
       },
       a11y: {
         buttonFullscreenEnter: 'Enter fullscreen mode',
@@ -62,8 +62,7 @@ export default class Cornell extends H5P.Question {
         notesClosed: 'The view switched to the exercise.',
         notesHide: 'Hide @label notes',
         notesShow: 'Show @label notes',
-      },
-      minWidthForDualView: Cornell.MIN_WIDTH_FOR_DUALVIEW
+      }
     }, params);
 
     // Fill dictionary
@@ -132,7 +131,6 @@ export default class Cornell extends H5P.Question {
       headline: this.params.headline,
       instructions: this.params.instructions,
       isRoot: this.isRoot(),
-      minWidthForDualView: this.params.minWidthForDualView,
       notesFields: this.params.notesFields
     },
     {
@@ -418,6 +416,3 @@ export default class Cornell extends H5P.Question {
 
 /** @constant {string} */
 Cornell.DEFAULT_DESCRIPTION = 'Cornell Notes';
-
-/** @constant {number} */
-Cornell.MIN_WIDTH_FOR_DUALVIEW = 1024;

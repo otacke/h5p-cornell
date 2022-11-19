@@ -48,15 +48,6 @@
       ]
     },
     {
-      "label": "Gedragsinstellingen",
-      "fields": [
-        {
-          "label": "Toon aantekeningen bij opstarten",
-          "description": "Indien ingeschakeld, worden de aantekeningen bij het opstarten getoond. Aantekeningen worden automatisch verborgen bij kleine schermen."
-        }
-      ]
-    },
-    {
       "label": "Localisatie",
       "fields": [
         {

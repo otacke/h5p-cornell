@@ -34,14 +34,6 @@
   }
 
   .h5p-cornell-button {
-    &.h5p-cornell-button-toggle {
-      background-image: url(../../images/button-toggle-notes-icon-blue.svg);
-
-      &.h5p-cornell-button-active {
-        background-image: url(../../images/button-toggle-notes-icon-white.svg);
-      }
-    }
-
     &.h5p-cornell-button-fullscreen {
       background-color: $color-base-05;
       background-image: url(../../images/button-enter-fullscreen-icon-blue.svg);

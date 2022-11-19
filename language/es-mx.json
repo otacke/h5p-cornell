@@ -48,15 +48,6 @@
       ]
     },
     {
-      "label": "Configuraciones del comportamiento",
-      "fields": [
-        {
-          "label": "Mostrar anotaciones al iniciar",
-          "description": "Cuando esta opción es deshabilitada, las anotaciones están ocultas al iniciar. Las anotaciones son ocultadas automáticamente en monitores pequeños."
-        }
-      ]
-    },
-    {
       "label": "Localización",
       "fields": [
         {

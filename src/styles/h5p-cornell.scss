@@ -26,36 +26,23 @@
       margin-left: auto;
       margin-right: auto;
       display: flex;
+      flex-wrap: wrap;
 
       .h5p-cornell-exercise-wrapper {
+        flex-grow: 1;
         overflow-y: auto;
-        transition: width .25s ease-in-out;
-        width: 100%;
-
-        &.h5p-cornell-notes-mode.h5p-cornell-narrow-screen {
-          width: 0;
-
-          &.h5p-cornell-display-none {
-            display: none;
-          }
-        }
+        min-width: $size-exercise-wrapper-min-width;
+        width: 50%;
       }
 
       .h5p-cornell-notes-wrapper {
         display: flex;
         flex-direction: column;
+        flex-grow: 1;
         overflow-y: auto;
-        transition: width .25s ease-in-out;
         z-index: 1;
-        width: 0;
-
-        &.h5p-cornell-display-none {
-          display: none;
-        }
-
-        &.h5p-cornell-notes-mode {
-          width: 100%;
-        }
+        min-width: $size-notes-wrapper-min-width;
+        width: 50%;
       }
 
       .h5p-cornell-notes-content-wrapper {

@@ -48,15 +48,6 @@
       ]
     },
     {
-      "label": "Configuración del comportamiento",
-      "fields": [
-        {
-          "label": "Mostrar notas al iniciar",
-          "description": "Cuando esta opción es deshabilitada, las notas están ocultas al iniciar. Las notas se ocultan automáticamente en monitores pequeños."
-        }
-      ]
-    },
-    {
       "label": "Localización",
       "fields": [
         {

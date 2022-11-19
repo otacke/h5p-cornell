@@ -48,15 +48,6 @@
       ]
     },
     {
-      "label": "Nastavitev interakcije",
-      "fields": [
-        {
-          "label": "Vnosna polja zapiskov prikaži privzeto",
-          "description": "Onemogočena nastavitev ob zagonu polja z zapiski skrije. Polja so samodejno skrita tudi na manjših zaslonih."
-        }
-      ]
-    },
-    {
       "label": "Določitev",
       "fields": [
         {

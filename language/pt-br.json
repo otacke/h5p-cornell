@@ -48,15 +48,6 @@
       ]
     },
     {
-      "label": "Configurações comportamentais",
-      "fields": [
-        {
-          "label": "Mostrar notas na inicialização",
-          "description": "Quando esta opção está desativada, as notas ficam ocultas na inicialização. As notas são ocultadas automaticamente em telas pequenas."
-        }
-      ]
-    },
-    {
       "label": "Localização",
       "fields": [
         {

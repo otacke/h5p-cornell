@@ -12,22 +12,17 @@ export default class CornellTitlebar {
    * @param {string} params.title Title.
    * @param {string} params.dateString Date.
    * @param {object} callbacks Callbacks.
-   * @param {function} callbacks.onButtonToggle Handles notes toggling .
    * @param {function} callbacks.onButtonFullscreen Handles fullscreen.
    */
   constructor(params = {}, callbacks = {}) {
     // Set missing params
     this.params = Util.extend({
       title: '',
-      dateString: new Date().toLocaleDateString(),
-      toggleButtonActiveOnStartup: true
+      dateString: new Date().toLocaleDateString()
     }, params);
 
     // Set missing callbacks
     this.callbacks = Util.extend({
-      onButtonToggle: () => {
-        console.warn('A function for handling the toggle notes button is missing.');
-      },
       onButtonFullscreen: () => {
         console.warn('A function for handling the fullscreen button is missing.');
       }
@@ -35,27 +30,6 @@ export default class CornellTitlebar {
 
     this.titleBar = document.createElement('div');
     this.titleBar.classList.add('h5p-cornell-title-bar');
-
-    // Toggle button
-    this.buttonToggle = new CornellButton(
-      {
-        type: 'toggle',
-        classes: [ 'h5p-cornell-button', 'h5p-cornell-button-toggle' ],
-        a11y: {
-          active: Dictionary.get('a11y.buttonToggleCloseNotes'),
-          inactive: Dictionary.get('a11y.buttonToggleOpenNotes')
-        }
-      },
-      {
-        onClick: (() => {
-          this.callbacks.onButtonToggle();
-        })
-      }
-    );
-
-    if (this.params.toggleButtonActiveOnStartup === true) {
-      this.buttonToggle.activate();
-    }
 
     // Title
     const titleDOM = document.createElement('div');
@@ -84,7 +58,6 @@ export default class CornellTitlebar {
       }
     );
 
-    this.titleBar.appendChild(this.buttonToggle.getDOM());
     this.titleBar.appendChild(titleDOM);
     this.titleBar.appendChild(dateDOM);
     this.titleBar.appendChild(this.buttonFullscreen.getDOM());

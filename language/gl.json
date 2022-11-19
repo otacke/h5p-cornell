@@ -48,15 +48,6 @@
       ]
     },
     {
-      "label": "Configuración do comportamento",
-      "fields": [
-        {
-          "label": "Amosar as notas ao princio",
-          "description": "Se esta opción está deshabilitada, agacharanse as notas ao principio. As notas agáchanse automaticamente en pantallas pequenas."
-        }
-      ]
-    },
-    {
       "label": "Localización",
       "fields": [
         {

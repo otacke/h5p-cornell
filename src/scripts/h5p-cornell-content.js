@@ -42,8 +42,6 @@ export default class CornellContent {
       resize: () => {}
     }, callbacks);
 
-    this.isExerciseMode = !this.params.behaviour.showNotesOnStartup;
-
     // TODO: Request H5P core to set a flag that can be queried instead
     const canStoreUserState = H5PIntegration.saveFreq !== undefined &&
       H5PIntegration.saveFreq !== false;
@@ -130,12 +128,12 @@ export default class CornellContent {
     return new CornellTitlebar(
       {
         title: this.params.headline || this.params.extras.metadata?.title || '',
-        dateString: this.previousState.dateString,
-        toggleButtonActiveOnStartup: this.params.behaviour.showNotesOnStartup
+        dateString: this.previousState.dateString
       },
       {
-        onButtonToggle: (event) => this.handleButtonToggle(event),
-        onButtonFullscreen: this.callbacks.onButtonFullscreen
+        onButtonFullscreen: () => {
+          this.callbacks.onButtonFullscreen();
+        }
       }
     );
   }
@@ -149,10 +147,6 @@ export default class CornellContent {
     // Exercise with H5P Content
     const exerciseWrapper = document.createElement('div');
     exerciseWrapper.classList.add('h5p-cornell-exercise-wrapper');
-
-    if (!this.isExerciseMode) {
-      exerciseWrapper.classList.add('h5p-cornell-notes-mode');
-    }
 
     this.exercise = new CornellExercise(
       {
@@ -169,18 +163,6 @@ export default class CornellContent {
     );
     exerciseWrapper.appendChild(this.exercise.getDOM());
 
-    // If notes are opened and display is too narrow, undisplay excercise
-    exerciseWrapper.addEventListener('transitionend', () => {
-      if (!this.isExerciseMode) {
-        if (exerciseWrapper.offsetWidth === 0) {
-          exerciseWrapper.classList.add('h5p-cornell-display-none');
-        }
-        setTimeout(() => {
-          this.resize();
-        }, 0);
-      }
-    });
-
     return exerciseWrapper;
   }
 
@@ -193,23 +175,6 @@ export default class CornellContent {
     // Cornell Notes
     const notesWrapper = document.createElement('div');
     notesWrapper.classList.add('h5p-cornell-notes-wrapper');
-
-    if (!this.isExerciseMode) {
-      notesWrapper.classList.add('h5p-cornell-notes-mode');
-    }
-    else {
-      notesWrapper.classList.add('h5p-cornell-display-none');
-    }
-
-    // Hide wrapper after it moved out of sight to prevent receiving tab focus
-    notesWrapper.addEventListener('transitionend', () => {
-      if (this.isExerciseMode) {
-        notesWrapper.classList.add('h5p-cornell-display-none');
-      }
-      setTimeout(() => {
-        this.resize();
-      }, 0);
-    });
 
     const notesContentWrapper = document.createElement('div');
     notesContentWrapper.classList.add('h5p-cornell-notes-content-wrapper');
@@ -320,26 +285,6 @@ export default class CornellContent {
       }, 0);
     }
 
-    // Not done using media query because display needs to be not-none first
-    if (this.content.offsetWidth < this.params.minWidthForDualView) {
-      if (!this.isNarrowScreen) {
-        this.isNarrowScreen = true;
-
-        // Triggers a transition, display set to none afterwards by listener
-        this.exerciseWrapper.classList.add('h5p-cornell-narrow-screen');
-      }
-    }
-    else {
-      this.exerciseWrapper.classList.remove('h5p-cornell-display-none');
-      setTimeout(() => {
-        this.exerciseWrapper.classList.remove('h5p-cornell-narrow-screen');
-      }, 0);
-
-      if (this.isNarrowScreen) {
-        this.isNarrowScreen = false;
-      }
-    }
-
     if (typeof this.callbacks.resize === 'function') {
       this.callbacks.resize();
     }
@@ -385,38 +330,6 @@ export default class CornellContent {
         this.resize();
       }, 0);
     }
-  }
-
-  /**
-   * Handle activation of overlay button.
-   */
-  handleButtonToggle() {
-    const active = this.titlebar.getToggleButtonState();
-    const message = (active) ?
-      Dictionary.get('a11y.notesOpened') :
-      Dictionary.get('a11y.notesClosed');
-    this.callbacks.read(Util.stripHTML(message));
-
-    this.toggleView();
-  }
-
-  /**
-   * Toggle between exercise and notes.
-   */
-  toggleView() {
-    // Show hidden wrappers to allow transition
-    this.exerciseWrapper.classList.remove('h5p-cornell-display-none');
-    this.notesWrapper.classList.remove('h5p-cornell-display-none');
-
-    // Give DOM time to set display property
-    setTimeout(() => {
-      this.exerciseWrapper.classList.toggle('h5p-cornell-notes-mode');
-      this.notesWrapper.classList.toggle('h5p-cornell-notes-mode');
-
-      this.isExerciseMode = !this.isExerciseMode;
-
-      this.resize();
-    }, 0);
   }
 
   /**
@@ -559,9 +472,3 @@ export default class CornellContent {
     this.buttonSave.removeAttribute('disabled');
   }
 }
-
-/** @constant {number} */
-CornellContent.MODE_EXERCISE = 0;
-
-/** @constant {number} */
-CornellContent.MODE_NOTES = 1;
