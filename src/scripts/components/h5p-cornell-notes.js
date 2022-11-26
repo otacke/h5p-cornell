@@ -114,7 +114,7 @@ export default class CornellNotes {
   /**
    * Get current state.
    *
-   * @returns {object} Current state.
+   * @returns {object|undefined} Current state.
    */
   getCurrentState() {
     if (!this.instance) {

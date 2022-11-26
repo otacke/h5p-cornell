@@ -88,7 +88,7 @@ class Util {
 
     navigator.clipboard.writeText(text).then(() => {
       callback(true);
-    }, error => {
+    }, (error) => {
       console.error('Cannot copy to clipboard: ', error);
       callback(false);
     });

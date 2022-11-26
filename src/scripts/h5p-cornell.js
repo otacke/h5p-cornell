@@ -152,7 +152,7 @@ export default class Cornell extends H5P.Question {
     this.setContent(this.content.getDOM());
 
     // Wait for content to be attached to DOM
-    this.observer = new IntersectionObserver(entries => {
+    this.observer = new IntersectionObserver((entries) => {
       if (entries[0].intersectionRatio === 1) {
         this.observer.unobserve(this.content.getDOM()); // Only needed once
         this.handleContentVisible();

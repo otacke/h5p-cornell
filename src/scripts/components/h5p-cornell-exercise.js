@@ -177,7 +177,7 @@ export default class CornellExercise {
   /**
    * Get current state.
    *
-   * @returns {object} Current state of instance.
+   * @returns {object|undefined} Current state of instance.
    */
   getCurrentState() {
     if (typeof this.instance?.getCurrentState !== 'function') {
