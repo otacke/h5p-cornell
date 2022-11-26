@@ -83,7 +83,7 @@
         .h5p-cornell-button-save {
           &::before {
             content: "\f0ed";
-            font-family: "H5PFontAwesome4";
+            font-family: "H5PFontAwesome4", sans-serif;
             padding-right: 0.5em;
           }
 
@@ -97,7 +97,7 @@
 
         .h5p-cornell-button-copy::before {
           content: "\f0c5";
-          font-family: "H5PFontAwesome4";
+          font-family: "H5PFontAwesome4", sans-serif;
           padding-right: 0.5em;
         }
       }
