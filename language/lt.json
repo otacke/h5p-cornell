@@ -1,0 +1,132 @@
+{
+  "semantics": [
+    {
+      "label": "Antraštė",
+      "description": "Jei nustatyta, bus naudojama pratimo antraštei, o ne turinio pavadinimui."
+    },
+    {
+      "label": "Instrukcijos",
+      "description": "Besimokantieji matys šias instrukcijas užrašų viršuje."
+    },
+    {
+      "label": "Pratimo turinys"
+    },
+    {
+      "label": "Pastabų laukai",
+      "description": "Pastabų laukų parametrai",
+      "fields": [
+        {
+          "label": "Užuominos lauko pavadinimas",
+          "default": "Užuomina",
+          "description": "Title for the recall section"
+        },
+        {
+          "label": "Cue field placeholder",
+          "default": "Enter your comments, questions, the main idea, etc. that you derive from your notes",
+          "description": "Placeholder for the cue section as a reminder for your students"
+        },
+        {
+          "label": "Notes field title",
+          "default": "Notes",
+          "description": "Title for the notes section"
+        },
+        {
+          "label": "Notes field placeholder",
+          "default": "Enter dates, details, definitions, formulas, examples, etc. from the source material",
+          "description": "Placeholder for the notes section as a reminder for your students"
+        },
+        {
+          "label": "Summary field title",
+          "default": "Summary",
+          "description": "Title for the summary section"
+        },
+        {
+          "label": "Summary field placeholder",
+          "default": "Summarize what you have learned",
+          "description": "Placeholder for the summary section as a reminder for your students"
+        }
+      ]
+    },
+    {
+      "label": "Behavioural settings",
+      "fields": [
+        {
+          "label": "Show notes on startup",
+          "description": "When this option is disabled, the notes are hidden on startup. Notes are hidden automatically on small displays."
+        }
+      ]
+    },
+    {
+      "label": "Localization",
+      "fields": [
+        {
+          "label": "Notes saved",
+          "default": "Notes saved"
+        },
+        {
+          "label": "Save",
+          "default": "Save"
+        },
+        {
+          "label": "Notes cannot be saved",
+          "default": "The platform either does not support the save content state feature or it is not activated in the platform's settings or you are not logged in. Your notes cannot not be saved!"
+        },
+        {
+          "label": "Text for \"Copy\" button",
+          "default": "Copy"
+        },
+        {
+          "label": "Notes copied to clipboard",
+          "default": "Notes copied to clipboard"
+        },
+        {
+          "label": "Notes could not be copied to clipboard",
+          "default": "Notes could not be copied to clipboard"
+        }
+      ]
+    },
+    {
+      "label": "Readspeaker",
+      "fields": [
+        {
+          "label": "Fullscreen button title (enter)",
+          "default": "Enter fullscreen mode"
+        },
+        {
+          "label": "Fullscreen button title (exit)",
+          "default": "Exit fullscreen mode"
+        },
+        {
+          "label": "Toggle button title (when notes closed)",
+          "default": "Open notes"
+        },
+        {
+          "label": "Toggle button title (when notes opened)",
+          "default": "Close notes"
+        },
+        {
+          "label": "Notes opened",
+          "default": "The view has switched to your notes."
+        },
+        {
+          "label": "Notes closed",
+          "default": "The view has switched to the exercise."
+        },
+        {
+          "label": "Notes saved",
+          "default": "The notes were saved to the platform."
+        },
+        {
+          "label": "Hide notes",
+          "default": "Hide @label notes",
+          "description": "@label is a placeholder and will be replaced with the respective label of the notes field."
+        },
+        {
+          "label": "Show notes",
+          "default": "Show @label notes",
+          "description": "@label is a placeholder and will be replaced with the respective label of the notes field."
+        }
+      ]
+    }
+  ]
+}

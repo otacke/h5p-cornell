@@ -1,8 +1,8 @@
 {
   "semantics": [
     {
-      "label": "Headline",
-      "description": "If set, will be used for the headline of the exercise instead of the content title."
+      "label": "Virsraksts",
+      "description": "Ja iestatīts, tiks izmantots uzdevuma virsrakstam, satura nosaukuma vietā."
     },
     {
       "label": "Instrukcijas",
@@ -48,27 +48,27 @@
       ]
     },
     {
-      "label": "Localization",
+      "label": "Lokalizācija",
       "fields": [
         {
-          "label": "Notes saved",
-          "default": "Notes saved"
+          "label": "Piezīmes saglabātas",
+          "default": "Piezīmes saglabātas"
         },
         {
-          "label": "Save",
-          "default": "Save"
+          "label": "Saglabāt",
+          "default": "Saglabāt"
         },
         {
-          "label": "Notes cannot be saved",
-          "default": "The platform either does not support the save content state feature or it is not activated in the platform's settings or you are not logged in. Your notes cannot be saved!"
+          "label": "Piezīmes nevar saglabāt",
+          "default": "Platforma vai nu neatbalsta satura stāvokļa saglabāšanas funkciju, vai arī tā nav aktivizēta platformas iestatījumos, vai arī jūs neesat pieslēdzies. Jūsu piezīmes nevar saglabāt!"
         },
         {
-          "label": "Text for \"Copy\" button",
-          "default": "Copy"
+          "label": "Pogas \"Kopēt\" teksts",
+          "default": "Kopēt"
         },
         {
-          "label": "Notes copied to clipboard",
-          "default": "Notes copied to clipboard"
+          "label": "Piezīmes ir kopētas starpliktuvē",
+          "default": "Piezīmes ir kopētas starpliktuvē"
         },
         {
           "label": "Piezīmes neizdevās iekopēt starplikā",
@@ -108,14 +108,14 @@
           "default": "Piezīmes tika saglabātas platformā."
         },
         {
-          "label": "Hide notes",
-          "default": "Hide @label notes",
-          "description": "@label is a placeholder and will be replaced with the respective label of the notes field."
+          "label": "Paslēpt piezīmes",
+          "default": "Paslēpt @label piezīmes",
+          "description": "@label ir vietturis, un tiks aizstāts ar attiecīgo piezīmju lauka etiķeti."
         },
         {
-          "label": "Show notes",
-          "default": "Show @label notes",
-          "description": "@label is a placeholder and will be replaced with the respective label of the notes field."
+          "label": "Rādīt piezīmes",
+          "default": "Rādīt @label piezīmes",
+          "description": "@label ir vietturis, un tiks aizstāts ar attiecīgo piezīmju lauka etiķeti."
         }
       ]
     }
