@@ -52,7 +52,28 @@
       "fields": [
         {
           "label": "Show notes on startup",
-          "description": "When this option is disabled, the notes are hidden on startup. Notes are hidden automatically on small displays."
+          "description": "When this option is disabled, the notes are hidden on startup. Notes are hidden automatically on small displays.",
+          "default": "Notes saved"
+        },
+        {
+          "label": "Save",
+          "default": "Save"
+        },
+        {
+          "label": "Notes cannot be saved",
+          "default": "The platform either does not support the save content state feature or it is not activated in the platform's settings or you are not logged in. Your notes cannot be saved!"
+        },
+        {
+          "label": "Text for \"Copy\" button",
+          "default": "Copy"
+        },
+        {
+          "label": "Notes copied to clipboard",
+          "default": "Notes copied to clipboard"
+        },
+        {
+          "label": "Notes could not be copied to clipboard",
+          "default": "Notes could not be copied to clipboard"
         }
       ]
     },
@@ -82,6 +103,20 @@
         {
           "label": "Notes could not be copied to clipboard",
           "default": "Notes could not be copied to clipboard"
+        },
+        {
+          "label": "Notes saved",
+          "default": "The notes were saved to the platform."
+        },
+        {
+          "default": "Hide @label notes",
+          "label": "Hide notes",
+          "description": "@label is a placeholder and will be replaced with the respective label of the notes field."
+        },
+        {
+          "label": "Show notes",
+          "default": "Show @label notes",
+          "description": "@label is a placeholder and will be replaced with the respective label of the notes field."
         }
       ]
     },
