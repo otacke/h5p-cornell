@@ -48,7 +48,7 @@
       ]
     },
     {
-      "label": "Localización",
+      "label": "Adaptación local",
       "fields": [
         {
           "label": "Anotaciones guardadas",
@@ -81,7 +81,7 @@
       "fields": [
         {
           "label": "Título de botón Pantalla Completa (Entrar)",
-          "default": "Título de botón Pantalla Completa"
+          "default": "Pasar al modo de Pantalla Completa"
         },
         {
           "label": "Título de botón Pantalla Completa (salida)",
