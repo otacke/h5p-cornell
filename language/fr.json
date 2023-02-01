@@ -1,0 +1,123 @@
+{
+  "semantics": [
+    {
+      "label": "Instructions",
+      "description": "Les élèves verront ces instructions au-dessus des remarques."
+    },
+    {
+      "label": "Contenu de l'exercice",
+      "description": "Students will see these instructions on top of the notes."
+    },
+    {
+      "label": "Champs de remarques"
+    },
+    {
+      "label": "Paramètres comportementaux",
+      "description": "Settings for the notes fields",
+      "fields": [
+        {
+          "label": "Afficher les notes au démarrage",
+          "default": "Cue",
+          "description": "Lorsque cette option est inactivée, les notes sont masquées au démarrage. Les notes sont masquées automatiquement sur les petits écrans."
+        },
+        {
+          "label": "Cue field placeholder",
+          "default": "Enter your comments, questions, the main idea, etc. that you derive from your notes",
+          "description": "Placeholder for the cue section as a reminder for your students"
+        },
+        {
+          "label": "Notes field title",
+          "default": "Notes",
+          "description": "Title for the notes section"
+        },
+        {
+          "label": "Notes field placeholder",
+          "default": "Enter dates, details, definitions, formulas, examples, etc. from the source material",
+          "description": "Placeholder for the notes section as a reminder for your students"
+        },
+        {
+          "label": "Summary field title",
+          "default": "Summary",
+          "description": "Title for the summary section"
+        },
+        {
+          "label": "Summary field placeholder",
+          "default": "Summarize what you have learned",
+          "description": "Placeholder for the summary section as a reminder for your students"
+        }
+      ]
+    },
+    {
+      "label": "Localisation",
+      "fields": [
+        {
+          "label": "Remarques sauvegardées",
+          "default": "Remarques sauvegardées"
+        },
+        {
+          "label": "Sauvegarder",
+          "default": "Sauvegarder"
+        },
+        {
+          "label": "Les remarques ne peuvent pas être sauvegardées",
+          "default": "La plateforme n’est soit pas compatible avec la fonction de l’état de sauvegarde du contenu, ou bien elle n'est pas activée dans les paramètres de la plateforme, ou encore vous n'êtes pas connecté. Vos remarques ne peuvent pas être sauvegardées !"
+        },
+        {
+          "label": "Soumettre la réponse",
+          "default": "Soumettre"
+        },
+        {
+          "label": "Texte pour la touche « Copier »",
+          "default": "Copier"
+        },
+        {
+          "label": "Remarques copiées dans le presse-papier",
+          "default": "Remarques copiées dans le presse-papier"
+        }
+      ]
+    },
+    {
+      "label": "ReadSpeaker",
+      "fields": [
+        {
+          "label": "Titre du bouton plein écran (entrer)",
+          "default": "Saisir en mode plein écran"
+        },
+        {
+          "label": "Titre du bouton plein écran (quitter)",
+          "default": "Quitter le mode plein écran"
+        },
+        {
+          "label": "Titre de la touche de bascule (lorsque les remarques sont fermées)",
+          "default": "Ouvrir les remarques"
+        },
+        {
+          "label": "Titre de la touche de bascule (lorsque les remarques sont ouvertes)",
+          "default": "Fermer les remarques"
+        },
+        {
+          "label": "Remarques ouvertes",
+          "default": "La vue est passée à vos remarques."
+        },
+        {
+          "label": "Remarques fermées",
+          "default": "La vue est passée à l’exercice."
+        },
+        {
+          "label": "Remarques sauvegardées",
+          "default": "Les notes ont été sauvegardées sur la plateforme."
+        },
+        {
+          "label": "Hide notes",
+          "default": "Hide @label notes",
+          "description": "@label is a placeholder and will be replaced with the respective label of the notes field."
+        },
+        {
+          "label": "Show notes",
+          "default": "Show @label notes",
+          "description": "@label is a placeholder and will be replaced with the respective label of the notes field."
+        }
+      ]
+    }
+  ]
+}

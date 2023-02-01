@@ -81,7 +81,7 @@
       "fields": [
         {
           "label": "Título para botón Pantalla Completa (Entrar)",
-          "default": "Título de botón Pantalla Completa"
+          "default": "Pasar al modo de Pantalla Completa"
         },
         {
           "label": "Título de botón Pantalla Completa (salir)",
