@@ -1,0 +1,92 @@
+name: Build H5P content type
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+
+      - name: Setup
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Check translations with H5P-CLI
+        run: |
+          # Check for missing translation directory
+          if [ ! -d "./language" ]
+          then
+            echo "No language directory found"
+            exit 0
+          fi
+
+          npm i -g h5p
+
+          COLOR_OFF='\033[0m'
+          COLOR_RED='\033[0;31m'
+          COLOR_BLUE='\033[0;34m'
+
+          ERROR_COUNT=0
+
+          LIBRARY_DIR=$(pwd | rev | cut -d "/" -f1 | rev)
+
+          for entry in "./language"/*
+          do
+            BASENAME=$(basename $entry)
+            if [[ $BASENAME == "*" ]]
+            then
+              continue
+            fi
+
+            echo -e "${COLOR_BLUE}Checking $BASENAME${COLOR_OFF}"
+
+            # Check JSON validity
+            if ! cat $entry | json_pp &> /dev/null
+            then
+              echo "Translation file does not seem to be valid JSON"
+              cat $entry | json_pp || true
+              ((ERROR_COUNT=ERROR_COUNT+1))
+              continue
+            fi
+
+            cd ..
+
+            # Check translation validity
+            LANGUAGE_CODE=$(basename $entry .json)
+
+            echo "$LANGUAGE_CODE"
+            RESULT=$(npx h5p check-translations -diff $LANGUAGE_CODE $LIBRARY_DIR)
+            echo "$RESULT"
+            if [[ $(echo "$RESULT" | grep "FAILED" | wc -l) != "0" ]]
+            then
+              ((ERROR_COUNT=ERROR_COUNT+1))
+            fi
+
+            cd - > /dev/null
+          done
+
+          if [[ $ERROR_COUNT != "0" ]]
+          then
+            echo -e "${COLOR_RED}Some translations seem to contain errors${COLOR_OFF}"
+            exit 1
+          else
+            exit 0
+          fi
+
+      - name: Install node modules from package.json
+        run: |
+          npm ci
+
+      - name: Lint
+        run: npm run lint --if-present
+
+      - name: Build
+        run: npm run build --if-present
