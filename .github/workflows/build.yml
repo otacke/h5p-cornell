@@ -62,7 +62,6 @@ jobs:
             # Check translation validity
             LANGUAGE_CODE=$(basename $entry .json)
 
-            echo "$LANGUAGE_CODE"
             RESULT=$(npx h5p check-translations -diff $LANGUAGE_CODE $LIBRARY_DIR)
             echo "$RESULT"
             if [[ $(echo "$RESULT" | grep "FAILED" | wc -l) != "0" ]]
