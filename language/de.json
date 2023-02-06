@@ -48,10 +48,10 @@
       ]
     },
     {
-      "label": "Localization",
+      "label": "Bezeichnungen und Beschriftungen",
       "fields": [
         {
-          "label": "Notes saved",
+          "label": "Notizen gespeichert",
           "default": "Notizen gespeichert"
         },
         {
