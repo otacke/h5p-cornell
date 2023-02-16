@@ -13,37 +13,37 @@
     },
     {
       "label": "Notizfelder",
-      "description": "Einstellungen für Notizfelder",
+      "description": "Einstellungen für Notizfelder.",
       "fields": [
         {
           "label": "Titel Kommentarfeld",
           "default": "Stichworte",
-          "description": "Titel für den Kommentarbereich"
+          "description": "Titel für den Kommentarbereich."
         },
         {
           "label": "Platzhalter für Kommentarfeld",
-          "default": "Gib deine Kommentare, Fragen, die Grundidee etc. ein, die du aus deinen Notizen ableitest",
-          "description": "Platzhalter für den Kommentarabschnitt als Erinnerungshilfe für die Lernenden"
+          "default": "Gib deine Kommentare, Fragen, die Grundidee etc. ein, die du aus deinen Notizen ableitest!",
+          "description": "Platzhalter für den Kommentarabschnitt als Erinnerungshilfe für die Lernenden."
         },
         {
           "label": "Titelfeld für Notizen",
           "default": "Notizen",
-          "description": "Titel für den Notizbereich"
+          "description": "Titel für den Notizbereich."
         },
         {
           "label": "Platzhalter für das Notizenfeld",
           "default": "Gib Daten, Details, Definitionen, Formeln, Beispiele etc. aus dem Material ein!",
-          "description": "Platzhalter für den Notizbereich als Erinnerungshilfe für die Lernenden"
+          "description": "Platzhalter für den Notizbereich als Erinnerungshilfe für die Lernenden."
         },
         {
           "label": "Titelfeld des Zusammenfassungsbereichs",
           "default": "Fasse zusammen, was du gelernt hast",
-          "description": "Titel des Zusammenfassungsbereichs"
+          "description": "Titel des Zusammenfassungsbereichs."
         },
         {
           "label": "Platzhalter für den Zusammenfassungsbereich",
-          "default": "Gib ein, was du gelernt hast",
-          "description": "Platzhalter für den Zusammenfassungsbereich als Erinnerungshilfe für die Lernenden"
+          "default": "Gib ein, was du gelernt hast!",
+          "description": "Platzhalter für den Zusammenfassungsbereich als Erinnerungshilfe für die Lernenden."
         }
       ]
     },
