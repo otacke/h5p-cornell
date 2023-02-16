@@ -13,37 +13,37 @@
     },
     {
       "label": "Campos das notas",
-      "description": "Configuración dos campos das notas",
+      "description": "Configuración dos campos das notas.",
       "fields": [
         {
           "label": "Título do campo para as ideas principais",
           "default": "Ideas principais",
-          "description": "Título para a sección de recordatorio"
+          "description": "Título para a sección do recordatorio."
         },
         {
           "label": "Texto por defecto do campo das ideas principais",
-          "default": "Escribe os comentarios, preguntas, ideas importantes, etc que sacas das túas notas",
-          "description": "Texto por defecto para o campo das ideas principais como recordatorio para os teus alumnos"
+          "default": "Escribe os comentarios, preguntas, ideas importantes, etc que sacas das túas notas!",
+          "description": "Texto por defecto para o campo das ideas principais como recordatorio para os teus alumnos."
         },
         {
           "label": "Título para o campo das notas",
           "default": "Notas",
-          "description": "Título para a sección das notas"
+          "description": "Título para a sección das notas."
         },
         {
           "label": "Texto por defecto para o campo das notas",
-          "default": "Escribe datas, detalles, definicións, fórmulas, exemplos, etc do material de orixe",
-          "description": "Texto por defecto da sección de notas como recordatorio para os teus alumnos"
+          "default": "Escribe datas, detalles, definicións, fórmulas, exemplos, etc do material de orixe!",
+          "description": "Texto por defecto da sección de notas como recordatorio para os teus alumnos."
         },
         {
           "label": "Título para o campo do resumo",
           "default": "Resumo",
-          "description": "Título para a sección de resumo"
+          "description": "Título para a sección de resumo."
         },
         {
           "label": "Texto por defecto para o campo do resumo",
-          "default": "Resume o que aprendiches",
-          "description": "Texto por defecto para a sección do resumo como recordatorio para os teus alumnos"
+          "default": "Resume o que aprendiches!",
+          "description": "Texto por defecto para a sección do resumo como recordatorio para os teus alumnos."
         }
       ]
     },
