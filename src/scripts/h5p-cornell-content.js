@@ -390,20 +390,23 @@ export default class CornellContent {
      * directly requires to get the root content's currentState, because
      * we're writing the state for the whole content directly.
      */
-    let getCurrentStateProvider;
-    if (this.params.isRoot) {
-      getCurrentStateProvider = this.callbacks;
-    }
-    else if (typeof H5P.instances[0].getCurrentState === 'function') {
-      getCurrentStateProvider = H5P.instances[0]; // Always first instance here
+
+    if (!this.getCurrentStateProvider) {
+      if (this.params.isRoot) {
+        this.getCurrentStateProvider = this.callbacks;
+      }
+      else if (typeof H5P.instances[0].getCurrentState === 'function') {
+        this.getCurrentStateProvider = H5P.instances
+          .find((instance) => instance.contentId === this.params.contentId);
+      }
     }
 
-    if (getCurrentStateProvider) {
+    if (this.getCurrentStateProvider) {
       // Using callback to also store in LocalStorage
       H5P.setUserData(
         this.params.contentId,
         'state',
-        getCurrentStateProvider.getCurrentState(),
+        this.getCurrentStateProvider.getCurrentState(),
         { deleteOnChange: false }
       );
     }
