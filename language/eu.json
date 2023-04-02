@@ -13,37 +13,37 @@
     },
     {
       "label": "Oharren eremuak",
-      "description": "Oharren eremuentzako ezarpenak",
+      "description": "Oharren eremuentzako ezarpenak.",
       "fields": [
         {
           "label": "Pista-eremuaren izenburua",
           "default": "Pista",
-          "description": "Gogoratu atalaren izenburua"
+          "description": "Gogoratu atalaren izenburua."
         },
         {
           "label": "Pista eremuaren leku-marka",
-          "default": "Idatzi zure oharretatik ondorioztatzen diren zure iruzkinak, galderak, ideia nagusia, eta abar",
-          "description": "Pista atalarentzako leku-marka zure ikasleentzako oroigarri gisa"
+          "default": "Idatzi zure oharretatik ondorioztatzen diren iruzkinak, galderak, ideia nagusia, eta abar!",
+          "description": "Pista atalarentzako leku-marka zure ikasleentzako oroigarri gisa."
         },
         {
           "label": "Ohar-eremuaren izenburua",
           "default": "Oharrak",
-          "description": "Oharren atalaren izenburua"
+          "description": "Oharren atalaren izenburua."
         },
         {
           "label": "Oharren eremuaren leku-marka",
-          "default": "Idatzi jatorrizko materialeko datak, xehetasunak, definizioak, formulak, adibideak, eta abar",
-          "description": "Oharren atalarentzako leku-marka zure ikasleentzako oroigarri gisa"
+          "default": "Idatzi jatorrizko materialeko datak, xehetasunak, definizioak, formulak, adibideak, eta abar!",
+          "description": "Oharren atalarentzako leku-marka zure ikasleentzako oroigarri gisa."
         },
         {
           "label": "Laburpen eremuaren izenburua",
           "default": "Laburpena",
-          "description": "Laburpen atalaren izenburua"
+          "description": "Laburpen atalaren izenburua."
         },
         {
           "label": "Laburpen eremuaren leku-marka",
-          "default": "Laburtu ezazu ikasi duzuna",
-          "description": "Laburpen atalarentzako leku-marka zure ikasleentzako oroigarri gisa"
+          "default": "Laburtu ezazu ikasi duzuna!",
+          "description": "Laburpen atalarentzako leku-marka zure ikasleentzako oroigarri gisa."
         }
       ]
     },
