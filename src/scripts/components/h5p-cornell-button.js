@@ -85,7 +85,6 @@ export default class CornellButton {
 
   /**
    * Return the DOM for this class.
-   *
    * @returns {HTMLElement} DOM for this class.
    */
   getDOM() {
@@ -170,7 +169,6 @@ export default class CornellButton {
 
   /**
    * Toggle active state.
-   *
    * @param {boolean} active If true, force active; if false, force inactive.
    */
   toggle(active) {
@@ -190,7 +188,6 @@ export default class CornellButton {
 
   /**
    * Determine whether button is active.
-   *
    * @returns {boolean} True, if button is active, else false.
    */
   isActive() {
@@ -199,7 +196,6 @@ export default class CornellButton {
 
   /**
    * Determine whether button is disabled.
-   *
    * @returns {boolean} True, if button is disabled, else false.
    */
   isDisabled() {

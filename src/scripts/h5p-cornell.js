@@ -9,7 +9,7 @@ export default class Cornell extends H5P.Question {
    * @class
    * @param {object} params Parameters passed by the editor.
    * @param {number} contentId Content's id.
-   * @param {object} [extras={}] Saved state, metadata, etc.
+   * @param {object} [extras] Saved state, metadata, etc.
    */
   constructor(params, contentId, extras = {}) {
     super('cornell'); // CSS class selector for content's iframe: h5p-cornell
@@ -178,7 +178,6 @@ export default class Cornell extends H5P.Question {
 
   /**
    * Toggle fullscreen button.
-   *
    * @param {string|boolean} state enter|false for enter, exit|true for exit.
    */
   toggleFullscreen(state) {
@@ -209,7 +208,6 @@ export default class Cornell extends H5P.Question {
 
   /**
    * Check if result has been submitted or input has been given.
-   *
    * @returns {boolean} True, if answer was given.
    * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-1}
    */
@@ -219,7 +217,6 @@ export default class Cornell extends H5P.Question {
 
   /**
    * Get latest score.
-   *
    * @returns {number} latest score.
    * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-2}
    */
@@ -229,7 +226,6 @@ export default class Cornell extends H5P.Question {
 
   /**
    * Get maximum possible score
-   *
    * @returns {number} Score necessary for mastering.
    * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-3}
    */
@@ -239,14 +235,12 @@ export default class Cornell extends H5P.Question {
 
   /**
    * Show solutions.
-   *
    * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-4}
    */
   showSolutions() {}
 
   /**
    * Reset task.
-   *
    * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-5}
    */
   resetTask() {
@@ -262,7 +256,6 @@ export default class Cornell extends H5P.Question {
 
   /**
    * Get xAPI data.
-   *
    * @returns {object} XAPI statement.
    * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-6}
    */
@@ -274,7 +267,6 @@ export default class Cornell extends H5P.Question {
 
   /**
    * Build xAPI answer event.
-   *
    * @returns {H5P.XAPIEvent} XAPI answer event.
    */
   getXAPIAnswerEvent() {
@@ -288,7 +280,6 @@ export default class Cornell extends H5P.Question {
 
   /**
    * Create an xAPI event.
-   *
    * @param {string} verb Short id of the verb we want to trigger.
    * @returns {H5P.XAPIEvent} Event template.
    */
@@ -302,7 +293,6 @@ export default class Cornell extends H5P.Question {
 
   /**
    * Get the xAPI definition for the xAPI object.
-   *
    * @returns {object} XAPI definition.
    */
   getxAPIDefinition() {
@@ -323,7 +313,6 @@ export default class Cornell extends H5P.Question {
 
   /**
    * Determine whether the task has been passed by the user.
-   *
    * @returns {boolean} True if user passed or task is not scored.
    */
   isPassed() {
@@ -332,7 +321,6 @@ export default class Cornell extends H5P.Question {
 
   /**
    * Get tasks title.
-   *
    * @returns {string} Title.
    */
   getTitle() {
@@ -347,7 +335,6 @@ export default class Cornell extends H5P.Question {
 
   /**
    * Get tasks description.
-   *
    * @returns {string} Description.
    */
   getDescription() {
@@ -356,7 +343,6 @@ export default class Cornell extends H5P.Question {
 
   /**
    * Answer call to return the current state.
-   *
    * @returns {object} Current state.
    */
   getCurrentState() {
@@ -381,7 +367,6 @@ export default class Cornell extends H5P.Question {
 
   /**
    * Get previous state from localStorage.
-   *
    * @param {number} id Content id to retrieve content for.
    * @returns {object|null} Previous state, null if not possible.
    */

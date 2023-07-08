@@ -7,8 +7,8 @@ import './h5p-cornell-notes.scss';
 export default class CornellNotes {
   /**
    * @class
-   * @param {object} [params={}] Parameter from editor.
-   * @param {object} [callbacks={}] Callbacks.
+   * @param {object} [params] Parameter from editor.
+   * @param {object} [callbacks] Callbacks.
    */
   constructor(params = {}, callbacks = {}) {
     // Set missing params
@@ -95,7 +95,6 @@ export default class CornellNotes {
 
   /**
    * Return the DOM for this class.
-   *
    * @returns {HTMLElement} DOM for this class.
    */
   getDOM() {
@@ -104,7 +103,6 @@ export default class CornellNotes {
 
   /**
    * Get text.
-   *
    * @returns {string} Text.
    */
   getText() {
@@ -113,7 +111,6 @@ export default class CornellNotes {
 
   /**
    * Get current state.
-   *
    * @returns {object|undefined} Current state.
    */
   getCurrentState() {
