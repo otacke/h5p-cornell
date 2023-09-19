@@ -26,7 +26,7 @@ export default class CornellContent {
     // Create values to fill with
     this.previousState = Util.extend(
       {
-        dateString: new Date().toLocaleDateString(),
+        dateString: '',
         recall: { inputField: '' },
         mainNotes: { inputField: '' },
         summary: { inputField: '' }
@@ -360,8 +360,12 @@ export default class CornellContent {
    * @returns {object} Current state.
    */
   getCurrentState() {
+    if (!this.getAnswerGiven()) {
+      return;
+    }
+
     return {
-      dateString: this.previousState.dateString,
+      dateString: new Date().toLocaleDateString(),
       recall: this.stripTags(this.recall.getCurrentState()),
       mainNotes: this.stripTags(this.mainNotes.getCurrentState()),
       summary: this.stripTags(this.summary.getCurrentState()),
