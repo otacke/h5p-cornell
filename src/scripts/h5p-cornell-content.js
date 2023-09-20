@@ -26,7 +26,7 @@ export default class CornellContent {
     // Create values to fill with
     this.previousState = Util.extend(
       {
-        dateString: '',
+        dateString: new Date().toLocaleDateString(),
         recall: { inputField: '' },
         mainNotes: { inputField: '' },
         summary: { inputField: '' }
@@ -358,14 +358,22 @@ export default class CornellContent {
   /**
    * Get current state to be saved.
    * @returns {object} Current state.
+   *
    */
   getCurrentState() {
+    console.log('test')
+    /*
+     * H5P integrations may (for instance) show a restart button if there is
+     * a previous state set, so here not storing the state if no answer has been
+     * given by the user and there's no order stored previously - preventing
+     * to show up that restart button without the need to.
+     */
     if (!this.getAnswerGiven()) {
       return;
     }
 
     return {
-      dateString: new Date().toLocaleDateString(),
+      dateString: this.previousState.dateString,
       recall: this.stripTags(this.recall.getCurrentState()),
       mainNotes: this.stripTags(this.mainNotes.getCurrentState()),
       summary: this.stripTags(this.summary.getCurrentState()),
