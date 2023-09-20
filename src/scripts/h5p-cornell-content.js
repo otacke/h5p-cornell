@@ -360,8 +360,14 @@ export default class CornellContent {
    * @returns {object} Current state.
    */
   getCurrentState() {
+    /*
+     * H5P integrations may (for instance) show a restart button if there is
+     * a previous state set, so here not storing the state if no answer has been
+     * given by the user and there's no order stored previously - preventing
+     * to show up that restart button without the need to.
+     */
     return {
-      dateString: this.previousState.dateString,
+      dateString: this.getAnswerGiven() ? this.previousState.dateString : undefined,
       recall: this.stripTags(this.recall.getCurrentState()),
       mainNotes: this.stripTags(this.mainNotes.getCurrentState()),
       summary: this.stripTags(this.summary.getCurrentState()),
