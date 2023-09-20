@@ -366,12 +366,8 @@ export default class CornellContent {
      * given by the user and there's no order stored previously - preventing
      * to show up that restart button without the need to.
      */
-    if (!this.getAnswerGiven()) {
-      return;
-    }
-
     return {
-      dateString: this.previousState.dateString,
+      dateString: this.getAnswerGiven() ? this.previousState.dateString : undefined,
       recall: this.stripTags(this.recall.getCurrentState()),
       mainNotes: this.stripTags(this.mainNotes.getCurrentState()),
       summary: this.stripTags(this.summary.getCurrentState()),
