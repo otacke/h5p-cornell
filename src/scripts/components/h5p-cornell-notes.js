@@ -124,8 +124,11 @@ export default class CornellNotes {
       state.inputField = this.previousInput;
     }
 
-    // Set `null` instead of `false` to get a state object that is considered
-    // empty when passed to H5P.isEmpty.
+    /* Set `null` instead of `false` to get a state object that is considered
+     * empty when passed to H5P.isEmpty. Otherwise, some H5P integrations
+     * such as H5P.com may interpret the state as relevant for being reset and
+     * display a respective button.
+     */
     state.notesInvisible = this.areNotesInvisible || null;
 
     return state;
