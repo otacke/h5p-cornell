@@ -358,10 +358,8 @@ export default class CornellContent {
   /**
    * Get current state to be saved.
    * @returns {object} Current state.
-   *
    */
   getCurrentState() {
-    console.log('test')
     /*
      * H5P integrations may (for instance) show a restart button if there is
      * a previous state set, so here not storing the state if no answer has been
