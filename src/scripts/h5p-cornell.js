@@ -244,6 +244,7 @@ export default class Cornell extends H5P.Question {
    * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-5}
    */
   resetTask() {
+    this.contentWasReset = true;
     this.content.resetNotes();
   }
 
@@ -346,6 +347,11 @@ export default class Cornell extends H5P.Question {
    * @returns {object} Current state.
    */
   getCurrentState() {
+    if (!this.getAnswerGiven()) {
+      // Nothing relevant to store, but previous state in DB must be cleared after reset
+      return this.contentWasReset ? {} : undefined;
+    }
+
     const currentState = this.content.getCurrentState();
 
     // Use localStorage to avoid data loss on minor content changes
