@@ -16,17 +16,17 @@
       "description": "Einstellungen für Notizfelder.",
       "fields": [
         {
-          "label": "Titel Kommentarfeld",
+          "label": "Titel Stichwortfeld",
           "default": "Stichworte",
           "description": "Titel für den Kommentarbereich."
         },
         {
-          "label": "Platzhalter für Kommentarfeld",
+          "label": "Platzhalter für Stichwortfeld",
           "default": "Gib deine Kommentare, Fragen, die Grundidee etc. ein, die du aus deinen Notizen ableitest!",
           "description": "Platzhalter für den Kommentarabschnitt als Erinnerungshilfe für die Lernenden."
         },
         {
-          "label": "Titelfeld für Notizen",
+          "label": "Titel für Notizenfeld",
           "default": "Notizen",
           "description": "Titel für den Notizbereich."
         },
@@ -36,12 +36,12 @@
           "description": "Platzhalter für den Notizbereich als Erinnerungshilfe für die Lernenden."
         },
         {
-          "label": "Titelfeld des Zusammenfassungsbereichs",
+          "label": "Titel des Zusammenfassungsfelds",
           "default": "Fasse zusammen, was du gelernt hast",
           "description": "Titel des Zusammenfassungsbereichs."
         },
         {
-          "label": "Platzhalter für den Zusammenfassungsbereich",
+          "label": "Platzhalter für das Zusammenfassungsfeld",
           "default": "Gib ein, was du gelernt hast!",
           "description": "Platzhalter für den Zusammenfassungsbereich als Erinnerungshilfe für die Lernenden."
         }
@@ -110,12 +110,12 @@
         {
           "label": "Blende Notizen aus",
           "default": "Bende @label-Notizen aus",
-          "description": "@label ist ein Platzhalter, der durch das jeweilige Label des Notizfelds ersetzt wird."
+          "description": "@label ist ein Platzhalter, der durch die jeweilige Beschriftung des Feldes ersetzt wird."
         },
         {
           "label": "Zeige Notizen",
           "default": "Zeige @label-Notizen",
-          "description": "@label ist ein Platzhalter, der durch das jeweilige Label des Notizfelds ersetzt wird."
+          "description": "@label ist ein Platzhalter, der durch die jeweilige Beschriftung des Feldes ersetzt wird."
         }
       ]
     }
