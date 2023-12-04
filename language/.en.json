@@ -13,37 +13,37 @@
     },
     {
       "label": "Notes fields",
-      "description": "Settings for the notes fields",
+      "description": "Settings for the notes fields.",
       "fields": [
         {
           "label": "Cue field title",
           "default": "Cue",
-          "description": "Title for the recall section"
+          "description": "Title for the recall section."
         },
         {
           "label": "Cue field placeholder",
-          "default": "Enter your comments, questions, the main idea, etc. that you derive from your notes",
-          "description": "Placeholder for the cue section as a reminder for your students"
+          "default": "Enter your comments, questions, the main idea, etc. that you derive from your notes!",
+          "description": "Placeholder for the cue section as a reminder for your students."
         },
         {
           "label": "Notes field title",
           "default": "Notes",
-          "description": "Title for the notes section"
+          "description": "Title for the notes section."
         },
         {
           "label": "Notes field placeholder",
-          "default": "Enter dates, details, definitions, formulas, examples, etc. from the source material",
-          "description": "Placeholder for the notes section as a reminder for your students"
+          "default": "Enter dates, details, definitions, formulas, examples, etc. from the source material!",
+          "description": "Placeholder for the notes section as a reminder for your students."
         },
         {
           "label": "Summary field title",
           "default": "Summary",
-          "description": "Title for the summary section"
+          "description": "Title for the summary section."
         },
         {
           "label": "Summary field placeholder",
-          "default": "Summarize what you have learned",
-          "description": "Placeholder for the summary section as a reminder for your students"
+          "default": "Summarize what you have learned!",
+          "description": "Placeholder for the summary section as a reminder for your students."
         }
       ]
     },

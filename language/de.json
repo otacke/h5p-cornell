@@ -13,66 +13,66 @@
     },
     {
       "label": "Notizfelder",
-      "description": "Einstellungen für Notizfelder",
+      "description": "Einstellungen für Notizfelder.",
       "fields": [
         {
-          "label": "Titel Kommentarfeld",
+          "label": "Titel Stichwortfeld",
           "default": "Stichworte",
-          "description": "Titel für den Kommentarbereich"
+          "description": "Titel für den Kommentarbereich."
         },
         {
-          "label": "Platzhalter für Kommentarfeld",
-          "default": "Gib deine Kommentare, Fragen, die Grundidee etc. ein, die du aus deinen Notizen ableitest",
-          "description": "Platzhalter für den Kommentarabschnitt als Erinnerungshilfe für die Lernenden"
+          "label": "Platzhalter für Stichwortfeld",
+          "default": "Gib deine Kommentare, Fragen, die Grundidee etc. ein, die du aus deinen Notizen ableitest!",
+          "description": "Platzhalter für den Kommentarabschnitt als Erinnerungshilfe für die Lernenden."
         },
         {
-          "label": "Titelfeld für Notizen",
+          "label": "Titel für Notizenfeld",
           "default": "Notizen",
-          "description": "Titel für den Notizbereich"
+          "description": "Titel für den Notizbereich."
         },
         {
           "label": "Platzhalter für das Notizenfeld",
           "default": "Gib Daten, Details, Definitionen, Formeln, Beispiele etc. aus dem Material ein!",
-          "description": "Platzhalter für den Notizbereich als Erinnerungshilfe für die Lernenden"
+          "description": "Platzhalter für den Notizbereich als Erinnerungshilfe für die Lernenden."
         },
         {
-          "label": "Titelfeld des Zusammenfassungsbereichs",
+          "label": "Titel des Zusammenfassungsfelds",
           "default": "Fasse zusammen, was du gelernt hast",
-          "description": "Titel des Zusammenfassungsbereichs"
+          "description": "Titel des Zusammenfassungsbereichs."
         },
         {
-          "label": "Platzhalter für den Zusammenfassungsbereich",
-          "default": "Gib ein, was du gelernt hast",
-          "description": "Platzhalter für den Zusammenfassungsbereich als Erinnerungshilfe für die Lernenden"
+          "label": "Platzhalter für das Zusammenfassungsfeld",
+          "default": "Gib ein, was du gelernt hast!",
+          "description": "Platzhalter für den Zusammenfassungsbereich als Erinnerungshilfe für die Lernenden."
         }
       ]
     },
     {
-      "label": "Localization",
+      "label": "Bezeichnungen und Beschriftungen",
       "fields": [
         {
-          "label": "Notes saved",
-          "default": "Notes saved"
+          "label": "Notizen gespeichert",
+          "default": "Notizen gespeichert"
         },
         {
-          "label": "Save",
-          "default": "Save"
+          "label": "Speichern",
+          "default": "Speichern"
         },
         {
-          "label": "Notes cannot be saved",
-          "default": "The platform either does not support the save content state feature or it is not activated in the platform's settings or you are not logged in. Your notes cannot be saved!"
+          "label": "Notizen können nicht gespeichert werden",
+          "default": "Entweder unterstützt die Plattform die Funktion zum Speichern des Inhaltsstatus nicht oder sie ist in den Einstellungen der Plattform nicht aktiviert oder du bist nicht angemeldet. Deine Notizen können nicht gespeichert werden!"
         },
         {
-          "label": "Text for \"Copy\" button",
-          "default": "Copy"
+          "label": "Text für den \"Kopieren\"-Button",
+          "default": "Kopieren"
         },
         {
-          "label": "Notes copied to clipboard",
-          "default": "Notes copied to clipboard"
+          "label": "Text in die Zwischenablage kopiert",
+          "default": "Text in die Zwischenablage kopiert"
         },
         {
-          "label": "Notes could not be copied to clipboard",
-          "default": "Notes could not be copied to clipboard"
+          "label": "Dein Text konnte nicht in die Zwischenablage kopiert werden",
+          "default": "Dein Text konnte nicht in die Zwischenablage kopiert werden"
         }
       ]
     },
@@ -110,12 +110,12 @@
         {
           "label": "Blende Notizen aus",
           "default": "Bende @label-Notizen aus",
-          "description": "@label ist ein Platzhalter, der durch das jeweilige Label des Notizfelds ersetzt wird."
+          "description": "@label ist ein Platzhalter, der durch die jeweilige Beschriftung des Feldes ersetzt wird."
         },
         {
           "label": "Zeige Notizen",
           "default": "Zeige @label-Notizen",
-          "description": "@label ist ein Platzhalter, der durch das jeweilige Label des Notizfelds ersetzt wird."
+          "description": "@label ist ein Platzhalter, der durch die jeweilige Beschriftung des Feldes ersetzt wird."
         }
       ]
     }

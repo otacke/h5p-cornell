@@ -7,8 +7,8 @@ import './h5p-cornell-notes.scss';
 export default class CornellNotes {
   /**
    * @class
-   * @param {object} [params={}] Parameter from editor.
-   * @param {object} [callbacks={}] Callbacks.
+   * @param {object} [params] Parameter from editor.
+   * @param {object} [callbacks] Callbacks.
    */
   constructor(params = {}, callbacks = {}) {
     // Set missing params
@@ -85,9 +85,9 @@ export default class CornellNotes {
 
     this.buttonVisibility = document.createElement('button');
     this.buttonVisibility.classList.add('h5p-cornell-notes-button-visibility');
-    this.handleNotesVisibility();
+    this.toggleNotesVisibility();
     this.buttonVisibility.addEventListener('click', () => {
-      this.handleNotesVisibility();
+      this.toggleNotesVisibility();
       this.callbacks.onChanged();
     });
     titlebar.appendChild(this.buttonVisibility);
@@ -95,7 +95,6 @@ export default class CornellNotes {
 
   /**
    * Return the DOM for this class.
-   *
    * @returns {HTMLElement} DOM for this class.
    */
   getDOM() {
@@ -104,7 +103,6 @@ export default class CornellNotes {
 
   /**
    * Get text.
-   *
    * @returns {string} Text.
    */
   getText() {
@@ -113,8 +111,7 @@ export default class CornellNotes {
 
   /**
    * Get current state.
-   *
-   * @returns {object} Current state.
+   * @returns {object|undefined} Current state.
    */
   getCurrentState() {
     if (!this.instance) {
@@ -126,7 +123,13 @@ export default class CornellNotes {
     if (this.areNotesInvisible) {
       state.inputField = this.previousInput;
     }
-    state.notesInvisible = this.areNotesInvisible;
+
+    /* Set `null` instead of `false` to get a state object that is considered
+     * empty when passed to H5P.isEmpty. Otherwise, some H5P integrations
+     * such as H5P.com may interpret the state as relevant for being reset and
+     * display a respective button.
+     */
+    state.notesInvisible = this.areNotesInvisible || null;
 
     return state;
   }
@@ -134,7 +137,7 @@ export default class CornellNotes {
   /**
    * Handle notes visibility.
    */
-  handleNotesVisibility() {
+  toggleNotesVisibility() {
     if (this.areNotesInvisible) {
       this.areNotesInvisible = false;
       this.textArea.value = this.previousInput;
@@ -168,5 +171,10 @@ export default class CornellNotes {
    */
   reset() {
     this.instance?.setState({});
+
+    // Make notes visible again and clear them
+    this.areNotesInvisible = true;
+    this.previousInput = '';
+    this.toggleNotesVisibility();
   }
 }

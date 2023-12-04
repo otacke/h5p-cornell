@@ -2,7 +2,6 @@
 class Util {
   /**
    * Extend an array just like JQuery's extend.
-   *
    * @returns {object} Merged objects.
    */
   static extend() {
@@ -26,7 +25,6 @@ class Util {
 
   /**
    * Retrieve true string from HTML encoded string.
-   *
    * @param {string} input Input string.
    * @returns {string} Output string.
    */
@@ -37,7 +35,6 @@ class Util {
 
   /**
    * Retrieve string without HTML tags.
-   *
    * @param {string} html Input string.
    * @returns {string} Output string.
    */
@@ -50,7 +47,6 @@ class Util {
   /**
    * Format language tag (RFC 5646). Assuming "language-coutry". No validation.
    * Cmp. https://tools.ietf.org/html/rfc5646
-   *
    * @param {string} languageCode Language tag.
    * @returns {string} Formatted language tag.
    */
@@ -76,7 +72,6 @@ class Util {
   /**
    * Copy text to clipboard.
    * Cmp. https://stackoverflow.com/a/30810322
-   *
    * @param {string} text Text to copy to clipboard.
    * @param {function} [callback] Callback accepting true/false as param.
    */
@@ -88,7 +83,7 @@ class Util {
 
     navigator.clipboard.writeText(text).then(() => {
       callback(true);
-    }, error => {
+    }, (error) => {
       console.error('Cannot copy to clipboard: ', error);
       callback(false);
     });
@@ -96,7 +91,6 @@ class Util {
 
   /**
    * Copy text to clipboard.
-   *
    * @param {string} text Text to copy.
    * @param {function} [callback] Callback accepting true/false as param.
    */

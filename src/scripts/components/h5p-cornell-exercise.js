@@ -6,8 +6,8 @@ import './h5p-cornell-exercise.scss';
 export default class CornellExercise {
   /**
    * @class
-   * @param {object} [params={}] Parameter from editor.
-   * @param {object} [callbacks={}] Callbacks.
+   * @param {object} [params] Parameter from editor.
+   * @param {object} [callbacks] Callbacks.
    */
   constructor(params = {}, callbacks = {}) {
     // Set missing params
@@ -121,7 +121,6 @@ export default class CornellExercise {
 
   /**
    * Return the DOM for this class.
-   *
    * @returns {HTMLElement} DOM for this class.
    */
   getDOM() {
@@ -130,8 +129,7 @@ export default class CornellExercise {
 
   /**
    * Create DOM for instructions.
-   *
-   * @param {string} [text=''] Text of instructions.
+   * @param {string} [text] Text of instructions.
    * @returns {HTMLElement} DOM for instructions.
    */
   createInstructionsDOM(text = '') {
@@ -147,7 +145,6 @@ export default class CornellExercise {
 
   /**
    * Create DOM for separator.
-   *
    * @returns {HTMLElement} DOM for separator.
    */
   createSeparatorDOM() {
@@ -159,7 +156,6 @@ export default class CornellExercise {
 
   /**
    * Resize.
-   *
    * @param {boolean} fromVideo True, if resize call from video instance.
    */
   resize(fromVideo = false) {
@@ -176,8 +172,7 @@ export default class CornellExercise {
 
   /**
    * Get current state.
-   *
-   * @returns {object} Current state of instance.
+   * @returns {object|undefined} Current state of instance.
    */
   getCurrentState() {
     if (typeof this.instance?.getCurrentState !== 'function') {

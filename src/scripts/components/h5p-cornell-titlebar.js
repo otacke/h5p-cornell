@@ -65,7 +65,6 @@ export default class CornellTitlebar {
 
   /**
    * Return the DOM for this class.
-   *
    * @returns {HTMLElement} DOM for this class.
    */
   getDOM() {
@@ -74,7 +73,6 @@ export default class CornellTitlebar {
 
   /**
    * Get toggle button state.
-   *
    * @returns {boolean} True, if button is active, else false.
    */
   getToggleButtonState() {
@@ -90,7 +88,6 @@ export default class CornellTitlebar {
 
   /**
    * Set fullscreen button state.
-   *
    * @param {string|boolean} state enter|false for enter, exit|true for exit.
    */
   toggleFullscreenButton(state) {

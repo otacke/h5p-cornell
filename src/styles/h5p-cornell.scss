@@ -29,19 +29,15 @@
       flex-wrap: wrap;
 
       .h5p-cornell-exercise-wrapper {
-        flex-grow: 1;
         overflow-y: auto;
-        min-width: $size-exercise-wrapper-min-width;
         width: 50%;
       }
 
       .h5p-cornell-notes-wrapper {
         display: flex;
         flex-direction: column;
-        flex-grow: 1;
         overflow-y: auto;
         z-index: 1;
-        min-width: $size-notes-wrapper-min-width;
         width: 50%;
       }
 
@@ -87,7 +83,7 @@
         .h5p-cornell-button-save {
           &::before {
             content: "\f0ed";
-            font-family: "H5PFontAwesome4";
+            font-family: "H5PFontAwesome4", sans-serif;
             padding-right: 0.5em;
           }
 
@@ -101,10 +97,22 @@
 
         .h5p-cornell-button-copy::before {
           content: "\f0c5";
-          font-family: "H5PFontAwesome4";
+          font-family: "H5PFontAwesome4", sans-serif;
           padding-right: 0.5em;
         }
       }
+    }
+  }
+}
+
+@media only screen and (max-width: 960px) {
+  .h5p-cornell .h5p-question-content .h5p-cornell-panel {
+    .h5p-cornell-exercise-wrapper {
+      width: 100%;
+    }
+
+    .h5p-cornell-notes-wrapper {
+      width: 100%;
     }
   }
 }

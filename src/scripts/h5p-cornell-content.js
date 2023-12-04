@@ -16,7 +16,7 @@ export default class CornellContent {
    * @param {number} params.contentId Content ID.
    * @param {object} [params.extras] Extras incl. previous state.
    * @param {boolean} [params.isRoot] If true, running standalone.
-   * @param {object} [callbacks={}] Callbacks.
+   * @param {object} [callbacks] Callbacks.
    */
   constructor(params = {}, callbacks = {}) {
     this.params = Util.extend({
@@ -112,7 +112,6 @@ export default class CornellContent {
 
   /**
    * Return the DOM for this class.
-   *
    * @returns {HTMLElement} DOM for this class.
    */
   getDOM() {
@@ -121,7 +120,6 @@ export default class CornellContent {
 
   /**
    * Create titlebar.
-   *
    * @returns {CornellTitlebar} Titlebar.
    */
   createTitleBar() {
@@ -140,7 +138,6 @@ export default class CornellContent {
 
   /**
    * Append exercise.
-   *
    * @returns {HTMLElement} Exercise.
    */
   createExerciseDOM() {
@@ -168,7 +165,6 @@ export default class CornellContent {
 
   /**
    * Create notes.
-   *
    * @returns {HTMLElement} Notes.
    */
   createNotesDOM() {
@@ -189,7 +185,6 @@ export default class CornellContent {
 
   /**
    * Create DOM for main notes.
-   *
    * @returns {HTMLElement} DOM for main notes.
    */
   createMainNotesDOM() {
@@ -235,7 +230,6 @@ export default class CornellContent {
 
   /**
    * Create DOM for summary.
-   *
    * @returns {HTMLElement} DOM for summary.
    */
   createSummaryDOM() {
@@ -266,8 +260,7 @@ export default class CornellContent {
 
   /**
    * Resize content.
-   *
-   * @param {boolean} [fromVideo=false] If true, will skip resize on exercise.
+   * @param {boolean} [fromVideo] If true, will skip resize on exercise.
    */
   resize(fromVideo = false) {
     if (this.exercise && !fromVideo) {
@@ -299,7 +292,6 @@ export default class CornellContent {
 
   /**
    * Set dimensions to fullscreen.
-   *
    * @param {boolean} enterFullScreen If true, enter fullscreen, else exit.
    */
   toggleFullscreen(enterFullScreen = false) {
@@ -334,7 +326,6 @@ export default class CornellContent {
 
   /**
    * Strip tags from text in H5P TextInputField object. Don't want those here.
-   *
    * @param {object} fieldState Save state object to be cleaned.
    * @returns {object} Save state object with cleaned text.
    */
@@ -345,7 +336,6 @@ export default class CornellContent {
 
   /**
    * Detect if some answer was given.
-   *
    * @returns {boolean} True if some notes was typed.
    */
   getAnswerGiven() {
@@ -367,12 +357,11 @@ export default class CornellContent {
 
   /**
    * Get current state to be saved.
-   *
    * @returns {object} Current state.
    */
   getCurrentState() {
     return {
-      dateString: this.previousState.dateString,
+      dateString: this.getAnswerGiven() ? this.previousState.dateString : undefined,
       recall: this.stripTags(this.recall.getCurrentState()),
       mainNotes: this.stripTags(this.mainNotes.getCurrentState()),
       summary: this.stripTags(this.summary.getCurrentState()),
@@ -390,20 +379,23 @@ export default class CornellContent {
      * directly requires to get the root content's currentState, because
      * we're writing the state for the whole content directly.
      */
-    let getCurrentStateProvider;
-    if (this.params.isRoot) {
-      getCurrentStateProvider = this.callbacks;
-    }
-    else if (typeof H5P.instances[0].getCurrentState === 'function') {
-      getCurrentStateProvider = H5P.instances[0]; // Always first instance here
+
+    if (!this.getCurrentStateProvider) {
+      if (this.params.isRoot) {
+        this.getCurrentStateProvider = this.callbacks;
+      }
+      else if (typeof H5P.instances[0].getCurrentState === 'function') {
+        this.getCurrentStateProvider = H5P.instances
+          .find((instance) => instance.contentId === this.params.contentId);
+      }
     }
 
-    if (getCurrentStateProvider) {
+    if (this.getCurrentStateProvider) {
       // Using callback to also store in LocalStorage
       H5P.setUserData(
         this.params.contentId,
         'state',
-        getCurrentStateProvider.getCurrentState(),
+        this.getCurrentStateProvider.getCurrentState(),
         { deleteOnChange: false }
       );
     }
