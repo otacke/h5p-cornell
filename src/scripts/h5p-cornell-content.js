@@ -91,19 +91,25 @@ export default class CornellContent {
       buttonsWrapper.appendChild(this.buttonSave);
     }
 
-    // Copy to clipboard button
-    this.buttonCopy = H5P.JoubelUI.createButton({
-      type: 'button',
-      html: Dictionary.get('l10n.copy'),
-      ariaLabel: Dictionary.get('l10n.copy'),
-      class: 'h5p-cornell-button-copy',
-      on: {
-        click: () => {
-          this.handleCopy();
+    // Only add copy button if browser supports it
+    navigator.permissions.query({ name: 'clipboard-write'})
+      .then((canWriteToClipboard) => {
+        if (canWriteToClipboard) {
+          // Copy to clipboard button
+          this.buttonCopy = H5P.JoubelUI.createButton({
+            type: 'button',
+            html: Dictionary.get('l10n.copy'),
+            ariaLabel: Dictionary.get('l10n.copy'),
+            class: 'h5p-cornell-button-copy',
+            on: {
+              click: () => {
+                this.handleCopy();
+              }
+            }
+          }).get(0);
+          buttonsWrapper.appendChild(this.buttonCopy);
         }
-      }
-    }).get(0);
-    buttonsWrapper.appendChild(this.buttonCopy);
+      });
 
     this.notesWrapper.appendChild(buttonsWrapper);
 
@@ -426,6 +432,10 @@ export default class CornellContent {
    * Handle copy button
    */
   handleCopy() {
+    if (!this.buttonCopy) {
+      return;
+    }
+
     const notes = (this.stripTags(this.mainNotes.getCurrentState())).inputField;
     const cue = (this.stripTags(this.recall.getCurrentState())).inputField;
     const summary = (this.stripTags(this.summary.getCurrentState()).inputField);
