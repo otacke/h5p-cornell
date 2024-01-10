@@ -1,7 +1,7 @@
 // Import required classes
-import CornellContent from './h5p-cornell-content';
-import Dictionary from './services/dictionary';
-import Util from './h5p-cornell-util';
+import CornellContent from './h5p-cornell-content.js';
+import Dictionary from '@services/dictionary.js';
+import Util from './services/util.js';
 
 /** Class representing Cornell Notes */
 export default class Cornell extends H5P.Question {

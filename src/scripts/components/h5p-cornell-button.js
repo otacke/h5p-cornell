@@ -1,5 +1,5 @@
 // Import required classes
-import Util from './../h5p-cornell-util';
+import Util from '@services/util.js';
 import './h5p-cornell-button.scss';
 
 /** Class representing the content */

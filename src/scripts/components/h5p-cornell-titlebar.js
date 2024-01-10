@@ -1,7 +1,7 @@
 // Import required classes
-import CornellButton from './h5p-cornell-button';
-import Dictionary from './../services/dictionary';
-import Util from './../h5p-cornell-util';
+import CornellButton from './h5p-cornell-button.js';
+import Dictionary from '@services/dictionary.js';
+import Util from '@services/util.js';
 import './h5p-cornell-titlebar.scss';
 
 /** Class representing the titlebar */

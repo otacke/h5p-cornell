@@ -1,9 +1,9 @@
 // Import required classes
-import CornellTitlebar from './components/h5p-cornell-titlebar';
-import CornellExercise from './components/h5p-cornell-exercise';
-import CornellNotes from './components/h5p-cornell-notes';
-import Dictionary from './services/dictionary';
-import Util from './h5p-cornell-util';
+import CornellTitlebar from '@components/h5p-cornell-titlebar.js';
+import CornellExercise from '@components/h5p-cornell-exercise.js';
+import CornellNotes from '@components/h5p-cornell-notes.js';
+import Dictionary from '@services/dictionary.js';
+import Util from './services/util.js';
 
 /**
  * Class representing the content.

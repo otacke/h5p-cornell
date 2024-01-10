@@ -1,6 +1,6 @@
 // Import required classes
-import Dictionary from './../services/dictionary';
-import Util from './../h5p-cornell-util';
+import Dictionary from '@services/dictionary.js';
+import Util from '@services/util.js';
 import './h5p-cornell-notes.scss';
 
 /** Class representing the content */
