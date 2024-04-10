@@ -92,7 +92,7 @@ export default class CornellContent {
     }
 
     // Only add copy button if browser supports it
-    navigator.permissions.query({ name: 'clipboard-write'})
+    navigator.permissions.query({ name: 'clipboard-write' })
       .then((canWriteToClipboard) => {
         if (canWriteToClipboard) {
           // Copy to clipboard button
@@ -418,7 +418,7 @@ export default class CornellContent {
           noOverflowRight: true,
           offsetVertical: 5,
           vertical: 'above'
-        }}
+        } }
       );
 
       this.buttonSave.classList.add('h5p-cornell-disabled');
@@ -451,12 +451,12 @@ export default class CornellContent {
         Dictionary.get('l10n.copyToClipboardSuccess') :
         Dictionary.get('l10n.copyToClipboardError');
 
-      H5P.attachToastTo(this.buttonCopy, message, {position: {
+      H5P.attachToastTo(this.buttonCopy, message, { position: {
         horizontal: 'centered',
         noOverflowRight: true,
         offsetVertical: 5,
         vertical: 'above'
-      }});
+      } });
 
       this.callbacks.read(message);
     });
