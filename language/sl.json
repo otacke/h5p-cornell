@@ -1,8 +1,8 @@
 {
   "semantics": [
     {
-      "label": "Headline",
-      "description": "If set, will be used for the headline of the exercise instead of the content title."
+      "label": "Naslov",
+      "description": "Neobvezen naslov za naslovno vrstico."
     },
     {
       "label": "Navodila",
@@ -108,14 +108,14 @@
           "default": "Zapiski so bili shranjeni v učno okolje."
         },
         {
-          "label": "Hide notes",
-          "default": "Hide @label notes",
-          "description": "@label is a placeholder and will be replaced with the respective label of the notes field."
+          "label": "Skrij zapiske",
+          "default": "Skrij zapiske @label",
+          "description": "@label je spremenljivka."
         },
         {
-          "label": "Show notes",
-          "default": "Show @label notes",
-          "description": "@label is a placeholder and will be replaced with the respective label of the notes field."
+          "label": "Prikaži zapiske",
+          "default": "Prikaži zapiske @label",
+          "description": "@label je spremenljivka."
         }
       ]
     }
