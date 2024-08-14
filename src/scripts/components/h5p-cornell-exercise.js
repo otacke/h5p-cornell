@@ -30,7 +30,7 @@ export default class CornellExercise {
     this.dom.classList.add('h5p-cornell-exercise-content-wrapper');
     this.dom.appendChild(exerciseContent);
 
-    let useSeparator = true;
+    let useSeparator = this.params.instructions !== '';
     const machineName = this.params.exerciseContent?.library?.split(' ')[0];
 
     if (machineName) {
