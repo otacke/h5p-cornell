@@ -5,6 +5,12 @@ import CornellNotes from '@components/h5p-cornell-notes.js';
 import Dictionary from '@services/dictionary.js';
 import Util from './services/util.js';
 
+/** @constant {number} RESIZE_FULLSCREEN_DELAY_MS Delay to give browser time to enter/exit fullscreen. */
+const RESIZE_FULLSCREEN_DELAY_MS = 100;
+
+/** @constant {number} TOAST_OFFSET_VERTICAL_PX Vertial offset from element to toast message. */
+const TOAST_OFFSET_VERTICAL_PX = 5;
+
 /**
  * Class representing the content.
  */
@@ -318,7 +324,7 @@ export default class CornellContent {
 
         this.exerciseWrapper.style.maxHeight = maxHeight;
         this.notesWrapper.style.maxHeight = maxHeight;
-      }, 100);
+      }, RESIZE_FULLSCREEN_DELAY_MS);
     }
     else {
       this.exerciseWrapper.style.maxHeight = '';
@@ -416,7 +422,7 @@ export default class CornellContent {
         Dictionary.get('l10n.notesSaved'), { position: {
           horizontal: 'centered',
           noOverflowRight: true,
-          offsetVertical: 5,
+          offsetVertical: TOAST_OFFSET_VERTICAL_PX,
           vertical: 'above'
         } }
       );
@@ -454,7 +460,7 @@ export default class CornellContent {
       H5P.attachToastTo(this.buttonCopy, message, { position: {
         horizontal: 'centered',
         noOverflowRight: true,
-        offsetVertical: 5,
+        offsetVertical: TOAST_OFFSET_VERTICAL_PX,
         vertical: 'above'
       } });
 
