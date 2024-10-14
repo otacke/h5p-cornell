@@ -1,4 +1,4 @@
-@import "@styles/h5p-cornell-main";
+@use "@styles/main";
 
 .h5p-cornell-title-bar {
   align-items: center;
@@ -10,32 +10,32 @@
   padding: .5em;
 
   .h5p-cornell-title {
-    color: $color-dark-text;
+    color: main.$color-dark-text;
     flex-grow: 1;
     font-size: 1.15em;
     font-weight: 700;
     margin: 0;
     overflow: hidden;
     padding: 0 1rem;
-    text-decoration: none solid $color-dark-text;
+    text-decoration: none solid main.$color-dark-text;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
 
   .h5p-cornell-date {
-    color: $color-base;
+    color: main.$color-base;
     flex-shrink: 0;
     font-size: 1.15em;
     font-weight: 700;
     margin: 0;
     overflow: hidden;
     padding: 0 1rem 0 0;
-    text-decoration: none solid $color-base;
+    text-decoration: none solid main.$color-base;
   }
 
   .h5p-cornell-button {
     &.h5p-cornell-button-fullscreen {
-      background-color: $color-base-05;
+      background-color: main.$color-base-05;
       background-image: url(../../images/button-enter-fullscreen-icon-blue.svg);
 
       &.h5p-cornell-button-disabled {
@@ -43,23 +43,23 @@
       }
 
       &:not(.h5p-cornell-button-disabled):hover {
-        background-color: $color-base-10;
+        background-color: main.$color-base-10;
       }
 
       &:not(.h5p-cornell-button-disabled):active {
-        background-color: $color-base-20;
+        background-color: main.$color-base-20;
       }
 
       &.h5p-cornell-button-active {
-        background-color: $color-base-05;
+        background-color: main.$color-base-05;
         background-image: url(../../images/button-exit-fullscreen-icon-blue.svg);
 
         &:not(.h5p-cornell-button-disabled):hover {
-          background-color: $color-base-10;
+          background-color: main.$color-base-10;
         }
 
         &:not(.h5p-cornell-button-disabled):active {
-          background-color: $color-base-20;
+          background-color: main.$color-base-20;
         }
       }
     }

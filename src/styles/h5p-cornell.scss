@@ -1,4 +1,4 @@
-@import "./h5p-cornell-main";
+@use "@styles/main";
 
 .h5p-cornell {
   min-width: 250px;
@@ -7,10 +7,10 @@
     margin: 0;
 
     .h5p-cornell-message-box {
-      background-color: $color-hint-message-background;
-      border: 1px solid $color-hint-message-border;
+      background-color: main.$color-hint-message-background;
+      border: 1px solid main.$color-hint-message-border;
       box-sizing: border-box;
-      color: $color-hint-message-text;
+      color: main.$color-hint-message-text;
       font-size: .8em;
       padding: .8em;
       width: 100%;
@@ -22,7 +22,7 @@
     }
 
     .h5p-cornell-panel {
-      max-width: $size-container-max-width;
+      max-width: main.$size-container-max-width;
       margin-left: auto;
       margin-right: auto;
       display: flex;
@@ -44,7 +44,7 @@
       .h5p-cornell-notes-content-wrapper {
         margin-left: auto;
         margin-right: auto;
-        max-width: $size-content-max-width;
+        max-width: main.$size-content-max-width;
         width: 100%;
 
         .h5p-cornell-main-notes-wrapper {
@@ -88,8 +88,8 @@
           }
 
           &.h5p-cornell-disabled {
-            background-color: $background-color-button-disabled;
-            color: $color-button-disabled;
+            background-color: main.$background-color-button-disabled;
+            color: main.$color-button-disabled;
             cursor: inherit;
             pointer-events: none;
           }

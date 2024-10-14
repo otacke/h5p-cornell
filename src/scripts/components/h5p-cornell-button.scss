@@ -1,4 +1,4 @@
-@import "@styles/h5p-cornell-main";
+@use "@styles/main";
 
 .h5p-cornell-button {
   align-items: center;
@@ -16,24 +16,24 @@
 
   &:not(.h5p-cornell-button-disabled) {
     &:hover {
-      background-color: $color-base-05;
+      background-color: main.$color-base-05;
       cursor: pointer;
     }
 
     &:active {
-      background-color: $color-base-10;
+      background-color: main.$color-base-10;
     }
 
     &.h5p-cornell-button-active {
-      background-color: $color-base;
+      background-color: main.$color-base;
       opacity: 20;
 
       &:hover {
-        background-color: $color-base-90;
+        background-color: main.$color-base-90;
       }
 
       &:active {
-        background-color: $color-base-95;
+        background-color: main.$color-base-95;
       }
     }
   }

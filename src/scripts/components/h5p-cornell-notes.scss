@@ -1,4 +1,4 @@
-@import "@styles/h5p-cornell-main";
+@use "@styles/main";
 
 .h5p-cornell-notes-field {
 
@@ -7,13 +7,13 @@
 
     .h5p-cornell-notes-titlebar {
       align-items: center;
-      background: $color-base-10;
+      background: main.$color-base-10;
       display: flex;
       flex-direction: row;
       padding: .25em .5em;
 
       .h5p-text-input-field-label {
-        color: $color-dark-base;
+        color: main.$color-dark-base;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -45,12 +45,12 @@
     }
 
     .h5p-text-input-field-textfield {
-      border-color: $color-base-10;
+      border-color: main.$color-base-10;
       box-sizing: border-box;
       width: 100%;
 
       &[disabled="disabled"] {
-        background-color: $color-base-05;
+        background-color: main.$color-base-05;
       }
     }
   }
