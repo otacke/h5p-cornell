@@ -1,0 +1,123 @@
+{
+  "semantics": [
+    {
+      "label": "Titlu",
+      "description": "Dacă este setat, va fi folosit pentru titlul exercițiului în locul titlului conținutului."
+    },
+    {
+      "label": "Instrucțiuni",
+      "description": "Studenții vor vedea aceste instrucțiuni deasupra notițelor."
+    },
+    {
+      "label": "Conținutul exercițiului"
+    },
+    {
+      "label": "Câmpuri pentru notițe",
+      "description": "Setări pentru câmpurile de notițe.",
+      "fields": [
+        {
+          "label": "Titlu câmp indiciu",
+          "default": "Indiciu",
+          "description": "Titlu pentru secțiunea de reamintire."
+        },
+        {
+          "label": "Text ajutător câmp indiciu",
+          "default": "Introduceți comentariile, întrebările, ideea principală etc. pe care le deduceți din notițele dumneavoastră!",
+          "description": "Text ajutător pentru secțiunea de indicii, ca memento pentru studenți."
+        },
+        {
+          "label": "Titlu câmp notițe",
+          "default": "Notițe",
+          "description": "Titlu pentru secțiunea de notițe."
+        },
+        {
+          "label": "Text ajutător câmp notițe",
+          "default": "Introduceți date, detalii, definiții, formule, exemple etc. din materialul sursă!",
+          "description": "Text ajutător pentru secțiunea de notițe, ca memento pentru studenți."
+        },
+        {
+          "label": "Titlu câmp rezumat",
+          "default": "Rezumat",
+          "description": "Titlu pentru secțiunea de rezumat."
+        },
+        {
+          "label": "Text ajutător câmp rezumat",
+          "default": "Rezumati ceea ce ați învățat!",
+          "description": "Text ajutător pentru secțiunea de rezumat, ca memento pentru studenți."
+        }
+      ]
+    },
+    {
+      "label": "Localizare",
+      "fields": [
+        {
+          "label": "Notițe salvate",
+          "default": "Notițe salvate"
+        },
+        {
+          "label": "Salvează",
+          "default": "Salvează"
+        },
+        {
+          "label": "Notițele nu pot fi salvate",
+          "default": "Platforma fie nu acceptă funcția de salvare a stării conținutului, fie aceasta nu este activată în setările platformei sau nu sunteți autentificat. Notițele dumneavoastră nu pot fi salvate!"
+        },
+        {
+          "label": "Text pentru butonul \"Copiază\"",
+          "default": "Copiază"
+        },
+        {
+          "label": "Notițe copiate în clipboard",
+          "default": "Notițe copiate în clipboard"
+        },
+        {
+          "label": "Notițele nu au putut fi copiate în clipboard",
+          "default": "Notițele nu au putut fi copiate în clipboard"
+        }
+      ]
+    },
+    {
+      "label": "Cititor de ecran",
+      "fields": [
+        {
+          "label": "Titlu buton ecran complet (intrare)",
+          "default": "Intră în modul ecran complet"
+        },
+        {
+          "label": "Titlu buton ecran complet (ieșire)",
+          "default": "Ieși din modul ecran complet"
+        },
+        {
+          "label": "Titlu buton comutare (când notițele sunt închise)",
+          "default": "Deschide notițele"
+        },
+        {
+          "label": "Titlu buton comutare (când notițele sunt deschise)",
+          "default": "Închide notițele"
+        },
+        {
+          "label": "Notițe deschise",
+          "default": "Vizualizarea a comutat la notițele dumneavoastră."
+        },
+        {
+          "label": "Notițe închise",
+          "default": "Vizualizarea a comutat la exercițiu."
+        },
+        {
+          "label": "Notițe salvate",
+          "default": "Notițele au fost salvate pe platformă."
+        },
+        {
+          "label": "Ascunde notițele",
+          "default": "Ascunde notițele @label",
+          "description": "@label este un substituent și va fi înlocuit cu eticheta respectivă a câmpului de notițe."
+        },
+        {
+          "label": "Arată notițele",
+          "default": "Arată notițele @label",
+          "description": "@label este un substituent și va fi înlocuit cu eticheta respectivă a câmpului de notițe."
+        }
+      ]
+    }
+  ]
+}
