@@ -25,7 +25,7 @@ export default class Cornell extends H5P.Question {
 
     // Work around H5P's 1 item group behavior in editor.
     params.behaviour = {
-      showNotesOnStartup: params.behaviour === true
+      showNotesOnStartup: params.behaviour === true,
     };
 
     // Make sure all variables are set
@@ -43,7 +43,7 @@ export default class Cornell extends H5P.Question {
       },
       behaviour: {
         enableSolutionsButton: false,
-        enableRetry: false
+        enableRetry: false,
       },
       l10n: {
         notesSaved: 'Notes saved',
@@ -51,8 +51,8 @@ export default class Cornell extends H5P.Question {
         copy: 'Copy',
         copyToClipboardSuccess: 'Notes copied to clipboard',
         copyToClipboardError: 'Notes could not be copied to clipboard',
-        // eslint-disable-next-line max-len
-        noSaveContentState: 'The platform either does not support the save content state feature or it is not activated in the platform\'s settings or you are not logged in. Your notes cannot be saved!'
+        // eslint-disable-next-line @stylistic/js/max-len
+        noSaveContentState: 'The platform either does not support the save content state feature or it is not activated in the platform\'s settings or you are not logged in. Your notes cannot be saved!',
       },
       a11y: {
         buttonFullscreenEnter: 'Enter fullscreen mode',
@@ -63,13 +63,13 @@ export default class Cornell extends H5P.Question {
         notesClosed: 'The view switched to the exercise.',
         notesHide: 'Hide @label notes',
         notesShow: 'Show @label notes',
-      }
+      },
     }, params);
 
     // Fill dictionary
     Dictionary.fill({
       l10n: this.params.l10n,
-      a11y: this.params.a11y
+      a11y: this.params.a11y,
     });
 
     /*
@@ -83,8 +83,8 @@ export default class Cornell extends H5P.Question {
         title: 'Cornell Notes',
       },
       previousState: Cornell.getPreviousStateLocal(
-        this.isRoot() ? this.contentId : this.subContentId
-      ) || {}
+        this.isRoot() ? this.contentId : this.subContentId,
+      ) || {},
     }, extras);
 
     const defaultLanguage = this.extras.metadata.defaultLanguage || 'en';
@@ -132,7 +132,7 @@ export default class Cornell extends H5P.Question {
       headline: this.params.headline,
       instructions: this.params.instructions,
       isRoot: this.isRoot(),
-      notesFields: this.params.notesFields
+      notesFields: this.params.notesFields,
     },
     {
       resize: () => {
@@ -146,7 +146,7 @@ export default class Cornell extends H5P.Question {
       },
       getCurrentState: () => {
         return this.getCurrentState();
-      }
+      },
     });
 
     // Register content with H5P.Question
@@ -160,7 +160,7 @@ export default class Cornell extends H5P.Question {
       }
     }, {
       root: document.documentElement,
-      threshold: [1]
+      threshold: [1],
     });
     this.observer.observe(this.content.getDOM());
 
@@ -263,7 +263,7 @@ export default class Cornell extends H5P.Question {
    */
   getXAPIData() {
     return {
-      statement: this.getXAPIAnswerEvent().data.statement
+      statement: this.getXAPIAnswerEvent().data.statement,
     };
   }
 
@@ -361,7 +361,7 @@ export default class Cornell extends H5P.Question {
         const id = this.isRoot() ? this.contentId : this.subContentId;
         window.localStorage.setItem(
           `${Cornell.DEFAULT_DESCRIPTION}-${id}`,
-          JSON.stringify(currentState)
+          JSON.stringify(currentState),
         );
       }
     }
@@ -389,7 +389,7 @@ export default class Cornell extends H5P.Question {
     }
 
     let previousState = window.localStorage.getItem(
-      `${Cornell.DEFAULT_DESCRIPTION}-${id}`
+      `${Cornell.DEFAULT_DESCRIPTION}-${id}`,
     );
 
     if (previousState) {

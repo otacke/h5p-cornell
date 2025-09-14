@@ -78,7 +78,7 @@ class Util {
   static copyTextToClipboard(text, callback = () => {}) {
     if (!navigator.clipboard) {
       console.error(
-        'Cannot copy to clipboard: navigator.clipboard is undefined'
+        'Cannot copy to clipboard: navigator.clipboard is undefined',
       );
       return;
     }

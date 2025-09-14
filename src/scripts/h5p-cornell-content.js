@@ -26,7 +26,7 @@ export default class CornellContent {
    */
   constructor(params = {}, callbacks = {}) {
     this.params = Util.extend({
-      extras: {}
+      extras: {},
     }, params);
 
     // Create values to fill with
@@ -35,9 +35,9 @@ export default class CornellContent {
         dateString: new Date().toLocaleDateString(),
         recall: { inputField: '' },
         mainNotes: { inputField: '' },
-        summary: { inputField: '' }
+        summary: { inputField: '' },
       },
-      this.params.extras.previousState || {}
+      this.params.extras.previousState || {},
     );
 
     // Callbacks
@@ -45,7 +45,7 @@ export default class CornellContent {
       getCurrentState: () => {},
       onButtonFullscreen: () => {},
       read: () => {},
-      resize: () => {}
+      resize: () => {},
     }, callbacks);
 
     // TODO: Request H5P core to set a flag that can be queried instead
@@ -91,8 +91,8 @@ export default class CornellContent {
         on: {
           click: () => {
             this.handleSave();
-          }
-        }
+          },
+        },
       }).get(0);
       buttonsWrapper.appendChild(this.buttonSave);
     }
@@ -110,8 +110,8 @@ export default class CornellContent {
             on: {
               click: () => {
                 this.handleCopy();
-              }
-            }
+              },
+            },
           }).get(0);
           buttonsWrapper.appendChild(this.buttonCopy);
         }
@@ -138,13 +138,13 @@ export default class CornellContent {
     return new CornellTitlebar(
       {
         title: this.params.headline || this.params.extras.metadata?.title || '',
-        dateString: this.previousState.dateString
+        dateString: this.previousState.dateString,
       },
       {
         onButtonFullscreen: () => {
           this.callbacks.onButtonFullscreen();
-        }
-      }
+        },
+      },
     );
   }
 
@@ -162,13 +162,13 @@ export default class CornellContent {
         exerciseContent: this.params.exerciseContent,
         contentId: this.params.contentId,
         previousState: this.previousState.exercise,
-        instructions: this.params.instructions
+        instructions: this.params.instructions,
       },
       {
         resize: () => {
           this.callbacks.resize();
-        }
-      }
+        },
+      },
     );
     exerciseWrapper.appendChild(this.exercise.getDOM());
 
@@ -210,13 +210,13 @@ export default class CornellContent {
         placeholder: Util.htmlDecode(this.params.notesFields.recallPlaceholder),
         size: this.params.fieldSizeNotes,
         previousState: this.previousState.recall,
-        contentId: this.params.contentId
+        contentId: this.params.contentId,
       },
       {
         onChanged: () => {
           this.handleFieldChanged();
-        }
-      }
+        },
+      },
     );
     mainNotesDOM.appendChild(this.recall.getDOM());
 
@@ -227,13 +227,13 @@ export default class CornellContent {
         placeholder: Util.htmlDecode(this.params.notesFields.notesPlaceholder),
         size: this.params.fieldSizeNotes,
         previousState: this.previousState.mainNotes,
-        contentId: this.params.contentId
+        contentId: this.params.contentId,
       },
       {
         onChanged: () => {
           this.handleFieldChanged();
-        }
-      }
+        },
+      },
     );
     mainNotesDOM.appendChild(this.mainNotes.getDOM());
 
@@ -253,17 +253,17 @@ export default class CornellContent {
         label: this.params.notesFields.summaryTitle,
         class: 'h5p-cornell-summary-notes-summary-wrapper',
         placeholder: Util.htmlDecode(
-          this.params.notesFields.summaryPlaceholder
+          this.params.notesFields.summaryPlaceholder,
         ),
         size: this.params.fieldSizeNotes,
         previousState: this.previousState.summary,
-        contentId: this.params.contentId
+        contentId: this.params.contentId,
       },
       {
         onChanged: () => {
           this.handleFieldChanged();
-        }
-      }
+        },
+      },
     );
     summaryDOM.appendChild(this.summary.getDOM());
 
@@ -377,7 +377,7 @@ export default class CornellContent {
       recall: this.stripTags(this.recall.getCurrentState()),
       mainNotes: this.stripTags(this.mainNotes.getCurrentState()),
       summary: this.stripTags(this.summary.getCurrentState()),
-      exercise: this.exercise.getCurrentState()
+      exercise: this.exercise.getCurrentState(),
     };
   }
 
@@ -408,7 +408,7 @@ export default class CornellContent {
         this.params.contentId,
         'state',
         this.getCurrentStateProvider.getCurrentState(),
-        { deleteOnChange: false }
+        { deleteOnChange: false },
       );
     }
     else {
@@ -423,8 +423,8 @@ export default class CornellContent {
           horizontal: 'centered',
           noOverflowRight: true,
           offsetVertical: TOAST_OFFSET_VERTICAL_PX,
-          vertical: 'above'
-        } }
+          vertical: 'above',
+        } },
       );
 
       this.buttonSave.classList.add('h5p-cornell-disabled');
@@ -449,7 +449,7 @@ export default class CornellContent {
     const text = [
       `## ${this.params.notesFields.notesTitle}\n${notes}`,
       `## ${this.params.notesFields.recallTitle}\n${cue}`,
-      `## ${this.params.notesFields.summaryTitle}\n${summary}`
+      `## ${this.params.notesFields.summaryTitle}\n${summary}`,
     ].join('\n\n');
 
     Util.copyTextToClipboard(text, (result) => {
@@ -461,7 +461,7 @@ export default class CornellContent {
         horizontal: 'centered',
         noOverflowRight: true,
         offsetVertical: TOAST_OFFSET_VERTICAL_PX,
-        vertical: 'above'
+        vertical: 'above',
       } });
 
       this.callbacks.read(message);

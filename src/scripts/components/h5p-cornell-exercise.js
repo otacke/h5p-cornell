@@ -12,11 +12,11 @@ export default class CornellExercise {
   constructor(params = {}, callbacks = {}) {
     // Set missing params
     this.params = Util.extend({
-      instructions: ''
+      instructions: '',
     }, params);
 
     this.callbacks = Util.extend({
-      resize: () => {}
+      resize: () => {},
     }, callbacks);
 
     const exerciseContent = document.createElement('div');
@@ -55,7 +55,7 @@ export default class CornellExercise {
         this.params.contentId,
         H5P.jQuery(exerciseContentLibrary),
         false,
-        { previousState: this.params.previousState }
+        { previousState: this.params.previousState },
       );
 
       switch (machineName) {
@@ -81,7 +81,7 @@ export default class CornellExercise {
             if (this.youtubeWrapper === undefined) {
               const youtubeVideo = this.dom
                 .querySelector(
-                  '.h5p-cornell-exercise-content-library.h5p-video.h5p-youtube'
+                  '.h5p-cornell-exercise-content-library.h5p-video.h5p-youtube',
                 );
 
               this.youtubeWrapper = (youtubeVideo) ?
@@ -101,11 +101,11 @@ export default class CornellExercise {
       }
 
       exerciseContent.appendChild(
-        this.createInstructionsDOM(this.params.instructions)
+        this.createInstructionsDOM(this.params.instructions),
       );
       if (useSeparator) {
         exerciseContent.appendChild(
-          this.createSeparatorDOM(this.params.instructions)
+          this.createSeparatorDOM(this.params.instructions),
         );
       }
       exerciseContent.appendChild(exerciseContentLibrary);

@@ -18,14 +18,14 @@ export default class CornellTitlebar {
     // Set missing params
     this.params = Util.extend({
       title: '',
-      dateString: new Date().toLocaleDateString()
+      dateString: new Date().toLocaleDateString(),
     }, params);
 
     // Set missing callbacks
     this.callbacks = Util.extend({
       onButtonFullscreen: () => {
         console.warn('A function for handling the fullscreen button is missing.');
-      }
+      },
     }, callbacks);
 
     this.titleBar = document.createElement('div');
@@ -48,14 +48,14 @@ export default class CornellTitlebar {
         disabled: true,
         a11y: {
           active: Dictionary.get('a11y.buttonFullscreenExit'),
-          inactive: Dictionary.get('a11y.buttonFullscreenEnter')
-        }
+          inactive: Dictionary.get('a11y.buttonFullscreenEnter'),
+        },
       },
       {
         onClick: (() => {
           this.callbacks.onButtonFullscreen();
-        })
-      }
+        }),
+      },
     );
 
     this.titleBar.appendChild(titleDOM);

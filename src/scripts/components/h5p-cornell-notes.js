@@ -13,11 +13,11 @@ export default class CornellNotes {
   constructor(params = {}, callbacks = {}) {
     // Set missing params
     this.params = Util.extend({
-      previousState: {}
+      previousState: {},
     }, params || {});
 
     this.callbacks = Util.extend({
-      onChanged: () => {}
+      onChanged: () => {},
     }, callbacks || {});
 
     this.previousInput = this.params?.previousState?.inputField || '';
@@ -40,12 +40,12 @@ export default class CornellNotes {
           placeholderText: Util.htmlDecode(this.params.placeholder),
           inputFieldSize: this.params.size,
         },
-        library: 'H5P.TextInputField 1.2'
+        library: 'H5P.TextInputField 1.2',
       },
       this.params.contentId,
       H5P.jQuery(wrapper),
       false,
-      { previousState: this.params.previousState }
+      { previousState: this.params.previousState },
     );
 
     if (!this.instance) {
@@ -142,13 +142,13 @@ export default class CornellNotes {
       this.areNotesInvisible = false;
       this.textArea.value = this.previousInput;
       this.textArea.setAttribute(
-        'placeholder', Util.htmlDecode(this.params.placeholder)
+        'placeholder', Util.htmlDecode(this.params.placeholder),
       );
       this.textArea.removeAttribute('disabled');
       this.buttonVisibility.classList.remove('hidden');
       this.buttonVisibility.setAttribute(
         'aria-label',
-        Dictionary.get('a11y.notesHide').replace(/@label/g, this.params.label)
+        Dictionary.get('a11y.notesHide').replace(/@label/g, this.params.label),
       );
     }
     else {
@@ -161,7 +161,7 @@ export default class CornellNotes {
       this.buttonVisibility.classList.add('hidden');
       this.buttonVisibility.setAttribute(
         'aria-label',
-        Dictionary.get('a11y.notesShow').replace(/@label/g, this.params.label)
+        Dictionary.get('a11y.notesShow').replace(/@label/g, this.params.label),
       );
     }
   }

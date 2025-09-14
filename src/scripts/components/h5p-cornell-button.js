@@ -15,17 +15,17 @@ export default class CornellButton {
       a11y: {
         active: '',
         disabled: '',
-        inactive: ''
+        inactive: '',
       },
       active: false,
       classes: [],
       disabled: false,
-      type: 'pulse'
+      type: 'pulse',
     }, params);
 
     // Sanitize callbacks
     this.callbacks = Util.extend({
-      onClick: () => {}
+      onClick: () => {},
     }, callbacks);
 
     if (!Array.isArray(this.params.classes)) {
