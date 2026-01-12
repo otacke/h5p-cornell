@@ -1,6 +1,5 @@
 // Import required classes
 import CornellButton from './h5p-cornell-button.js';
-import Dictionary from '@services/dictionary.js';
 import { extend } from '@services/util.js';
 import './h5p-cornell-titlebar.scss';
 
@@ -47,8 +46,8 @@ export default class CornellTitlebar {
         classes: [ 'h5p-cornell-button', 'h5p-cornell-button-fullscreen' ],
         disabled: true,
         a11y: {
-          active: Dictionary.get('a11y.buttonFullscreenExit'),
-          inactive: Dictionary.get('a11y.buttonFullscreenEnter'),
+          active: this.params.dictionary.get('a11y.buttonFullscreenExit'),
+          inactive: this.params.dictionary.get('a11y.buttonFullscreenEnter'),
         },
       },
       {

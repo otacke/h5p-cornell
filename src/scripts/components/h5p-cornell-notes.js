@@ -1,5 +1,3 @@
-// Import required classes
-import Dictionary from '@services/dictionary.js';
 import { extend, htmlDecode } from '@services/util.js';
 import './h5p-cornell-notes.scss';
 
@@ -148,7 +146,7 @@ export default class CornellNotes {
       this.buttonVisibility.classList.remove('hidden');
       this.buttonVisibility.setAttribute(
         'aria-label',
-        Dictionary.get('a11y.notesHide').replace(/@label/g, this.params.label),
+        this.params.dictionary.get('a11y.notesHide').replace(/@label/g, this.params.label),
       );
     }
     else {
@@ -161,7 +159,7 @@ export default class CornellNotes {
       this.buttonVisibility.classList.add('hidden');
       this.buttonVisibility.setAttribute(
         'aria-label',
-        Dictionary.get('a11y.notesShow').replace(/@label/g, this.params.label),
+        this.params.dictionary.get('a11y.notesShow').replace(/@label/g, this.params.label),
       );
     }
   }

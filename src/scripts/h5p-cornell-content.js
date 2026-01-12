@@ -2,7 +2,6 @@
 import CornellTitlebar from '@components/h5p-cornell-titlebar.js';
 import CornellExercise from '@components/h5p-cornell-exercise.js';
 import CornellNotes from '@components/h5p-cornell-notes.js';
-import Dictionary from '@services/dictionary.js';
 import { extend, htmlDecode, copyTextToClipboard } from './services/util.js';
 
 /** @constant {number} RESIZE_FULLSCREEN_DELAY_MS Delay to give browser time to enter/exit fullscreen. */
@@ -63,7 +62,7 @@ export default class CornellContent {
       this.messageBox.classList.add('h5p-cornell-message-box');
       const message = document.createElement('p');
       message.classList.add('h5p-cornell-message');
-      message.innerHTML = Dictionary.get('l10n.noSaveContentState');
+      message.innerHTML = this.params.dictionary.get('l10n.noSaveContentState');
       this.messageBox.appendChild(message);
       this.content.appendChild(this.messageBox);
     }
@@ -84,8 +83,8 @@ export default class CornellContent {
     if (canStoreUserState) {
       this.buttonSave = H5P.JoubelUI.createButton({
         type: 'button',
-        html: Dictionary.get('l10n.save'),
-        ariaLabel: Dictionary.get('l10n.save'),
+        html: this.params.dictionary.get('l10n.save'),
+        ariaLabel: this.params.dictionary.get('l10n.save'),
         class: 'h5p-cornell-button-save h5p-cornell-disabled',
         disabled: true,
         on: {
@@ -104,8 +103,8 @@ export default class CornellContent {
           // Copy to clipboard button
           this.buttonCopy = H5P.JoubelUI.createButton({
             type: 'button',
-            html: Dictionary.get('l10n.copy'),
-            ariaLabel: Dictionary.get('l10n.copy'),
+            html: this.params.dictionary.get('l10n.copy'),
+            ariaLabel: this.params.dictionary.get('l10n.copy'),
             class: 'h5p-cornell-button-copy',
             on: {
               click: () => {
@@ -139,6 +138,7 @@ export default class CornellContent {
       {
         title: this.params.headline || this.params.extras.metadata?.title || '',
         dateString: this.previousState.dateString,
+        dictionary: this.params.dictionary,
       },
       {
         onButtonFullscreen: () => {
@@ -211,6 +211,7 @@ export default class CornellContent {
         size: this.params.fieldSizeNotes,
         previousState: this.previousState.recall,
         contentId: this.params.contentId,
+        dictionary: this.params.dictionary,
       },
       {
         onChanged: () => {
@@ -228,6 +229,7 @@ export default class CornellContent {
         size: this.params.fieldSizeNotes,
         previousState: this.previousState.mainNotes,
         contentId: this.params.contentId,
+        dictionary: this.params.dictionary,
       },
       {
         onChanged: () => {
@@ -258,6 +260,7 @@ export default class CornellContent {
         size: this.params.fieldSizeNotes,
         previousState: this.previousState.summary,
         contentId: this.params.contentId,
+        dictionary: this.params.dictionary,
       },
       {
         onChanged: () => {
@@ -419,7 +422,7 @@ export default class CornellContent {
     if (this.buttonSave) {
       H5P.attachToastTo(
         this.buttonSave,
-        Dictionary.get('l10n.notesSaved'), { position: {
+        this.params.dictionary.get('l10n.notesSaved'), { position: {
           horizontal: 'centered',
           noOverflowRight: true,
           offsetVertical: TOAST_OFFSET_VERTICAL_PX,
@@ -431,7 +434,7 @@ export default class CornellContent {
       this.buttonSave.setAttribute('disabled', 'disabled');
     }
 
-    this.callbacks.read(Dictionary.get('l10n.notesSaved'));
+    this.callbacks.read(this.params.dictionary.get('l10n.notesSaved'));
   }
 
   /**
@@ -454,8 +457,8 @@ export default class CornellContent {
 
     copyTextToClipboard(text, (result) => {
       const message = (result === true) ?
-        Dictionary.get('l10n.copyToClipboardSuccess') :
-        Dictionary.get('l10n.copyToClipboardError');
+        this.params.dictionary.get('l10n.copyToClipboardSuccess') :
+        this.params.dictionary.get('l10n.copyToClipboardError');
 
       H5P.attachToastTo(this.buttonCopy, message, { position: {
         horizontal: 'centered',

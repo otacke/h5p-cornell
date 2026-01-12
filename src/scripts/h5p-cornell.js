@@ -37,7 +37,8 @@ export default class Cornell extends H5P.Question {
     );
     this.params = extend(defaults, params);
 
-    Dictionary.fill({ l10n: this.params.l10n, a11y: this.params.a11y });
+    this.dictionary = new Dictionary();
+    this.dictionary.fill({ l10n: this.params.l10n, a11y: this.params.a11y });
 
     /*
      * The previousState stored inside the database will be set to undefined if
@@ -100,6 +101,7 @@ export default class Cornell extends H5P.Question {
       instructions: this.params.instructions,
       isRoot: this.isRoot(),
       notesFields: this.params.notesFields,
+      dictionary: this.dictionary,
     },
     {
       resize: () => {
