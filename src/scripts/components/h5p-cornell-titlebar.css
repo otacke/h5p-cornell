@@ -1,5 +1,3 @@
-@use "@styles/main";
-
 .h5p-cornell-title-bar {
   align-items: center;
   background-color: #fff;
@@ -9,33 +7,33 @@
   overflow: hidden;
   padding: .5em;
 
-  .h5p-cornell-title {
-    color: main.$color-dark-text;
+  & .h5p-cornell-title {
+    color: var(--color-dark-text);
     flex-grow: 1;
     font-size: 1.15em;
     font-weight: 700;
     margin: 0;
     overflow: hidden;
     padding: 0 1rem;
-    text-decoration: none solid main.$color-dark-text;
+    text-decoration: none solid var(--color-dark-text);
     text-overflow: ellipsis;
     white-space: nowrap;
   }
 
-  .h5p-cornell-date {
-    color: main.$color-base;
+  & .h5p-cornell-date {
+    color: var(--color-base);
     flex-shrink: 0;
     font-size: 1.15em;
     font-weight: 700;
     margin: 0;
     overflow: hidden;
     padding: 0 1rem 0 0;
-    text-decoration: none solid main.$color-base;
+    text-decoration: none solid var(--color-base);
   }
 
-  .h5p-cornell-button {
+  & .h5p-cornell-button {
     &.h5p-cornell-button-fullscreen {
-      background-color: main.$color-base-05;
+      background-color: var(--color-base-05);
       background-image: url(../../images/button-enter-fullscreen-icon-blue.svg);
 
       &.h5p-cornell-button-disabled {
@@ -43,23 +41,23 @@
       }
 
       &:not(.h5p-cornell-button-disabled):hover {
-        background-color: main.$color-base-10;
+        background-color: var(--color-base-10);
       }
 
       &:not(.h5p-cornell-button-disabled):active {
-        background-color: main.$color-base-20;
+        background-color: var(--color-base-20);
       }
 
       &.h5p-cornell-button-active {
-        background-color: main.$color-base-05;
+        background-color: var(--color-base-05);
         background-image: url(../../images/button-exit-fullscreen-icon-blue.svg);
 
         &:not(.h5p-cornell-button-disabled):hover {
-          background-color: main.$color-base-10;
+          background-color: var(--color-base-10);
         }
 
         &:not(.h5p-cornell-button-disabled):active {
-          background-color: main.$color-base-20;
+          background-color: var(--color-base-20);
         }
       }
     }

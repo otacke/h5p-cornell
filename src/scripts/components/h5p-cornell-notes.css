@@ -1,26 +1,24 @@
-@use "@styles/main";
-
 .h5p-cornell-notes-field {
 
-  .h5p-text-input-field {
+  & .h5p-text-input-field {
     margin: .5em;
 
-    .h5p-cornell-notes-titlebar {
+    & .h5p-cornell-notes-titlebar {
       align-items: center;
-      background: main.$color-base-10;
+      background: var(--color-base-10);
       display: flex;
       flex-direction: row;
       padding: .25em .5em;
 
-      .h5p-text-input-field-label {
-        color: main.$color-dark-base;
+      & .h5p-text-input-field-label {
+        color: var(--color-dark-base);
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
         width: 100%;
       }
 
-      .h5p-cornell-notes-button-visibility {
+      & .h5p-cornell-notes-button-visibility {
         background-color: transparent;
         background-position: center;
         background-repeat: no-repeat;
@@ -44,13 +42,13 @@
       }
     }
 
-    .h5p-text-input-field-textfield {
-      border-color: main.$color-base-10;
+    & .h5p-text-input-field-textfield {
+      border-color: var(--color-base-10);
       box-sizing: border-box;
       width: 100%;
 
       &[disabled="disabled"] {
-        background-color: main.$color-base-05;
+        background-color: var(--color-base-05);
       }
     }
   }

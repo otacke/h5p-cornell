@@ -1,6 +1,6 @@
 // Import required classes
 import { extend } from '@services/util.js';
-import './h5p-cornell-exercise.scss';
+import './h5p-cornell-exercise.css';
 
 /** Class representing the content */
 export default class CornellExercise {

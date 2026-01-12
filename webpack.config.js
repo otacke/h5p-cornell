@@ -56,7 +56,7 @@ export default {
         loader: 'babel-loader'
       },
       {
-        test: /\.(s[ac]ss|css)$/,
+        test: /\.css$/,
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
@@ -66,9 +66,6 @@ export default {
           },
           {
             loader: 'css-loader'
-          },
-          {
-            loader: 'sass-loader'
           }
         ]
       },

@@ -1,5 +1,5 @@
 import { extend, htmlDecode } from '@services/util.js';
-import './h5p-cornell-notes.scss';
+import './h5p-cornell-notes.css';
 
 /** Class representing the content */
 export default class CornellNotes {

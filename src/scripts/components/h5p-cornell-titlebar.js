@@ -1,7 +1,7 @@
 // Import required classes
 import CornellButton from './h5p-cornell-button.js';
 import { extend } from '@services/util.js';
-import './h5p-cornell-titlebar.scss';
+import './h5p-cornell-titlebar.css';
 
 /** Class representing the titlebar */
 export default class CornellTitlebar {
