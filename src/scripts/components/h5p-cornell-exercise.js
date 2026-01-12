@@ -65,7 +65,7 @@ export default class CornellExercise {
             this.instance.audio.style.height = '';
           }
 
-           break;
+          break;
 
         case 'H5P.Video':
           // H5P.Video doesn't keep track of its playing state itself

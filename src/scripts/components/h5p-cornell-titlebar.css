@@ -33,7 +33,7 @@
     &.h5p-cornell-button-fullscreen {
       &::before {
         content: '\e915';
-        font-family: "h5p-theme";
+        font-family: "h5p-theme", sans-serif;
         left: 50%;
         position: absolute;
         top: 50%;
@@ -47,7 +47,7 @@
       &.h5p-cornell-button-active {
         &::before {
           content: '\e914';
-          font-family: "h5p-theme";
+          font-family: "h5p-theme", sans-serif;
         }
       }
     }

@@ -316,7 +316,7 @@ export default class CornellContent {
       window.setTimeout(() => {
         this.content.style.setProperty(
           '--fullscreen-max-height', `${window.innerHeight}px`,
-        )
+        );
       }, RESIZE_FULLSCREEN_DELAY_MS);
     }
     else {

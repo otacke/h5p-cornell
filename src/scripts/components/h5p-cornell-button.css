@@ -10,6 +10,11 @@
   height: calc(2 * var(--h5p-theme-spacing-xs) + var(--h5p-theme-font-size-m));
 
   &:not(.h5p-cornell-button-disabled) {
+    &:focus-visible {
+      outline: 2px ridge var(--h5p-theme-main-cta-base);
+      outline-offset: 2px;
+    }
+
     &:hover {
       background-color:  color-mix(in srgb, var(--h5p-theme-contrast-cta-light), transparent 60%);
       cursor: pointer;
@@ -18,10 +23,5 @@
     &:active {
       background-color:  color-mix(in srgb, var(--h5p-theme-contrast-cta-light), transparent 80%);
     }
-  }
-
-  &:focus-visible {
-    outline: 2px ridge var(--h5p-theme-main-cta-base);
-    outline-offset: 2px;
   }
 }
