@@ -81,18 +81,16 @@ export default class CornellContent {
 
     // Save state to platform button
     if (canStoreUserState) {
-      this.buttonSave = H5P.JoubelUI.createButton({
-        type: 'button',
-        html: this.params.dictionary.get('l10n.save'),
+      this.buttonSave = new H5P.Components.Button({
+        style: 'primary',
+        label: this.params.dictionary.get('l10n.save'),
         ariaLabel: this.params.dictionary.get('l10n.save'),
-        class: 'h5p-cornell-button-save h5p-cornell-disabled',
-        disabled: true,
-        on: {
-          click: () => {
-            this.handleSave();
-          },
+        classes: ['h5p-cornell-button-save'],
+        onClick: () => {
+          this.handleSave();
         },
-      }).get(0);
+      });
+      this.toggleSaveButton(false);
       buttonsWrapper.appendChild(this.buttonSave);
     }
 
@@ -101,17 +99,15 @@ export default class CornellContent {
       .then((canWriteToClipboard) => {
         if (canWriteToClipboard) {
           // Copy to clipboard button
-          this.buttonCopy = H5P.JoubelUI.createButton({
-            type: 'button',
-            html: this.params.dictionary.get('l10n.copy'),
+          this.buttonCopy = new H5P.Components.Button({
+            style: 'secondary',
+            label: this.params.dictionary.get('l10n.copy'),
             ariaLabel: this.params.dictionary.get('l10n.copy'),
-            class: 'h5p-cornell-button-copy',
-            on: {
-              click: () => {
-                this.handleCopy();
-              },
+            classes: ['h5p-cornell-button-copy'],
+            onClick: () => {
+              this.handleCopy();
             },
-          }).get(0);
+          });
           buttonsWrapper.appendChild(this.buttonCopy);
         }
       });
@@ -317,25 +313,20 @@ export default class CornellContent {
        * Give browser some time to go to fullscreen mode and return proper
        * viewport height
        */
-      setTimeout(() => {
-        const messageHeight = this.messageBox ?
-          this.messageBox.offsetHeight :
-          0;
-
-        const maxHeight = `${window.innerHeight -
-          this.titlebar.getDOM().offsetHeight - messageHeight}px`;
-
-        this.exerciseWrapper.style.maxHeight = maxHeight;
-        this.notesWrapper.style.maxHeight = maxHeight;
+      window.setTimeout(() => {
+        this.content.style.setProperty(
+          '--fullscreen-max-height', `${window.innerHeight}px`,
+        )
       }, RESIZE_FULLSCREEN_DELAY_MS);
     }
     else {
-      this.exerciseWrapper.style.maxHeight = '';
-      this.notesWrapper.style.maxHeight = '';
+      this.content.style.removeProperty(
+        '--fullscreen-max-height',
+      );
 
-      setTimeout(() => {
+      window.requestAnimationFrame(() => {
         this.resize();
-      }, 0);
+      });
     }
   }
 
@@ -419,7 +410,7 @@ export default class CornellContent {
       this.callbacks.getCurrentState();
     }
 
-    if (this.buttonSave) {
+    if (this.buttonSave && this.saveButtonEnabledState) {
       H5P.attachToastTo(
         this.buttonSave,
         this.params.dictionary.get('l10n.notesSaved'), { position: {
@@ -430,8 +421,7 @@ export default class CornellContent {
         } },
       );
 
-      this.buttonSave.classList.add('h5p-cornell-disabled');
-      this.buttonSave.setAttribute('disabled', 'disabled');
+      this.toggleSaveButton(false);
     }
 
     this.callbacks.read(this.params.dictionary.get('l10n.notesSaved'));
@@ -479,7 +469,26 @@ export default class CornellContent {
       return;
     }
 
-    this.buttonSave.classList.remove('h5p-cornell-disabled');
-    this.buttonSave.removeAttribute('disabled');
+    this.toggleSaveButton(true);
+  }
+
+  toggleSaveButton(enabledRequest) {
+    if (!this.buttonSave) {
+      return;
+    }
+
+    let enabledTarget;
+
+    if (typeof enabledRequest === 'boolean') {
+      enabledTarget = enabledRequest;
+    }
+    else {
+      enabledTarget = !this.saveButtonEnabledState;
+    }
+
+    this.saveButtonEnabledState = enabledTarget;
+
+    this.buttonSave.setAttribute('aria-disabled', (!enabledTarget).toString());
+    this.buttonSave.classList.toggle('h5p-cornell-disabled', !enabledTarget);
   }
 }

@@ -1,38 +1,33 @@
 .h5p-cornell {
-  --color-base: hsl(212, 79%, 48%);
-  --color-base-05: hsla(from var(--color-base) h s l / 0.05);
-  --color-base-10: hsla(from var(--color-base) h s l / 0.10);
-  --color-base-20: hsla(from var(--color-base) h s l / 0.20);
-  --color-base-90: hsla(from var(--color-base) h s l / 0.90);
-  --color-base-95: hsla(from var(--color-base) h s l / 0.95);
+  --color-base: var(--h5p-theme-main-cta-base);
   --color-button-disabled: #e9e9e4;
   --background-color-button-disabled: #838383;
 
-  --color-dark-text: #4c4452;
-  --color-dark-base: #145cad;
-
   --sizing-content-max-width: 1058px;
   --sizing-container-max-width: 1920px;
+  --sizing-min-width: 250px;
+  --sizing-summary-min-width: 200px;
 
-  --color-hint-message-background: #f5e8d5;
-  --color-hint-message-border: #eedd55;
-  --color-hint-message-text: #874e12;
-
+  background-color: var(--h5p-theme-ui-base);
   container-name: h5p-cornell;
   container-type: inline-size;
-  min-width: 250px;
+  min-width: var(--sizing-min-width);
 
   & .h5p-question-content {
     margin: 0;
 
+    & .h5p-cornell-container {
+      overflow-y: auto;
+      max-height: var(--fullscreen-max-height);
+    }
+
     & .h5p-cornell-message-box {
-      background-color: var(--color-hint-message-background);
-      border: 1px solid var(--color-hint-message-border);
+      background-color: var(--h5p-theme-feedback-neutral-third);
+      border: 1px solid var(--h5p-theme-feedback-neutral-main);
       box-sizing: border-box;
-      color: var(--color-hint-message-text);
-      font-size: .8em;
-      padding: .8em;
-      width: 100%;
+      color: var(--h5p-theme-feedback-neutral-secondary);
+      font-size: var(--h5p-theme-font-size-s);
+      padding: var(--h5p-theme-spacing-xxs);
 
       & .h5p-cornell-message {
         margin: 0;
@@ -44,23 +39,27 @@
       max-width: var(--sizing-container-max-width);
       margin-left: auto;
       margin-right: auto;
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--h5p-theme-spacing-m);
+      padding: var(--h5p-theme-spacing-m);
 
       & .h5p-cornell-exercise-wrapper {
         overflow-y: auto;
-        width: 50%;
       }
 
       & .h5p-cornell-notes-wrapper {
         display: flex;
         flex-direction: column;
-        overflow-y: auto;
+        gap: var(--h5p-theme-spacing-m);
+        overflow: visible;
         z-index: 1;
-        width: 50%;
       }
 
       & .h5p-cornell-notes-content-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: var(--h5p-theme-spacing-m);
         margin-left: auto;
         margin-right: auto;
         max-width: var(--sizing-content-max-width);
@@ -69,8 +68,8 @@
         & .h5p-cornell-main-notes-wrapper {
           display: flex;
           flex-direction: row;
+          gap: var(--h5p-theme-spacing-m);
           justify-content: space-between;
-          margin: 1em 2em 0 2em;
 
           & .h5p-cornell-notes-field {
             &.h5p-cornell-main-notes-recall-wrapper {
@@ -84,8 +83,7 @@
         }
 
         & .h5p-cornell-summary-wrapper {
-          margin: .5em 2em .5em 2em;
-          min-width: 200px;
+          min-width: var(--sizing-summary-min-width, 200px);
 
           & .h5p-cornell-notes-field {
             &.h5p-cornell-summary-notes-summary-wrapper {
@@ -96,28 +94,44 @@
       }
 
       & .h5p-cornell-buttons-wrapper {
-        margin-left: 2em;
-        width: calc(100% - 4em);
+        display: flex;
+        flex-direction: row;
+        gap: var(--h5p-theme-spacing-m);
 
         & .h5p-cornell-button-save {
           &::before {
             content: "\f0ed";
             font-family: "H5PFontAwesome4", sans-serif;
-            padding-right: 0.5em;
+          }
+
+          &:focus-visible {
+            outline: 2px ridge var(--h5p-theme-main-cta-base);
+            outline-offset: 2px;
           }
 
           &.h5p-cornell-disabled {
             background-color: var(--background-color-button-disabled);
+            border-color: var(--background-color-button-disabled);
             color: var(--color-button-disabled);
             cursor: inherit;
             pointer-events: none;
+
+            &:focus-visible {
+              outline: 2px ridge var(--background-color-button-disabled);
+            }
           }
         }
 
-        & .h5p-cornell-button-copy::before {
-          content: "\f0c5";
-          font-family: "H5PFontAwesome4", sans-serif;
-          padding-right: 0.5em;
+        & .h5p-cornell-button-copy{
+          &::before {
+            content: "\f0c5";
+            font-family: "H5PFontAwesome4", sans-serif;
+          }
+
+          &:focus-visible {
+            outline: 2px ridge var(--h5p-theme-main-cta-base);
+            outline-offset: 2px;
+          }
         }
       }
     }
@@ -126,12 +140,6 @@
 
 @container h5p-cornell (width <= 960px) {
   .h5p-cornell .h5p-question-content .h5p-cornell-panel {
-    & .h5p-cornell-exercise-wrapper {
-      width: 100%;
-    }
-
-    & .h5p-cornell-notes-wrapper {
-      width: 100%;
-    }
+    grid-template-columns: 1fr;
   }
 }

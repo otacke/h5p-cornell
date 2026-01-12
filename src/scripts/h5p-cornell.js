@@ -15,6 +15,8 @@ export default class Cornell extends H5P.Question {
   constructor(params, contentId, extras = {}) {
     super('cornell'); // CSS class selector for content's iframe: h5p-cornell
 
+    // TODO: Fix fullscreen, one column, long text - no notes visible
+
     this.contentId = contentId;
 
     /*
