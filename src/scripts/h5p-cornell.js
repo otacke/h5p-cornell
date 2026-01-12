@@ -31,7 +31,7 @@ export default class Cornell extends H5P.Question {
           enableSolutionsButton: false,
           enableRetry: false,
           showNotesOnStartup: params.behaviour === true,
-        }
+        },
       },
       getSemanticsDefaults(),
     );

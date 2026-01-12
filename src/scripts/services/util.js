@@ -86,6 +86,6 @@ export function copyTextToClipboard(text, callback = () => {}) {
     (error) => {
       console.error('Cannot copy to clipboard: ', error);
       callback(false);
-    }
+    },
   );
 }
