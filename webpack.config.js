@@ -16,6 +16,7 @@ export default {
   resolve: {
     alias: {
       '@components': _resolve(__dirname, 'src/scripts/components'),
+      '@root': _resolve(__dirname, './'),
       '@scripts': _resolve(__dirname, 'src/scripts'),
       '@services': _resolve(__dirname, 'src/scripts/services'),
       '@styles': _resolve(__dirname, 'src/styles')

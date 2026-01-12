@@ -1,6 +1,7 @@
 // Import required classes
 import CornellContent from './h5p-cornell-content.js';
 import Dictionary from '@services/dictionary.js';
+import { getSemanticsDefaults } from '@services/util-h5p.js';
 import Util from './services/util.js';
 
 /** Class representing Cornell Notes */
@@ -22,55 +23,21 @@ export default class Cornell extends H5P.Question {
      * @see {@link https://h5p.org/documentation/developers/contracts#guides-header-8}
      * @see {@link https://h5p.org/documentation/developers/contracts#guides-header-9}
      */
+    const defaults = Util.extend(
+      {
+        fieldSizeNotes: 10,
+        fieldSizeSummary: 7,
+        behaviour: {
+          enableSolutionsButton: false,
+          enableRetry: false,
+          showNotesOnStartup: params.behaviour === true,
+        }
+      },
+      getSemanticsDefaults(),
+    );
+    this.params = Util.extend(defaults, params);
 
-    // Work around H5P's 1 item group behavior in editor.
-    params.behaviour = {
-      showNotesOnStartup: params.behaviour === true,
-    };
-
-    // Make sure all variables are set
-    this.params = Util.extend({
-      instructions: '',
-      fieldSizeNotes: 10,
-      fieldSizeSummary: 7,
-      notesFields: {
-        recallTitle: 'Recall',
-        recallPlaceholder: 'Enter your keywords, questions, the main idea, etc.',
-        notesTitle: 'Notes',
-        notesPlaceholder: 'Enter dates, details, definitions, formulas, examples, etc.',
-        summaryTitle: 'Summary',
-        summaryPlaceholder: 'Enter your summary',
-      },
-      behaviour: {
-        enableSolutionsButton: false,
-        enableRetry: false,
-      },
-      l10n: {
-        notesSaved: 'Notes saved',
-        save: 'Save',
-        copy: 'Copy',
-        copyToClipboardSuccess: 'Notes copied to clipboard',
-        copyToClipboardError: 'Notes could not be copied to clipboard',
-        // eslint-disable-next-line @stylistic/js/max-len
-        noSaveContentState: 'The platform either does not support the save content state feature or it is not activated in the platform\'s settings or you are not logged in. Your notes cannot be saved!',
-      },
-      a11y: {
-        buttonFullscreenEnter: 'Enter fullscreen mode',
-        buttonFullscreenExit: 'Exit fullscreen mode',
-        buttonToggleOpenNotes: 'Switch to the notes',
-        buttonToggleCloseNotes: 'Switch to the exercise',
-        notesOpened: 'The view switched to your notes.',
-        notesClosed: 'The view switched to the exercise.',
-        notesHide: 'Hide @label notes',
-        notesShow: 'Show @label notes',
-      },
-    }, params);
-
-    // Fill dictionary
-    Dictionary.fill({
-      l10n: this.params.l10n,
-      a11y: this.params.a11y,
-    });
+    Dictionary.fill({ l10n: this.params.l10n, a11y: this.params.a11y });
 
     /*
      * The previousState stored inside the database will be set to undefined if
