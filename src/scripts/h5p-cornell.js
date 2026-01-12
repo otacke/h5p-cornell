@@ -2,7 +2,7 @@
 import CornellContent from './h5p-cornell-content.js';
 import Dictionary from '@services/dictionary.js';
 import { getSemanticsDefaults } from '@services/util-h5p.js';
-import Util from './services/util.js';
+import { extend, formatLanguageCode } from './services/util.js';
 
 /** Class representing Cornell Notes */
 export default class Cornell extends H5P.Question {
@@ -23,7 +23,7 @@ export default class Cornell extends H5P.Question {
      * @see {@link https://h5p.org/documentation/developers/contracts#guides-header-8}
      * @see {@link https://h5p.org/documentation/developers/contracts#guides-header-9}
      */
-    const defaults = Util.extend(
+    const defaults = extend(
       {
         fieldSizeNotes: 10,
         fieldSizeSummary: 7,
@@ -35,7 +35,7 @@ export default class Cornell extends H5P.Question {
       },
       getSemanticsDefaults(),
     );
-    this.params = Util.extend(defaults, params);
+    this.params = extend(defaults, params);
 
     Dictionary.fill({ l10n: this.params.l10n, a11y: this.params.a11y });
 
@@ -45,7 +45,7 @@ export default class Cornell extends H5P.Question {
      * would erase all notes, so the localStorage value is used if the
      * previous state id undefined.
      */
-    this.extras = Util.extend({
+    this.extras = extend({
       metadata: {
         title: 'Cornell Notes',
       },
@@ -55,7 +55,7 @@ export default class Cornell extends H5P.Question {
     }, extras);
 
     const defaultLanguage = this.extras.metadata.defaultLanguage || 'en';
-    this.languageTag = Util.formatLanguageCode(defaultLanguage);
+    this.languageTag = formatLanguageCode(defaultLanguage);
   }
 
   /**
@@ -254,7 +254,7 @@ export default class Cornell extends H5P.Question {
    */
   createXAPIEvent(verb) {
     const xAPIEvent = this.createXAPIEventTemplate(verb);
-    Util.extend(
+    extend(
       xAPIEvent.getVerifiedStatementValue(['object', 'definition']),
       this.getxAPIDefinition());
     return xAPIEvent;

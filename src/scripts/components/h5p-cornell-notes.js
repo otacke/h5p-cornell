@@ -1,6 +1,6 @@
 // Import required classes
 import Dictionary from '@services/dictionary.js';
-import Util from '@services/util.js';
+import { extend, htmlDecode } from '@services/util.js';
 import './h5p-cornell-notes.scss';
 
 /** Class representing the content */
@@ -12,11 +12,11 @@ export default class CornellNotes {
    */
   constructor(params = {}, callbacks = {}) {
     // Set missing params
-    this.params = Util.extend({
+    this.params = extend({
       previousState: {},
     }, params || {});
 
-    this.callbacks = Util.extend({
+    this.callbacks = extend({
       onChanged: () => {},
     }, callbacks || {});
 
@@ -37,7 +37,7 @@ export default class CornellNotes {
       {
         params: {
           taskDescription: this.params.label,
-          placeholderText: Util.htmlDecode(this.params.placeholder),
+          placeholderText: htmlDecode(this.params.placeholder),
           inputFieldSize: this.params.size,
         },
         library: 'H5P.TextInputField 1.2',
@@ -142,7 +142,7 @@ export default class CornellNotes {
       this.areNotesInvisible = false;
       this.textArea.value = this.previousInput;
       this.textArea.setAttribute(
-        'placeholder', Util.htmlDecode(this.params.placeholder),
+        'placeholder', htmlDecode(this.params.placeholder),
       );
       this.textArea.removeAttribute('disabled');
       this.buttonVisibility.classList.remove('hidden');

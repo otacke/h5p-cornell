@@ -1,7 +1,7 @@
 // Import required classes
 import CornellButton from './h5p-cornell-button.js';
 import Dictionary from '@services/dictionary.js';
-import Util from '@services/util.js';
+import { extend } from '@services/util.js';
 import './h5p-cornell-titlebar.scss';
 
 /** Class representing the titlebar */
@@ -16,13 +16,13 @@ export default class CornellTitlebar {
    */
   constructor(params = {}, callbacks = {}) {
     // Set missing params
-    this.params = Util.extend({
+    this.params = extend({
       title: '',
       dateString: new Date().toLocaleDateString(),
     }, params);
 
     // Set missing callbacks
-    this.callbacks = Util.extend({
+    this.callbacks = extend({
       onButtonFullscreen: () => {
         console.warn('A function for handling the fullscreen button is missing.');
       },

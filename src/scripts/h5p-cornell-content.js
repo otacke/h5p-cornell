@@ -3,7 +3,7 @@ import CornellTitlebar from '@components/h5p-cornell-titlebar.js';
 import CornellExercise from '@components/h5p-cornell-exercise.js';
 import CornellNotes from '@components/h5p-cornell-notes.js';
 import Dictionary from '@services/dictionary.js';
-import Util from './services/util.js';
+import { extend, htmlDecode, copyTextToClipboard } from './services/util.js';
 
 /** @constant {number} RESIZE_FULLSCREEN_DELAY_MS Delay to give browser time to enter/exit fullscreen. */
 const RESIZE_FULLSCREEN_DELAY_MS = 100;
@@ -25,12 +25,12 @@ export default class CornellContent {
    * @param {object} [callbacks] Callbacks.
    */
   constructor(params = {}, callbacks = {}) {
-    this.params = Util.extend({
+    this.params = extend({
       extras: {},
     }, params);
 
     // Create values to fill with
-    this.previousState = Util.extend(
+    this.previousState = extend(
       {
         dateString: new Date().toLocaleDateString(),
         recall: { inputField: '' },
@@ -41,7 +41,7 @@ export default class CornellContent {
     );
 
     // Callbacks
-    this.callbacks = Util.extend({
+    this.callbacks = extend({
       getCurrentState: () => {},
       onButtonFullscreen: () => {},
       read: () => {},
@@ -207,7 +207,7 @@ export default class CornellContent {
       {
         label: this.params.notesFields.recallTitle,
         class: 'h5p-cornell-main-notes-recall-wrapper',
-        placeholder: Util.htmlDecode(this.params.notesFields.recallPlaceholder),
+        placeholder: htmlDecode(this.params.notesFields.recallPlaceholder),
         size: this.params.fieldSizeNotes,
         previousState: this.previousState.recall,
         contentId: this.params.contentId,
@@ -224,7 +224,7 @@ export default class CornellContent {
       {
         label: this.params.notesFields.notesTitle,
         class: 'h5p-cornell-main-notes-notes-wrapper',
-        placeholder: Util.htmlDecode(this.params.notesFields.notesPlaceholder),
+        placeholder: htmlDecode(this.params.notesFields.notesPlaceholder),
         size: this.params.fieldSizeNotes,
         previousState: this.previousState.mainNotes,
         contentId: this.params.contentId,
@@ -252,7 +252,7 @@ export default class CornellContent {
       {
         label: this.params.notesFields.summaryTitle,
         class: 'h5p-cornell-summary-notes-summary-wrapper',
-        placeholder: Util.htmlDecode(
+        placeholder: htmlDecode(
           this.params.notesFields.summaryPlaceholder,
         ),
         size: this.params.fieldSizeNotes,
@@ -342,7 +342,7 @@ export default class CornellContent {
    * @returns {object} Save state object with cleaned text.
    */
   stripTags(fieldState) {
-    fieldState.inputField = Util.htmlDecode(fieldState.inputField);
+    fieldState.inputField = htmlDecode(fieldState.inputField);
     return fieldState;
   }
 
@@ -452,7 +452,7 @@ export default class CornellContent {
       `## ${this.params.notesFields.summaryTitle}\n${summary}`,
     ].join('\n\n');
 
-    Util.copyTextToClipboard(text, (result) => {
+    copyTextToClipboard(text, (result) => {
       const message = (result === true) ?
         Dictionary.get('l10n.copyToClipboardSuccess') :
         Dictionary.get('l10n.copyToClipboardError');

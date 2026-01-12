@@ -1,5 +1,5 @@
 // Import required classes
-import Util from '@services/util.js';
+import { extend } from '@services/util.js';
 import './h5p-cornell-button.scss';
 
 /** Class representing the content */
@@ -11,7 +11,7 @@ export default class CornellButton {
    */
   constructor(params = {}, callbacks = {}) {
     // Set missing params
-    this.params = Util.extend({
+    this.params = extend({
       a11y: {
         active: '',
         disabled: '',
@@ -24,7 +24,7 @@ export default class CornellButton {
     }, params);
 
     // Sanitize callbacks
-    this.callbacks = Util.extend({
+    this.callbacks = extend({
       onClick: () => {},
     }, callbacks);
 

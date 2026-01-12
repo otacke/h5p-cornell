@@ -1,5 +1,5 @@
 // Import required classes
-import Util from '@services/util.js';
+import { extend } from '@services/util.js';
 import './h5p-cornell-exercise.scss';
 
 /** Class representing the content */
@@ -11,11 +11,11 @@ export default class CornellExercise {
    */
   constructor(params = {}, callbacks = {}) {
     // Set missing params
-    this.params = Util.extend({
+    this.params = extend({
       instructions: '',
     }, params);
 
-    this.callbacks = Util.extend({
+    this.callbacks = extend({
       resize: () => {},
     }, callbacks);
 
