@@ -108,14 +108,14 @@
           "default": "Les notes ont été sauvegardées sur la plateforme."
         },
         {
-          "label": "Hide notes",
-          "default": "Hide @label notes",
-          "description": "@label is a placeholder and will be replaced with the respective label of the notes field."
+          "label": "Masquer les notes",
+          "default": "Masquer les notes @label",
+          "description": "@label est un espace réservé et sera remplacé par le libellé correspondant du champ de notes."
         },
         {
-          "label": "Show notes",
-          "default": "Show @label notes",
-          "description": "@label is a placeholder and will be replaced with the respective label of the notes field."
+          "label": "Afficher les notes",
+          "default": "Afficher les notes @label",
+          "description": "@label est un espace réservé et sera remplacé par le libellé correspondant du champ de notes."
         }
       ]
     }
