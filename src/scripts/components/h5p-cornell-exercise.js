@@ -30,8 +30,8 @@ export default class CornellExercise {
     this.dom.classList.add('h5p-cornell-exercise-content-wrapper');
     this.dom.appendChild(exerciseContent);
 
-    let useSeparator = this.params.instructions !== '';
     const machineName = this.params.exerciseContent?.library?.split(' ')[0];
+    const useSeparator = this.params.instructions !== '' && machineName === 'H5P.AdvancedText';
 
     if (machineName) {
       /*
@@ -65,8 +65,6 @@ export default class CornellExercise {
             this.instance.audio.style.height = '';
           }
 
-          useSeparator = false;
-
           break;
 
         case 'H5P.Video':
@@ -74,8 +72,6 @@ export default class CornellExercise {
           this.instance.on('stateChange', (event) => {
             this.mediumRunning = (event.data === 1);
           });
-
-          useSeparator = false;
 
           this.instance.on('resize', () => {
             if (this.youtubeWrapper === undefined) {

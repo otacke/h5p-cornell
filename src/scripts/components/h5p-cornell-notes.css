@@ -1,17 +1,15 @@
 .h5p-cornell-notes-field {
 
   & .h5p-text-input-field {
-    margin: .5em;
-
     & .h5p-cornell-notes-titlebar {
       align-items: center;
-      background: var(--color-base-10);
+      background: var(--h5p-theme-alternative-dark);
       display: flex;
       flex-direction: row;
-      padding: .25em .5em;
+      padding: var(--h5p-theme-spacing-xxs);
 
       & .h5p-text-input-field-label {
-        color: var(--color-dark-base);
+        color: var(--h5p-theme-text-secondary);
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -19,36 +17,60 @@
       }
 
       & .h5p-cornell-notes-button-visibility {
+        aspect-ratio: 1;
         background-color: transparent;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: 1.2em 1.2em;
-        border: 0px;
+        border: none;
+        border-radius: var(--h5p-theme-border-radius-medium);
         flex-grow: 0;
-        height: 1.75em;
-        width: 1.75em;
+        height: var(--h5p-theme-spacing-l);
+        position: relative;
 
-        &:not(.hidden) {
-          background-image: url(../../images/button-eye-open-icon-blue.svg);
+        &::before {
+          color: var(--h5p-theme-main-cta-dark);
+          font-family: "H5PFontAwesome4", sans-serif;
+          font-size: var(--h5p-theme-font-size-l);
+          left: 50%;
+          position: absolute;
+          top: 50%;
+          transform: translate(-50%, -50%);
         }
 
-        &.hidden {
-          background-image: url(../../images/button-eye-closed-icon-blue.svg);
+        &:not(.hidden)::before {
+          content: "\f06e"
+        }
+
+        &.hidden::before {
+          content: "\f070";
         }
 
         &:hover {
           cursor: pointer;
         }
+
+        &:focus-visible {
+          outline: 2px ridge var(--h5p-theme-main-cta-base);
+          outline-offset: 2px;
+        }
       }
     }
 
+    & .h5p-text-input-field-message-wrapper {
+      display: none;
+    }
+
     & .h5p-text-input-field-textfield {
-      border-color: var(--color-base-10);
+      border-color: var(--h5p-theme-alternative-dark);
+      border-radius: 0;
       box-sizing: border-box;
       width: 100%;
 
       &[disabled="disabled"] {
-        background-color: var(--color-base-05);
+        background-color: var(--h5p-theme-alternative-dark);
+      }
+
+      &::placeholder {
+        color: var(--h5p-theme-text-third);
+        font-style: italic;
       }
     }
   }
