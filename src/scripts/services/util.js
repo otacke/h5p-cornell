@@ -1,46 +1,45 @@
 /**
  * Extend an array just like JQuery's extend.
+ * @param {...object} args Objects to merge.
  * @returns {object} Merged objects.
  */
-export function extend() {
-  for (let i = 1; i < arguments.length; i++) {
-    for (let key in arguments[i]) {
-      if (Object.prototype.hasOwnProperty.call(arguments[i], key)) {
-        if (
-          typeof arguments[0][key] === 'object' &&
-          typeof arguments[i][key] === 'object'
-        ) {
-          extend(arguments[0][key], arguments[i][key]);
+export const extend = (...args) => {
+  for (let i = 1; i < args.length; i++) {
+    for (let key in args[i]) {
+      if (Object.prototype.hasOwnProperty.call(args[i], key)) {
+        if (typeof args[0][key] === 'object' && typeof args[i][key] === 'object') {
+          extend(args[0][key], args[i][key]);
         }
-        else {
-          arguments[0][key] = arguments[i][key];
+        else if (args[i][key] !== undefined) {
+          args[0][key] = args[i][key];
         }
       }
     }
   }
-  return arguments[0];
-}
+
+  return args[0];
+};
 
 /**
  * Retrieve true string from HTML encoded string.
  * @param {string} input Input string.
  * @returns {string} Output string.
  */
-export function htmlDecode(input) {
+export const htmlDecode = (input) => {
   const dparser = new DOMParser().parseFromString(input, 'text/html');
   return dparser.documentElement ? dparser.documentElement.textContent : '';
-}
+};
 
 /**
  * Retrieve string without HTML tags.
  * @param {string} html Input string.
  * @returns {string} Output string.
  */
-export function stripHTML(html) {
+export const stripHTML = (html) => {
   const div = document.createElement('div');
   div.innerHTML = html;
   return div.textContent || div.innerText || '';
-}
+};
 
 /**
  * Format language tag (RFC 5646). Assuming "language-coutry". No validation.
@@ -48,7 +47,7 @@ export function stripHTML(html) {
  * @param {string} languageCode Language tag.
  * @returns {string} Formatted language tag.
  */
-export function formatLanguageCode(languageCode) {
+export const formatLanguageCode = (languageCode) => {
   if (typeof languageCode !== 'string') {
     return languageCode;
   }
@@ -65,7 +64,7 @@ export function formatLanguageCode(languageCode) {
   languageCode = segments.join('-');
 
   return languageCode;
-}
+};
 
 /**
  * Copy text to clipboard.
