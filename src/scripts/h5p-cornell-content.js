@@ -2,7 +2,7 @@
 import CornellTitlebar from '@components/h5p-cornell-titlebar.js';
 import CornellExercise from '@components/h5p-cornell-exercise.js';
 import CornellNotes from '@components/h5p-cornell-notes.js';
-import { extend, htmlDecode, copyTextToClipboard } from './services/util.js';
+import { extend, htmlDecode, canCopyToClipboard, copyTextToClipboard } from './services/util.js';
 
 /** @constant {number} RESIZE_FULLSCREEN_DELAY_MS Delay to give browser time to enter/exit fullscreen. */
 const RESIZE_FULLSCREEN_DELAY_MS = 100;
@@ -94,23 +94,23 @@ export default class CornellContent {
       buttonsWrapper.appendChild(this.buttonSave);
     }
 
-    // Only add copy button if browser supports it
-    navigator.permissions.query({ name: 'clipboard-write' })
-      .then((canWriteToClipboard) => {
-        if (canWriteToClipboard) {
-          // Copy to clipboard button
-          this.buttonCopy = new H5P.Components.Button({
-            style: 'secondary',
-            label: this.params.dictionary.get('l10n.copy'),
-            ariaLabel: this.params.dictionary.get('l10n.copy'),
-            classes: ['h5p-cornell-button-copy'],
-            onClick: () => {
-              this.handleCopy();
-            },
-          });
-          buttonsWrapper.appendChild(this.buttonCopy);
-        }
+    canCopyToClipboard().then((canWriteToClipboard) => {
+      if (!canWriteToClipboard) {
+        return;
+      }
+
+      // Copy to clipboard button
+      this.buttonCopy = new H5P.Components.Button({
+        style: 'secondary',
+        label: this.params.dictionary.get('l10n.copy'),
+        ariaLabel: this.params.dictionary.get('l10n.copy'),
+        classes: ['h5p-cornell-button-copy'],
+        onClick: () => {
+          this.handleCopy();
+        },
       });
+      buttonsWrapper.appendChild(this.buttonCopy);
+    });
 
     this.notesWrapper.appendChild(buttonsWrapper);
 

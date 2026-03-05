@@ -73,10 +73,11 @@ export function formatLanguageCode(languageCode) {
  * @param {string} text Text to copy to clipboard.
  * @param {function} [callback] Callback accepting true/false as param.
  */
-export function copyTextToClipboard(text, callback = () => {}) {
-  if (!navigator.clipboard) {
+export const copyTextToClipboard = async (text, callback = () => {}) => {
+  const canCopy = await canCopyToClipboard();
+  if (!canCopy) {
     console.error(
-      'Cannot copy to clipboard: navigator.clipboard is undefined',
+      'Cannot copy to clipboard: Clipboard API not supported or not in a secure context.',
     );
     return;
   }
@@ -88,4 +89,22 @@ export function copyTextToClipboard(text, callback = () => {}) {
       callback(false);
     },
   );
-}
+};
+
+/**
+ * Determine if the Clipboard API is supported and if the user has granted permission to write to the clipboard.
+ * @returns {Promise<boolean>} True if the Clipboard API is supported and permission is granted, false otherwise.
+ */
+export const canCopyToClipboard = async () => {
+  if (!navigator.clipboard || !window.isSecureContext) {
+    return false;
+  };
+
+  try {
+    const result = await navigator.permissions.query({ name: 'clipboard-write' });
+    return result.state === 'granted' || result.state === 'prompt';
+  }
+  catch (error) {
+    return typeof navigator.clipboard.writeText === 'function'; // Fallback for Firefox
+  }
+};
