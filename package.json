@@ -21,7 +21,7 @@
   "type": "module",
   "devDependencies": {
     "@babel/core": "^7.29.0",
-    "@babel/preset-env": "^7.29.2",
+    "@babel/preset-env": "^7.29.5",
     "babel-loader": "^10.1.1",
     "cross-env": "^10.1.0",
     "css-loader": "^7.1.4",
@@ -29,7 +29,7 @@
     "mini-css-extract-plugin": "^2.10.2",
     "regenerator-runtime": "^0.14.1",
     "resolve-url-loader": "^5.0.0",
-    "stylelint": "^17.9.1",
+    "stylelint": "^17.11.0",
     "stylelint-config-recommended": "^18.0.0",
     "stylelint-config-recommended-scss": "^17.0.1",
     "webpack": "^5.106.2",
