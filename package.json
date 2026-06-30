@@ -29,7 +29,7 @@
     "mini-css-extract-plugin": "^2.10.2",
     "regenerator-runtime": "^0.14.1",
     "resolve-url-loader": "^5.0.0",
-    "stylelint": "^17.13.0",
+    "stylelint": "^17.14.0",
     "stylelint-config-recommended": "^18.0.0",
     "stylelint-config-recommended-scss": "^17.0.1",
     "terser-webpack-plugin": "^5.6.1",
