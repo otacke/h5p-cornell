@@ -18,6 +18,7 @@ export default class Cornell extends H5P.Question {
     // TODO: Fix fullscreen, one column, long text - no notes visible
 
     this.contentId = contentId;
+    this.extras = extras;
 
     /*
      * this.params.behaviour.enableSolutionsButton and this.params.behaviour.enableRetry
@@ -59,6 +60,14 @@ export default class Cornell extends H5P.Question {
 
     const defaultLanguage = this.extras.metadata.defaultLanguage || 'en';
     this.languageTag = formatLanguageCode(defaultLanguage);
+  }
+
+  /**
+   * Workaround for H5P core mutating prototype to inject its isRoot, but ES6 inheritance here.
+   * @returns {boolean} True, if content type is root. Else false.
+   */
+  isRoot() {
+    return !!this.extras.standalone;
   }
 
   /**
